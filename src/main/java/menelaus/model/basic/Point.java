@@ -1,4 +1,4 @@
-package menelaus.model.board;
+package menelaus.model.basic;
 
 public class Point {
 	int x;

@@ -1,9 +1,11 @@
-package menelaus.model.board;
+package menelaus.model.basic;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import menelaus.model.basic.Point;
 
 public class PointTest {
 	Point point;

@@ -1,5 +1,7 @@
 package menelaus.model.board;
 
+import menelaus.model.basic.Point;
+
 public class Tile {
 	Point relativePosition;
 
