@@ -63,15 +63,15 @@ public class Board {
 		this.tileInfo = new Hashtable<Point, BoardTileInfo>();
 	}
 	
-	void chopTileOut(Point point) {
+	public void chopTileOut(Point point) {
 		throw new UnsupportedOperationException();
 	}
 	
-	void placePiece(Piece piece) {
+	public void placePiece(Piece piece) {
 		throw new UnsupportedOperationException();
 	}
 	
-	void removePiece(Piece piece) {
+	public void removePiece(Piece piece) {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -25,7 +25,7 @@ public class Piece {
 		this.tiles = tiles;
 	}
 	
-	void rotate() {
+	public void rotate() {
 		Iterator<Tile> iterator = tiles.iterator();
 		
 		while (iterator.hasNext()) {
@@ -37,7 +37,7 @@ public class Piece {
 		}
 	}
 	
-	void flip() {
+	public void flip() {
 		Iterator<Tile> iterator = tiles.iterator();
 		int maxX = 0;
 		
@@ -59,7 +59,7 @@ public class Piece {
 		}
 	}
 	
-	void addTile(Tile tile) {
+	public void addTile(Tile tile) {
 		tiles.add(tile);
 	}
 	
