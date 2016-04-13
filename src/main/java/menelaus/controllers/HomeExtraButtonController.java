@@ -1,6 +1,6 @@
 package menelaus.controllers;
 
-import menelaus.view.ExtraScreenPanel;
+import menelaus.view.ExtraScreen;
 import menelaus.view.GameWindowFrame;
 import menelaus.view.HomeScreen;
 
@@ -16,6 +16,6 @@ public class HomeExtraButtonController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		GameWindowFrame.getInstance().swapPanel(new ExtraScreenPanel());
+		GameWindowFrame.getInstance().swapPanel(new ExtraScreen());
 	}
 }

@@ -9,11 +9,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class LevelSelector extends JPanel {
+public class LevelSelectorScreen extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LevelSelector() {
+	public LevelSelectorScreen() {
 		setBounds(100, 100, 1000, 750);
 		
 		JButton btnLevel = new JButton("Level 1");

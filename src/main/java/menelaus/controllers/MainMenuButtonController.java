@@ -3,7 +3,7 @@ package menelaus.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import menelaus.view.ExtraScreenPanel;
+import menelaus.view.ExtraScreen;
 import menelaus.view.GameWindowFrame;
 import menelaus.view.HomeScreen;
 

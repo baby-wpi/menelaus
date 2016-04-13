@@ -3,7 +3,7 @@ package menelaus.view;
 import menelaus.controllers.HomeContinueButtonController;
 import menelaus.controllers.HomeExitButtonController;
 import menelaus.controllers.HomeExtraButtonController;
-import menelaus.controllers.HomeLevelsButtonController;
+import menelaus.controllers.LevelsButtonController;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 
@@ -34,7 +34,7 @@ public class HomeScreen extends JPanel {
 
 		//		// TODO: 4/13/16 Add level from disk? 
 		btnContinue.addActionListener(new HomeContinueButtonController(new Level(LevelType.LIGHTNING, 8, 8)));
-		btnLevels.addActionListener(new HomeLevelsButtonController()); // Levels.
+		btnLevels.addActionListener(new LevelsButtonController()); // Levels.
 		btnExit.addActionListener(new HomeExitButtonController(this)); // Exit.      
 		btnExtra.addActionListener(new HomeExtraButtonController()); // Extra.
 

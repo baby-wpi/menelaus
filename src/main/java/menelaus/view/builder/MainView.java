@@ -1,4 +1,4 @@
-package menelaus.builderview;
+package menelaus.view.builder;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class BuilderMainView extends JFrame {
+public class MainView extends JFrame {
 	private JTextField txtLevelName;
 
 	/**
@@ -28,7 +28,7 @@ public class BuilderMainView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderMainView frame = new BuilderMainView();
+					MainView frame = new MainView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class BuilderMainView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BuilderMainView() {
+	public MainView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 604);
 		
