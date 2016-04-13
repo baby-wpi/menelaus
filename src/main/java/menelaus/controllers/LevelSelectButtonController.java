@@ -3,7 +3,7 @@ package menelaus.controllers;
 import menelaus.model.Level;
 import menelaus.view.GameWindowFrame;
 import menelaus.view.LevelPlayScreen;
-import menelaus.view.LevelSelector;
+import menelaus.view.LevelSelectorScreen;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +15,7 @@ public class LevelSelectButtonController implements ActionListener{
     /**
      * The home screen JFrame that contains the continue button.
      */
-    LevelSelector selectScreen;
+    LevelSelectorScreen selectScreen;
     /**
      * The level model that we will be continuing from.
      */
@@ -26,7 +26,7 @@ public class LevelSelectButtonController implements ActionListener{
      * @param selectScreen Th screen that let's you select each level.
      * @param level The level we're opeing up.
      */
-    public LevelSelectButtonController(LevelSelector selectScreen, Level level) {
+    public LevelSelectButtonController(LevelSelectorScreen selectScreen, Level level) {
         this.selectScreen = selectScreen;
         this.level = level;
     }

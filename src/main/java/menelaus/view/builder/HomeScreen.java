@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.builder;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 
-public class BuilderHomeScreen extends JFrame {
+public class HomeScreen extends JFrame {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class BuilderHomeScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderHomeScreen frame = new BuilderHomeScreen();
+					HomeScreen frame = new HomeScreen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class BuilderHomeScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BuilderHomeScreen() {
+	public HomeScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
 		contentPane = new JPanel();

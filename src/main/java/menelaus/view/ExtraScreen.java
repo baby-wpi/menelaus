@@ -13,12 +13,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import menelaus.controllers.MainMenuButtonController;
 
-public class ExtraScreenPanel extends JPanel {
+public class ExtraScreen extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public ExtraScreenPanel() {
+	public ExtraScreen() {
 		setBounds(100, 100, 1000, 750);
 		
 		/* Buttons */

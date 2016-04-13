@@ -3,21 +3,21 @@ package menelaus.controllers;
 
 import menelaus.view.GameWindowFrame;
 import menelaus.view.HomeScreen;
-import menelaus.view.LevelSelector;
+import menelaus.view.LevelSelectorScreen;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeLevelsButtonController implements ActionListener{
+public class LevelsButtonController implements ActionListener{
 
 	// The home screen JFrame that contains the levels button:
 	
-	public HomeLevelsButtonController(){
+	public LevelsButtonController(){
 		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		GameWindowFrame.getInstance().swapPanel(new LevelSelector());
+		GameWindowFrame.getInstance().swapPanel(new LevelSelectorScreen());
 	}
 
 }
