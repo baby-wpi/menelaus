@@ -25,7 +25,6 @@ public class HomeContinueButtonController implements ActionListener{
         this.level = level;
     }
 
-    @Override
     public void actionPerformed(ActionEvent actionEvent) {
         LevelPlayScreen.main(null);
     }
