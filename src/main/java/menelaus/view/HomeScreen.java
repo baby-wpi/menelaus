@@ -33,9 +33,8 @@ public class HomeScreen extends JPanel {
 		/* CONNECT BUTTON TO CONTROLLERS */
 
 		//		// TODO: 4/13/16 Add level from disk? 
-		//        btnContinue.addActionListener(new HomeContinueButtonController(this, new Level(LevelType.LIGHTNING, 8, 8)));
-		//		
-		//        btnLevels.addActionListener(new HomeLevelsButtonController(this)); // Levels.
+		btnContinue.addActionListener(new HomeContinueButtonController(new Level(LevelType.LIGHTNING, 8, 8)));
+		btnLevels.addActionListener(new HomeLevelsButtonController()); // Levels.
 		btnExit.addActionListener(new HomeExitButtonController(this)); // Exit.      
 		btnExtra.addActionListener(new HomeExtraButtonController()); // Extra.
 
