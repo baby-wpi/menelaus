@@ -1,19 +1,14 @@
 package menelaus.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import menelaus.controllers.HomeContinueButtonController;
+import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class HomeScreen extends JFrame {
 
@@ -46,6 +41,8 @@ public class HomeScreen extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnContinue = new JButton("Continue");
+        // TODO: 4/13/16 Add level form disk? 
+        btnContinue.addActionListener(new HomeContinueButtonController(this, new Level(LevelType.LIGHTNING, 8, 8)));
 		
 		JButton btnLevels = new JButton("Levels");
 		
