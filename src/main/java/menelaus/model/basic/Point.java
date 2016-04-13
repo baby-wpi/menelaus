@@ -25,6 +25,10 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public Point add(Point otherPoint) {
+		return new Point(this.x + otherPoint.getX(), this.y + otherPoint.getY());
+	}
 
 	@Override
 	public int hashCode() {
