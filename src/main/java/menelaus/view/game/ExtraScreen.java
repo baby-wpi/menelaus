@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.game;
 
 import javax.swing.JPanel;
 

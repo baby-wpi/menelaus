@@ -1,10 +1,10 @@
 package menelaus.controllers;
 
-import menelaus.view.GameWindowFrame;
-import menelaus.view.HomeScreen;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import menelaus.view.game.GameWindowFrame;
+import menelaus.view.game.HomeScreen;
 
 public class HomeExitButtonController implements ActionListener {
 	

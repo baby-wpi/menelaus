@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.game;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

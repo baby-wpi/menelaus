@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.game;
 
 import menelaus.controllers.LevelSelectButtonController;
 import menelaus.controllers.MainMenuButtonController;
