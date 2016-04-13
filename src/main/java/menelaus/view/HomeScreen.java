@@ -1,6 +1,9 @@
 package menelaus.view;
 
 import menelaus.controllers.HomeContinueButtonController;
+import menelaus.controllers.HomeExitButtonController;
+import menelaus.controllers.HomeExtraButtonController;
+import menelaus.controllers.HomeLevelsButtonController;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 
@@ -35,49 +38,62 @@ public class HomeScreen extends JFrame {
 	 */
 	public HomeScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1000, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JButton btnContinue = new JButton("Continue");
-        // TODO: 4/13/16 Add level form disk? 
-        btnContinue.addActionListener(new HomeContinueButtonController(this, new Level(LevelType.LIGHTNING, 8, 8)));
-		
+        
 		JButton btnLevels = new JButton("Levels");
 		
 		JButton btnExtra = new JButton("Extra");
 		
 		JButton btnExit = new JButton("Exit");
 		
+		
+		/* CONNECT BUTTON TO CONTROLLERS */
+		
+		// TODO: 4/13/16 Add level from disk? 
+        btnContinue.addActionListener(new HomeContinueButtonController(this, new Level(LevelType.LIGHTNING, 8, 8)));
+		
+        btnLevels.addActionListener(new HomeLevelsButtonController(this));
+        
+        btnExit.addActionListener(new HomeExitButtonController(this));
+        
+        btnExtra.addActionListener(new HomeExtraButtonController(this));
+        
+        
 		JLabel lblKabasuji = new JLabel("KabaSuji");
-		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 26));
+		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(159)
+					.addContainerGap(447, Short.MAX_VALUE)
 					.addComponent(lblKabasuji)
-					.addContainerGap(174, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(162)
+					.addGap(436))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(441)
 					.addComponent(btnContinue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(177))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(162)
+					.addGap(448))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(441)
 					.addComponent(btnLevels, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(177))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGap(162)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnExit, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-						.addComponent(btnExtra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(177))
+					.addGap(448))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(441)
+					.addComponent(btnExtra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(448))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(441)
+					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(448, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(33)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(275, Short.MAX_VALUE)
 					.addComponent(lblKabasuji)
 					.addGap(12)
 					.addComponent(btnContinue)
@@ -87,7 +103,7 @@ public class HomeScreen extends JFrame {
 					.addComponent(btnExtra)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnExit)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addGap(265))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
