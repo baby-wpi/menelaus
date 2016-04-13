@@ -78,7 +78,7 @@ public class GameManager {
 		
 		timer.setDelay(TICK_TIME);
 		timer.addActionListener(new ActionListener() {
-			@Override public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				timePassed++;
 				if (level.timeLimit > 0 && timePassed >= level.timeLimit) {
 					stopGame();
