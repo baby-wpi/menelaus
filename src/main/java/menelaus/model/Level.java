@@ -1,11 +1,14 @@
 package menelaus.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import menelaus.model.basic.LevelType;
 import menelaus.model.board.Board;
 
-public class Level {
+public class Level implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	UUID uuid;
 	String name;
 	LevelType type;

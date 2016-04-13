@@ -91,7 +91,7 @@ public class GameManager {
 		timer.start();
 	}
 	
-	public void UserGameEnd() {
+	public void userEndsGame() {
 		stopGame();
 		notifyEndListeners(GameEndReason.USER);
 	}
