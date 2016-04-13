@@ -1,7 +1,5 @@
 package menelaus.view;
 
-import com.sun.istack.internal.Nullable;
-
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -19,7 +17,7 @@ public class LevelPlayScreen extends JFrame {
     /**
      * Launch the application.
      */
-    public static void main(@Nullable String[] args) {
+    public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
