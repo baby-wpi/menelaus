@@ -1,6 +1,7 @@
 package menelaus.view;
 
 import menelaus.controllers.LevelSelectButtonController;
+import menelaus.controllers.MainMenuButtonController;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -8,35 +9,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class LevelSelector extends JFrame {
-
-	private JPanel contentPane;
-
+public class LevelSelector extends JPanel {
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LevelSelector frame = new LevelSelector();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
 	public LevelSelector() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		
 		JButton btnLevel = new JButton("Level 1");
 		btnLevel.addActionListener(new LevelSelectButtonController(this, null));
@@ -84,7 +62,10 @@ public class LevelSelector extends JFrame {
 		btnLevel_14.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnMainMenu = new JButton("Main Menu");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		btnMainMenu.addActionListener(new MainMenuButtonController());
+		
+		
+		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
@@ -148,6 +129,6 @@ public class LevelSelector extends JFrame {
 					.addComponent(btnMainMenu)
 					.addContainerGap(199, Short.MAX_VALUE))
 		);
-		contentPane.setLayout(gl_contentPane);
+		this.setLayout(gl_contentPane);
 	}
 }

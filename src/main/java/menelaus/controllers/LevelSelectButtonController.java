@@ -1,6 +1,7 @@
 package menelaus.controllers;
 
 import menelaus.model.Level;
+import menelaus.view.GameWindowFrame;
 import menelaus.view.LevelPlayScreen;
 import menelaus.view.LevelSelector;
 
@@ -30,8 +31,7 @@ public class LevelSelectButtonController implements ActionListener{
         this.level = level;
     }
 
-    
     public void actionPerformed(ActionEvent actionEvent) {
-        LevelPlayScreen.main(null);
+    	GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen());
     }
 }
