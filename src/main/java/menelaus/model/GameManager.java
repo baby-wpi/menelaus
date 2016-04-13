@@ -62,6 +62,7 @@ public class GameManager {
 		if (GameUtil.hasGameEnded(this)) {
 			stopGame();
 			notifyEndListeners(GameEndReason.WON);
+			return;
 		}
 		
 		if (level.moveLimit > 0 && movesMade >= level.moveLimit) {

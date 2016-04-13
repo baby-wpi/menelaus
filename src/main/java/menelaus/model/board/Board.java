@@ -3,6 +3,7 @@ package menelaus.model.board;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -67,14 +68,80 @@ public class Board implements Serializable {
 	}
 	
 	public void chopTileOut(Point point) {
-		throw new UnsupportedOperationException();
+		BoardTileInfo info = tileInfo.get(point);
+		if (info == null) {
+			info = new BoardTileInfo(true);
+			tileInfo.put(point, info);
+		} else {
+			info.setTileChopped(true);
+		}
 	}
 	
-	public void placePiece(Piece piece) {
+	public void placePiece(Piece piece) throws InvalidPiecePlacementException {
+		if (!isPointWithinBoundary(piece.getPosition()) || !isBoardFreeForPiece(piece)) {
+			throw new InvalidPiecePlacementException();
+		}
+		
+		pieces.add(piece);
+		
+		Iterator<Tile> iterator = piece.getTiles().iterator();
+		while(iterator.hasNext()) {
+			Tile tile = iterator.next();
+			Point point = piece.getPosition().add(tile.getRelativePosition());
+			
+			BoardTileInfo info = tileInfo.get(point);
+			if (info == null) {
+				info = new BoardTileInfo(false);
+				tileInfo.put(point, info);
+			}
+			
+			info.setPiecePlaced(piece);
+		}
+	}
+	
+	public void movePiece(Piece piece) {
 		throw new UnsupportedOperationException();
 	}
 	
 	public void removePiece(Piece piece) {
-		throw new UnsupportedOperationException();
+		if (!pieces.remove(piece)) {
+			return;
+		}
+		
+		Iterator<Tile> iterator = piece.getTiles().iterator();
+		while(iterator.hasNext()) {
+			Tile tile = iterator.next();
+			Point point = piece.getPosition().add(tile.getRelativePosition());
+			
+			BoardTileInfo info = tileInfo.get(point);
+			info.setPiecePlaced(null);
+		}
+	}
+	
+	private boolean isBoardFreeForPiece(Piece piece) throws InvalidPiecePlacementException {
+		Iterator<Tile> iterator = piece.getTiles().iterator();
+		while(iterator.hasNext()) {
+			Tile tile = iterator.next();
+			Point point = piece.getPosition().add(tile.getRelativePosition());
+			
+			if (!isPointWithinBoundary(point)) {
+				throw new InvalidPiecePlacementException();
+			}
+			
+			BoardTileInfo info = tileInfo.get(point);
+			if (info == null) {
+				continue;
+			}
+			
+			if (info.isTileChopped() || ((info.getPiecePlaced() != null) && (!info.getPiecePlaced().equals(piece)))) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean isPointWithinBoundary(Point point) {
+		return point.getX() < width && point.getY() < height;
 	}
 }

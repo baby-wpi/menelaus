@@ -29,4 +29,11 @@ public class PointTest {
 		assertEquals(5, point.getX());
 		assertEquals(10, point.getY());
 	}
+	
+	@Test
+	public void testAdd() {
+		Point offset = new Point(2, -2);
+		
+		assertEquals(new Point(3, 1), point.add(offset));
+	}
 }
