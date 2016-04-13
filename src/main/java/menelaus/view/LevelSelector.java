@@ -1,15 +1,12 @@
 package menelaus.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import menelaus.controllers.LevelSelectButtonController;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class LevelSelector extends JFrame {
 
@@ -42,34 +39,49 @@ public class LevelSelector extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnLevel = new JButton("Level 1");
+		btnLevel.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_1 = new JButton("Level 3");
+		btnLevel_1.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_2 = new JButton("Level 4");
+		btnLevel_2.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_3 = new JButton("Level 6");
+		btnLevel_3.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_4 = new JButton("Level 7");
+		btnLevel_4.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_5 = new JButton("Level 9");
+		btnLevel_5.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_6 = new JButton("Level 10");
+		btnLevel_6.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_7 = new JButton("Level 12");
+		btnLevel_7.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_8 = new JButton("Level 13");
+		btnLevel_8.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_9 = new JButton("Level 15");
+		btnLevel_9.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_10 = new JButton("Level 2");
+		btnLevel_10.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_11 = new JButton("Level 5");
+		btnLevel_11.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_12 = new JButton("Level 8");
+		btnLevel_12.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_13 = new JButton("Level 11");
+		btnLevel_13.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnLevel_14 = new JButton("Level 14");
+		btnLevel_14.addActionListener(new LevelSelectButtonController(this, null));
 		
 		JButton btnMainMenu = new JButton("Main Menu");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
