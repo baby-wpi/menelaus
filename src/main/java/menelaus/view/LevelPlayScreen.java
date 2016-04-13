@@ -31,7 +31,7 @@ public class LevelPlayScreen extends JFrame {
     }
 
     /**
-     * Create the frame.
+     * Create the panel.
      */
     public LevelPlayScreen() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

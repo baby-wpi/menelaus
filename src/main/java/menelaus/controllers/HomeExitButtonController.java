@@ -1,5 +1,6 @@
 package menelaus.controllers;
 
+import menelaus.view.GameWindowFrame;
 import menelaus.view.HomeScreen;
 
 import java.awt.event.ActionEvent;
@@ -15,7 +16,7 @@ public class HomeExitButtonController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		System.exit(0);
+		GameWindowFrame.getInstance().close();
 	}
 
 }
