@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.game;
 
 import menelaus.controllers.HomeContinueButtonController;
 import menelaus.controllers.HomeExitButtonController;

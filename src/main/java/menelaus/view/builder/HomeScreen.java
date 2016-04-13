@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import menelaus.controllers.BuilderExitButtonController;
+import menelaus.controllers.BuilderLevelSelectController;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -17,47 +21,24 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 
-public class HomeScreen extends JFrame {
-
-	private JPanel contentPane;
-
+public class HomeScreen extends JPanel {
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomeScreen frame = new HomeScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
 	public HomeScreen() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
+
 		JLabel lblKabasujiBuilder = new JLabel("KabaSuji Builder");
 		lblKabasujiBuilder.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		
 		JButton btnNewButton = new JButton("Create Level");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnNewButton.addActionListener(new BuilderLevelSelectController());
 		
 		JButton btnExit = new JButton("Exit");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		btnExit.addActionListener(new BuilderExitButtonController());
+		
+		
+		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
@@ -81,6 +62,6 @@ public class HomeScreen extends JFrame {
 		);
 		gl_contentPane.linkSize(SwingConstants.VERTICAL, new Component[] {lblKabasujiBuilder, btnNewButton, btnExit});
 		gl_contentPane.linkSize(SwingConstants.HORIZONTAL, new Component[] {lblKabasujiBuilder, btnNewButton, btnExit});
-		contentPane.setLayout(gl_contentPane);
+		this.setLayout(gl_contentPane);
 	}
 }

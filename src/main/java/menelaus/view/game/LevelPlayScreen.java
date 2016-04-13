@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.game;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;

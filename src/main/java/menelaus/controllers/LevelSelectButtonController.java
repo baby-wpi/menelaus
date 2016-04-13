@@ -1,9 +1,9 @@
 package menelaus.controllers;
 
 import menelaus.model.Level;
-import menelaus.view.GameWindowFrame;
-import menelaus.view.LevelPlayScreen;
-import menelaus.view.LevelSelectorScreen;
+import menelaus.view.game.GameWindowFrame;
+import menelaus.view.game.LevelPlayScreen;
+import menelaus.view.game.LevelSelectorScreen;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

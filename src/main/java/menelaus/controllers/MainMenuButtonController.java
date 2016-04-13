@@ -3,13 +3,11 @@ package menelaus.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import menelaus.view.ExtraScreen;
-import menelaus.view.GameWindowFrame;
-import menelaus.view.HomeScreen;
+import menelaus.view.game.ExtraScreen;
+import menelaus.view.game.GameWindowFrame;
+import menelaus.view.game.HomeScreen;
 
 public class MainMenuButtonController implements ActionListener {
-
-	// The home screen JFrame that contains the levels button:
 
 
 	public MainMenuButtonController() {

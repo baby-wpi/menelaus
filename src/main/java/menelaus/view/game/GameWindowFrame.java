@@ -1,4 +1,4 @@
-package menelaus.view;
+package menelaus.view.game;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -34,7 +34,20 @@ public class GameWindowFrame extends JFrame {
 	private GameWindowFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
-		this.add(new HomeScreen());
+		
+		// Run the splash screen for 2 seconds then swap to main menu:
+		this.add(new SplashScreen());
+		setVisible(true);
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.swapPanel(new HomeScreen());
+		
 	}
 
 	/**

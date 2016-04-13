@@ -1,12 +1,12 @@
 package menelaus.controllers;
 
 
-import menelaus.view.GameWindowFrame;
-import menelaus.view.HomeScreen;
-import menelaus.view.LevelSelectorScreen;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import menelaus.view.game.GameWindowFrame;
+import menelaus.view.game.HomeScreen;
+import menelaus.view.game.LevelSelectorScreen;
 
 public class LevelsButtonController implements ActionListener{
 
