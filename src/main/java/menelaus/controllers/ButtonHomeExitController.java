@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.HomeScreen;
 
-public class HomeExitButtonController implements ActionListener {
+public class ButtonHomeExitController implements ActionListener {
 	
 	// The home screen JFrame that contains the levels button:
 	HomeScreen home;
 	
-	public HomeExitButtonController(HomeScreen home) {
+	public ButtonHomeExitController(HomeScreen home) {
 		this.home = home;
 	}
 	

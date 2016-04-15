@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import menelaus.controllers.MainMenuButtonController;
+import menelaus.controllers.ButtonMainMenuController;
 
 public class ExtraScreen extends JPanel {
 
@@ -26,7 +26,7 @@ public class ExtraScreen extends JPanel {
 		JButton btnMainMenu = new JButton("Main Menu");
 		
 		/* CONNECT BUTTON TO CONTROLLERS */
-		btnMainMenu.addActionListener(new MainMenuButtonController());
+		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
