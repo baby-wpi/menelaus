@@ -1,18 +1,17 @@
 package menelaus.view.game;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
+import menelaus.view.KabaSujiJPanel;
 
-public class SplashScreen extends JPanel {
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.*;
+
+public class SplashScreen extends KabaSujiJPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	public SplashScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		JLabel lblMenelausKabasuji = new JLabel("Menelaus KabaSuji");
 		lblMenelausKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 40));

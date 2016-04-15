@@ -1,18 +1,13 @@
 package menelaus.view.builder;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import menelaus.view.KabaSujiJPanel;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import menelaus.view.builder.HomeScreen;
-import menelaus.view.builder.SplashScreen;
+import javax.swing.*;
+import java.awt.*;
 
 public class BuilderWindowFrame extends JFrame {
 
-	private JPanel contentPane;
+	private KabaSujiJPanel contentPane;
 	private static BuilderWindowFrame instance = new BuilderWindowFrame();
 
 	/**
@@ -36,7 +31,7 @@ public class BuilderWindowFrame extends JFrame {
 	 */
 	private BuilderWindowFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 750);
+		setBounds(KabaSujiJPanel.START_X, KabaSujiJPanel.START_Y, KabaSujiJPanel.WIDTH, KabaSujiJPanel.HEIGHT);
 		
 		// Run the splash screen for 2 seconds then swap to main menu:
 		this.add(new SplashScreen());
@@ -45,7 +40,6 @@ public class BuilderWindowFrame extends JFrame {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

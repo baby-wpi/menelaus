@@ -1,18 +1,14 @@
 package menelaus.view.builder;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import menelaus.controllers.BuilderMainMenuButtonController;
 import menelaus.controllers.BuilderStartButtonController;
+import menelaus.view.KabaSujiJPanel;
 
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class BuilderSelectScreen extends JPanel {
+public class BuilderSelectScreen extends KabaSujiJPanel {
 	private JTextField txtInstertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
@@ -21,7 +17,6 @@ public class BuilderSelectScreen extends JPanel {
 	 * Create the panel.
 	 */
 	public BuilderSelectScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		JButton btnPuzzle = new JButton("Puzzle");
 		

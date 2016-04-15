@@ -2,19 +2,17 @@ package menelaus.view.game;
 
 import menelaus.controllers.LevelSelectButtonController;
 import menelaus.controllers.MainMenuButtonController;
+import menelaus.view.KabaSujiJPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 
-public class LevelSelectorScreen extends JPanel {
+public class LevelSelectorScreen extends KabaSujiJPanel {
 	/**
 	 * Create the panel.
 	 */
 	public LevelSelectorScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		JButton btnLevel = new JButton("Level 1");
 		btnLevel.addActionListener(new LevelSelectButtonController(this, null));

@@ -6,20 +6,19 @@ import menelaus.controllers.HomeExtraButtonController;
 import menelaus.controllers.LevelsButtonController;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
+import menelaus.view.KabaSujiJPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class HomeScreen extends JPanel {
+public class HomeScreen extends KabaSujiJPanel {
 
 	/**
 	 * Create the frame.
 	 */
 	public HomeScreen() {
-		setBounds(100, 100, 1000, 750);
 
 		JButton btnContinue = new JButton("Continue");
 
