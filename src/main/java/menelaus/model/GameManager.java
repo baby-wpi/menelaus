@@ -54,7 +54,11 @@ public class GameManager {
 		}
 		
 		moves.add(move);
-		move.perform(this.level);
+		boolean successfulMove = move.perform(this.level);
+		if (!successfulMove) {
+			return;
+		}
+		
 		if (move.shouldAlterMoveCount()) {
 			movesMade++;
 		}

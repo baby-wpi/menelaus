@@ -9,7 +9,9 @@ public class ToBullpenMove extends Move {
 	}
 
 	@Override
-	public void perform(Level level) {
-		throw new UnsupportedOperationException();
+	public boolean perform(Level level) {
+		level.getBullpen().addPiece(piece);
+		level.getBoard().removePiece(piece);
+		return true;
 	}
 }

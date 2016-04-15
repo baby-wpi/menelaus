@@ -2,6 +2,7 @@ package menelaus.model.move;
 
 import menelaus.model.Level;
 import menelaus.model.basic.Point;
+import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 
 public class ToBoardMove extends Move {
@@ -10,10 +11,17 @@ public class ToBoardMove extends Move {
 	public ToBoardMove(Piece piece, Point location) {
 		super(piece);
 		this.location = location;
+		this.alterMoveCount = true;
 	}
 
 	@Override
-	public void perform(Level level) {
-		throw new UnsupportedOperationException();
+	public boolean perform(Level level) {
+		try {
+			level.getBoard().placePiece(piece);
+			level.getBullpen().removePiece(piece);
+			return true;
+		} catch (InvalidPiecePlacementException e) {
+			return false;
+		}
 	}
 }
