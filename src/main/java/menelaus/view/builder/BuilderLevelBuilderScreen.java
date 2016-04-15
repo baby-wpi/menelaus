@@ -6,7 +6,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import menelaus.controllers.BuilderMainMenuButtonController;
+import menelaus.controllers.ButtonBuilderMainMenuController;
 
 import javax.swing.JSlider;
 import javax.swing.JTextField;
@@ -24,7 +24,7 @@ public class BuilderLevelBuilderScreen extends JPanel {
 		setBounds(100, 100, 1000, 750);
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new BuilderMainMenuButtonController());
+		btnExit.addActionListener(new ButtonBuilderMainMenuController());
 		
 		JButton btnReset = new JButton("Reset");
 		

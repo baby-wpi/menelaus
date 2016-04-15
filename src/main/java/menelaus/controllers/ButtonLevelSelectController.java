@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by frankegan on 4/13/16.
  */
-public class LevelSelectButtonController implements ActionListener{
+public class ButtonLevelSelectController implements ActionListener{
     /**
      * The home screen JFrame that contains the continue button.
      */
@@ -26,7 +26,7 @@ public class LevelSelectButtonController implements ActionListener{
      * @param selectScreen Th screen that let's you select each level.
      * @param level The level we're opeing up.
      */
-    public LevelSelectButtonController(LevelSelectorScreen selectScreen, Level level) {
+    public ButtonLevelSelectController(LevelSelectorScreen selectScreen, Level level) {
         this.selectScreen = selectScreen;
         this.level = level;
     }
