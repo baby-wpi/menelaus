@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import menelaus.controllers.BuilderExitButtonController;
-import menelaus.controllers.BuilderLevelSelectController;
+import menelaus.controllers.ButtonBuilderExitController;
+import menelaus.controllers.ButtonBuilderLevelSelectController;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -32,10 +32,10 @@ public class HomeScreen extends JPanel {
 		lblKabasujiBuilder.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		
 		JButton btnNewButton = new JButton("Create Level");
-		btnNewButton.addActionListener(new BuilderLevelSelectController());
+		btnNewButton.addActionListener(new ButtonBuilderLevelSelectController());
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new BuilderExitButtonController());
+		btnExit.addActionListener(new ButtonBuilderExitController());
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(this);

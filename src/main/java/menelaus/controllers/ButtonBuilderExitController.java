@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import menelaus.view.builder.BuilderWindowFrame;
 
-public class BuilderExitButtonController implements ActionListener {
+public class ButtonBuilderExitController implements ActionListener {
 
-	public BuilderExitButtonController(){}
+	public ButtonBuilderExitController(){}
 	
 	public void actionPerformed(ActionEvent e) {
 		BuilderWindowFrame.getInstance().close();		

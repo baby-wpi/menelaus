@@ -1,9 +1,9 @@
 package menelaus.view.game;
 
-import menelaus.controllers.HomeContinueButtonController;
-import menelaus.controllers.HomeExitButtonController;
-import menelaus.controllers.HomeExtraButtonController;
-import menelaus.controllers.LevelsButtonController;
+import menelaus.controllers.ButtonHomeContinueController;
+import menelaus.controllers.ButtonHomeExitController;
+import menelaus.controllers.ButtonHomeExtraController;
+import menelaus.controllers.ButtonLevelsController;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 
@@ -33,10 +33,10 @@ public class HomeScreen extends JPanel {
 		/* CONNECT BUTTON TO CONTROLLERS */
 
 		//		// TODO: 4/13/16 Add level from disk? 
-		btnContinue.addActionListener(new HomeContinueButtonController(new Level(LevelType.LIGHTNING, 8, 8)));
-		btnLevels.addActionListener(new LevelsButtonController()); // Levels.
-		btnExit.addActionListener(new HomeExitButtonController(this)); // Exit.      
-		btnExtra.addActionListener(new HomeExtraButtonController()); // Extra.
+		btnContinue.addActionListener(new ButtonHomeContinueController(new Level(LevelType.LIGHTNING, 8, 8)));
+		btnLevels.addActionListener(new ButtonLevelsController()); // Levels.
+		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
+		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
 
 		JLabel lblKabasuji = new JLabel("KabaSuji");
 		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 30));

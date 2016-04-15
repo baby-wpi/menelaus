@@ -8,11 +8,11 @@ import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.HomeScreen;
 import menelaus.view.game.LevelSelectorScreen;
 
-public class LevelsButtonController implements ActionListener{
+public class ButtonLevelsController implements ActionListener{
 
 	// The home screen JFrame that contains the levels button:
 	
-	public LevelsButtonController(){
+	public ButtonLevelsController(){
 		
 	}
 	

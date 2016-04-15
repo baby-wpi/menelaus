@@ -7,13 +7,15 @@ import menelaus.view.game.ExtraScreen;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.HomeScreen;
 
-public class MainMenuButtonController implements ActionListener {
+public class ButtonHomeExtraController implements ActionListener {
+
+	// The home screen JFrame that contains the levels button:
 
 
-	public MainMenuButtonController() {
+	public ButtonHomeExtraController() {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		GameWindowFrame.getInstance().swapPanel(new HomeScreen());
+		GameWindowFrame.getInstance().swapPanel(new ExtraScreen());
 	}
 }
