@@ -1,11 +1,7 @@
 package menelaus.view.game;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
+import java.awt.*;
 
 public class GameWindowFrame extends JFrame {
 
@@ -42,7 +38,6 @@ public class GameWindowFrame extends JFrame {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -61,7 +56,6 @@ public class GameWindowFrame extends JFrame {
 	/**
 	 * Swaps panel in GameWindow to the given panel
 	 * @param panel  the panel you want to switch to.
-	 * @return void
 	 */
 	public void swapPanel(JPanel panel) {
 		this.getContentPane().removeAll();

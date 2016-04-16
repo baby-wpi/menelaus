@@ -1,19 +1,13 @@
 package menelaus.view.builder;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
+import menelaus.controllers.ButtonBuilderMainMenuController;
+import menelaus.view.KabaSujiJPanel;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import menelaus.controllers.ButtonBuilderMainMenuController;
-
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-
-public class BuilderLevelBuilderScreen extends JPanel {
+public class BuilderLevelBuilderScreen extends KabaSujiJPanel {
 	private JTextField txtMaxMoves;
 	private JTextField txtInsertName;
 
@@ -21,7 +15,6 @@ public class BuilderLevelBuilderScreen extends JPanel {
 	 * Create the panel.
 	 */
 	public BuilderLevelBuilderScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ButtonBuilderMainMenuController());

@@ -1,25 +1,18 @@
 package menelaus.view.game;
 
-import javax.swing.JPanel;
+import menelaus.controllers.ButtonMainMenuController;
+import menelaus.view.KabaSujiJPanel;
 
-import java.awt.EventQueue;
-
-import javax.swing.JButton;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import menelaus.controllers.ButtonMainMenuController;
-
-public class ExtraScreen extends JPanel {
+public class ExtraScreen extends KabaSujiJPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	public ExtraScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		/* Buttons */
 		JButton btnLoadLevel = new JButton("Load Level");
