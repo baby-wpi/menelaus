@@ -26,7 +26,8 @@ public class KabaSujiJPanel extends JPanel {
 
     /**
      * Define a base class for all our panels to extend. Includes constants for defining panel sizes,
-     * and methods for dragging views.
+     * and methods for dragging views. Will be used for handling all mous events inside of panel and delegating them to
+     * their respective controllers.
      */
     public KabaSujiJPanel() {
         setBounds(START_X, START_Y, WIDTH, HEIGHT);
