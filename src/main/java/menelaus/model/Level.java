@@ -67,6 +67,8 @@ public class Level implements Serializable {
 	
 	public Level(LevelType type, int boardHeight, int boardWidth) {
 		super();
+		this.moveLimit = 0;
+		this.timeLimit = 0;
 		this.type = type;
 		this.uuid = UUID.randomUUID();
 		this.bullpen = new Bullpen();

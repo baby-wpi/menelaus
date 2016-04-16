@@ -1,20 +1,14 @@
 package menelaus.view.game;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import menelaus.view.KabaSujiJPanel;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
+import java.awt.*;
 
 public class WinScreen extends JFrame {
 
-	private JPanel contentPane;
+	private KabaSujiJPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -37,9 +31,8 @@ public class WinScreen extends JFrame {
 	 */
 	public WinScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 750);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(KabaSujiJPanel.START_X, KabaSujiJPanel.START_Y, KabaSujiJPanel.WIDTH, KabaSujiJPanel.HEIGHT);
+		contentPane = new KabaSujiJPanel();
 		setContentPane(contentPane);
 		
 		JLabel label = new JLabel("You Won!!!");

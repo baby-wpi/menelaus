@@ -23,7 +23,7 @@ public abstract class Move {
 		this.alterMoveCount = alterMoves;
 	}
 	
-	public abstract void perform(Level level);
+	public abstract boolean perform(Level level);
 	public Move(Piece piece) {
 		this.piece = piece;
 		this.alterMoveCount = false;
