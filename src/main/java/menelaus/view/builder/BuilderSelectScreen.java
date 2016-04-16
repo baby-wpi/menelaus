@@ -1,7 +1,7 @@
 package menelaus.view.builder;
 
-import menelaus.controllers.BuilderMainMenuButtonController;
-import menelaus.controllers.BuilderStartButtonController;
+import menelaus.controllers.ButtonBuilderMainMenuController;
+import menelaus.controllers.ButtonBuilderStartController;
 import menelaus.view.KabaSujiJPanel;
 
 import javax.swing.*;
@@ -29,7 +29,7 @@ public class BuilderSelectScreen extends KabaSujiJPanel {
 		txtInstertName.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
-		btnStart.addActionListener(new BuilderStartButtonController());
+		btnStart.addActionListener(new ButtonBuilderStartController());
 		
 		txtWidth = new JTextField();
 		txtWidth.setText("Width");
@@ -46,7 +46,7 @@ public class BuilderSelectScreen extends KabaSujiJPanel {
 		JPanel panel = new JPanel();
 		
 		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.addActionListener(new BuilderMainMenuButtonController());
+		btnMainMenu.addActionListener(new ButtonBuilderMainMenuController());
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
