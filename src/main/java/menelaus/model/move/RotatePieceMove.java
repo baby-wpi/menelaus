@@ -9,7 +9,8 @@ public class RotatePieceMove extends Move {
 	}
 
 	@Override
-	public void perform(Level level) {
+	public boolean perform(Level level) {
 		piece.rotate();
+		return true;
 	}
 }

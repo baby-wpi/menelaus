@@ -5,7 +5,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import menelaus.controllers.LevelsButtonController;
+import menelaus.controllers.ButtonLevelsController;
 
 import java.awt.*;
 
@@ -35,7 +35,7 @@ public class LevelPlayScreen extends JPanel {
         JButton btnExitButton = new JButton("EXIT");
         
         /* CONNECT BUTTONS TO CONTROLLERS */
-        btnExitButton.addActionListener(new LevelsButtonController());
+        btnExitButton.addActionListener(new ButtonLevelsController());
         
         GroupLayout gl_contentPane = new GroupLayout(this);
         gl_contentPane.setHorizontalGroup(

@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import menelaus.view.builder.BuilderWindowFrame;
 import menelaus.view.builder.HomeScreen;
 
-public class BuilderMainMenuButtonController implements ActionListener {
+public class ButtonBuilderMainMenuController implements ActionListener {
 
-	public BuilderMainMenuButtonController() {
+	public ButtonBuilderMainMenuController() {
 	}
 
 	public void actionPerformed(ActionEvent e) {

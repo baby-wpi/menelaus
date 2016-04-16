@@ -10,10 +10,11 @@ public class ToBoardCoverMove extends Move {
 	public ToBoardCoverMove(Piece piece, Point location) {
 		super(piece);
 		this.location = location;
+		this.alterMoveCount = true;
 	}
 
 	@Override
-	public void perform(Level level) {
+	public boolean perform(Level level) {
 		throw new UnsupportedOperationException();
 	}
 }

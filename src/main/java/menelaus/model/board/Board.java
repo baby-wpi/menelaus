@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-import javax.naming.OperationNotSupportedException;
-
 import menelaus.model.basic.Point;
 
 public class Board implements Serializable {
@@ -97,10 +95,6 @@ public class Board implements Serializable {
 			
 			info.setPiecePlaced(piece);
 		}
-	}
-	
-	public void movePiece(Piece piece) {
-		throw new UnsupportedOperationException();
 	}
 	
 	public void removePiece(Piece piece) {
