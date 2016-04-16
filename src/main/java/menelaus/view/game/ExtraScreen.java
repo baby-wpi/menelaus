@@ -1,6 +1,6 @@
 package menelaus.view.game;
 
-import menelaus.controllers.MainMenuButtonController;
+import menelaus.controllers.ButtonMainMenuController;
 import menelaus.view.KabaSujiJPanel;
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ public class ExtraScreen extends KabaSujiJPanel {
 		JButton btnMainMenu = new JButton("Main Menu");
 		
 		/* CONNECT BUTTON TO CONTROLLERS */
-		btnMainMenu.addActionListener(new MainMenuButtonController());
+		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

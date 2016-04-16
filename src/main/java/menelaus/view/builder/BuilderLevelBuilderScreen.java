@@ -1,6 +1,6 @@
 package menelaus.view.builder;
 
-import menelaus.controllers.BuilderMainMenuButtonController;
+import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.view.KabaSujiJPanel;
 
 import javax.swing.*;
@@ -17,7 +17,7 @@ public class BuilderLevelBuilderScreen extends KabaSujiJPanel {
 	public BuilderLevelBuilderScreen() {
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new BuilderMainMenuButtonController());
+		btnExit.addActionListener(new ButtonBuilderMainMenuController());
 		
 		JButton btnReset = new JButton("Reset");
 		

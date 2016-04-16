@@ -1,7 +1,6 @@
 package menelaus.view.builder;
 
-import menelaus.controllers.BuilderExitButtonController;
-import menelaus.controllers.BuilderLevelSelectController;
+import menelaus.controllers.ButtonBuilderLevelSelectController;
 import menelaus.view.KabaSujiJPanel;
 
 import javax.swing.*;
@@ -19,10 +18,10 @@ public class HomeScreen extends KabaSujiJPanel {
 		lblKabasujiBuilder.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		
 		JButton btnNewButton = new JButton("Create Level");
-		btnNewButton.addActionListener(new BuilderLevelSelectController());
+		btnNewButton.addActionListener(new ButtonBuilderLevelSelectController());
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new BuilderExitButtonController());
+		btnExit.addActionListener(new ButtonBuilderLevelSelectController());
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(this);
