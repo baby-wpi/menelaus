@@ -6,14 +6,14 @@ import menelaus.controllers.ButtonHomeExtraController;
 import menelaus.controllers.ButtonLevelsController;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 
-public class HomeScreen extends KabaSujiJPanel {
+public class HomeScreen extends KabasujiPanel {
 
 	/**
 	 * Create the frame.

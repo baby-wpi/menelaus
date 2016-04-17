@@ -2,13 +2,13 @@ package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.ButtonBuilderStartController;
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class BuilderSelectScreen extends KabaSujiJPanel {
+public class BuilderSelectScreen extends KabasujiPanel {
 	private JTextField txtInstertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
