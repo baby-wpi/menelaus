@@ -1,13 +1,13 @@
 package menelaus.view.builder;
 
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class BuilderWindowFrame extends JFrame {
 
-	private KabaSujiJPanel contentPane;
+	private KabasujiPanel contentPane;
 	private static BuilderWindowFrame instance = new BuilderWindowFrame();
 
 	/**
@@ -31,7 +31,7 @@ public class BuilderWindowFrame extends JFrame {
 	 */
 	private BuilderWindowFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(KabaSujiJPanel.START_X, KabaSujiJPanel.START_Y, KabaSujiJPanel.WIDTH, KabaSujiJPanel.HEIGHT);
+		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
 		
 		// Run the splash screen for 2 seconds then swap to main menu:
 		this.add(new SplashScreen());

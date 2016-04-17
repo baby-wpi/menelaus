@@ -1,14 +1,14 @@
 package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderLevelSelectController;
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 
-public class HomeScreen extends KabaSujiJPanel {
+public class HomeScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.
 	 */

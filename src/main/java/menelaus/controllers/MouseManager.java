@@ -1,7 +1,7 @@
 package menelaus.controllers;
 
 import menelaus.model.basic.Point;
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,7 +19,7 @@ public class MouseManager {
     protected MouseMotionAdapter moveEventManager = null;
 
     /** Remember our home. */
-    protected KabaSujiJPanel home = null;
+    protected KabasujiPanel home = null;
 
     /** Determines whether there is a drag in progress. */
     protected boolean dragging = false;
@@ -33,22 +33,22 @@ public class MouseManager {
     /**
      * MouseManager constructor comment.
      */
-    public MouseManager(KabaSujiJPanel c) {
+    public MouseManager(KabasujiPanel c) {
         super();
 
-        // Always remember our KabaSujiJPanel structure so we can propagate state.
+        // Always remember our KabasujiPanel structure so we can propagate state.
         home = c;
     }
 
     /**
-     * Return point of last drag from the KabaSujiJPanel.
+     * Return point of last drag from the KabasujiPanel.
      */
     protected Point getLastDrag() {
         if (home == null) {
-            throw new IllegalArgumentException ("MouseManager::getLastDrag() called when no KabaSujiJPanel is set.");
+            throw new IllegalArgumentException ("MouseManager::getLastDrag() called when no KabasujiPanel is set.");
         }
 
-        // return KabaSujiJPanel status
+        // return KabasujiPanel status
         return home.getLastDrag();
     }
 
@@ -145,15 +145,15 @@ public class MouseManager {
     }
 
     /**
-     * Update the status in the KabaSujiJPanel for this MouseManager
+     * Update the status in the KabasujiPanel for this MouseManager
      * @param newLastDrag Point
      */
     protected void setLastDrag(Point newLastDrag) {
         if (home == null) {
-            throw new IllegalArgumentException ("MouseManager::setLastDrag(Point) called when no KabaSujiJPanel is set.");
+            throw new IllegalArgumentException ("MouseManager::setLastDrag(Point) called when no KabasujiPanel is set.");
         }
 
-        // update in KabaSujiJPanel.
+        // update in KabasujiPanel.
         home.setLastDrag (newLastDrag);
     }
 

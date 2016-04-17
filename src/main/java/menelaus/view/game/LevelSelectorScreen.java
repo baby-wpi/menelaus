@@ -2,13 +2,13 @@ package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.controllers.ButtonMainMenuController;
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class LevelSelectorScreen extends KabaSujiJPanel {
+public class LevelSelectorScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.
 	 */

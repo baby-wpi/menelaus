@@ -5,11 +5,17 @@ import menelaus.model.board.Piece;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by frankegan on 4/15/16.
+ * <p>
+ * Define a base class for all our panels to extend. Includes constants for defining panel sizes,
+ * and methods for dragging views. Will be used for handling all mous events inside of panel and delegating them to
+ * their respective controllers.
+ * </p>
  */
-public class KabaSujiJPanel extends JPanel {
+public class KabasujiPanel extends JPanel {
     /**
      * Define the start point for all panels that extend our class
      */
@@ -56,7 +62,7 @@ public class KabaSujiJPanel extends JPanel {
      * and methods for dragging views. Will be used for handling all mous events inside of panel and delegating them to
      * their respective controllers.
      */
-    public KabaSujiJPanel() {
+    public KabasujiPanel() {
         setBounds(START_X, START_Y, WIDTH, HEIGHT);
         setBorder(new EmptyBorder(5, 5, 5, 5));
     }
@@ -104,7 +110,7 @@ public class KabaSujiJPanel extends JPanel {
      * @param newActiveDraggingObject Piece
      * @param me                      MouseEvent
      */
-    public void setActiveDraggingObject(Piece newActiveDraggingObject, java.awt.event.MouseEvent me) {
+    public void setActiveDraggingObject(Piece newActiveDraggingObject, MouseEvent me) {
         activeDraggingObject = newActiveDraggingObject;
 
         if (me == null) {

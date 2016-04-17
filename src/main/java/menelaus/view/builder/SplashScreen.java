@@ -1,12 +1,12 @@
 package menelaus.view.builder;
 
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.*;
 
-public class SplashScreen extends KabaSujiJPanel {
+public class SplashScreen extends KabasujiPanel {
 
 	/**
 	 * Create the panel.
