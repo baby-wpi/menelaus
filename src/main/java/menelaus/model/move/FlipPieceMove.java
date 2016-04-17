@@ -9,8 +9,13 @@ public class FlipPieceMove extends Move {
 	}
 
 	@Override
-	public boolean perform(Level level) {
+	public boolean doMove(Level level) {
 		piece.flip();
 		return true;
+	}
+
+	@Override
+	public boolean valid(Level level) {
+		return piece != null;
 	}
 }

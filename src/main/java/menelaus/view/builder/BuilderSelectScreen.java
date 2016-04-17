@@ -25,7 +25,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 		JButton btnRelease = new JButton("Release");
 		
 		txtInstertName = new JTextField();
-		txtInstertName.setText("Instert Name");
+		txtInstertName.setText("Insert Name");
 		txtInstertName.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
@@ -40,9 +40,9 @@ public class BuilderSelectScreen extends KabasujiPanel {
 		txtHeight.setColumns(10);
 		
 		JLabel lblX = new JLabel("x");
-		
+
 		JLabel lblBoardSize = new JLabel("Board Size");
-		
+
 		JPanel panel = new JPanel();
 		
 		JButton btnMainMenu = new JButton("Main Menu");

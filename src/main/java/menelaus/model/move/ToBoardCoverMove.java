@@ -14,7 +14,12 @@ public class ToBoardCoverMove extends Move {
 	}
 
 	@Override
-	public boolean perform(Level level) {
+	public boolean doMove(Level level) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean valid(Level level) {
+		return false;
 	}
 }

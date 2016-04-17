@@ -1,18 +1,17 @@
 package menelaus.model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-
-import javax.swing.Timer;
-
 import menelaus.model.events.GameEndListener;
 import menelaus.model.events.GameEndReason;
 import menelaus.model.events.GameTickListener;
 import menelaus.model.move.Move;
 import menelaus.util.GameUtil;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
 
 public class GameManager {
 	Timer timer;
@@ -54,7 +53,7 @@ public class GameManager {
 		}
 		
 		moves.add(move);
-		boolean successfulMove = move.perform(this.level);
+		boolean successfulMove = move.doMove(this.level);
 		if (!successfulMove) {
 			return;
 		}

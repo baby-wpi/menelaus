@@ -23,7 +23,9 @@ public abstract class Move {
         this.alterMoveCount = alterMoves;
     }
 
-    public abstract boolean perform(Level level);
+    public abstract boolean doMove(Level level);
+
+    public abstract boolean valid(Level level);
 
     public Move(Piece piece) {
         this.piece = piece;
