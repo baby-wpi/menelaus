@@ -15,7 +15,7 @@ public class ToBoardMove extends Move {
 	}
 
 	@Override
-	public boolean perform(Level level) {
+	public boolean doMove(Level level) {
 		try {
 			level.getBoard().placePiece(piece);
 			level.getBullpen().removePiece(piece);
@@ -23,5 +23,10 @@ public class ToBoardMove extends Move {
 		} catch (InvalidPiecePlacementException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean valid(Level level) {
+		return level.getBoard().isPointWithinBoundary(location);
 	}
 }
