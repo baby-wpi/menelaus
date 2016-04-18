@@ -1,6 +1,7 @@
 package menelaus.model.move;
 
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
 
@@ -15,11 +16,13 @@ public class ToBoardCoverMove extends Move {
 
 	@Override
 	public boolean doMove(Level level) {
-		throw new UnsupportedOperationException();
+		if(level.getType() != LevelType.LIGHTNING)
+		    throw new UnsupportedOperationException();
+        else return true;
 	}
 
 	@Override
 	public boolean valid(Level level) {
-		return false;
+		return true;
 	}
 }

@@ -16,6 +16,6 @@ public class RotatePieceMove extends Move {
 
 	@Override
 	public boolean valid(Level level) {
-		return false;
+		return piece != null;
 	}
 }

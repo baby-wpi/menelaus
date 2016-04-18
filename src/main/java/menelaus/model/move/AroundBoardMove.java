@@ -24,10 +24,11 @@ public class AroundBoardMove extends Move {
 		level.getBoard().removePiece(piece);
 		
 		piece.setPosition(newLocation);
-		try {// TODO: 4/17/16 We should not be throwing an exception every time we try to place a piece
+		try {
+            // TODO: 4/17/16 We should not be throwing an exception every other time we try to place a piece
             level.getBoard().placePiece(piece);
 			return true;
-		} catch (InvalidPiecePlacementException e) {
+        } catch (InvalidPiecePlacementException e) {
 			piece.setPosition(oldPosition);
 			try {
 				level.getBoard().placePiece(piece);
@@ -41,6 +42,11 @@ public class AroundBoardMove extends Move {
 
 	@Override
 	public boolean valid(Level level) {
-		return false;
-	}
+        try {
+            return level.getBoard().placePiece(piece);
+        } catch (InvalidPiecePlacementException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

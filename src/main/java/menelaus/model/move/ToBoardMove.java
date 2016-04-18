@@ -27,6 +27,6 @@ public class ToBoardMove extends Move {
 
 	@Override
 	public boolean valid(Level level) {
-		return false;
+		return level.getBoard().isPointWithinBoundary(location);
 	}
 }
