@@ -1,6 +1,6 @@
 package menelaus.view.game;
 
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class WinScreen extends JFrame {
 
-	private KabaSujiJPanel contentPane;
+	private KabasujiPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -31,8 +31,8 @@ public class WinScreen extends JFrame {
 	 */
 	public WinScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(KabaSujiJPanel.START_X, KabaSujiJPanel.START_Y, KabaSujiJPanel.WIDTH, KabaSujiJPanel.HEIGHT);
-		contentPane = new KabaSujiJPanel();
+		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
+		contentPane = new KabasujiPanel();
 		setContentPane(contentPane);
 		
 		JLabel label = new JLabel("You Won!!!");

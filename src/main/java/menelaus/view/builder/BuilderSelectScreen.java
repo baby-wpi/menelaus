@@ -2,13 +2,13 @@ package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.ButtonBuilderStartController;
-import menelaus.view.KabaSujiJPanel;
+import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class BuilderSelectScreen extends KabaSujiJPanel {
+public class BuilderSelectScreen extends KabasujiPanel {
 	private JTextField txtInstertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
@@ -25,7 +25,7 @@ public class BuilderSelectScreen extends KabaSujiJPanel {
 		JButton btnRelease = new JButton("Release");
 		
 		txtInstertName = new JTextField();
-		txtInstertName.setText("Instert Name");
+		txtInstertName.setText("Insert Name");
 		txtInstertName.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
@@ -40,9 +40,9 @@ public class BuilderSelectScreen extends KabaSujiJPanel {
 		txtHeight.setColumns(10);
 		
 		JLabel lblX = new JLabel("x");
-		
+
 		JLabel lblBoardSize = new JLabel("Board Size");
-		
+
 		JPanel panel = new JPanel();
 		
 		JButton btnMainMenu = new JButton("Main Menu");
