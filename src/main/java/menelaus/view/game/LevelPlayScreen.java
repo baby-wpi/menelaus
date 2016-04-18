@@ -20,7 +20,7 @@ public class LevelPlayScreen extends JPanel {
      * Create the panel.
      */
     public LevelPlayScreen() {
-        setBounds(100, 100, 1000, 750);
+    	setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 
 
         JScrollPane scrollPane = new JScrollPane();

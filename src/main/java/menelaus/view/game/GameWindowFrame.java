@@ -29,7 +29,7 @@ public class GameWindowFrame extends JFrame {
 	 */
 	private GameWindowFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 750);
+		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 		
 		// Run the splash screen for 2 seconds then swap to main menu:
 		this.add(new SplashScreen());
