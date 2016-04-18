@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by frankegan on 4/18/16.
  */
-public class MoveTests {
+public class MovesTest {
     Piece piece;
     Level lightning;
 
