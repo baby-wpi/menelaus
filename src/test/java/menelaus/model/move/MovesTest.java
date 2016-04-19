@@ -4,6 +4,7 @@ import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
+import menelaus.view.PieceDrawer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class MovesTest {
 
     @Before
     public void setUp() {
-        piece = new Piece(new Point(1, 1));
+        piece = new Piece(new Point(1, 1), new PieceDrawer());
         lightning = new Level(LevelType.LIGHTNING, 8, 6);
     }
 

@@ -17,7 +17,7 @@ public class BuilderWindowFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderWindowFrame frame = getInstance();
+					BuilderWindowFrame frame = (BuilderWindowFrame) getInstance();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,8 @@ public class BuilderWindowFrame extends JFrame {
 		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
 		
 		// Run the splash screen for 2 seconds then swap to main menu:
-		this.add(new SplashScreen());
+		contentPane = new SplashScreen();
+		this.add(contentPane);
 		setVisible(true);
 		
 		try {
@@ -42,8 +43,8 @@ public class BuilderWindowFrame extends JFrame {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		this.swapPanel(new HomeScreen());
+		contentPane = new HomeScreen();
+		this.swapPanel(contentPane);
 
 	}
 
@@ -61,10 +62,11 @@ public class BuilderWindowFrame extends JFrame {
 	 * @param panel  the panel you want to switch to.
 	 * @return void
 	 */
-	public void swapPanel(JPanel panel) {
+	public void swapPanel(KabasujiPanel panel) {
+        contentPane = panel;
 		this.getContentPane().removeAll();
 		this.getContentPane().add( panel );
-		//setVisible(true);
+
 		validate();
 	}
 	
@@ -75,4 +77,7 @@ public class BuilderWindowFrame extends JFrame {
 		System.exit(0);
 	}
 
+	public KabasujiPanel getPanel() {
+		return contentPane;
+	}
 }

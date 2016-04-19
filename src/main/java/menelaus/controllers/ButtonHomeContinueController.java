@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class ButtonHomeContinueController implements ActionListener{
 
     /**
-     * The level model that we will be continuing from.
+     * The level level that we will be continuing from.
      */
     Level level;
 
