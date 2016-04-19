@@ -1,11 +1,12 @@
 package menelaus.model.board;
 
-import static org.junit.Assert.*;
-
+import menelaus.model.basic.Point;
+import menelaus.view.PieceDrawer;
 import org.junit.Before;
 import org.junit.Test;
 
-import menelaus.model.basic.Point;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class BoardTest {
 	Board board;
@@ -23,18 +24,18 @@ public class BoardTest {
 
 	@Test
 	public void testPlacePieceProperly() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new PieceDrawer());
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
 		piece2.addTile(new Tile(1, 2));
 		
-		Piece piece3 = new Piece(new Point(0, 2));
+		Piece piece3 = new Piece(new Point(0, 2), new PieceDrawer());
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		try {
@@ -56,7 +57,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOutside() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -68,7 +69,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOnChoppedTile() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -80,7 +81,7 @@ public class BoardTest {
 
 	@Test
 	public void testRemovePiece() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));

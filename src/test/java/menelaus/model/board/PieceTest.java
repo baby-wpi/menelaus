@@ -1,11 +1,11 @@
 package menelaus.model.board;
 
-import static org.junit.Assert.*;
-
+import menelaus.model.basic.Point;
+import menelaus.view.PieceDrawer;
 import org.junit.Before;
 import org.junit.Test;
 
-import menelaus.model.basic.Point;
+import static org.junit.Assert.assertEquals;
 
 public class PieceTest {
 	Piece piece;
@@ -13,12 +13,12 @@ public class PieceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		piece = new Piece(new Point(0, 0));
+		piece = new Piece(new Point(0, 0), new PieceDrawer());
 		piece.addTile(new Tile(1, 1));
 		piece.addTile(new Tile(2, 1));
 		piece.addTile(new Tile(1, 2));
 		
-		piece2 = new Piece(new Point(0, 0));
+		piece2 = new Piece(new Point(0, 0), new PieceDrawer());
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(0, 2));
 		piece2.addTile(new Tile(0, 3));

@@ -1,13 +1,15 @@
 package menelaus.model.board;
 
+import menelaus.model.basic.Point;
+import menelaus.view.PieceDrawer;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import menelaus.model.basic.Point;
 
 public class Piece {
 	Point position;
 	ArrayList<Tile> tiles;
+	PieceDrawer pieceDrawer;
 	
 	public Point getPosition() {
 		return position;
@@ -63,12 +65,33 @@ public class Piece {
 		tiles.add(tile);
 	}
 	
-	public Piece(Point position) {
+	public Piece(Point position, PieceDrawer pieceDrawer) {
 		super();
 		this.position = position;
 		this.tiles = new ArrayList<Tile>();
 		tiles.add(new Tile(new Point(0,0)));
+		this.pieceDrawer = pieceDrawer;
 	}
+
+    public int getHeight(){
+        // TODO: 4/19/16 Run through tiles to find height
+        return 3;
+    }
+
+    public int getWidth(){
+        // TODO: 4/19/16 Run through tiles to find width
+        return 2;
+    }
+
+    /**
+     * A method for accessing this pieces drawer.
+     *
+     * Every piece should be able to draw itself.
+     * @return the drawer we're using to draw the piece.
+     */
+    public PieceDrawer getDrawer(){
+        return pieceDrawer;
+    }
 
 	@Override
 	public int hashCode() {

@@ -1,11 +1,13 @@
 package menelaus.view;
 
-import menelaus.model.basic.Point;
+import menelaus.model.Level;
 import menelaus.model.board.Piece;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * Created by frankegan on 4/15/16.
@@ -32,30 +34,23 @@ public class KabasujiPanel extends JPanel {
      * Define the height for all panels that extend our class
      */
     public static final int HEIGHT = 750;
+    /** Double Buffering technique requires an offscreen image. */
+    Image offscreenImage;
+    Graphics offscreenGraphics;
     /**
-     * Manage an object that is currently being dragged (if at all).
+     * Level that is being played
      */
-    protected Piece activeDraggingObject = null;
+    Level level;
     /**
-     * The source piece from which a drag originated.
+     * Current mouse listeners
      */
-    protected Piece dragSource = null;
+    MouseListener activeListener;
     /**
-     * Has a widget told us that a drag is in progress?
+     * Current mouse listeners
      */
-    protected boolean dragging;
-    /**
-     * if an entity is being dragged, this point reflects the anchor Point within the widget (useful for ensuring smooth drags).
-     */
-    protected Point draggingAnchor = null;
-    /**
-     * A special widget to be used to signal that no object is being dragged.
-     */
-    protected static final Piece nothingBeingDragged = new Piece(null);
-    /**
-     * What was the point of the last drag.
-     */
-    protected Point lastDrag;
+    MouseMotionListener activeMotionListener;
+
+    Graphics canvasGraphics;
 
     /**
      * Define a base class for all our panels to extend. Includes constants for defining panel sizes,
@@ -67,124 +62,65 @@ public class KabasujiPanel extends JPanel {
         setBorder(new EmptyBorder(5, 5, 5, 5));
     }
 
-    /**
-     * Returns the object being dragged. If no object is being dragged,
-     * the special <code>getNothingBeingDragged()<code> object is the value
-     * of this method.
-     * <p/>
-     *
-     * @return Piece
-     */
-    public Piece getActiveDraggingObject() {
-        return activeDraggingObject;
-    }
+    public void redraw() {
+        // nothing to draw into? Must stop here.
+        if (offscreenImage == null) return;
+        if (offscreenGraphics == null) return;    // detected during testing
 
-    /**
-     * Sets the source Piece from which a drag originated.
-     * <p/>
-     * Note: dragSource must be manually set by the controller of the Piece since there is
-     * no obvious way for the container to know the object for which the drag originates.
-     * <p/>
-     * Passing in null simply means that the drag is released.
-     * <p/>
-     *
-     * @param newDragSource Piece
-     * @since v1.6
-     */
-    public void setDragSource(Piece newDragSource) {
-        if (newDragSource == null)
-            releaseDraggingObject();
-        else
-            dragSource = newDragSource;
-    }
+        // clear the image.
+        offscreenGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 
-    /**
-     * Specifies the Piece being dragged. Note: this is called once. Thereafter, for each
-     * drag event, MouseManagers for the Pieces update the lastDrag Point in the container.
-     * <p/>
-     * We also take as input the MouseEvent associated with this dragging object; this enables
-     * us to calculate the anchor.
-     * <p/>
-     * Take some care if MouseEvent is null.
-     *
-     * @param newActiveDraggingObject Piece
-     * @param me                      MouseEvent
-     */
-    public void setActiveDraggingObject(Piece newActiveDraggingObject, MouseEvent me) {
-        activeDraggingObject = newActiveDraggingObject;
-
-        if (me == null) {
-            setDraggingAnchor(null);
-            return;
+        /** Draw all shapes. Note selected shape is not part of the model. */
+        for (Piece s : level.getBoard().getPieces()) {
+            paintPiece(offscreenGraphics, s);
         }
+    }
 
-        Point p = new Point(me.getX() - newActiveDraggingObject.getPosition().getX(),
-                me.getY() - newActiveDraggingObject.getPosition().getY());
-        setDraggingAnchor(p);
+    /** Paint the piece into the given graphics context using its drawer. */
+    public void paintPiece(Graphics g, Piece piece) {
+        if (g == null) { return; }
+
+        PieceDrawer pDrawer = piece.getDrawer();
+        pDrawer.drawPiece(g, piece);
+    }
+
+    /** Repaint to the screen just the given part of the image. */
+    public void paintBackground(Piece p) {
+        // Only updates to the screen the given region
+        if (canvasGraphics != null) {
+            canvasGraphics.drawImage(offscreenImage,
+                    p.getPosition().getX(),
+                    p.getPosition().getY(),
+                    p.getWidth(),
+                    p.getHeight(),
+                    this);
+
+            repaint(p.getPosition().getX(),
+                    p.getPosition().getY(),
+                    p.getWidth(),
+                    p.getHeight());
+        }
     }
 
     /**
-     * Returns a 'sentinel' object that represents the fact that nothing
-     * is being dragged. This avoids the use of using null object references
-     * <p/>
-     *
-     * @return Piece
+     * Properly register new listener (and unregister old one if present).
      */
-    public static Piece getNothingBeingDragged() {
-        return nothingBeingDragged;
+    public void setActiveListener(MouseListener ml) {
+        this.removeMouseListener(activeListener);
+        activeListener = ml;
+        if (ml != null) {
+            this.addMouseListener(ml);
+        }
     }
 
     /**
-     * Releases the object being dragged by the container.
-     * <p/>
-     * Note: this will also reset the dragSource and lastDrag to null.
+     * Properly register new motion listener (and unregister old one if present).
      */
-    public void releaseDraggingObject() {
-        // release dragging Object.
-        setActiveDraggingObject(getNothingBeingDragged(), null);
-
-        dragging = false;
-        lastDrag = null;
-
-        // reset our sourceWidget (if it was ever set in the first place).
-        dragSource = null;
-    }
-
-    /**
-     * Record DraggingAnchor, the offset within the dragged widget of where the
-     * mouse was first clicked. Using this point will ensure that dragging redraws
-     * are smooth.
-     * <p/>
-     *
-     * @param newDraggingAnchor Point
-     */
-    protected void setDraggingAnchor(Point newDraggingAnchor) {
-        draggingAnchor = newDraggingAnchor;
-    }
-
-    /**
-     * Returns the last Drag point, or null if no drag is in process.
-     * <p/>
-     * This class variable is kept up-to-date by the various MouseManagers
-     * associated with each widget, as well as the MouseManagers with the
-     * Container itself that represents the background.
-     * <p/>
-     * If this ever returns null, it means nothing is being dragged.
-     * <p/>
-     *
-     * @return java.awt.Point
-     */
-    public Point getLastDrag() {
-        return lastDrag;
-    }
-
-    /**
-     * Tell container of last drag point (or null if ending a drag).
-     *
-     * @param p Point
-     */
-    public void setLastDrag(Point p) {
-        lastDrag = p;
-        dragging = (p != null);
+    public void setActiveMotionListener(MouseMotionListener mml) {
+        this.removeMouseMotionListener(activeMotionListener);
+        activeMotionListener = mml;
+        if (mml != null) {
+            this.addMouseMotionListener(mml);
+        }
     }
 }

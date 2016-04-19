@@ -17,7 +17,7 @@ public class ButtonLevelSelectController implements ActionListener{
      */
     LevelSelectorScreen selectScreen;
     /**
-     * The level model that we will be continuing from.
+     * The level level that we will be continuing from.
      */
     Level level;
 
