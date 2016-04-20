@@ -1,13 +1,11 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Point;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
+import menelaus.model.basic.Point;
 
 /**
  * 
