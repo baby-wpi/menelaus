@@ -6,6 +6,9 @@ import menelaus.model.Level;
 import menelaus.model.LevelsPackage;
 import menelaus.view.KabasujiPanel;
 
+import java.awt.Dimension;
+import java.awt.Insets;
+
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.SequentialGroup;
@@ -30,6 +33,8 @@ public class LevelSelectorScreen extends KabasujiPanel {
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
+		Dimension size;
+		
 		// For each level
 		for (Level l : levelsPackage.getLevels()) {
 			/* group = layout.createSequentialGroup() // in the beginning of every 4th time
@@ -43,21 +48,20 @@ public class LevelSelectorScreen extends KabasujiPanel {
 			btnLevelX.addActionListener(new ButtonLevelSelectController(this, null));	
 			
 			if (count == 1 || count == 5 || count == 9 || count == 13){
-				group = layout.createSequentialGroup();
+
 			}
 			
-			group.addComponent(btnLevelX);
-			groupVertical.addComponent(btnLevelX);
+			Insets insets = this.getInsets();
+			this.add(btnLevelX);
+			
+			size = btnLevelX.getPreferredSize();
+			btnLevelX.setBounds(25 + insets.left, 5 + insets.top, size.width, size.height);
 			
 			if (count == 4 || count == 8 || count == 12 || count == 16 || count == numLevels){
-				layout.setHorizontalGroup(group);
 			}
 			
 			count++;
 		}
-		
-		layout.setVerticalGroup(group);
-		this.setLayout(layout);
 	}
 }
 

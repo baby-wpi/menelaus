@@ -31,19 +31,13 @@ public class GameWindowFrame extends JFrame {
 		
 		try {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
-			
+			contentPane = new HomeScreen();
 			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		contentPane = new HomeScreen();
 		this.swapPanel(contentPane);
-		
 	}
 
 	/**
