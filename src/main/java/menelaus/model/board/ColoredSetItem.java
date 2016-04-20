@@ -1,5 +1,7 @@
 package menelaus.model.board;
 
+import java.io.Serializable;
+
 import menelaus.model.basic.Color;
 
 /**
@@ -7,7 +9,7 @@ import menelaus.model.basic.Color;
  * @author vouldjeff
  *
  */
-public class ColoredSetItem {
+public class ColoredSetItem implements Serializable {
 	Color color;
 	int number;
 	

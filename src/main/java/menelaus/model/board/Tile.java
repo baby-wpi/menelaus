@@ -1,5 +1,7 @@
 package menelaus.model.board;
 
+import java.io.Serializable;
+
 import menelaus.model.basic.Point;
 
 /**
@@ -7,7 +9,7 @@ import menelaus.model.basic.Point;
  * @author vouldjeff
  *
  */
-public class Tile {
+public class Tile implements Serializable {
 	Point relativePosition;
 
 	public Point getRelativePosition() {

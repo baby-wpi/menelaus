@@ -2,6 +2,7 @@ package menelaus.model.board;
 
 import menelaus.model.basic.Point;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,7 +11,7 @@ import java.util.Iterator;
  * @author vouldjeff
  *
  */
-public class Piece {
+public class Piece implements Serializable {
 	Point position;
 	ArrayList<Tile> tiles;
 	boolean selected;
