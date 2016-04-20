@@ -4,28 +4,38 @@ package menelaus.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import menelaus.model.Level;
 import menelaus.model.LevelsPackage;
-import menelaus.util.LevelsPackagePersistenceUtil;
+import menelaus.model.basic.LevelType;
 import menelaus.view.game.GameWindowFrame;
-import menelaus.view.game.HomeScreen;
 import menelaus.view.game.LevelSelectorScreen;
 
-public class ButtonLevelsController implements ActionListener{
-
+public class ButtonLevelsController implements ActionListener {
 	LevelsPackage levelsPackage;
-	
-	// The home screen JFrame that contains the levels button:
-	
-	public ButtonLevelsController(){
-		
-	}
 	
 	public ButtonLevelsController(LevelsPackage lp){
 		this.levelsPackage = lp;
 	}
 	
+	public ButtonLevelsController() {
+		
+	}
+	
 	public void actionPerformed(ActionEvent e) {
-		GameWindowFrame.getInstance().swapPanel(new LevelSelectorScreen());
+		LevelsPackage pack = levelsPackage;
+		
+		if (pack == null) {
+			pack = GameWindowFrame.getInstance().getLevelsPackage();
+		}
+		
+		// TEST
+		for (int i = 0; i < 4; i++ ){
+			pack.addLevel(new Level(LevelType.PUZZLE, 6, 6));
+			pack.addLevel(new Level(LevelType.LIGHTNING, 6, 6));
+			pack.addLevel(new Level(LevelType.RELEASE, 6, 6));
+		}
+		
+		GameWindowFrame.getInstance().swapPanel(new LevelSelectorScreen(pack));
 	}
 
 }
