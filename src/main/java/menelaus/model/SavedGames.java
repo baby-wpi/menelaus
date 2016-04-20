@@ -1,7 +1,8 @@
 package menelaus.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.UUID;
 
 /**
  * 
@@ -11,22 +12,27 @@ import java.util.ArrayList;
 public class SavedGames implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	ArrayList<LevelStars> stars;
+	Hashtable<UUID, LevelStars> stars;
 
-	public ArrayList<LevelStars> getStars() {
+	public Hashtable<UUID, LevelStars> getStars() {
 		return stars;
 	}
 
-	public void setStars(ArrayList<LevelStars> stars) {
+	public void setStars(Hashtable<UUID, LevelStars> stars) {
 		this.stars = stars;
 	}
 
-	public SavedGames(ArrayList<LevelStars> stars) {
+	public SavedGames(Hashtable<UUID, LevelStars> stars) {
 		super();
 		this.stars = stars;
 	}
 	
+	public SavedGames() {
+		super();
+		this.stars = new Hashtable<UUID, LevelStars>();
+	}
+	
 	public void addLevelStars(LevelStars levelStars) {
-		stars.add(levelStars);
+		stars.put(levelStars.getLevelId(), levelStars);
 	}
 }
