@@ -102,7 +102,7 @@ public class LevelPlayScreen extends KabasujiPanel {
     }
 
     public void setUpBullPen(Level level){
-        Piece p1 = new Piece(new Point(100, 100));
+        Piece p1 = new Piece(new Point(1, 1));
         p1.addTile(new Tile(0, 1));
         p1.addTile(new Tile(1, 1));
         p1.addTile(new Tile(1, 2));
@@ -113,12 +113,13 @@ public class LevelPlayScreen extends KabasujiPanel {
     }
 
     public void setUpBoard(Level level){
-        Piece p1 = new Piece(new Point(500, 300));
+        Piece p1 = new Piece(new Point(2, 2));
         p1.addTile(new Tile(0, 0));
         p1.addTile(new Tile(0, 1));
+        p1.addTile(new Tile(1, 0));
+        p1.addTile(new Tile(1, 1));
         p1.addTile(new Tile(1, 2));
         p1.addTile(new Tile(2, 1));
-        p1.addTile(new Tile(2, 2));
 
         try {
             level.getBoard().placePiece(p1);

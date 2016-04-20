@@ -12,7 +12,7 @@ public class PieceDrawer {
     public static final int SELECTED = 2;
     public static final int NORMAL = 1;
     int mode = NORMAL;
-    static final int TILE_SIZE = 30;
+    static final int TILE_SIZE = 30;//TODO should be calculated based on board dimensions
     static final String TILE_COLOR = "#3399ff";
 
     /**
@@ -26,9 +26,10 @@ public class PieceDrawer {
     public static void drawPiece(Graphics graphics, Piece piece) {
         graphics.setColor(Color.decode(TILE_COLOR));
 
-        for (Tile t: piece.getTiles()) {
-            graphics.fillRect(piece.getPosition().getX() + (TILE_SIZE * t.getRelativePosition().getX()),
-                    piece.getPosition().getY() + (TILE_SIZE * t.getRelativePosition().getY()),
+        for (Tile t : piece.getTiles()) {
+            graphics.fillRect(
+                    (piece.getPosition().getX() * TILE_SIZE) + (TILE_SIZE * t.getRelativePosition().getX()),
+                    (piece.getPosition().getY() * TILE_SIZE) + (TILE_SIZE * t.getRelativePosition().getY()),
                     TILE_SIZE,
                     TILE_SIZE);
         }
