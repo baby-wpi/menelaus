@@ -50,8 +50,18 @@ public class Board implements Serializable {
         return hints;
     }
 
-    public void setHints(ArrayList<HintPiece> hints) {
-        this.hints = hints;
+    public void addHintPiece(HintPiece hint) {
+    	hints.add(hint);
+    }
+    
+    public void addColoredSetItem(ColoredSetItem item, Point point) {
+        BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+            info = new BoardTileInfo(false);
+            tileInfo.put(point, info);
+        }
+
+        info.setColoredSetItem(item);
     }
 
     public ArrayList<Piece> getPieces() {
