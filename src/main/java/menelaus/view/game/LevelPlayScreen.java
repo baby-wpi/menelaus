@@ -12,8 +12,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  */
 public class LevelPlayScreen extends KabasujiPanel {
 
-    private JTable table;
-
     /**
      * Create the panel.
      */
@@ -22,8 +20,6 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 
         JScrollPane scrollPane = new JScrollPane();
-
-        table = new JTable();
 
         JLabel lblNewLabel = new JLabel("PUZZLE LEVEL 2");
         JLabel lblMovesLeft = new JLabel("MOVES LEFT 3");
@@ -35,41 +31,46 @@ public class LevelPlayScreen extends KabasujiPanel {
         /* CONNECT BUTTONS TO CONTROLLERS */
         btnExitButton.addActionListener(new ButtonLevelsController());
         
+        JPanel BoardView = new JPanel();
+        
         GroupLayout gl_contentPane = new GroupLayout(this);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addComponent(lblNewLabel)
-                                                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblMovesLeft))
-                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addComponent(btnExitButton)
-                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(btnRestart)))
-                                .addPreferredGap(ComponentPlacement.RELATED)
-                                .addComponent(table, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                                .addContainerGap())
+        	gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addComponent(lblNewLabel)
+        					.addGap(29)
+        					.addComponent(lblMovesLeft))
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addComponent(btnExitButton)
+        					.addGap(18)
+        					.addComponent(btnRestart))
+        				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addComponent(BoardView, GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+        			.addContainerGap())
         );
         gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
-                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                        .addComponent(table, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                                        .addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                        .addComponent(lblNewLabel)
-                                                        .addComponent(lblMovesLeft))
-                                                .addGap(18)
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                        .addComponent(btnRestart)
-                                                        .addComponent(btnExitButton))
-                                                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 333, GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())
+        	gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 582, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(97)
+        					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblMovesLeft)
+        						.addComponent(lblNewLabel))
+        					.addGap(18)
+        					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(btnRestart)
+        						.addComponent(btnExitButton))
+        					.addGap(18)
+        					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)))
+        			.addContainerGap())
         );
         this.setLayout(gl_contentPane);
     }
