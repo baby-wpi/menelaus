@@ -1,5 +1,6 @@
 package menelaus.model.board;
 
+import menelaus.model.basic.Color;
 import menelaus.model.basic.Point;
 import menelaus.view.PieceDrawer;
 import org.junit.Before;
@@ -136,6 +137,16 @@ public class BoardTest {
 		
 		assertEquals(null, board.getTileInfo().get(new Point(1, 1)).getPiecePlaced());
 		assertEquals(0, board.getPieces().size());
+	}
+	
+	@Test
+	public void testAddColoredSetItem() {
+		ColoredSetItem item = new ColoredSetItem(Color.RED, 1);
+		Point location = new Point(0, 0);
+		
+		board.addColoredSetItem(item, location);
+		
+		assertEquals(board.getTileInfo().get(new Point(0, 0)).getColoredSetItem(), item);
 	}
 
 }

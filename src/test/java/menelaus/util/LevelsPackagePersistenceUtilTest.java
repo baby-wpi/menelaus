@@ -21,6 +21,11 @@ import menelaus.model.board.HintPiece;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class LevelsPackagePersistenceUtilTest {
 	LevelsPackage levelsPackage;
 	
