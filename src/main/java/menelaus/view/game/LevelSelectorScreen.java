@@ -2,131 +2,129 @@ package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.controllers.ButtonMainMenuController;
+import menelaus.model.Level;
+import menelaus.model.LevelsPackage;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class LevelSelectorScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LevelSelectorScreen() {
-
-		JButton btnLevel = new JButton("Level 1");
-		btnLevel.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_1 = new JButton("Level 3");
-		btnLevel_1.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_2 = new JButton("Level 4");
-		btnLevel_2.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_3 = new JButton("Level 6");
-		btnLevel_3.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_4 = new JButton("Level 7");
-		btnLevel_4.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_5 = new JButton("Level 9");
-		btnLevel_5.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_6 = new JButton("Level 10");
-		btnLevel_6.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_7 = new JButton("Level 12");
-		btnLevel_7.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_8 = new JButton("Level 13");
-		btnLevel_8.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_9 = new JButton("Level 15");
-		btnLevel_9.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_10 = new JButton("Level 2");
-		btnLevel_10.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_11 = new JButton("Level 5");
-		btnLevel_11.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_12 = new JButton("Level 8");
-		btnLevel_12.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_13 = new JButton("Level 11");
-		btnLevel_13.addActionListener(new ButtonLevelSelectController(this, null));
-
-		JButton btnLevel_14 = new JButton("Level 14");
-		btnLevel_14.addActionListener(new ButtonLevelSelectController(this, null));
-
+	public LevelSelectorScreen(LevelsPackage levelsPackage) {
+		int count = 1;
+		int numLevels = levelsPackage.getLevels().size();
+		
+		GroupLayout layout = new GroupLayout(this);
+		
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+		
+		SequentialGroup group = null;
+		SequentialGroup groupVertical = layout.createSequentialGroup();
+		
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ButtonMainMenuController());
-
-
-		GroupLayout gl_contentPane = new GroupLayout(this);
-		gl_contentPane.setHorizontalGroup(
-				gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnLevel)
-										.addComponent(btnLevel_2)
-										.addComponent(btnLevel_4)
-										.addComponent(btnLevel_6, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnLevel_8, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-												.addGap(10)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-														.addComponent(btnLevel_10)
-														.addComponent(btnLevel_11)
-														.addComponent(btnLevel_12)
-														.addComponent(btnLevel_13, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-														.addComponent(btnLevel_14, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-												.addGap(14))
-										.addComponent(btnMainMenu, Alignment.TRAILING))
-								.addGap(340)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(btnLevel_1)
-										.addComponent(btnLevel_3)
-										.addComponent(btnLevel_5)
-										.addComponent(btnLevel_7, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnLevel_9, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-								.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-								.addGap(41)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnLevel_10)
-										.addComponent(btnLevel)
-										.addComponent(btnLevel_1))
-								.addGap(18)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnLevel_11)
-										.addComponent(btnLevel_2)
-										.addComponent(btnLevel_3))
-								.addGap(18)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnLevel_12)
-										.addComponent(btnLevel_4)
-										.addComponent(btnLevel_5))
-								.addGap(18)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnLevel_13)
-										.addComponent(btnLevel_7)
-										.addComponent(btnLevel_6))
-								.addGap(18)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnLevel_14)
-										.addComponent(btnLevel_9)
-										.addComponent(btnLevel_8))
-								.addGap(232)
-								.addComponent(btnMainMenu)
-								.addContainerGap(199, Short.MAX_VALUE))
-		);
-		this.setLayout(gl_contentPane);
+		
+		// For each level
+		for (Level l : levelsPackage.getLevels()) {
+			/* group = layout.createSequentialGroup() // in the beginning of every 4th time
+			 * 
+			 * group.addComponent()
+			 * layout.setHorizontalGroup(group) // in the end of every 4th time
+			 *   
+			 * 
+			 */
+			JButton btnLevelX = new JButton(l.getName());
+			btnLevelX.addActionListener(new ButtonLevelSelectController(this, null));	
+			
+			if (count == 1 || count == 5 || count == 9 || count == 13){
+				group = layout.createSequentialGroup();
+			}
+			
+			group.addComponent(btnLevelX);
+			groupVertical.addComponent(btnLevelX);
+			
+			if (count == 4 || count == 8 || count == 12 || count == 16 || count == numLevels){
+				layout.setHorizontalGroup(group);
+			}
+			
+			count++;
+		}
+		
+		layout.setVerticalGroup(group);
+		this.setLayout(layout);
 	}
 }
+
+//
+//		GroupLayout gl_contentPane = new GroupLayout(this);
+//		gl_contentPane.setHorizontalGroup(
+//				gl_contentPane.createParallelGroup(Alignment.TRAILING)
+//						.addGroup(gl_contentPane.createSequentialGroup()
+//								.addContainerGap()
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+//										.addComponent(btnLevel)
+//										.addComponent(btnLevel_2)
+//										.addComponent(btnLevel_4)
+//										.addComponent(btnLevel_6, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+//										.addComponent(btnLevel_8, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+//								.addPreferredGap(ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+//										.addGroup(gl_contentPane.createSequentialGroup()
+//												.addGap(10)
+//												.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+//														.addComponent(btnLevel_10)
+//														.addComponent(btnLevel_11)
+//														.addComponent(btnLevel_12)
+//														.addComponent(btnLevel_13, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+//														.addComponent(btnLevel_14, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+//												.addGap(14))
+//										.addComponent(btnMainMenu, Alignment.TRAILING))
+//								.addGap(340)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+//										.addComponent(btnLevel_1)
+//										.addComponent(btnLevel_3)
+//										.addComponent(btnLevel_5)
+//										.addComponent(btnLevel_7, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+//										.addComponent(btnLevel_9, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+//								.addContainerGap())
+//		);
+//		gl_contentPane.setVerticalGroup(
+//				gl_contentPane.createParallelGroup(Alignment.LEADING)
+//						.addGroup(gl_contentPane.createSequentialGroup()
+//								.addGap(41)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+//										.addComponent(btnLevel_10)
+//										.addComponent(btnLevel)
+//										.addComponent(btnLevel_1))
+//								.addGap(18)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+//										.addComponent(btnLevel_11)
+//										.addComponent(btnLevel_2)
+//										.addComponent(btnLevel_3))
+//								.addGap(18)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+//										.addComponent(btnLevel_12)
+//										.addComponent(btnLevel_4)
+//										.addComponent(btnLevel_5))
+//								.addGap(18)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+//										.addComponent(btnLevel_13)
+//										.addComponent(btnLevel_7)
+//										.addComponent(btnLevel_6))
+//								.addGap(18)
+//								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+//										.addComponent(btnLevel_14)
+//										.addComponent(btnLevel_9)
+//										.addComponent(btnLevel_8))
+//								.addGap(232)
+//								.addComponent(btnMainMenu)
+//								.addContainerGap(199, Short.MAX_VALUE))
+//		);
+//		this.setLayout(gl_contentPane);
+//	}
