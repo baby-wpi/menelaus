@@ -1,48 +1,40 @@
 package menelaus.view.game;
 
+import menelaus.controllers.ButtonHomeContinueController;
+import menelaus.controllers.ButtonHomeExitController;
+import menelaus.controllers.ButtonMainMenuController;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.*;
 
-public class WinScreen extends JFrame {
+public class WinScreen extends JPanel {
 
 	private KabasujiPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WinScreen frame = new WinScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public WinScreen() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
 		contentPane = new KabasujiPanel();
-		setContentPane(contentPane);
+		
 		
 		JLabel label = new JLabel("You Won!!!");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		
 		JButton btnContinue = new JButton("Continue");
+		//btnContinue.addActionListener(new ButtonHomeContinueController());
 		
 		JButton btnRestart = new JButton("Restart");
+		//btnRestart.addActionListener(new Button);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ButtonMainMenuController());
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
