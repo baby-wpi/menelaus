@@ -1,10 +1,12 @@
 package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelsController;
-import menelaus.model.Bullpen;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
+import menelaus.model.basic.Point;
+import menelaus.model.board.Piece;
+import menelaus.model.board.Tile;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
@@ -28,6 +30,15 @@ public class LevelPlayScreen extends KabasujiPanel {
     	
     	//TODO: load proper level
     	Level level = new Level(LevelType.PUZZLE, 7, 7);
+
+		Piece p1 = new Piece(new Point(100, 100));
+        p1.addTile(new Tile(0, 1));
+		p1.addTile(new Tile(1, 1));
+        p1.addTile(new Tile(1, 2));
+        p1.addTile(new Tile(2, 1));
+        p1.addTile(new Tile(2, 2));
+
+		level.getBullpen().addPiece(p1);
     	gameManager = new GameManager(level);
     	
     	setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
