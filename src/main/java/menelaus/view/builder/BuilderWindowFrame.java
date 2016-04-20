@@ -77,6 +77,10 @@ public class BuilderWindowFrame extends JFrame {
 		System.exit(0);
 	}
 
+	/**
+	 * Get panel in BuilderWindow
+	 * @return the current panel
+	 */
 	public KabasujiPanel getPanel() {
 		return contentPane;
 	}

@@ -10,7 +10,8 @@ import menelaus.model.board.Board;
 import menelaus.model.board.Piece;
 
 /**
- * Here is where the pieces are to be played (in 512x512 size). 
+ * Here is where the pieces are to be played (in 700x700 size).
+ * @author ObaSewardEvans 
  */
 public class BoardView extends JPanel {
 	
@@ -20,8 +21,8 @@ public class BoardView extends JPanel {
 	/** around edges. */
 	int offset = 32;
 	
-	/** Base size of puzzle. */
-	public final int N = 512;
+	/** Base size of board. */
+	public final int N = 700;
 	
 	/** Off-screen image for drawing (and Graphics object). */
 	Image offScreenImage = null;
@@ -35,14 +36,10 @@ public class BoardView extends JPanel {
 	/** Given a set of KabaSuji pieces, draw them in this panel. */
 	public BoardView(Board board) {
 		this.board = board;
-		//this.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		// initially allocate random color with each piece
-		Random rand = new Random();
 	}
 	
 	/** 
-	 * Swing thing. We must be large enough to draw all tangram pieces. 
+	 * Swing thing. We must be large enough to draw all KabaSuji pieces. 
 	 */
 	public Dimension getMinimumSize() {
 		int width = 2*N + 2*offset;

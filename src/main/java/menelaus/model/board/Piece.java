@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * 
  * @author vouldjeff
- *
  */
 public class Piece implements Serializable {
 	Point position;
@@ -85,44 +83,58 @@ public class Piece implements Serializable {
 		tiles.add(new Tile(new Point(0,0)));
 	}
 
-    public int getHeight(){
-        // TODO: 4/19/16 Run through tiles to find height
-        return 3;
+    public int getHeight() {
+        int max = 0, min = 0;
+        for (Tile t : tiles) {
+            int y = t.getRelativePosition().getY();
+            if (y > max)
+                max = y;
+            else if (y < min)
+                min = y;
+        }
+        return Math.abs(max) + Math.abs(min) + 1;//plus one for 0 indexing
     }
 
-    public int getWidth(){
-        // TODO: 4/19/16 Run through tiles to find width
-        return 2;
+    public int getWidth() {
+        int max = 0, min = 0;
+        for (Tile t : tiles) {
+            int x = t.getRelativePosition().getX();
+            if (x > max)
+                max = x;
+            else if (x < min)
+                min = x;
+        }
+        return Math.abs(max) + Math.abs(min) + 1;//plus one for 0 indexing
     }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((position == null) ? 0 : position.hashCode());
-		result = prime * result + ((tiles == null) ? 0 : tiles.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((position == null) ? 0 : position.hashCode());
+        result = prime * result + ((tiles == null) ? 0 : tiles.hashCode());
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Piece other = (Piece) obj;
-		if (position == null) {
-			if (other.position != null)
-				return false;
-		} else if (!position.equals(other.position))
-			return false;
-		if (tiles == null) {
-			if (other.tiles != null)
-				return false;
-		} else if (!tiles.equals(other.tiles))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Piece other = (Piece) obj;
+        if (position == null) {
+            if (other.position != null)
+                return false;
+        } else if (!position.equals(other.position))
+            return false;
+        if (tiles == null) {
+            if (other.tiles != null)
+                return false;
+        } else if (!tiles.equals(other.tiles))
+            return false;
+        return true;
+    }
 }

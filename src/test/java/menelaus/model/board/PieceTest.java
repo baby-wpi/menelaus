@@ -1,7 +1,6 @@
 package menelaus.model.board;
 
 import menelaus.model.basic.Point;
-import menelaus.view.PieceDrawer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,4 +79,14 @@ public class PieceTest {
 		assertEquals(new Tile(1, 0), piece.getTiles().get(piece.getTiles().size() - 1));
 	}
 
+	@Test
+	public void testGetHeight(){
+		assertEquals(piece.getHeight(), 3);
+	}
+
+	@Test
+	public void testGetWidth(){
+        System.out.println("width = " + piece.getWidth());
+        assertEquals(piece.getWidth(), 3);
+	}
 }
