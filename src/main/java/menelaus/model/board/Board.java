@@ -164,15 +164,22 @@ public class Board implements Serializable {
     }
     
     public boolean isFull() {
+    	return getNumberOfEmptyTiles() == 0;
+    }
+    
+    public int getNumberOfEmptyTiles() {
+    	int count = 0;
+    	
     	for (int i = 0; i < width; i++) {
     		for (int j = 0; j < height; j++) {
-    			if (tileInfo.get(new Point(i, j)) == null) {
-    				return false;
+    			BoardTileInfo info = tileInfo.get(new Point(i, j));
+    			if (info == null || (info.getPiecePlaced() == null && !info.isTileChopped())) {
+    				count++;
     			}
     		}
     	}
     	
-    	return true;
+    	return count;
     }
     /**
      * Places a given piece at an X,Y location. Undoes the move if invalid.
