@@ -4,6 +4,7 @@ package menelaus.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import menelaus.model.Level;
 import menelaus.model.LevelsPackage;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.LevelSelectorScreen;
@@ -21,6 +22,7 @@ public class ButtonLevelsController implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		LevelsPackage pack = levelsPackage;
+		
 		if (pack == null) {
 			pack = GameWindowFrame.getInstance().getLevelsPackage();
 		}

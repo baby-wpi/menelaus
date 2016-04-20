@@ -35,4 +35,8 @@ public class SavedGames implements Serializable {
 	public void addLevelStars(LevelStars levelStars) {
 		stars.put(levelStars.getLevelId(), levelStars);
 	}
+	
+	public LevelStars getStarsForLevel(Level level) {
+		return stars.get(level.getUuid());
+	}
 }
