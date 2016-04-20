@@ -1,11 +1,13 @@
 package menelaus.model.basic;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author vouldjeff
  *
  */
-public class Point {
+public class Point implements Serializable {
 	int x;
 	int y;
 	

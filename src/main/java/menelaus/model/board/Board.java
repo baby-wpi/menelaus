@@ -1,16 +1,16 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Point;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import menelaus.model.basic.Point;
+
 /**
  * 
  * @author vouldjeff
- *
+ * @author sanjay
  */
 public class Board implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -20,6 +20,7 @@ public class Board implements Serializable {
     Hashtable<Point, BoardTileInfo> tileInfo;
     ArrayList<HintPiece> hints;
     ArrayList<Piece> pieces;
+    
 
     public int getHeight() {
         return height;
@@ -49,8 +50,18 @@ public class Board implements Serializable {
         return hints;
     }
 
-    public void setHints(ArrayList<HintPiece> hints) {
-        this.hints = hints;
+    public void addHintPiece(HintPiece hint) {
+    	hints.add(hint);
+    }
+    
+    public void addColoredSetItem(ColoredSetItem item, Point point) {
+        BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+            info = new BoardTileInfo(false);
+            tileInfo.put(point, info);
+        }
+
+        info.setColoredSetItem(item);
     }
 
     public ArrayList<Piece> getPieces() {
@@ -162,5 +173,36 @@ public class Board implements Serializable {
     	}
     	
     	return true;
+    }
+    /**
+     * Places a given piece at an X,Y location. Undoes the move if invalid.
+     * @param p The piece to place.
+     * @param x The x coordinate to place at.
+     * @param y The y coordinate to place at.
+     * @return Whether the placing was successful.
+     */
+    public boolean placePieceAtRowAndColumn(Piece p, int x, int y) {
+    	Point newLocation = new Point(x, y);
+    	Point oldLocation = new Point(p.getPosition().getX(), p.getPosition().getX());
+    	
+    	p.setPosition(newLocation);
+    	if (isPlacementValid(p)) {
+    		try {
+				placePiece(p);
+				return true;
+			} catch (InvalidPiecePlacementException e) {
+				p.setPosition(oldLocation);
+				e.printStackTrace();
+				return false;
+			}
+    	}
+    	else {
+    		//go back
+    		p.setPosition(oldLocation);
+    		return false;
+    	}
+    	
+    	//newLocation;
+    	
     }
 }
