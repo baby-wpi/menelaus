@@ -1,10 +1,12 @@
 package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelsController;
+import menelaus.model.Bullpen;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 import menelaus.view.BoardView;
+import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
 
 import java.awt.Color;
@@ -49,6 +51,9 @@ public class LevelPlayScreen extends KabasujiPanel {
         JPanel BoardView = new BoardView(gameManager.getLevel().getBoard());
         BoardView.setBorder(BorderFactory.createLineBorder(Color.black));
         
+        /** Create BullpenView */
+        JPanel BullpenView = new BullpenView(gameManager.getLevel().getBullpen());
+        
         GroupLayout gl_contentPane = new GroupLayout(this);
         gl_contentPane.setHorizontalGroup(
         	gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -86,6 +91,8 @@ public class LevelPlayScreen extends KabasujiPanel {
         				.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap())
         );
+        
+        scrollPane.setViewportView(BullpenView);
         this.setLayout(gl_contentPane);
     }
 }
