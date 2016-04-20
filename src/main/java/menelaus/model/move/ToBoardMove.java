@@ -5,6 +5,10 @@ import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 
+/**
+ * Places a Piece from the Bullpen to the Board.
+ * @author vouldjeff
+ */
 public class ToBoardMove extends Move {
 	Point location;
 	
@@ -14,8 +18,15 @@ public class ToBoardMove extends Move {
 		this.alterMoveCount = true;
 	}
 
+	/**
+	 * Perform the Move. Always let the GameManager call this method.
+	 */
 	@Override
 	public boolean doMove(Level level) {
+		if (!valid(level)) {
+			return false;
+		}
+		
 		try {
 			level.getBoard().placePiece(piece);
 			level.getBullpen().removePiece(piece);
@@ -27,6 +38,6 @@ public class ToBoardMove extends Move {
 
 	@Override
 	public boolean valid(Level level) {
-		return level.getBoard().isPointWithinBoundary(location);
+		return level.getBoard().isPointWithinBoundary(location) && level.getBullpen().getPieces().contains(piece);
 	}
 }

@@ -8,6 +8,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class BoardTest {
 	Board board;
 
@@ -24,18 +29,18 @@ public class BoardTest {
 
 	@Test
 	public void testPlacePieceProperly() {
-		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
 		
-		Piece piece2 = new Piece(new Point(1, 0), new PieceDrawer());
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
 		piece2.addTile(new Tile(1, 2));
 		
-		Piece piece3 = new Piece(new Point(0, 2), new PieceDrawer());
+		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		try {
@@ -55,9 +60,41 @@ public class BoardTest {
 		assertEquals(piece3, board.getTileInfo().get(new Point(0, 2)).getPiecePlaced());
 	}
 	
+	@Test
+	public void testIsFull() {
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(0, 1));
+		piece1.addTile(new Tile(0, 2));
+		
+		try {
+			board.placePiece(piece1);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(false, board.isFull());
+		
+		Piece piece2 = new Piece(new Point(1, 0));
+		piece2.addTile(new Tile(0, 0));
+		piece2.addTile(new Tile(0, 1));
+		piece2.addTile(new Tile(1, 0));
+		piece2.addTile(new Tile(1, 1));
+		piece2.addTile(new Tile(0, 2));
+		piece2.addTile(new Tile(1, 2));
+		
+		try {
+			board.placePiece(piece2);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(true, board.isFull());
+	}
+	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOutside() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -69,7 +106,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOnChoppedTile() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -81,7 +118,7 @@ public class BoardTest {
 
 	@Test
 	public void testRemovePiece() {
-		Piece piece1 = new Piece(new Point(0, 0), new PieceDrawer());
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));

@@ -2,6 +2,11 @@ package menelaus.model;
 
 import java.util.UUID;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class LevelStars {
 	int starsCount;
 	UUID levelId;

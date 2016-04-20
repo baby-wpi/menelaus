@@ -80,8 +80,7 @@ public class KabasujiPanel extends JPanel {
     public void paintPiece(Graphics g, Piece piece) {
         if (g == null) { return; }
 
-        PieceDrawer pDrawer = piece.getDrawer();
-        pDrawer.drawPiece(g, piece);
+        PieceDrawer.drawPiece(g, piece);
     }
 
     /** Repaint to the screen just the given part of the image. */

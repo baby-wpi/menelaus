@@ -2,6 +2,11 @@ package menelaus.model.board;
 
 import menelaus.model.basic.Point;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class Tile {
 	Point relativePosition;
 

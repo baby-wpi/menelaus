@@ -2,6 +2,11 @@ package menelaus.model.board;
 
 import menelaus.model.basic.Color;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class ColoredSetItem {
 	Color color;
 	int number;

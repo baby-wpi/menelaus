@@ -3,6 +3,10 @@ package menelaus.model.move;
 import menelaus.model.Level;
 import menelaus.model.board.Piece;
 
+/**
+ * Base class for Moves.
+ * @author vouldjeff
+ */
 public abstract class Move {
     Piece piece;
     boolean alterMoveCount;

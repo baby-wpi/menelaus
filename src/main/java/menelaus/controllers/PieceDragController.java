@@ -113,9 +113,8 @@ public class PieceDragController extends MouseAdapter {
         originaly = p.getPosition().getY();
 
         // set drawer to highlight
-        PieceDrawer sd = p.getDrawer();
-        sd.setState(PieceDrawer.SELECTED);
-
+        p.setSelected(true);
+        
         // set anchor for smooth moving
         deltaX = anchor.getX() - originalx;
         deltaY = anchor.getY() - originaly;
@@ -185,8 +184,7 @@ public class PieceDragController extends MouseAdapter {
         }
 
         // return to original drawer
-        PieceDrawer pd = selected.getDrawer();
-        pd.setState(PieceDrawer.SELECTED);
+        selected.setSelected(false);
 
         // no longer selected
         level.setSelected(null);

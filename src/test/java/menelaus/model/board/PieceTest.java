@@ -7,18 +7,23 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class PieceTest {
 	Piece piece;
 	Piece piece2;
 
 	@Before
 	public void setUp() throws Exception {
-		piece = new Piece(new Point(0, 0), new PieceDrawer());
+		piece = new Piece(new Point(0, 0));
 		piece.addTile(new Tile(1, 1));
 		piece.addTile(new Tile(2, 1));
 		piece.addTile(new Tile(1, 2));
 		
-		piece2 = new Piece(new Point(0, 0), new PieceDrawer());
+		piece2 = new Piece(new Point(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(0, 2));
 		piece2.addTile(new Tile(0, 3));
