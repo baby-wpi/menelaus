@@ -3,6 +3,11 @@ package menelaus.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class SavedGames implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

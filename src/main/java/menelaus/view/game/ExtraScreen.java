@@ -1,32 +1,25 @@
 package menelaus.view.game;
 
-import javax.swing.JPanel;
+import menelaus.controllers.ButtonMainMenuController;
+import menelaus.view.KabasujiPanel;
 
-import java.awt.EventQueue;
-
-import javax.swing.JButton;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import menelaus.controllers.MainMenuButtonController;
-
-public class ExtraScreen extends JPanel {
+public class ExtraScreen extends KabasujiPanel {
 
 	/**
 	 * Create the panel.
 	 */
 	public ExtraScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		/* Buttons */
 		JButton btnLoadLevel = new JButton("Load Level");
 		JButton btnMainMenu = new JButton("Main Menu");
 		
 		/* CONNECT BUTTON TO CONTROLLERS */
-		btnMainMenu.addActionListener(new MainMenuButtonController());
+		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

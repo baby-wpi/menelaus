@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import menelaus.view.builder.BuilderSelectScreen;
 import menelaus.view.builder.BuilderWindowFrame;
 
-public class BuilderLevelSelectController implements ActionListener {
+public class ButtonBuilderLevelSelectController implements ActionListener {
 	
-	public BuilderLevelSelectController(){ }
+	public ButtonBuilderLevelSelectController(){ }
 
 	public void actionPerformed(ActionEvent e) {
 		BuilderWindowFrame.getInstance().swapPanel(new BuilderSelectScreen());

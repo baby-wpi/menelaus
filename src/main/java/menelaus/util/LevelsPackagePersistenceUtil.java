@@ -9,8 +9,17 @@ import java.io.ObjectOutputStream;
 
 import menelaus.model.LevelsPackage;
 
+/**
+ * Utility methods to load/save LevelsPackages to and from disk.
+ * @author vouldjeff
+ */
 public class LevelsPackagePersistenceUtil {
-    public static void toFile(LevelsPackage levelsPackage, File outputFile) throws IOException {
+    /**
+     * Save a LevelsPackage to a File.
+     * @param levelsPackage The object to be serialized
+     * @param outputFile Destination
+     */
+	public static void toFile(LevelsPackage levelsPackage, File outputFile) throws IOException {
         FileOutputStream fileToWrite = new FileOutputStream(outputFile);
         ObjectOutputStream objectToWrite = new ObjectOutputStream(fileToWrite);
         objectToWrite.writeObject(levelsPackage);
@@ -18,6 +27,11 @@ public class LevelsPackagePersistenceUtil {
         fileToWrite.close();
     }
  
+	/**
+	 * Load a LevelsPackage from a File.
+	 * @param inputFile File to read from
+	 * @return The LevelsPackage object
+	 */
     public static LevelsPackage fromFile(File inputFile) throws IOException, ClassNotFoundException {
         FileInputStream fileToRead = new FileInputStream(inputFile);
         ObjectInputStream objectToRead = new ObjectInputStream(fileToRead);

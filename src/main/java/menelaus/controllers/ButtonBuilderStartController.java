@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import menelaus.view.builder.BuilderLevelBuilderScreen;
 import menelaus.view.builder.BuilderWindowFrame;
 
-public class BuilderStartButtonController implements ActionListener {
+public class ButtonBuilderStartController implements ActionListener {
 
-	public BuilderStartButtonController() {
+	public ButtonBuilderStartController() {
 	}
 
 	public void actionPerformed(ActionEvent e) {

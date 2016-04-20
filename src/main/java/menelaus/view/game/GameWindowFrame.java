@@ -1,15 +1,13 @@
 package menelaus.view.game;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import menelaus.view.KabasujiPanel;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
+import java.awt.*;
 
 public class GameWindowFrame extends JFrame {
 
-	private JPanel contentPane;
+	private KabasujiPanel contentPane;
 	private static GameWindowFrame instance = new GameWindowFrame();
 
 	/**
@@ -33,20 +31,20 @@ public class GameWindowFrame extends JFrame {
 	 */
 	private GameWindowFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 750);
+		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 		
 		// Run the splash screen for 2 seconds then swap to main menu:
-		this.add(new SplashScreen());
+        contentPane = new SplashScreen();
+		this.add(contentPane);
 		setVisible(true);
 		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		this.swapPanel(new HomeScreen());
+		contentPane = new HomeScreen();
+		this.swapPanel(contentPane);
 		
 	}
 
@@ -61,9 +59,9 @@ public class GameWindowFrame extends JFrame {
 	/**
 	 * Swaps panel in GameWindow to the given panel
 	 * @param panel  the panel you want to switch to.
-	 * @return void
 	 */
-	public void swapPanel(JPanel panel) {
+	public void swapPanel(KabasujiPanel panel) {
+        contentPane = panel;
 		this.getContentPane().removeAll();
 		this.getContentPane().add( panel );
 		//setVisible(true);
@@ -77,4 +75,11 @@ public class GameWindowFrame extends JFrame {
 		System.exit(0);
 	}
 
+    /**
+     * Gets the panel that is being displayed.
+     * @return
+     */
+	public KabasujiPanel getPanel() {
+		return contentPane;
+	}
 }

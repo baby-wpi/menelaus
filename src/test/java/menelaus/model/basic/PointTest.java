@@ -7,6 +7,11 @@ import org.junit.Test;
 
 import menelaus.model.basic.Point;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class PointTest {
 	Point point;
 	

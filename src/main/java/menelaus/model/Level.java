@@ -1,11 +1,17 @@
 package menelaus.model;
 
+import menelaus.model.basic.LevelType;
+import menelaus.model.board.Board;
+import menelaus.model.board.Piece;
+
 import java.io.Serializable;
 import java.util.UUID;
 
-import menelaus.model.basic.LevelType;
-import menelaus.model.board.Board;
-
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -16,6 +22,11 @@ public class Level implements Serializable {
 	int timeLimit;
 	Board board;
 	Bullpen bullpen;
+	/**
+	 * Currently selected piece (or null if none). When a shape is
+	 * selected, it is no longer part of the Model.
+	 */
+	Piece selected;
 	
 	public UUID getUuid() {
 		return uuid;
@@ -67,9 +78,19 @@ public class Level implements Serializable {
 	
 	public Level(LevelType type, int boardHeight, int boardWidth) {
 		super();
+		this.moveLimit = 0;
+		this.timeLimit = 0;
 		this.type = type;
 		this.uuid = UUID.randomUUID();
 		this.bullpen = new Bullpen();
 		this.board = new Board(boardHeight, boardWidth);
+	}
+
+	public void setSelected(Piece p) {
+		selected = p;
+	}
+
+	public Piece getSelected() {
+		return selected;
 	}
 }

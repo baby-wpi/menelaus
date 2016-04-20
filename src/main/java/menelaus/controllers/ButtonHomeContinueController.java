@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 /**
  * Created by frankegan on 4/13/16.
  */
-public class HomeContinueButtonController implements ActionListener{
+public class ButtonHomeContinueController implements ActionListener{
 
     /**
-     * The level model that we will be continuing from.
+     * The level level that we will be continuing from.
      */
     Level level;
 
-    public HomeContinueButtonController(Level level) {
+    public ButtonHomeContinueController(Level level) {
         this.level = level;
     }
 

@@ -1,18 +1,14 @@
 package menelaus.view.builder;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
+import menelaus.controllers.ButtonBuilderMainMenuController;
+import menelaus.controllers.ButtonBuilderStartController;
+import menelaus.view.KabasujiPanel;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import menelaus.controllers.BuilderMainMenuButtonController;
-import menelaus.controllers.BuilderStartButtonController;
-
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-
-public class BuilderSelectScreen extends JPanel {
+public class BuilderSelectScreen extends KabasujiPanel {
 	private JTextField txtInstertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
@@ -21,7 +17,6 @@ public class BuilderSelectScreen extends JPanel {
 	 * Create the panel.
 	 */
 	public BuilderSelectScreen() {
-		setBounds(100, 100, 1000, 750);
 		
 		JButton btnPuzzle = new JButton("Puzzle");
 		
@@ -30,11 +25,11 @@ public class BuilderSelectScreen extends JPanel {
 		JButton btnRelease = new JButton("Release");
 		
 		txtInstertName = new JTextField();
-		txtInstertName.setText("Instert Name");
+		txtInstertName.setText("Insert Name");
 		txtInstertName.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
-		btnStart.addActionListener(new BuilderStartButtonController());
+		btnStart.addActionListener(new ButtonBuilderStartController());
 		
 		txtWidth = new JTextField();
 		txtWidth.setText("Width");
@@ -45,13 +40,13 @@ public class BuilderSelectScreen extends JPanel {
 		txtHeight.setColumns(10);
 		
 		JLabel lblX = new JLabel("x");
-		
+
 		JLabel lblBoardSize = new JLabel("Board Size");
-		
+
 		JPanel panel = new JPanel();
 		
 		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.addActionListener(new BuilderMainMenuButtonController());
+		btnMainMenu.addActionListener(new ButtonBuilderMainMenuController());
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

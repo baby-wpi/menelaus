@@ -1,41 +1,27 @@
 package menelaus.view.builder;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import menelaus.controllers.ButtonBuilderLevelSelectController;
+import menelaus.view.KabasujiPanel;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import menelaus.controllers.BuilderExitButtonController;
-import menelaus.controllers.BuilderLevelSelectController;
-
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
-import java.awt.Component;
+import java.awt.*;
 
-public class HomeScreen extends JPanel {
+public class HomeScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.
 	 */
 	public HomeScreen() {
-		setBounds(100, 100, 1000, 750);
 
 		JLabel lblKabasujiBuilder = new JLabel("KabaSuji Builder");
 		lblKabasujiBuilder.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		
 		JButton btnNewButton = new JButton("Create Level");
-		btnNewButton.addActionListener(new BuilderLevelSelectController());
+		btnNewButton.addActionListener(new ButtonBuilderLevelSelectController());
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new BuilderExitButtonController());
+		btnExit.addActionListener(new ButtonBuilderLevelSelectController());
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(this);

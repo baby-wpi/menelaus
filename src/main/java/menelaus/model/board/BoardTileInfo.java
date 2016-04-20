@@ -1,5 +1,10 @@
 package menelaus.model.board;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class BoardTileInfo {
 	ColoredSetItem coloredSetItem;
 	boolean isTileChopped;
