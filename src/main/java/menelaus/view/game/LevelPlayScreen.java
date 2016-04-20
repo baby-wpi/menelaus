@@ -23,6 +23,8 @@ import java.awt.*;
 public class LevelPlayScreen extends KabasujiPanel {
 	
 	GameManager gameManager;
+    final static int BOARD_WIDTH = 6;
+    final static int BOARD_HEIGHT = 6;
 	
     /**
      * Create the panel.
@@ -30,7 +32,7 @@ public class LevelPlayScreen extends KabasujiPanel {
     public LevelPlayScreen() {
     	
     	//TODO: load proper level
-    	Level level = new Level(LevelType.PUZZLE, 7, 7);
+    	Level level = new Level(LevelType.PUZZLE, BOARD_HEIGHT, BOARD_WIDTH);
 
         //Draw the pieces to the bullpen and board
         setUpBullPen(level);

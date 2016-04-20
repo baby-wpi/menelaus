@@ -43,7 +43,8 @@ public class BullpenView extends JPanel {
         super.paintComponent(g);
         //draw pieces to board
         for (Piece p : bullpen.getPieces()) {
-            PieceDrawer.drawPiece(g, p);
+            // TODO: 4/20/16 Calculate placement scheme for bullpen
+            PieceDrawer.drawPiece(g, p, 30);
         }
     }
 }

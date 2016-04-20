@@ -65,8 +65,19 @@ public class BoardView extends JPanel {
         super.paintComponent(g);
 
         for (Piece p : board.getPieces()) {
-            PieceDrawer.drawPiece(g, p);
+            PieceDrawer.drawPiece(g, p, calculateGridUnitSize());
         }
+    }
+
+    /**
+     * Calculates
+     * @return The size of a grid unit in pixels
+     */
+    public int calculateGridUnitSize(){
+        if(board.getHeight() > board.getWidth())
+            return this.getHeight() / board.getHeight();
+        else
+            return this.getWidth() / board.getWidth();
     }
 
 }

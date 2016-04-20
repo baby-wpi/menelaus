@@ -86,7 +86,7 @@ public class KabasujiPanel extends JPanel {
             return;
         }
 
-        PieceDrawer.drawPiece(g, piece);
+        PieceDrawer.drawPiece(g, piece, 0);
     }
 
     /**
