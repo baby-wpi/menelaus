@@ -5,6 +5,7 @@ import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
+import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
 import menelaus.view.BoardView;
@@ -17,11 +18,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 
 /**
- * Created by frankegan on 4/10/16.
+ * Created by @author frankegan on 4/10/16.
  */
 public class LevelPlayScreen extends KabasujiPanel {
 	
 	GameManager gameManager;
+    final static int BOARD_WIDTH = 6;
+    final static int BOARD_HEIGHT = 6;
 	
     /**
      * Create the panel.
@@ -29,16 +32,12 @@ public class LevelPlayScreen extends KabasujiPanel {
     public LevelPlayScreen() {
     	
     	//TODO: load proper level
-    	Level level = new Level(LevelType.PUZZLE, 7, 7);
+    	Level level = new Level(LevelType.PUZZLE, BOARD_HEIGHT, BOARD_WIDTH);
 
-		Piece p1 = new Piece(new Point(100, 100));
-        p1.addTile(new Tile(0, 1));
-		p1.addTile(new Tile(1, 1));
-        p1.addTile(new Tile(1, 2));
-        p1.addTile(new Tile(2, 1));
-        p1.addTile(new Tile(2, 2));
+        //Draw the pieces to the bullpen and board
+        setUpBullPen(level);
+        setUpBoard(level);
 
-		level.getBullpen().addPiece(p1);
     	gameManager = new GameManager(level);
     	
     	setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
@@ -102,5 +101,32 @@ public class LevelPlayScreen extends KabasujiPanel {
         
         scrollPane.setViewportView(BullpenView);
         this.setLayout(gl_contentPane);
+    }
+
+    public void setUpBullPen(Level level){
+        Piece p1 = new Piece(new Point(1, 1));
+        p1.addTile(new Tile(0, 1));
+        p1.addTile(new Tile(1, 1));
+        p1.addTile(new Tile(1, 2));
+        p1.addTile(new Tile(2, 1));
+        p1.addTile(new Tile(2, 2));
+
+        level.getBullpen().addPiece(p1);
+    }
+
+    public void setUpBoard(Level level){
+        Piece p1 = new Piece(new Point(2, 2));
+        p1.addTile(new Tile(0, 0));
+        p1.addTile(new Tile(0, 1));
+        p1.addTile(new Tile(1, 0));
+        p1.addTile(new Tile(1, 1));
+        p1.addTile(new Tile(1, 2));
+        p1.addTile(new Tile(2, 1));
+
+        try {
+            level.getBoard().placePiece(p1);
+        } catch (InvalidPiecePlacementException e) {
+            e.printStackTrace();
+        }
     }
 }
