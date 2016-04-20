@@ -1,11 +1,10 @@
 package menelaus.view;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
-
 import menelaus.model.Bullpen;
+import menelaus.model.board.Piece;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Here is where the pieces will be stored to be placed on the board (in 250-height size).
@@ -21,8 +20,8 @@ public class BullpenView extends JPanel {
 	
 	/** Given a set of KabaSuji pieces, draw them in this panel. */
 	public BullpenView(Bullpen bullpen){
-		this.bullpen = bullpen;
-	}
+        this.bullpen = bullpen;
+    }
 	
 	/** Only here so we can safely open within WindowBuilder. */
 	public BullpenView() {
@@ -36,5 +35,9 @@ public class BullpenView extends JPanel {
     	g.drawRect(20,20,10,10);
     	g.setColor(Color.RED);
     	g.fillRect(20, 20, 10, 10);
+
+        for (Piece p: bullpen.getPieces()) {
+            PieceDrawer.drawPiece(g, p);
+        }
     }
 }

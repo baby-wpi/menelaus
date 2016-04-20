@@ -1,11 +1,13 @@
 package menelaus.model.board;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author vouldjeff
  *
  */
-public class BoardTileInfo {
+public class BoardTileInfo implements Serializable {
 	ColoredSetItem coloredSetItem;
 	boolean isTileChopped;
 	Piece piecePlaced;
