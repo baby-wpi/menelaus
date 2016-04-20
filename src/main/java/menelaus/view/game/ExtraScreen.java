@@ -1,5 +1,6 @@
 package menelaus.view.game;
 
+import menelaus.controllers.ButtonLoadLevelController;
 import menelaus.controllers.ButtonMainMenuController;
 import menelaus.view.KabasujiPanel;
 
@@ -16,7 +17,9 @@ public class ExtraScreen extends KabasujiPanel {
 		
 		/* Buttons */
 		JButton btnLoadLevel = new JButton("Load Level");
+		btnLoadLevel.addActionListener(new ButtonLoadLevelController());
 		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
 		/* CONNECT BUTTON TO CONTROLLERS */
 		btnMainMenu.addActionListener(new ButtonMainMenuController());
