@@ -2,6 +2,7 @@ package menelaus.view.game;
 
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
 import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +13,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import org.junit.After;
+
 import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
@@ -19,6 +22,12 @@ import menelaus.model.SavedGames;
 
 public class LevelSelectComponent extends JPanel {
 	private Level level;
+	
+	@Override
+	public Dimension getPreferredSize() {
+//		return new Dimension(80, 100);
+		return new Dimension(180, 180);
+	}
 	
 	/**
 	 * Create the panel.
@@ -51,7 +60,7 @@ public class LevelSelectComponent extends JPanel {
 		}
 		
 		// StarPolygon stars = new StarPolygon(int x, int y, int r, int innerR, int vertexCount);
-
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

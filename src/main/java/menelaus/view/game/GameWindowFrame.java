@@ -32,7 +32,9 @@ public class GameWindowFrame extends JFrame {
 		try {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
 			contentPane = new HomeScreen();
-			Thread.sleep(2000);
+//			Thread.sleep(2000);
+			// TODO: change back
+			Thread.sleep(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
