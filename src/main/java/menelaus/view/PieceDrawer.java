@@ -21,7 +21,7 @@ public class PieceDrawer {
      * @param graphics The graphics object we're grading to.
      * @param piece    The piece we want drawn
      */
-    public void drawPiece(Graphics graphics, Piece piece) {
+    public static void drawPiece(Graphics graphics, Piece piece) {
         // TODO: 4/19/16 start drawing pieces
     }
 

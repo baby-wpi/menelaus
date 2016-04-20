@@ -7,6 +7,11 @@ import menelaus.model.board.Piece;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class Bullpen implements Serializable {
     private static final long serialVersionUID = 1L;
 

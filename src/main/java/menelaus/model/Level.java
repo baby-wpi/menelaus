@@ -7,6 +7,11 @@ import menelaus.model.board.Piece;
 import java.io.Serializable;
 import java.util.UUID;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

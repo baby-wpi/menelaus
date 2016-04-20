@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+/**
+ * 
+ * @author vouldjeff
+ *
+ */
 public class Board implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -75,10 +80,8 @@ public class Board implements Serializable {
         }
     }
 
-    public boolean placePiece(Piece piece) throws InvalidPiecePlacementException {
-        boolean valid = false;
-        if (!isPointWithinBoundary(piece.getPosition()) || !isBoardFreeForPiece(piece)) {
-            //return valid;
+    public void placePiece(Piece piece) throws InvalidPiecePlacementException {
+        if (!isPlacementValid(piece)) {
             throw new InvalidPiecePlacementException();
         }
 
@@ -97,8 +100,14 @@ public class Board implements Serializable {
 
             info.setPiecePlaced(piece);
         }
-        valid = true;
-        return valid;
+    }
+    
+    public boolean isPlacementValid(Piece piece) {
+    	try {
+			return isPointWithinBoundary(piece.getPosition()) && isBoardFreeForPiece(piece);
+		} catch (InvalidPiecePlacementException e) {
+			return false;
+		}
     }
 
     public void removePiece(Piece piece) {
@@ -141,5 +150,17 @@ public class Board implements Serializable {
 
     public boolean isPointWithinBoundary(Point point) {
         return point.getX() < width && point.getY() < height;
+    }
+    
+    public boolean isFull() {
+    	for (int i = 0; i < width; i++) {
+    		for (int j = 0; j < height; j++) {
+    			if (tileInfo.get(new Point(i, j)) == null) {
+    				return false;
+    			}
+    		}
+    	}
+    	
+    	return true;
     }
 }
