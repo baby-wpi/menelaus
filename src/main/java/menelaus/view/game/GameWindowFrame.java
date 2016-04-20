@@ -1,30 +1,21 @@
 package menelaus.view.game;
 
+import menelaus.model.LevelsPackage;
+import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class GameWindowFrame extends JFrame {
-
+	private final static String DEFAULT_PACKAGE_NAME = "default-levels.boba";
+	
 	private KabasujiPanel contentPane;
 	private static GameWindowFrame instance = new GameWindowFrame();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameWindowFrame frame = getInstance();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	private LevelsPackage levelsPackage;
 
 	/**
 	 * Create the frame.
@@ -39,10 +30,17 @@ public class GameWindowFrame extends JFrame {
 		setVisible(true);
 		
 		try {
+			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
+			
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
 		contentPane = new HomeScreen();
 		this.swapPanel(contentPane);
 		
@@ -54,6 +52,14 @@ public class GameWindowFrame extends JFrame {
 	 */
 	public static GameWindowFrame getInstance(){
 		return instance;
+	}
+	
+	/**
+	 * Returns loaded default levels.
+	 * @return LevelsPackage object
+	 */
+	public LevelsPackage getLevelsPackage() {
+		return levelsPackage;
 	}
 
 	/**

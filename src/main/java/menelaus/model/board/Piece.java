@@ -2,85 +2,86 @@ package menelaus.model.board;
 
 import menelaus.model.basic.Point;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @author vouldjeff
  */
-public class Piece {
-    Point position;
-    ArrayList<Tile> tiles;
-    boolean selected;
-
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    public ArrayList<Tile> getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(ArrayList<Tile> tiles) {
-        this.tiles = tiles;
-    }
-
-    public boolean getSelected() {
-        return this.selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
-    public void rotate() {
-        Iterator<Tile> iterator = tiles.iterator();
-
-        while (iterator.hasNext()) {
-            Tile tile = (Tile) iterator.next();
-            Point newLocation = new Point(tile.getRelativePosition().getY(),
-                    -tile.getRelativePosition().getX());
-
-            tile.setRelativePosition(newLocation);
-        }
-    }
-
-    public void flip() {
-        Iterator<Tile> iterator = tiles.iterator();
-        int maxX = 0;
-
-        while (iterator.hasNext()) {
-            Tile tile = (Tile) iterator.next();
-
-            if (maxX < tile.getRelativePosition().getX()) {
-                maxX = tile.getRelativePosition().getX();
-            }
-        }
-
-        iterator = tiles.iterator();
-        while (iterator.hasNext()) {
-            Tile tile = (Tile) iterator.next();
-            Point newLocation = new Point(maxX - tile.getRelativePosition().getX(),
-                    tile.getRelativePosition().getY());
-
-            tile.setRelativePosition(newLocation);
-        }
-    }
-
-    public void addTile(Tile tile) {
-        tiles.add(tile);
-    }
-
-    public Piece(Point position) {
-        super();
-        this.position = position;
-        this.tiles = new ArrayList<Tile>();
-        tiles.add(new Tile(new Point(0, 0)));
-    }
+public class Piece implements Serializable {
+	Point position;
+	ArrayList<Tile> tiles;
+	boolean selected;
+	
+	public Point getPosition() {
+		return position;
+	}
+	
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+	
+	public ArrayList<Tile> getTiles() {
+		return tiles;
+	}
+	
+	public void setTiles(ArrayList<Tile> tiles) {
+		this.tiles = tiles;
+	}
+	
+	public boolean getSelected() {
+		return this.selected;
+	}
+	
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+	
+	public void rotate() {
+		Iterator<Tile> iterator = tiles.iterator();
+		
+		while (iterator.hasNext()) {
+			Tile tile = (Tile) iterator.next();
+			Point newLocation = new Point(tile.getRelativePosition().getY(), 
+					-tile.getRelativePosition().getX());
+			
+			tile.setRelativePosition(newLocation);
+		}
+	}
+	
+	public void flip() {
+		Iterator<Tile> iterator = tiles.iterator();
+		int maxX = 0;
+		
+		while (iterator.hasNext()) {
+			Tile tile = (Tile) iterator.next();
+			
+			if (maxX < tile.getRelativePosition().getX()) {
+				maxX = tile.getRelativePosition().getX();
+			}
+		}
+		
+		iterator = tiles.iterator();
+		while (iterator.hasNext()) {
+			Tile tile = (Tile) iterator.next();
+			Point newLocation = new Point(maxX - tile.getRelativePosition().getX(), 
+					tile.getRelativePosition().getY());
+			
+			tile.setRelativePosition(newLocation);
+		}
+	}
+	
+	public void addTile(Tile tile) {
+		tiles.add(tile);
+	}
+	
+	public Piece(Point position) {
+		super();
+		this.position = position;
+		this.tiles = new ArrayList<Tile>();
+		tiles.add(new Tile(new Point(0,0)));
+	}
 
     public int getHeight() {
         int max = 0, min = 0;
