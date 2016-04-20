@@ -13,8 +13,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import org.junit.After;
-
 import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
