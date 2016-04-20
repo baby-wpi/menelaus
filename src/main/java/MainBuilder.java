@@ -3,9 +3,7 @@ import java.awt.event.WindowEvent;
 
 import menelaus.view.builder.BuilderWindowFrame;
 
-/** Used to launch the KabaSuji Builder Application.
- * @author Obatola Seward-Evans
- * */
+/** Used to launch the KabaSuji Builder Application. */
 public class MainBuilder {
 	public static void main (String[] args){
 		//Model m = new Model();
