@@ -93,6 +93,106 @@ public class BoardTest {
 		assertEquals(true, board.isFull());
 	}
 	
+	@Test
+	public void testIsFullWithColoredSetItem() {
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(0, 1));
+		piece1.addTile(new Tile(0, 2));
+		
+		try {
+			board.placePiece(piece1);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(false, board.isFull());
+		
+		Piece piece2 = new Piece(new Point(1, 0));
+		piece2.addTile(new Tile(0, 0));
+		piece2.addTile(new Tile(0, 1));
+		piece2.addTile(new Tile(1, 0));
+		piece2.addTile(new Tile(1, 1));
+		piece2.addTile(new Tile(0, 2));
+		
+		board.addColoredSetItem(new ColoredSetItem(Color.BLUE, 1), new Point(2, 2));
+		
+		try {
+			board.placePiece(piece2);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(false, board.isFull());
+	}
+	
+	@Test
+	public void testIsFullWithCoppedOut() {
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(0, 1));
+		piece1.addTile(new Tile(0, 2));
+		
+		try {
+			board.placePiece(piece1);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(false, board.isFull());
+		
+		Piece piece2 = new Piece(new Point(1, 0));
+		piece2.addTile(new Tile(0, 0));
+		piece2.addTile(new Tile(0, 1));
+		piece2.addTile(new Tile(1, 0));
+		piece2.addTile(new Tile(1, 1));
+		piece2.addTile(new Tile(0, 2));
+		
+		board.chopTileOut(new Point(2, 2));
+		
+		try {
+			board.placePiece(piece2);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(true, board.isFull());
+	}
+	
+	@Test
+	public void testGetNumberOfEmptyTiles() {
+		assertEquals(board.getHeight() * board.getWidth(), board.getNumberOfEmptyTiles());
+		
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(0, 1));
+		piece1.addTile(new Tile(0, 2));
+		
+		try {
+			board.placePiece(piece1);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(false, board.isFull());
+		
+		Piece piece2 = new Piece(new Point(1, 0));
+		piece2.addTile(new Tile(0, 0));
+		piece2.addTile(new Tile(0, 1));
+		piece2.addTile(new Tile(1, 0));
+		
+		board.addColoredSetItem(new ColoredSetItem(Color.BLUE, 1), new Point(1, 2));
+		board.chopTileOut(new Point(2, 2));
+		
+		try {
+			board.placePiece(piece2);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(2, board.getNumberOfEmptyTiles());
+	}
+	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOutside() throws InvalidPiecePlacementException {
 		Piece piece1 = new Piece(new Point(0, 0));
