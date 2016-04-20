@@ -7,12 +7,10 @@ import menelaus.model.basic.LevelType;
 import menelaus.view.BoardView;
 import menelaus.view.KabasujiPanel;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.*;
 
 /**
  * Created by frankegan on 4/10/16.
@@ -31,7 +29,6 @@ public class LevelPlayScreen extends KabasujiPanel {
     	gameManager = new GameManager(level);
     	
     	setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
-
 
         JScrollPane scrollPane = new JScrollPane();
 

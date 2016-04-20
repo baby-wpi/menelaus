@@ -23,7 +23,7 @@ public class PieceDrawer {
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
      */
-    public static void drawPiece(Graphics graphics, Piece piece) {
+    public static Graphics drawPiece(Graphics graphics, Piece piece) {
         graphics.setColor(Color.decode(TILE_COLOR));
 
         for (Tile t: piece.getTiles()) {
@@ -32,6 +32,8 @@ public class PieceDrawer {
                     TILE_SIZE,
                     TILE_SIZE);
         }
+
+        return graphics;
     }
 
     /**
