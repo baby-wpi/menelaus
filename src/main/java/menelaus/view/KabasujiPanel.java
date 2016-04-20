@@ -34,7 +34,9 @@ public class KabasujiPanel extends JPanel {
      * Define the height for all panels that extend our class
      */
     public static final int HEIGHT = 750;
-    /** Double Buffering technique requires an offscreen image. */
+    /**
+     * Double Buffering technique requires an offscreen image.
+     */
     Image offscreenImage;
     Graphics offscreenGraphics;
     /**
@@ -76,14 +78,20 @@ public class KabasujiPanel extends JPanel {
         }
     }
 
-    /** Paint the piece into the given graphics context using its drawer. */
+    /**
+     * Paint the piece into the given graphics context using its drawer.
+     */
     public void paintPiece(Graphics g, Piece piece) {
-        if (g == null) { return; }
+        if (g == null) {
+            return;
+        }
 
         PieceDrawer.drawPiece(g, piece);
     }
 
-    /** Repaint to the screen just the given part of the image. */
+    /**
+     * Repaint to the screen just the given part of the image.
+     */
     public void paintBackground(Piece p) {
         // Only updates to the screen the given region
         if (canvasGraphics != null) {
