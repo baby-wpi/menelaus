@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Here is where the pieces will be stored to be placed on the board (in 250-height size).
  *
- * @author ObaSewardEvans
+ * @author Obatola Seward-Evans
  */
 public class BullpenView extends JPanel {
 

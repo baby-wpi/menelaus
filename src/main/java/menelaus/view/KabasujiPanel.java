@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /**
- * Created by frankegan on 4/15/16.
+ * @author frankegan on 4/15/16.
  * <p>
  * Define a base class for all our panels to extend. Includes constants for defining panel sizes,
  * and methods for dragging views. Will be used for handling all mous events inside of panel and delegating them to

@@ -18,7 +18,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 
 /**
- * Created by @author frankegan on 4/10/16.
+ * @author frankegan
+ * @author Obatola Seward-Evans
  */
 public class LevelPlayScreen extends KabasujiPanel {
 	
@@ -56,6 +57,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         
         /** Create Board View */
         JPanel BoardView = new BoardView(gameManager.getLevel().getBoard());
+        BoardView.setBackground(Color.WHITE);
         BoardView.setBorder(BorderFactory.createLineBorder(Color.black));
         
         /** Create BullpenView */
@@ -76,15 +78,16 @@ public class LevelPlayScreen extends KabasujiPanel {
         					.addComponent(lblNewLabel)
         					.addGap(29)
         					.addComponent(lblMovesLeft)))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 710, Short.MAX_VALUE)
-        			.addGap(12))
+        			.addGap(16)
+        			.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(16, Short.MAX_VALUE))
         );
         gl_contentPane.setVerticalGroup(
         	gl_contentPane.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_contentPane.createSequentialGroup()
         			.addContainerGap(34, Short.MAX_VALUE)
         			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
         				.addGroup(gl_contentPane.createSequentialGroup()
         					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
         						.addComponent(lblMovesLeft)
@@ -94,8 +97,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         						.addComponent(btnRestart)
         						.addComponent(btnExitButton))
         					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 623, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 623, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap())
         );
         
