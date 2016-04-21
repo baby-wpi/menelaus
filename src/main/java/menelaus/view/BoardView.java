@@ -68,7 +68,11 @@ public class BoardView extends JPanel {
     	
         super.paintComponent(g);
         
+        // Draw grid on board.
         drawGrid(g);
+        
+        drawReleaseColorSets(g);
+        
     	
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
@@ -85,6 +89,14 @@ public class BoardView extends JPanel {
             return this.getHeight() / board.getHeight();
         else
             return this.getWidth() / board.getWidth();
+    }
+    
+    public void drawReleaseColorSets(Graphics g){
+    	// TODO: get tile info
+    	
+    	
+    	// TODO: for each tile where there is a number
+    		// TODO: draw a colored j label on that spot
     }
     
     /**
@@ -109,15 +121,15 @@ public class BoardView extends JPanel {
     	int subdivisionSize = drawingSize / subdivisions;
     	
         // Draw Grid:
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setPaint(Color.GRAY);
+        Graphics2D grid = (Graphics2D) g;
+        grid.setPaint(Color.GRAY);
         for (int i = 1; i < subdivisions; i++) {
            int x = i * subdivisionSize;
-           g2.drawLine(x, 0, x, getSize().height);
+           grid.drawLine(x, 0, x, getSize().height);
         }
         for (int i = 1; i < subdivisions; i++) {
            int y = i * subdivisionSize;
-           g2.drawLine(0, y, getSize().width, y);
+           grid.drawLine(0, y, getSize().width, y);
         }
     }
 
