@@ -20,6 +20,8 @@ import menelaus.model.SavedGames;
 
 public class LevelSelectComponent extends JPanel {
 	private Level level;
+	private LevelStars stars;
+	int starCount;
 	
 	@Override
 	public Dimension getPreferredSize() {
@@ -32,14 +34,23 @@ public class LevelSelectComponent extends JPanel {
 	 */
 	public LevelSelectComponent(Level levelParam, LevelStars stars) {
 		this.level = levelParam;
+		this.stars = stars;
+		if ( stars == null ){
+			starCount = 0;
+		} else {
+			starCount = this.stars.getStarsCount();	
+		}
+		
 		
 		setBounds(100, 100, 80, 100);
 		
 		addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ButtonLevelSelectController controller = new ButtonLevelSelectController(level);	
-				controller.actionPerformed(null);
+				if (starCount > 0 || level == GameWindowFrame.getInstance().getSavedGamesUtil().getNextPlayableLevelInPackage(GameWindowFrame.getInstance().getLevelsPackage())) {
+					ButtonLevelSelectController controller = new ButtonLevelSelectController(level);	
+					controller.actionPerformed(null);
+				}
 			}
 		});
 		
