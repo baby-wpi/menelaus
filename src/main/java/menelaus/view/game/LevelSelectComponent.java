@@ -18,9 +18,19 @@ import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.SavedGames;
 
+/**
+ * The level view for the level select view.
+ * @author Obatola Seward-Evans
+ *
+ */
 public class LevelSelectComponent extends JPanel {
+	/** the level for this component. */
 	private Level level;
+	
+	/** the level stars for this level */
 	private LevelStars stars;
+	
+	/** count of all stars for this level */
 	int starCount;
 	
 	@Override
@@ -30,24 +40,28 @@ public class LevelSelectComponent extends JPanel {
 	}
 	
 	/**
-	 * Create the panel.
+	 * Create the panel and mouse listener.
 	 */
 	public LevelSelectComponent(Level levelParam, LevelStars stars) {
 		this.level = levelParam;
 		this.stars = stars;
+		
+		// Set star count
 		if ( stars == null ){
 			starCount = 0;
 		} else {
 			starCount = this.stars.getStarsCount();	
 		}
 		
-		
-		setBounds(100, 100, 80, 100);
-		
 		addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (starCount > 0 || level == GameWindowFrame.getInstance().getSavedGamesUtil().getNextPlayableLevelInPackage(GameWindowFrame.getInstance().getLevelsPackage())) {
+				Level nextLevel = GameWindowFrame.getInstance().getSavedGamesUtil()
+						.getNextPlayableLevelInPackage(GameWindowFrame.getInstance()
+								.getLevelsPackage());
+				
+				// decides if the level component can be clicked on or not.
+				if (starCount > 0 || level == nextLevel) {
 					ButtonLevelSelectController controller = new ButtonLevelSelectController(level);	
 					controller.actionPerformed(null);
 				}
