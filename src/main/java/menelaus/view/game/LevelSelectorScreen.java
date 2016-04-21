@@ -16,6 +16,7 @@ public class LevelSelectorScreen extends KabasujiPanel {
 	 * Create the panel.
 	 */
 	public LevelSelectorScreen(LevelsPackage levelsPackage) {
+		int count = 1;
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
 		
 		// TEST
@@ -33,8 +34,10 @@ public class LevelSelectorScreen extends KabasujiPanel {
 			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, savedGames.getStarsForLevel(l));
 			btnLevelX.setBackground(Color.white);
 			btnLevelX.setBorder(raisedbevel);
-
+			
+			this.setLocation(count * this.getWidth(), 200);
 			this.add(btnLevelX);
+			count++;
 		}
 		
 		this.add(btnMainMenu);

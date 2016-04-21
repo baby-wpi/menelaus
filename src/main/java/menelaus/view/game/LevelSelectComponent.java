@@ -3,6 +3,7 @@ package menelaus.view.game;
 import javax.swing.JPanel;
 
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,17 +24,16 @@ public class LevelSelectComponent extends JPanel {
 	
 	@Override
 	public Dimension getPreferredSize() {
-//		return new Dimension(80, 100);
-		return new Dimension(180, 180);
+		return new Dimension(80, 100);
+//		return new Dimension(180, 180);
 	}
 	
+
 	/**
 	 * Create the panel.
 	 */
 	public LevelSelectComponent(Level levelParam, LevelStars stars) {
 		this.level = levelParam;
-		
-		setBounds(100, 100, 80, 100);
 		
 		addMouseListener(new MouseAdapter() {			
 			@Override
