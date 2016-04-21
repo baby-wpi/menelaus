@@ -12,6 +12,14 @@ import java.awt.*;
  * @author Obatola Seward-Evans
  */
 public class BoardView extends JPanel {
+	/** height of a grid square */
+	int gridSquareHeight = 0;
+	/** width of a grid square */
+	int gridSquareWidth = 0;
+	/** size of the board */
+	int drawingSize = 0;
+	/** width/height of grid by grid squares */
+	int subdivisions = 0;
 	
 
     /**
@@ -64,11 +72,25 @@ public class BoardView extends JPanel {
     /**
      * Draw background puzzle and all active pieces.
      */
-    protected void paintComponent(Graphics g) {    	
+    protected void paintComponent(Graphics g) { 
+    	initDemensions();
     	
-    	/* Information for Grid */
-    	int drawingSize = 700;
-    	int subdivisions = 0;
+        super.paintComponent(g);
+        
+        // Draw grid on board.
+        drawGrid(g);
+        drawUnavailableTiles(g);
+        drawReleaseColorSets(g);
+        
+    	
+        // Draw Pieces:
+        for (Piece p : board.getPieces()) {
+            PieceDrawer.drawPiece(g, p, calculateGridUnitSize());
+        }
+    }
+
+    private void initDemensions() {
+    	drawingSize = this.getWidth();
     	
     	// if get board height is the largest:
     	if (board.getHeight() > board.getWidth()){
@@ -79,30 +101,14 @@ public class BoardView extends JPanel {
     		subdivisions = board.getWidth();
     	}
     	
-    	int subdivisionSize = drawingSize / subdivisions;
-    	
-        super.paintComponent(g);
-    	
-        // Draw Grid:
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setPaint(Color.GRAY);
-        for (int i = 1; i < subdivisions; i++) {
-           int x = i * subdivisionSize;
-           g2.drawLine(x, 0, x, getSize().height);
-        }
-        for (int i = 1; i < subdivisions; i++) {
-           int y = i * subdivisionSize;
-           g2.drawLine(0, y, getSize().width, y);
-        }
-    
-        // Draw Pieces:
-        for (Piece p : board.getPieces()) {
-            PieceDrawer.drawPiece(g, p, calculateGridUnitSize());
-        }
-    }
+    	gridSquareHeight = drawingSize / subdivisions;
 
-    /**
-     * Calculates
+    	gridSquareWidth = drawingSize / subdivisions;
+    	
+	}
+
+	/**
+     * Calculates.
      * @return The size of a grid unit in pixels
      */
     public int calculateGridUnitSize(){
@@ -110,6 +116,55 @@ public class BoardView extends JPanel {
             return this.getHeight() / board.getHeight();
         else
             return this.getWidth() / board.getWidth();
+    }
+    
+    /** 
+     * Draws all the color set numbers on the board.
+     * @param g
+     */
+    public void drawReleaseColorSets(Graphics g){
+    	// TODO: get tile info
+    	
+    	
+    	// TODO: for each tile where there is a number
+    		// TODO: draw a colored j label on that spot
+    }
+    
+    /**
+     * Draws all unavailable tiles on the board.
+     * @param g
+     */
+    public void drawUnavailableTiles(Graphics g){
+
+    	for (menelaus.model.basic.Point point : board.getTileInfo().keySet()) {
+    		if ( board.getTileInfo().get(point).isTileChopped() ) { // This tile should not be on the board.			
+    			g.setColor(Color.LIGHT_GRAY);
+    			
+    			// TODO: make sure rectangle point is correct.
+		        g.fillRect(point.getX(), point.getY(), gridSquareHeight, gridSquareWidth);  
+    		}
+		}
+    }
+    
+    /**
+     * Draws a grid on the board.
+     * @param g Graphics
+     * @author Obatola Seward-Evans
+     */
+    public void drawGrid(Graphics g) {
+    	int subdivisionSize = drawingSize / subdivisions;
+    	
+        // Draw Grid:
+        Graphics2D grid = (Graphics2D) g;
+        grid.setPaint(Color.GRAY);
+        for (int i = 1; i < subdivisions; i++) {
+           int x = i * subdivisionSize;
+           grid.drawLine(x, 0, x, getSize().height);
+        }
+        for (int i = 1; i < subdivisions; i++) {
+           int y = i * subdivisionSize;
+           grid.drawLine(0, y, getSize().width, y);
+        }
     }
 
 }
