@@ -47,10 +47,30 @@ public class GameManager {
 		return levelStars;
 	}
 
-	public GameManager(Level level) {
+	public GameManager(Level levelParam) {
 		super();
-		this.level = level;
+		this.level = levelParam;
 		this.isRunning = false;
+		this.levelStars = new LevelStars(0, levelParam.getUuid());
+		final GameManager _this = this;
+		
+		timer = new Timer(TICK_TIME, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				timePassed++;
+				levelStars = StarsUtil.getStars(_this);
+				
+				if (level.timeLimit > 0 && timePassed >= level.timeLimit) {
+					stopGame();
+					notifyEndListeners(GameEndReason.NO_TIME);
+				} else {
+					notifyTickListeners();
+				}
+			}
+		});
+	}
+	
+	public int getTimePassed() {
+		return timePassed;
 	}
 	
 	/**
@@ -111,19 +131,7 @@ public class GameManager {
 		this.timePassed = 0;
 		this.moves = new ArrayDeque<Move>();
 		this.isRunning = true;
-		
-		timer.setDelay(TICK_TIME);
-		timer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				timePassed++;
-				if (level.timeLimit > 0 && timePassed >= level.timeLimit) {
-					stopGame();
-					notifyEndListeners(GameEndReason.NO_TIME);
-				} else {
-					notifyTickListeners();
-				}
-			}
-		});
+	
 		timer.start();
 	}
 	

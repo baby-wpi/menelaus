@@ -7,21 +7,28 @@ import menelaus.view.game.LevelPlayScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 /**
- * Created by frankegan on 4/13/16.
+ * @author fegan
+ * @author vouldjeff
  */
 public class ButtonHomeContinueController implements ActionListener{
 
-    /**
-     * The level level that we will be continuing from.
-     */
-    Level level;
-
-    public ButtonHomeContinueController(Level level) {
-        this.level = level;
+    public ButtonHomeContinueController() {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-        GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen());
+		GameWindowFrame frame = GameWindowFrame.getInstance();
+		Level nextLevel;
+		nextLevel = frame.getSavedGamesUtil().getNextPlayableLevelInPackage(frame.getLevelsPackage());
+		
+    	
+    	if (nextLevel == null) {
+    		JOptionPane.showMessageDialog(null, "You've played all levels!");
+    		return;
+    	}
+    	
+        GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(nextLevel));
     }
 }

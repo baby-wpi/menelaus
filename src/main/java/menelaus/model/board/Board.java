@@ -199,7 +199,6 @@ public class Board implements Serializable {
 				return true;
 			} catch (InvalidPiecePlacementException e) {
 				p.setPosition(oldLocation);
-				e.printStackTrace();
 				return false;
 			}
     	}

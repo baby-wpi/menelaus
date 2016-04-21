@@ -8,6 +8,10 @@ import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
+import menelaus.model.events.GameEndListener;
+import menelaus.model.events.GameEndReason;
+import menelaus.model.events.GameTickListener;
+import menelaus.util.SavedGamesUtil;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
@@ -16,43 +20,74 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
- * Created by @author frankegan on 4/10/16.
+ * @author fegan
+ * @author vouldjeff
  */
 public class LevelPlayScreen extends KabasujiPanel {
 	
 	GameManager gameManager;
     final static int BOARD_WIDTH = 6;
     final static int BOARD_HEIGHT = 6;
+    
+    JLabel labelCountDown;
+    
+    private void gameEnded(GameEndReason reason) {
+    	SavedGamesUtil savedGamesUtil = GameWindowFrame.getInstance().getSavedGamesUtil();
+    	try {
+			savedGamesUtil.addLevelStars(gameManager.getLevelStars());
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Cannot write your progress to disk.");
+		}
+    	
+    	JOptionPane.showMessageDialog(null, "Game eneded. Reason: " + reason.toString());
+    }
+    
+    private void initGameManager(Level level) {
+    	gameManager = new GameManager(level);
+    	gameManager.addGameEndListener(new GameEndListener() {
+			public void end(GameEndReason reason) {
+				gameEnded(reason);
+			}
+		});
+    	
+    	gameManager.addGameTickListener(new GameTickListener() {
+			public void tick() {
+				labelCountDown.setText("Time passed: " + gameManager.getTimePassed());
+			}
+		});
+    }
 	
     /**
      * Create the panel.
      */
-    public LevelPlayScreen() {
-    	
-    	//TODO: load proper level
-    	Level level = new Level(LevelType.PUZZLE, BOARD_HEIGHT, BOARD_WIDTH);
-
-        //Draw the pieces to the bullpen and board
-        setUpBullPen(level);
-        setUpBoard(level);
-
-    	gameManager = new GameManager(level);
+    public LevelPlayScreen(Level level) {
+    	initGameManager(level);
     	
     	setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 
         JScrollPane scrollPane = new JScrollPane();
 
-        JLabel lblNewLabel = new JLabel("PUZZLE LEVEL 2");
-        JLabel lblMovesLeft = new JLabel("MOVES LEFT 3");
+        JLabel lblNewLabel = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
+        labelCountDown = new JLabel("Time passed: 0");
 
         /* BUTTONS */
         JButton btnRestart = new JButton("RESTART");
         JButton btnExitButton = new JButton("EXIT");
         
-        /* CONNECT BUTTONS TO CONTROLLERS */
-        btnExitButton.addActionListener(new ButtonLevelsController(GameWindowFrame.getInstance().getLevelsPackage()));
+        
+        btnExitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameManager.userEndsGame();
+				
+				ButtonLevelsController controller = new ButtonLevelsController();
+				controller.actionPerformed(e);
+			}
+		});
         
         /** Create Board View */
         JPanel BoardView = new BoardView(gameManager.getLevel().getBoard());
@@ -75,7 +110,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         				.addGroup(gl_contentPane.createSequentialGroup()
         					.addComponent(lblNewLabel)
         					.addGap(29)
-        					.addComponent(lblMovesLeft)))
+        					.addComponent(labelCountDown)))
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 710, Short.MAX_VALUE)
         			.addGap(12))
@@ -87,7 +122,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
         				.addGroup(gl_contentPane.createSequentialGroup()
         					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblMovesLeft)
+        						.addComponent(labelCountDown)
         						.addComponent(lblNewLabel))
         					.addPreferredGap(ComponentPlacement.UNRELATED)
         					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -101,32 +136,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         
         scrollPane.setViewportView(BullpenView);
         this.setLayout(gl_contentPane);
-    }
-
-    public void setUpBullPen(Level level){
-        Piece p1 = new Piece(new Point(1, 1));
-        p1.addTile(new Tile(0, 1));
-        p1.addTile(new Tile(1, 1));
-        p1.addTile(new Tile(1, 2));
-        p1.addTile(new Tile(2, 1));
-        p1.addTile(new Tile(2, 2));
-
-        level.getBullpen().addPiece(p1);
-    }
-
-    public void setUpBoard(Level level){
-        Piece p1 = new Piece(new Point(2, 2));
-        p1.addTile(new Tile(0, 0));
-        p1.addTile(new Tile(0, 1));
-        p1.addTile(new Tile(1, 0));
-        p1.addTile(new Tile(1, 1));
-        p1.addTile(new Tile(1, 2));
-        p1.addTile(new Tile(2, 1));
-
-        try {
-            level.getBoard().placePiece(p1);
-        } catch (InvalidPiecePlacementException e) {
-            e.printStackTrace();
-        }
+        
+        gameManager.startGame();
     }
 }
