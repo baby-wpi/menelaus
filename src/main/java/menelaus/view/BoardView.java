@@ -13,52 +13,25 @@ import java.awt.*;
  */
 public class BoardView extends JPanel {
 	
-
+	public Dimension getPreferredSize() {
+		return new Dimension(700, 700);
+	};
+	
     /**
      * Core board.
      */
     Board board;
 
     /**
-     * around edges.
-     */
-    int offset = 32;
-
-    /**
-     * Base size of board.
-     */
-    public final int N = 700;
-
-    /**
-     * Off-screen image for drawing (and Graphics object).
-     */
-    Image offScreenImage = null;
-    Graphics offScreenGraphics = null;
-
-    /**
      * Only here so we can safely open within WindowBuilder.
      */
-    public BoardView() {
-
-    }
+    public BoardView() { }
 
     /**
      * Given a set of KabaSuji pieces, draw them in this panel.
      */
     public BoardView(Board board) {
         this.board = board;
-    }
-    
-    
-
-    /**
-     * Swing thing. We must be large enough to draw all KabaSuji pieces.
-     */
-    public Dimension getMinimumSize() {
-        int width = 2 * N + 2 * offset;
-        int height = 2 * N + 2 * offset;
-
-        return new Dimension(width, height);
     }
 
     /**
