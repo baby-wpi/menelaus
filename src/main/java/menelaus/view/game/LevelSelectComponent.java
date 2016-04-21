@@ -3,11 +3,8 @@ package menelaus.view.game;
 import javax.swing.JPanel;
 
 import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,7 +14,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
-import menelaus.model.SavedGames;
 
 public class LevelSelectComponent extends JPanel {
 	private Level level;
