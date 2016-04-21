@@ -66,6 +66,33 @@ public class BoardView extends JPanel {
      */
     protected void paintComponent(Graphics g) {    	
     	
+        super.paintComponent(g);
+        
+        drawGrid(g);
+    	
+        // Draw Pieces:
+        for (Piece p : board.getPieces()) {
+            PieceDrawer.drawPiece(g, p, calculateGridUnitSize());
+        }
+    }
+
+    /**
+     * Calculates.
+     * @return The size of a grid unit in pixels
+     */
+    public int calculateGridUnitSize(){
+        if(board.getHeight() > board.getWidth())
+            return this.getHeight() / board.getHeight();
+        else
+            return this.getWidth() / board.getWidth();
+    }
+    
+    /**
+     * Draws a grid on the board.
+     * @param g Graphics
+     * @author Obatola Seward-Evans
+     */
+    public void drawGrid(Graphics g) {
     	/* Information for Grid */
     	int drawingSize = 700;
     	int subdivisions = 0;
@@ -81,8 +108,6 @@ public class BoardView extends JPanel {
     	
     	int subdivisionSize = drawingSize / subdivisions;
     	
-        super.paintComponent(g);
-    	
         // Draw Grid:
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(Color.GRAY);
@@ -94,22 +119,6 @@ public class BoardView extends JPanel {
            int y = i * subdivisionSize;
            g2.drawLine(0, y, getSize().width, y);
         }
-    
-        // Draw Pieces:
-        for (Piece p : board.getPieces()) {
-            PieceDrawer.drawPiece(g, p, calculateGridUnitSize());
-        }
-    }
-
-    /**
-     * Calculates
-     * @return The size of a grid unit in pixels
-     */
-    public int calculateGridUnitSize(){
-        if(board.getHeight() > board.getWidth())
-            return this.getHeight() / board.getHeight();
-        else
-            return this.getWidth() / board.getWidth();
     }
 
 }
