@@ -39,7 +39,6 @@ public class SplashScreen extends KabasujiPanel {
 					.addContainerGap(334, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-
 	}
 
 }

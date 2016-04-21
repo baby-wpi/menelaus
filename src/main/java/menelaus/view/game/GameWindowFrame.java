@@ -2,20 +2,27 @@ package menelaus.view.game;
 
 import menelaus.model.LevelsPackage;
 import menelaus.util.LevelsPackagePersistenceUtil;
+import menelaus.util.SavedGamesUtil;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
+/**
+ * 
+ * @author vouldjeff
+ * @author boba
+ *
+ */
 public class GameWindowFrame extends JFrame {
 	private final static String DEFAULT_PACKAGE_NAME = "default-levels.boba";
+	private final static String SAVED_GAMES_NAME = "saved-games.boba";
 	
 	private KabasujiPanel contentPane;
 	private static GameWindowFrame instance = new GameWindowFrame();
 	
 	private LevelsPackage levelsPackage;
+	private SavedGamesUtil savedGamesUtil;
 
 	/**
 	 * Create the frame.
@@ -31,6 +38,10 @@ public class GameWindowFrame extends JFrame {
 		
 		try {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
+			savedGamesUtil = new SavedGamesUtil(new File(SAVED_GAMES_NAME));
+			
+			
+			
 			contentPane = new HomeScreen();
 //			Thread.sleep(2000);
 			// TODO: change back
@@ -56,6 +67,14 @@ public class GameWindowFrame extends JFrame {
 	 */
 	public LevelsPackage getLevelsPackage() {
 		return levelsPackage;
+	}
+	
+	/**
+	 * Returns the SavedGamesUtil.
+	 * @return
+	 */
+	public SavedGamesUtil getSavedGamesUtil() {
+		return savedGamesUtil;
 	}
 
 	/**

@@ -15,14 +15,8 @@ public class LevelSelectorScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LevelSelectorScreen(LevelsPackage levelsPackage) {
+	public LevelSelectorScreen(LevelsPackage levelsPackage, SavedGames savedGames) {
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
-		
-		// TEST
-		SavedGames savedGames = new SavedGames();
-		savedGames.addLevelStars(new LevelStars(3, levelsPackage.getLevels().get(0).getUuid()));
-		savedGames.addLevelStars(new LevelStars(1, levelsPackage.getLevels().get(1).getUuid()));
-		savedGames.addLevelStars(new LevelStars(2, levelsPackage.getLevels().get(2).getUuid()));
 		
 		
 		JButton btnMainMenu = new JButton("Main Menu");

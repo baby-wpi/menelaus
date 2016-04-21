@@ -13,6 +13,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 
+/**
+ * 
+ * @author vouldjeff
+ * @author fegan
+ */
 public class HomeScreen extends KabasujiPanel {
 
 	/**
@@ -28,11 +33,7 @@ public class HomeScreen extends KabasujiPanel {
 
 		JButton btnExit = new JButton("Exit");
 
-
-		/* CONNECT BUTTON TO CONTROLLERS */
-
-		//		// TODO: 4/13/16 Add level from disk? 
-		btnContinue.addActionListener(new ButtonHomeContinueController(new Level(LevelType.LIGHTNING, 8, 8)));
+		btnContinue.addActionListener(new ButtonHomeContinueController());
 		btnLevels.addActionListener(new ButtonLevelsController()); // Levels.
 		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
 		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.

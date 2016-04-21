@@ -31,14 +31,9 @@ public class ButtonLoadLevelController implements ActionListener{
 			ButtonLevelsController blc = new ButtonLevelsController(levelsPackage);
 			blc.actionPerformed(null);
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Alert! Selected file is not valid.");
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Alert! Selected file is not valid.");
-
 		}
 		
 	}

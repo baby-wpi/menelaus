@@ -27,6 +27,6 @@ public class ButtonLevelSelectController implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-    	GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen());
+    	GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(level));
     }
 }
