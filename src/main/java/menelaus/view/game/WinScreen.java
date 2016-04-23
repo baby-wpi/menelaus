@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
 import java.awt.*;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class WinScreen extends KabasujiPanel  {
 	/** the level that brought player to winscreen */
@@ -31,8 +32,8 @@ public class WinScreen extends KabasujiPanel  {
 		contentPane = this;
 		
 		
-		JLabel label = new JLabel("You Won!!!");
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+		JLabel lblCongratulations = new JLabel("Congratulations!!!\n");
+		lblCongratulations.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ButtonContinueController());
@@ -49,38 +50,36 @@ public class WinScreen extends KabasujiPanel  {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(417, Short.MAX_VALUE)
+					.addContainerGap(356, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(label)
-							.addGap(406))
+							.addComponent(lblCongratulations)
+							.addGap(345))
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(btnExit)
-							.addGap(452))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(btnRestart)
-							.addGap(446))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(btnContinue)
-							.addGap(439))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(lblScore)
-							.addGap(461))))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+							.addGap(409))))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(474)
+					.addComponent(lblScore)
+					.addContainerGap(474, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(248, Short.MAX_VALUE)
-					.addComponent(label)
+					.addGap(259)
+					.addComponent(lblCongratulations)
 					.addGap(18)
 					.addComponent(lblScore)
-					.addGap(81)
-					.addComponent(btnContinue)
-					.addGap(18)
-					.addComponent(btnRestart)
-					.addGap(18)
-					.addComponent(btnExit)
-					.addGap(216))
+					.addGap(42)
+					.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(169, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
