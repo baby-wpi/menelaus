@@ -1,6 +1,8 @@
 package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelsController;
+import menelaus.controllers.RestartController;
+import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
@@ -75,26 +77,32 @@ public class LevelPlayScreen extends KabasujiPanel {
         JLabel lblNewLabel = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
         labelCountDown = new JLabel("Time passed: 0");
 
-        /* BUTTONS */
+        /*	 BUTTONS	 */
+        
+        /** Restart Button. */
         JButton btnRestart = new JButton("RESTART");
+        btnRestart.addActionListener(new RestartController(level));
+        
+        /** Exit Button. */
         JButton btnExitButton = new JButton("EXIT");
+        btnExitButton.addActionListener(new ToWinScreenController(level));
         
         
-        btnExitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gameManager.userEndsGame();
-				
-				ButtonLevelsController controller = new ButtonLevelsController();
-				controller.actionPerformed(e);
-			}
-		});
+//        btnExitButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				gameManager.userEndsGame();
+//				
+//				ButtonLevelsController controller = new ButtonLevelsController();
+//				controller.actionPerformed(e);
+//			}
+//		});
         
-        /** Create Board View */
+        /** Create Board View. */
         JPanel BoardView = new BoardView(gameManager.getLevel().getBoard());
         BoardView.setBackground(Color.WHITE);
         BoardView.setBorder(BorderFactory.createLineBorder(Color.black));
         
-        /** Create BullpenView */
+        /** Create BullpenView. */
         JPanel BullpenView = new BullpenView(gameManager.getLevel().getBullpen());
         
         GroupLayout gl_contentPane = new GroupLayout(this);

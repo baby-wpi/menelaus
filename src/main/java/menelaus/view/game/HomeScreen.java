@@ -1,6 +1,6 @@
 package menelaus.view.game;
 
-import menelaus.controllers.ButtonHomeContinueController;
+import menelaus.controllers.ButtonContinueController;
 import menelaus.controllers.ButtonHomeExitController;
 import menelaus.controllers.ButtonHomeExtraController;
 import menelaus.controllers.ButtonLevelsController;
@@ -33,7 +33,7 @@ public class HomeScreen extends KabasujiPanel {
 
 		JButton btnExit = new JButton("Exit");
 
-		btnContinue.addActionListener(new ButtonHomeContinueController());
+		btnContinue.addActionListener(new ButtonContinueController());
 		btnLevels.addActionListener(new ButtonLevelsController()); // Levels.
 		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
 		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
