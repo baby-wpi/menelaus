@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
  * @author fegan
  * @author vouldjeff
  */
-public class ButtonHomeContinueController implements ActionListener{
+public class ButtonContinueController implements ActionListener{
 
-    public ButtonHomeContinueController() {
+    public ButtonContinueController() {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {

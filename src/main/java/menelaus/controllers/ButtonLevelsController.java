@@ -19,7 +19,6 @@ public class ButtonLevelsController implements ActionListener {
 	}
 	
 	public ButtonLevelsController() {
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
