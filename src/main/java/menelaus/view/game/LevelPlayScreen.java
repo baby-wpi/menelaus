@@ -1,13 +1,9 @@
 package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelsController;
+import menelaus.controllers.PieceController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
-import menelaus.model.basic.LevelType;
-import menelaus.model.basic.Point;
-import menelaus.model.board.InvalidPiecePlacementException;
-import menelaus.model.board.Piece;
-import menelaus.model.board.Tile;
 import menelaus.model.events.GameEndListener;
 import menelaus.model.events.GameEndReason;
 import menelaus.model.events.GameTickListener;
@@ -33,6 +29,8 @@ public class LevelPlayScreen extends KabasujiPanel {
 	GameManager gameManager;
     final static int BOARD_WIDTH = 6;
     final static int BOARD_HEIGHT = 6;
+    BoardView boardView;
+    BullpenView bullpenView;
     
     JLabel labelCountDown;
     
@@ -61,6 +59,14 @@ public class LevelPlayScreen extends KabasujiPanel {
 			}
 		});
     }
+
+    public BullpenView getBullpenView(){
+        return bullpenView;
+    }
+
+    public BoardView getBoardView(){
+        return boardView;
+    }
 	
     /**
      * Create the panel.
@@ -78,8 +84,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         /* BUTTONS */
         JButton btnRestart = new JButton("RESTART");
         JButton btnExitButton = new JButton("EXIT");
-        
-        
+
         btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userEndsGame();
@@ -90,12 +95,12 @@ public class LevelPlayScreen extends KabasujiPanel {
 		});
         
         /** Create Board View */
-        JPanel BoardView = new BoardView(gameManager.getLevel().getBoard());
-        BoardView.setBackground(Color.WHITE);
-        BoardView.setBorder(BorderFactory.createLineBorder(Color.black));
+        boardView = new BoardView(gameManager.getLevel().getBoard(), level);
+        boardView.setBackground(Color.WHITE);
+        boardView.setBorder(BorderFactory.createLineBorder(Color.black));
         
         /** Create BullpenView */
-        JPanel BullpenView = new BullpenView(gameManager.getLevel().getBullpen());
+        bullpenView = new BullpenView(gameManager.getLevel().getBullpen());
         
         GroupLayout gl_contentPane = new GroupLayout(this);
         gl_contentPane.setHorizontalGroup(
@@ -114,7 +119,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 
         					.addComponent(labelCountDown)))
         			.addGap(16)
-        			.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap(16, Short.MAX_VALUE))
         );
         gl_contentPane.setVerticalGroup(
@@ -122,7 +127,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         		.addGroup(gl_contentPane.createSequentialGroup()
         			.addContainerGap(34, Short.MAX_VALUE)
         			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(BoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
         				.addGroup(gl_contentPane.createSequentialGroup()
         					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
         						.addComponent(labelCountDown)
@@ -136,8 +141,13 @@ public class LevelPlayScreen extends KabasujiPanel {
         			.addContainerGap())
         );
         
-        scrollPane.setViewportView(BullpenView);
+        scrollPane.setViewportView(bullpenView);
         this.setLayout(gl_contentPane);
+
+        PieceController pc = new PieceController(this, level);
+        boardView.addMouseListener(pc);
+        boardView.addMouseMotionListener(pc);
+        boardView.addMouseWheelListener(pc);
         
         gameManager.startGame();
     }

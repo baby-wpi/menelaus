@@ -31,11 +31,6 @@ public class PieceDrawer {
                     (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
                     tileSize,
                     tileSize);
-            graphics.drawRect(
-                    (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
-                    (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
-                    tileSize,
-                    tileSize);
         }
     }
 

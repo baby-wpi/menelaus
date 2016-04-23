@@ -47,4 +47,8 @@ public class BullpenView extends JPanel {
             PieceDrawer.drawPiece(g, p, 30);
         }
     }
+
+    public void refresh() {
+
+    }
 }

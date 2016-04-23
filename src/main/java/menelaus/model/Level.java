@@ -27,6 +27,11 @@ public class Level implements Serializable {
 	 * selected, it is no longer part of the Model.
 	 */
 	Piece selected;
+    /**
+     * Currently actively dragged piece (or null if none). When a shape is
+     * selected, it is no longer part of the Model.
+     */
+    Piece active;
 	
 	public UUID getUuid() {
 		return uuid;
@@ -93,4 +98,12 @@ public class Level implements Serializable {
 	public Piece getSelected() {
 		return selected;
 	}
+
+    public void setActive(Piece active) {
+        this.active = active;
+    }
+
+    public Piece getActive() {
+        return active;
+    }
 }
