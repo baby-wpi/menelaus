@@ -27,19 +27,30 @@ public class PieceDrawer {
 
         for (Tile t : piece.getTiles()) {
             graphics.fillRect(
-                    (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
-                    (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
+                    piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
+                    piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
                     tileSize,
                     tileSize);
         }
     }
 
     /**
-     * Set the state of the drawer (selected, target, normal).
+     * Draws the piece.
+     * <p/>
+     * Draw a bunch of rectangles and hope to it works.
+     *
+     * @param graphics The graphics object we're drawing to.
+     * @param piece    The piece we want drawn
      */
-    public void setState(int mode) {
-        if (mode == SELECTED) {
-            this.mode = SELECTED;
+    public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
+        graphics.setColor(Color.decode(TILE_COLOR));
+
+        for (Tile t : piece.getTiles()) {
+            graphics.fillRect(
+                    (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
+                    (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
+                    tileSize,
+                    tileSize);
         }
     }
 }

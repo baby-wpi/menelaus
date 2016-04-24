@@ -69,12 +69,12 @@ public class PieceController extends MouseAdapter {
     @Override
     public void mouseMoved(MouseEvent me) {
         Piece selected = level.getSelected();
-        if (selected == null) {
-            return;
-        }
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+        if (selected == null) { return; }
 
-        Piece p = new Piece(new Point(me.getX(), me.getY()));
-        level.setActive(p);
+
+        level.getActive().setPosition(new Point(me.getX(), me.getY()));
         boardView.repaint();
     }
 
@@ -95,7 +95,6 @@ public class PieceController extends MouseAdapter {
         boardView.redraw();
         boardView.repaint();
     }
-
 
     /**
      * Determine which piece was selected in the PiecesView.

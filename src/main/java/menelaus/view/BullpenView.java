@@ -48,6 +48,17 @@ public class BullpenView extends JPanel {
         }
     }
 
+    public Piece findPiece(int x, int y) {
+        // TODO: 4/22/16 I'll need some mathemagic to solve this
+//        Piece p1 = new Piece(new Point(0, 0));
+//        p1.addTile(new Tile(1, 0));
+//        p1.addTile(new Tile(0, 1));
+//        p1.addTile(new Tile(1, 1));
+        Piece p1 = bullpen.getPieces().get(0);
+
+        return p1;
+    }
+
     public void refresh() {
 
     }

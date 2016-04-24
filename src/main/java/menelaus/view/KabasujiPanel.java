@@ -71,22 +71,6 @@ public class KabasujiPanel extends JPanel {
 
         // clear the image.
         offscreenGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-
-        /** Draw all shapes. Note selected shape is not part of the model. */
-        for (Piece s : level.getBoard().getPieces()) {
-            paintPiece(offscreenGraphics, s);
-        }
-    }
-
-    /**
-     * Paint the piece into the given graphics context using its drawer.
-     */
-    public void paintPiece(Graphics g, Piece piece) {
-        if (g == null) {
-            return;
-        }
-
-        PieceDrawer.drawPiece(g, piece, 0);
     }
 
     /**

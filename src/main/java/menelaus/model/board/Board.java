@@ -1,11 +1,11 @@
 package menelaus.model.board;
 
+import menelaus.model.basic.Point;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
-
-import menelaus.model.basic.Point;
 
 /**
  * 
@@ -20,7 +20,6 @@ public class Board implements Serializable {
     Hashtable<Point, BoardTileInfo> tileInfo;
     ArrayList<HintPiece> hints;
     ArrayList<Piece> pieces;
-    
 
     public int getHeight() {
         return height;

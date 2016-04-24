@@ -2,6 +2,7 @@ package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelsController;
 import menelaus.controllers.PieceController;
+import menelaus.controllers.PieceSelectionController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.events.GameEndListener;
@@ -27,8 +28,6 @@ import java.io.IOException;
 public class LevelPlayScreen extends KabasujiPanel {
 	
 	GameManager gameManager;
-    final static int BOARD_WIDTH = 6;
-    final static int BOARD_HEIGHT = 6;
     BoardView boardView;
     BullpenView bullpenView;
     
@@ -148,6 +147,9 @@ public class LevelPlayScreen extends KabasujiPanel {
         boardView.addMouseListener(pc);
         boardView.addMouseMotionListener(pc);
         boardView.addMouseWheelListener(pc);
+
+        PieceSelectionController psc = new PieceSelectionController(bullpenView, level);
+        bullpenView.addMouseListener(psc);
         
         gameManager.startGame();
     }

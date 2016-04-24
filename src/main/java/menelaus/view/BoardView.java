@@ -95,12 +95,13 @@ public class BoardView extends JPanel {
 
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
-            PieceDrawer.drawPiece(g, p, calculateGridUnitSize());
+            PieceDrawer.drawPieceToGrid(g, p, calculateGridUnitSize());
         }
 
         // draw active polygon.
         Piece active = level.getActive();
         if (active != null) {
+            System.out.println("Drawing Active Piece!");
             PieceDrawer.drawPiece(g, active, calculateGridUnitSize());
         }
     }
@@ -188,7 +189,7 @@ public class BoardView extends JPanel {
     }
 
     public Piece findPiece(int x, int y) {
-        // TODO: 4/22/16 I'll need some mathemagic to solve this
+        // TODO: 4/22/16 do some mathemagic to solve this
         Piece p1 = new Piece(new Point(2, 1));
         p1.addTile(new Tile(1, 0));
         p1.addTile(new Tile(0, 1));
@@ -197,7 +198,10 @@ public class BoardView extends JPanel {
         return p1;
     }
 
+    /**
+     * Draw background and then all pieces on top of it.
+     */
     public void redraw() {
-        // TODO: 4/22/16 make this
+        // Once created, draw each, with buffer.
     }
 }
