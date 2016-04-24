@@ -7,7 +7,14 @@ import org.junit.Test;
 
 import menelaus.model.basic.*;
 import menelaus.model.board.Piece;
+import menelaus.model.move.AroundBoardMove;
 import menelaus.model.move.RotatePieceMove;
+
+/**
+ * 
+ * @author mtmccarthy
+ *
+ */
 
 public class TestGameManager {
 	
@@ -28,12 +35,12 @@ public class TestGameManager {
 	public void testPerformNewMoveException(){
 		gm.performNewMove(new RotatePieceMove(new Piece(new Point(1,1))));
 	}
-	//@Test
-	//public void testPerfomNewMove(){
-	//	gm.startGame();
-		//gm.performNewMove(new RotatePieceMove(new Piece(new Point(1,1))));
-		//assertEquals(gm.movesMade, 1);
-		//gm.userEndsGame();
+	@Test
+	public void testPerfomNewMove(){
+		gm.startGame();
+		gm.performNewMove(new AroundBoardMove(new Piece(new Point(1,1)), new Point(2,2)));
+		assertEquals(gm.getMovesMade(), 1);
+		gm.userEndsGame();
 		
-	//}Timer might never have been set in Game Manager
+	}
 }

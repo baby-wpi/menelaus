@@ -10,6 +10,12 @@ import menelaus.model.board.Piece;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author mtmccarthy
+ *
+ */
+
 public class TestBullpen {
 	
 	Bullpen bp;

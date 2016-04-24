@@ -8,6 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import menelaus.model.basic.*;
 
+/**
+ * 
+ * @author mtmccarthy
+ *
+ */
 public class TestLevelPackage {
 	
 	Level l1;

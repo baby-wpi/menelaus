@@ -7,6 +7,12 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author mtmccarthy
+ *
+ */
+
 public class TestLevelStars {
 
 	LevelStars ls1;

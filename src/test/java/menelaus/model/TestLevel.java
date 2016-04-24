@@ -8,6 +8,12 @@ import org.junit.Test;
 import menelaus.model.basic.*;
 import menelaus.model.board.Board;
 
+/**
+ * 
+ * @author mtmccarthy
+ *
+ */
+
 public class TestLevel {
 	
 	Bullpen bp;

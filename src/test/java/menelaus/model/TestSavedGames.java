@@ -7,7 +7,11 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-
+/**
+ * 
+ * @author mtmccarthy
+ *
+ */
 public class TestSavedGames {
 
 	LevelStars star1;
