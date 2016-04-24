@@ -2,6 +2,7 @@ package menelaus.model;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.UUID;
 
 import org.junit.Before;
@@ -18,10 +19,10 @@ public class TestSavedGames {
 	LevelStars star2;
 	LevelStars star3;
 	
-	ArrayList<LevelStars> stars;
+	
 	
 	SavedGames sgs;
-	
+	Hashtable<UUID, LevelStars> stars;
 	
 	
 	@Before
@@ -30,17 +31,15 @@ public class TestSavedGames {
 		star2 = new LevelStars(1, UUID.randomUUID());
 		star3 = new LevelStars(3, UUID.randomUUID());
 		
-		stars = new ArrayList<LevelStars>();
-		stars.add(star1);
 		
-		
-		
+		stars = new Hashtable<UUID, LevelStars>();
+		stars.put(star1.getLevelId(), star1);
 		sgs = new SavedGames(stars);
 	}
 
 	@Test
 	public void testGettersAndSetters() {
-		stars.add(star2);
+		stars.put(star2.getLevelId(), star2);
 		sgs.setStars(stars);
 		
 		assertEquals(sgs.getStars(), stars);
@@ -49,7 +48,7 @@ public class TestSavedGames {
 	@Test
 	public void testAddLevelStars(){
 		sgs.addLevelStars(star3);
-		stars.add(star3);
+		stars.put(star3.getLevelId(), star3);
 		
 		assertEquals(sgs.getStars(), stars);
 	}

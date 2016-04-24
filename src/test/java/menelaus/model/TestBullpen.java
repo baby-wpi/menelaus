@@ -52,6 +52,7 @@ public class TestBullpen {
 	}
 	@Test
 	public void testRemoveAndAddPiece(){
+		bp.setPieces(pieces);
 		bp.removePiece(p1);
 		bp.removePiece(p2);
 		bp.removePiece(p3);
@@ -60,7 +61,12 @@ public class TestBullpen {
 		
 		assertEquals(bp.getPieces(), new ArrayList<Piece>());
 	}
-	
+	@Test
+	public void testFindPiece(){
+		bp.setPieces(pieces);
+		assertEquals(p1, bp.findPiece(p1.getPosition()));
+		assertEquals(p2, bp.findPiece(1, 1));
+	}
 }
 
 
