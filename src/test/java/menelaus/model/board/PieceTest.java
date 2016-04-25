@@ -18,12 +18,12 @@ public class PieceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		piece = new Piece(new Point(0, 0));
+		piece = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece.addTile(new Tile(1, 1));
 		piece.addTile(new Tile(2, 1));
 		piece.addTile(new Tile(1, 2));
 		
-		piece2 = new Piece(new Point(0, 0));
+		piece2 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(0, 2));
 		piece2.addTile(new Tile(0, 3));
@@ -32,7 +32,7 @@ public class PieceTest {
 	
 	@Test
 	public void testBasics() {
-		piece2.setPosition(new Point(4, 5), new Coordinate(0.5f, 0.5f));
+		piece2.setPosition(new Point(4, 5));
 		
 		assertEquals(new Point(0, 0), piece.getPosition());
 		assertEquals(new Point(4, 5), piece2.getPosition());

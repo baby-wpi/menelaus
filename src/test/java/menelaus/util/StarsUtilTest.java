@@ -1,32 +1,32 @@
 package menelaus.util;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.basic.Color;
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.ColoredSetItem;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class StarsUtilTest {
 	private Level level;
 
 	@Before
 	public void setUp() throws Exception {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
@@ -40,7 +40,7 @@ public class StarsUtilTest {
 
 	@Test
 	public void testGradePuzzle() {
-		Piece piece3 = new Piece(new Point(0, 2));
+		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		
@@ -54,12 +54,12 @@ public class StarsUtilTest {
 		
 		assertEquals(2, stars.getStarsCount());
 		
-		level.getBullpen().addPiece(new Piece(new Point(0, 0)));
+		level.getBullpen().addPiece(new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f)));
 		stars = StarsUtil.getStars(gameManager);
 		
 		assertEquals(1, stars.getStarsCount());
 		
-		level.getBullpen().addPiece(new Piece(new Point(2, 2)));
+		level.getBullpen().addPiece(new Piece(new Point(2, 2), new Coordinate(0.5f, 0.5f)));
 		stars = StarsUtil.getStars(gameManager);
 		
 		assertEquals(0, stars.getStarsCount());
@@ -77,7 +77,7 @@ public class StarsUtilTest {
 			emptyLevel.getBoard().placePiece(piece);
 		}
 		
-		Piece piece3 = new Piece(new Point(0, 2));
+		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		emptyLevel.getBoard().placePiece(piece3);
@@ -85,7 +85,7 @@ public class StarsUtilTest {
 		
 		assertEquals(1, stars.getStarsCount());
 		
-		Piece piece4 = new Piece(new Point(3, 0));
+		Piece piece4 = new Piece(new Point(3, 0), new Coordinate(0.5f, 0.5f));
 		piece4.addTile(new Tile(0, 0));
 		piece4.addTile(new Tile(0, 1));
 		piece4.addTile(new Tile(0, 2));
@@ -94,7 +94,7 @@ public class StarsUtilTest {
 		
 		assertEquals(2, stars.getStarsCount());
 		
-		Piece piece5 = new Piece(new Point(0, 3));
+		Piece piece5 = new Piece(new Point(0, 3), new Coordinate(0.5f, 0.5f));
 		piece5.addTile(new Tile(0, 0));
 		piece5.addTile(new Tile(1, 0));
 		piece5.addTile(new Tile(2, 0));
@@ -123,7 +123,7 @@ public class StarsUtilTest {
 		
 		assertEquals(false, StarsUtil.isSetComplete(Color.BLUE, newLevel.getBoard()));
 		
-		Piece piece3 = new Piece(new Point(0, 2));
+		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		newLevel.getBoard().placePiece(piece3);

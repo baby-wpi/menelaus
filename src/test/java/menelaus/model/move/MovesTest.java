@@ -1,14 +1,11 @@
 package menelaus.model.move;
 
 import menelaus.model.Level;
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
-import menelaus.view.PieceDrawer;
 import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by frankegan on 4/18/16.
@@ -19,7 +16,7 @@ public class MovesTest {
 
     @Before
     public void setUp() {
-        piece = new Piece(new Point(1, 1));
+        piece = new Piece(new Point(1, 1), new Coordinate(0.5f, 0.5f));
         lightning = new Level(LevelType.LIGHTNING, 8, 6);
     }
 

@@ -80,7 +80,7 @@ public class PieceController extends MouseAdapter {
         if (selected == null) { return; }
 
 
-        Rectangle r = computeActiveRect(new Point (me.getX(), me.getY()), level.getSelected());
+        Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
         PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
         level.setActive(pp);
         boardView.repaint();
@@ -118,8 +118,8 @@ public class PieceController extends MouseAdapter {
         PathIterator pi = rectangle.getPathIterator(AffineTransform.getRotateInstance(Math.toRadians(angle * 3), centerx, centery));
 
         float coords[] = new float[6];
-        int xpoints[] = new int[4];
-        int ypoints[] = new int[4];
+        int xpoints[] = new int[8];
+        int ypoints[] = new int[8];
 
         int idx = 0;
         while (!pi.isDone()) {

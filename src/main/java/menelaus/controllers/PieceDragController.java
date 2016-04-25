@@ -1,7 +1,6 @@
 package menelaus.controllers;
 
 import menelaus.model.Level;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
@@ -142,7 +141,7 @@ public class PieceDragController extends MouseAdapter {
         int oldx = selected.getPosition().getX();
         int oldy = selected.getPosition().getY();
 
-        selected.setPosition(new Point(x - deltaX, y - deltaY), new Coordinate(0.5f, 0.5f));
+        selected.setPosition(new Point(x - deltaX, y - deltaY));
 
         boolean ok = true;
 
@@ -154,7 +153,7 @@ public class PieceDragController extends MouseAdapter {
             ok = false;
         }
         if (!ok) {
-            selected.setPosition(new Point(oldx, oldy), new Coordinate(0.5f, 0.5f));
+            selected.setPosition(new Point(oldx, oldy));
         } else {
             panel.repaint();
         }

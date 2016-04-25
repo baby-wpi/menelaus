@@ -1,8 +1,8 @@
 package menelaus.model.board;
 
 import menelaus.model.basic.Color;
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
-import menelaus.view.PieceDrawer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,18 +30,18 @@ public class BoardTest {
 
 	@Test
 	public void testPlacePieceProperly() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
 		piece2.addTile(new Tile(1, 2));
 		
-		Piece piece3 = new Piece(new Point(0, 2));
+		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		try {
@@ -63,7 +63,7 @@ public class BoardTest {
 	
 	@Test
 	public void testIsFull() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -76,7 +76,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -95,7 +95,7 @@ public class BoardTest {
 	
 	@Test
 	public void testIsFullWithColoredSetItem() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -108,7 +108,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -128,7 +128,7 @@ public class BoardTest {
 	
 	@Test
 	public void testIsFullWithCoppedOut() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -141,7 +141,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -163,7 +163,7 @@ public class BoardTest {
 	public void testGetNumberOfEmptyTiles() {
 		assertEquals(board.getHeight() * board.getWidth(), board.getNumberOfEmptyTiles());
 		
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -176,7 +176,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0));
+		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -195,7 +195,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOutside() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -207,7 +207,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOnChoppedTile() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -219,7 +219,7 @@ public class BoardTest {
 
 	@Test
 	public void testRemovePiece() {
-		Piece piece1 = new Piece(new Point(0, 0));
+		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));

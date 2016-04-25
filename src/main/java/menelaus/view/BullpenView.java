@@ -1,7 +1,10 @@
 package menelaus.view;
 
 import menelaus.model.Bullpen;
+import menelaus.model.basic.Coordinate;
+import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
+import menelaus.model.board.Tile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,11 +53,11 @@ public class BullpenView extends JPanel {
 
     public Piece findPiece(int x, int y) {
         // TODO: 4/22/16 I'll need some mathemagic to solve this
-//        Piece p1 = new Piece(new Point(0, 0));
-//        p1.addTile(new Tile(1, 0));
-//        p1.addTile(new Tile(0, 1));
-//        p1.addTile(new Tile(1, 1));
-        Piece p1 = bullpen.getPieces().get(0);
+        Piece p1 = new Piece(new Point(x, y), new Coordinate(0.5f, 0.5f));
+        p1.addTile(new Tile(1, 0));
+        p1.addTile(new Tile(0, 1));
+        p1.addTile(new Tile(1, 1));
+//        Piece p1 = bullpen.getPieces().get(0);
 
         return p1;
     }

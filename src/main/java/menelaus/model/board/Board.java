@@ -1,6 +1,5 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 
 import java.io.Serializable;
@@ -192,19 +191,19 @@ public class Board implements Serializable {
     	Point newLocation = new Point(x, y);
     	Point oldLocation = new Point(p.getPosition().getX(), p.getPosition().getX());
     	
-    	p.setPosition(newLocation,  new Coordinate(0.5f, 0.5f));
+    	p.setPosition(newLocation);
     	if (isPlacementValid(p)) {
     		try {
 				placePiece(p);
 				return true;
 			} catch (InvalidPiecePlacementException e) {
-				p.setPosition(oldLocation, new Coordinate(0.5f, 0.5f));
+				p.setPosition(oldLocation);
 				return false;
 			}
     	}
     	else {
     		//go back
-    		p.setPosition(oldLocation, new Coordinate(0.5f, 0.5f));
+    		p.setPosition(oldLocation);
     		return false;
     	}
     	

@@ -192,7 +192,7 @@ public class BoardView extends JPanel {
 
     public Piece findPiece(int x, int y) {
         // TODO: 4/22/16 do some mathemagic to solve this
-        Piece p1 = new Piece(new Point(2, 1));
+        Piece p1 = new Piece(new Point(x, y), new Coordinate(0.5f, 0.5f));
         p1.addTile(new Tile(1, 0));
         p1.addTile(new Tile(0, 1));
         p1.addTile(new Tile(1, 1));

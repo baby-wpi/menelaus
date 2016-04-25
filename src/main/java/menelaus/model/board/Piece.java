@@ -22,9 +22,8 @@ public class Piece implements Serializable, Iterable<Coordinate>{
 		return position;
 	}
 	
-	public void setPosition(Point position, Coordinate center) {
+	public void setPosition(Point position) {
 		this.position = position;
-        this.center = center;
 	}
 	
 	public ArrayList<Tile> getTiles() {
@@ -81,10 +80,11 @@ public class Piece implements Serializable, Iterable<Coordinate>{
 		tiles.add(tile);
 	}
 	
-	public Piece(Point position) {
+	public Piece(Point position, Coordinate center) {
 		super();
 		this.position = position;
 		this.tiles = new ArrayList<Tile>();
+        this.center = center;
 		tiles.add(new Tile(new Point(0,0)));
 	}
 
