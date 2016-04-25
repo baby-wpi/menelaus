@@ -23,11 +23,18 @@ public class PieceDrawer {
      * @param piece    The piece we want drawn
      */
     public static void drawPiece(Graphics graphics, Piece piece, int tileSize) {
-        graphics.setColor(Color.decode(TILE_COLOR));
 
         for (Tile t : piece.getTiles()) {
+            //draw each tile
+            graphics.setColor(Color.decode(TILE_COLOR));
             graphics.fillRect(
                     piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
+                    piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
+                    tileSize,
+                    tileSize);
+            //draw border
+            graphics.setColor(Color.BLACK);
+            graphics.drawRect(piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
                     piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
                     tileSize,
                     tileSize);
@@ -43,14 +50,21 @@ public class PieceDrawer {
      * @param piece    The piece we want drawn
      */
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
-        graphics.setColor(Color.decode(TILE_COLOR));
 
         for (Tile t : piece.getTiles()) {
+            //draw tiles
+            graphics.setColor(Color.decode(TILE_COLOR));
             graphics.fillRect(
                     (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
                     (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
                     tileSize,
                     tileSize);
+            //draw border
+//            graphics.setColor(Color.BLACK);
+//            graphics.drawRect(piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
+//                    piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
+//                    tileSize,
+//                    tileSize);
         }
     }
 }
