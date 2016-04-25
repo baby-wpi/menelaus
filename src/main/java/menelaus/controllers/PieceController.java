@@ -65,7 +65,6 @@ public class PieceController extends MouseAdapter {
         // clear the view of partial drawings once mouse exits region
         level.setActive(null);
 
-        bullpenView.refresh();   // Only necessary if one draws available pieces differently.
         bullpenView.repaint();
 
         boardView.redraw();     // fix board as well
@@ -182,7 +181,6 @@ public class PieceController extends MouseAdapter {
         }
 
         boardView.redraw();   // has changed state
-        bullpenView.refresh();  // has changed state
 
         boardView.repaint();
         bullpenView.repaint();   // has also changed state since piece no longer selected.

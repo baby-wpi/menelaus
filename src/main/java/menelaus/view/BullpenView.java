@@ -1,10 +1,8 @@
 package menelaus.view;
 
 import menelaus.model.Bullpen;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
-import menelaus.model.board.Tile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,24 +43,31 @@ public class BullpenView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //draw pieces to board
+        final int MARGIN = 50;
+        final int XSTEP = 75;
+        final int YSTEP = 125;
+
+        int x = MARGIN, y = MARGIN;
+        int i = 0;
         for (Piece p : bullpen.getPieces()) {
             // TODO: 4/20/16 Calculate placement scheme for bullpen
+            p.setPosition(new Point(x, y));
+            if(i % 2 == 0) {
+                x += XSTEP;
+            }
+            else{
+                x -= XSTEP;
+                y += YSTEP;
+            }
             PieceDrawer.drawPiece(g, p, 30);
+            i++;
         }
     }
 
     public Piece findPiece(int x, int y) {
         // TODO: 4/22/16 I'll need some mathemagic to solve this
-        Piece p1 = new Piece(new Point(x, y), new Coordinate(0.5f, 0.5f));
-        p1.addTile(new Tile(1, 0));
-        p1.addTile(new Tile(0, 1));
-        p1.addTile(new Tile(1, 1));
-//        Piece p1 = bullpen.getPieces().get(0);
+        Piece p1 = bullpen.getPieces().get(0);
 
         return p1;
-    }
-
-    public void refresh() {
-
     }
 }

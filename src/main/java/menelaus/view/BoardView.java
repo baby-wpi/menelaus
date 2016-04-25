@@ -90,10 +90,7 @@ public class BoardView extends JPanel {
 
         super.paintComponent(g);
 
-        // Draw grid on board.
-        drawGrid(g);
-        drawUnavailableTiles(g);
-        drawReleaseColorSets(g);
+
 
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
@@ -106,6 +103,11 @@ public class BoardView extends JPanel {
             System.out.println("Drawing Active Piece to " + active.getPiece().getPosition().toString());
             PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
         }
+
+        // Draw grid on board.
+        drawGrid(g);
+        drawUnavailableTiles(g);
+        drawReleaseColorSets(g);
     }
 
     private void initDemensions() {

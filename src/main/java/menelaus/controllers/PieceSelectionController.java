@@ -28,6 +28,5 @@ public class PieceSelectionController extends MouseAdapter {
         Piece selected = bullpenView.findPiece(me.getX(), me.getY());
         level.setSelected(selected);
         level.getBullpen().removePiece(selected);
-        bullpenView.refresh();
     }
 }
