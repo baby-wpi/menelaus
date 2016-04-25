@@ -1,6 +1,7 @@
 package menelaus.model.move;
 
 import menelaus.model.Level;
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
@@ -37,12 +38,12 @@ public class AroundBoardMove extends Move {
 		Point oldPosition = piece.getPosition();
 		level.getBoard().removePiece(piece);
 		
-		piece.setPosition(newLocation);
+		piece.setPosition(newLocation, new Coordinate(0.5f, 0.5f));
 		try {
             level.getBoard().placePiece(piece);
 			return true;
         } catch (InvalidPiecePlacementException e) {
-			piece.setPosition(oldPosition);
+			piece.setPosition(oldPosition, new Coordinate(0.5f, 0.5f));
 			try {
 				level.getBoard().placePiece(piece);
 				return false;

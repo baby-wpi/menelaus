@@ -1,15 +1,21 @@
 package menelaus.controllers;
 
 import menelaus.model.Level;
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
+import menelaus.model.board.PlacedPiece;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.game.LevelPlayScreen;
 
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.PathIterator;
+import java.util.Iterator;
 
 /**
  * Created by @author frankegan on 4/21/16.
@@ -74,8 +80,62 @@ public class PieceController extends MouseAdapter {
         if (selected == null) { return; }
 
 
-        level.getActive().setPosition(new Point(me.getX(), me.getY()));
+        Rectangle r = computeActiveRect(new Point (me.getX(), me.getY()), level.getSelected());
+        PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
+        level.setActive(pp);
         boardView.repaint();
+    }
+
+    public Rectangle computeActiveRect(Point pt, Piece selected) {
+        if (selected == null) {
+            return null;
+        }
+        java.awt.Point offset = getOffsetFromAnchor(selected);
+        Rectangle rect = boardView.computeRect((int) pt.getX() - offset.x, (int) pt.getY() - offset.y, selected);
+
+        int centerx = (int) (pt.getX() + boardView.N * selected.getCenter().x - offset.x);
+        int centery = (int) (pt.getY() + boardView.N * selected.getCenter().y - offset.y);
+
+        return rotateRect(rect, selected, rotation, centerx, centery);
+    }
+
+    // could be in the model. Subtract from coordinates when translating.
+    java.awt.Point getOffsetFromAnchor(Piece piece) {
+        Iterator<Coordinate> it = piece.iterator();
+        Coordinate anchor = it.next();
+
+        return new java.awt.Point((int) (boardView.N * anchor.x), (int) (boardView.N * anchor.y));
+    }
+
+    /**
+     * Given the piece associated with specific Polygon, rotate based on (centerx, centery) and
+     * rotation angle.
+     */
+    Rectangle rotateRect(Rectangle rectangle, Piece piece, int angle, int centerx, int centery) {
+        // The following came from a google search for rotating a polygon. Nifty.
+        // note we use center of piece as rotation point, computed from the coordinate
+
+        PathIterator pi = rectangle.getPathIterator(AffineTransform.getRotateInstance(Math.toRadians(angle * 3), centerx, centery));
+
+        float coords[] = new float[6];
+        int xpoints[] = new int[4];
+        int ypoints[] = new int[4];
+
+        int idx = 0;
+        while (!pi.isDone()) {
+            int type = pi.currentSegment(coords);
+            if (type == PathIterator.SEG_MOVETO || type == PathIterator.SEG_LINETO) {
+                xpoints[idx] = (int) coords[0];
+                ypoints[idx] = (int) coords[1];
+                idx++;
+            }
+            pi.next();
+        }
+
+        return new Rectangle(xpoints[0],
+                ypoints[0],
+                Math.abs(xpoints[0] - xpoints[1]),
+                Math.abs(ypoints[0] - ypoints[3]));
     }
 
     @Override
@@ -89,9 +149,7 @@ public class PieceController extends MouseAdapter {
         int diffY = me.getPoint().y - draggingAnchor.getY();
         draggingAnchor = new Point(me.getX(), me.getY());
 
-        //this is supposed to be translate(x:int, y:int)
-        Point old = draggingPiece.getPosition();
-        draggingPiece.setPosition(new Point(old.getX() + diffX, old.getY() + diffY));
+        draggingPiece.getRect().translate(diffX, diffY);
         boardView.redraw();
         boardView.repaint();
     }
@@ -100,7 +158,7 @@ public class PieceController extends MouseAdapter {
      * Determine which piece was selected in the PiecesView.
      */
     public void mousePressed(MouseEvent me) {
-        Piece pp = level.getActive();
+        PlacedPiece pp = level.getActive();
         if (pp == null) {
             draggingAnchor = new Point(me.getX(), me.getY());
 
@@ -117,7 +175,7 @@ public class PieceController extends MouseAdapter {
         level.setSelected(null);
 
         try {
-            level.getBoard().placePiece(pp);
+            level.getBoard().placePiece(pp.getPiece());
         } catch (InvalidPiecePlacementException e) {
             e.printStackTrace();
         }

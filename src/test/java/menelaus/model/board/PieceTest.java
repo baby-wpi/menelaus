@@ -1,5 +1,6 @@
 package menelaus.model.board;
 
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class PieceTest {
 	
 	@Test
 	public void testBasics() {
-		piece2.setPosition(new Point(4, 5));
+		piece2.setPosition(new Point(4, 5), new Coordinate(0.5f, 0.5f));
 		
 		assertEquals(new Point(0, 0), piece.getPosition());
 		assertEquals(new Point(4, 5), piece2.getPosition());

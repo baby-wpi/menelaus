@@ -1,7 +1,9 @@
 package menelaus.model.board;
 
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,17 +11,20 @@ import java.util.Iterator;
 /**
  * @author vouldjeff
  */
-public class Piece implements Serializable {
+public class Piece implements Serializable, Iterable<Coordinate>{
 	Point position;
 	ArrayList<Tile> tiles;
 	boolean selected;
+	Coordinate center;
+    Rectangle rect;
 	
 	public Point getPosition() {
 		return position;
 	}
 	
-	public void setPosition(Point position) {
+	public void setPosition(Point position, Coordinate center) {
 		this.position = position;
+        this.center = center;
 	}
 	
 	public ArrayList<Tile> getTiles() {
@@ -136,5 +141,24 @@ public class Piece implements Serializable {
         } else if (!tiles.equals(other.tiles))
             return false;
         return true;
+    }
+
+	public Coordinate getCenter() {
+		return center;
+	}
+
+    public Rectangle getRect() {
+        return rect;
+    }
+
+    @Override
+    public Iterator<Coordinate> iterator() {
+        ArrayList<Coordinate> points = new ArrayList<>(4);
+        points.add(new Coordinate(0, 0));
+        points.add(new Coordinate(1, 0));
+        points.add(new Coordinate(1, 1));
+        points.add(new Coordinate(0, 1));
+
+        return points.iterator();
     }
 }

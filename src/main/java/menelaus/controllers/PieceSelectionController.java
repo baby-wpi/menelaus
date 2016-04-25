@@ -26,7 +26,7 @@ public class PieceSelectionController extends MouseAdapter {
     public void mousePressed(MouseEvent me) {
         // there is 1-to-1 relationship based on index, between polygons and pieces
         Piece selected = bullpenView.findPiece(me.getX(), me.getY());
-        level.setActive(selected);
+        level.setSelected(selected);
         level.getBullpen().removePiece(selected);
         bullpenView.refresh();
     }

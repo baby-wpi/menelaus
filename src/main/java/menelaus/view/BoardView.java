@@ -1,9 +1,11 @@
 package menelaus.view;
 
 import menelaus.model.Level;
+import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
 import menelaus.model.board.Piece;
+import menelaus.model.board.PlacedPiece;
 import menelaus.model.board.Tile;
 
 import javax.swing.*;
@@ -99,10 +101,10 @@ public class BoardView extends JPanel {
         }
 
         // draw active polygon.
-        Piece active = level.getActive();
+        PlacedPiece active = level.getActive();
         if (active != null) {
             System.out.println("Drawing Active Piece!");
-            PieceDrawer.drawPiece(g, active, calculateGridUnitSize());
+            PieceDrawer.drawPiece(g, active.getPiece(), calculateGridUnitSize());
         }
     }
 
@@ -196,6 +198,30 @@ public class BoardView extends JPanel {
         p1.addTile(new Tile(1, 1));
 
         return p1;
+    }
+
+    /**
+     * Helper method to return polygon for tangram piece anchored at (x,y).
+     * <p/>
+     * Appropriate that this method be in View since it is responsible for
+     * mapping abstract pieces into pixel locations.
+     */
+    public Rectangle computeRect(int x, int y, Piece p) {
+        int[] xpoints = new int[4];
+        int[] ypoints = new int[4];
+
+        // convert coordinate sequence into (x,y) points.
+        int idx = 0;
+        for (Coordinate c : p) {
+            xpoints[idx] = (int) (x + N * c.x);
+            ypoints[idx] = (int) (y + N * c.y);
+            idx++;
+        }
+
+        return new Rectangle(xpoints[0],
+                ypoints[0],
+                Math.abs(xpoints[0] - xpoints[1]),
+                Math.abs(ypoints[0] - ypoints[3]));
     }
 
     /**

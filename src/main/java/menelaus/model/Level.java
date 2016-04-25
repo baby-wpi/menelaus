@@ -3,6 +3,7 @@ package menelaus.model;
 import menelaus.model.basic.LevelType;
 import menelaus.model.board.Board;
 import menelaus.model.board.Piece;
+import menelaus.model.board.PlacedPiece;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -31,7 +32,7 @@ public class Level implements Serializable {
      * Currently actively dragged piece (or null if none). When a shape is
      * selected, it is no longer part of the Model.
      */
-    Piece active;
+    PlacedPiece active;
 	
 	public UUID getUuid() {
 		return uuid;
@@ -99,11 +100,11 @@ public class Level implements Serializable {
 		return selected;
 	}
 
-    public void setActive(Piece active) {
+    public void setActive(PlacedPiece active) {
         this.active = active;
     }
 
-    public Piece getActive() {
+    public PlacedPiece getActive() {
         return active;
     }
 }
