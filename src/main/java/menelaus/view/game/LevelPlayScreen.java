@@ -1,8 +1,6 @@
 package menelaus.view.game;
 
 import menelaus.controllers.ButtonLevelsController;
-import menelaus.controllers.PieceController;
-import menelaus.controllers.PieceSelectionController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.events.GameEndListener;
@@ -66,7 +64,7 @@ public class LevelPlayScreen extends KabasujiPanel {
     public BoardView getBoardView(){
         return boardView;
     }
-	
+
     /**
      * Create the panel.
      */
@@ -80,10 +78,16 @@ public class LevelPlayScreen extends KabasujiPanel {
         JLabel lblNewLabel = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
         labelCountDown = new JLabel("Time passed: 0");
 
-        /* BUTTONS */
-        JButton btnRestart = new JButton("RESTART");
-        JButton btnExitButton = new JButton("EXIT");
+        /*	 BUTTONS	 */
 
+        /** Restart Button. */
+        JButton btnRestart = new JButton("RESTART");
+        btnRestart.addActionListener(new RestartController(level));
+
+        /** Exit Button. */
+        JButton btnExitButton = new JButton("EXIT");
+        
+        
         btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userEndsGame();
@@ -94,12 +98,12 @@ public class LevelPlayScreen extends KabasujiPanel {
 		});
         
         /** Create Board View */
-        boardView = new BoardView(gameManager.getLevel().getBoard(), level);
-        boardView.setBackground(Color.WHITE);
-        boardView.setBorder(BorderFactory.createLineBorder(Color.black));
+        JPanel BoardView = new BoardView(gameManager.getLevel().getBoard());
+        BoardView.setBackground(Color.WHITE);
+        BoardView.setBorder(BorderFactory.createLineBorder(Color.black));
         
         /** Create BullpenView */
-        bullpenView = new BullpenView(gameManager.getLevel().getBullpen());
+        JPanel BullpenView = new BullpenView(gameManager.getLevel().getBullpen());
         
         GroupLayout gl_contentPane = new GroupLayout(this);
         gl_contentPane.setHorizontalGroup(
@@ -150,7 +154,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 
         PieceSelectionController psc = new PieceSelectionController(bullpenView, level);
         bullpenView.addMouseListener(psc);
-        
+
         gameManager.startGame();
     }
 }
