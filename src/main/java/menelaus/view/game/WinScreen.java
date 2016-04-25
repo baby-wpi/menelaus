@@ -20,6 +20,9 @@ public class WinScreen extends KabasujiPanel  {
 	/** the string in which the lblScore presents. */
 	String scoreLabel;
 	
+	/** the string in which the lblCongratulations presents. */
+	String congratsLabel;
+	
 	/** Game manager to get level stars. */
 	GameManager gameManager;
 	
@@ -39,7 +42,13 @@ public class WinScreen extends KabasujiPanel  {
 		this.gameManager = gameManager;
 		contentPane = this;
 		
-		starCount = gameManager.getLevelStars().getStarsCount();
+		starCount = this.gameManager.getLevelStars().getStarsCount();
+		
+		if ( starCount > 0 ) {
+			congratsLabel = "Congratulations!!!\n";
+		} else {
+			congratsLabel = "You Lose!\n";
+		}
 		
 		// Create the string in which the lblScore presents.
 		scoreLabel = new StringBuilder().append("Score: ")
@@ -52,7 +61,7 @@ public class WinScreen extends KabasujiPanel  {
 		btnContinue.addActionListener(new ButtonContinueController());
 		
 		/** Restart Button. */
-		JButton btnRestart = new JButton("Restart");
+		JButton btnRestart = new JButton("Play Again");
 		btnRestart.addActionListener(new RestartController(currentLevel));
 		
 		/** Exit Button. */
@@ -63,43 +72,45 @@ public class WinScreen extends KabasujiPanel  {
 		JLabel lblScore = new JLabel( scoreLabel );
 		
 		/** Congratulations label. */
-		JLabel lblCongratulations = new JLabel("Congratulations!!!\n");
+		JLabel lblCongratulations = new JLabel( congratsLabel );
+		lblCongratulations.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCongratulations.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(356, Short.MAX_VALUE)
+					.addContainerGap(355, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(lblCongratulations)
-							.addGap(345))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
-							.addGap(409))))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(474)
-					.addComponent(lblScore)
-					.addContainerGap(474, Short.MAX_VALUE))
+						.addComponent(lblCongratulations, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(120)
+							.addComponent(lblScore))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(60)
+							.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(60)
+							.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(60)
+							.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
+					.addGap(344))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(259)
+					.addContainerGap(219, Short.MAX_VALUE)
 					.addComponent(lblCongratulations)
 					.addGap(18)
 					.addComponent(lblScore)
 					.addGap(42)
 					.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(12)
 					.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(12)
 					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(169, Short.MAX_VALUE))
+					.addGap(209))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
