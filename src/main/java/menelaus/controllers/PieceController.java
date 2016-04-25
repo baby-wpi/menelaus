@@ -82,7 +82,7 @@ public class PieceController extends MouseAdapter {
 
         Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
         PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
-        pp.getPiece().setPosition(new Point(me.getX(), me.getY()));
+        pp.getPiece().setPosition(new Point(gridX, gridY));
         level.setActive(pp);
         boardView.repaint();
     }

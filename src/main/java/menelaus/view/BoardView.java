@@ -104,7 +104,7 @@ public class BoardView extends JPanel {
         PlacedPiece active = level.getActive();
         if (active != null) {
             System.out.println("Drawing Active Piece to " + active.getPiece().getPosition().toString());
-            PieceDrawer.drawPiece(g, active.getPiece(), calculateGridUnitSize());
+            PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
         }
     }
 
