@@ -85,7 +85,7 @@ public class LevelPlayScreen extends KabasujiPanel {
         
         /** Exit Button. */
         JButton btnExitButton = new JButton("EXIT");
-        btnExitButton.addActionListener(new ToWinScreenController(level));
+        btnExitButton.addActionListener(new ToWinScreenController(level, gameManager));
         
         
 //        btnExitButton.addActionListener(new ActionListener() {

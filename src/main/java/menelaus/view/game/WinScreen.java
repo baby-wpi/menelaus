@@ -1,11 +1,8 @@
 package menelaus.view.game;
 
 import menelaus.controllers.ButtonContinueController;
-import menelaus.controllers.ButtonHomeExitController;
 import menelaus.controllers.ButtonLevelsController;
-import menelaus.controllers.ButtonMainMenuController;
 import menelaus.controllers.RestartController;
-import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.view.KabasujiPanel;
@@ -17,34 +14,57 @@ import java.awt.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class WinScreen extends KabasujiPanel  {
-	/** the level that brought player to winscreen */
+	/** the level that brought player to winscreen. */
 	Level currentLevel;
+	
+	/** the string in which the lblScore presents. */
+	String scoreLabel;
+	
+	/** Game manager to get level stars. */
+	GameManager gameManager;
+	
+	/** the count of stars for the current level. */
+	int starCount;
 	
 	private KabasujiPanel contentPane;
 
 	/**
 	 * Create the frame.
+	 * @param Level
+	 * @param gameManager 
+	 * @author Obatola Seward-Evans
 	 */
-	public WinScreen(Level currentLevel) {
+	public WinScreen(Level currentLevel, GameManager gameManager) {
 		this.currentLevel = currentLevel;
-		
-		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
+		this.gameManager = gameManager;
 		contentPane = this;
 		
+		starCount = gameManager.getLevelStars().getStarsCount();
 		
-		JLabel lblCongratulations = new JLabel("Congratulations!!!\n");
-		lblCongratulations.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+		// Create the string in which the lblScore presents.
+		scoreLabel = new StringBuilder().append("Score: ")
+				.append(String.valueOf( starCount )).toString();
 		
+		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
+		
+		/** Continue Button. */
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ButtonContinueController());
 		
+		/** Restart Button. */
 		JButton btnRestart = new JButton("Restart");
 		btnRestart.addActionListener(new RestartController(currentLevel));
 		
+		/** Exit Button. */
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ButtonLevelsController());
 		
-		JLabel lblScore = new JLabel("Score: ");
+		/** Score label. */
+		JLabel lblScore = new JLabel( scoreLabel );
+		
+		/** Congratulations label. */
+		JLabel lblCongratulations = new JLabel("Congratulations!!!\n");
+		lblCongratulations.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
