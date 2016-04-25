@@ -103,7 +103,7 @@ public class BoardView extends JPanel {
         // draw active polygon.
         PlacedPiece active = level.getActive();
         if (active != null) {
-            System.out.println("Drawing Active Piece!");
+            System.out.println("Drawing Active Piece to " + active.getPiece().getPosition().toString());
             PieceDrawer.drawPiece(g, active.getPiece(), calculateGridUnitSize());
         }
     }
@@ -211,17 +211,15 @@ public class BoardView extends JPanel {
         int[] ypoints = new int[4];
 
         // convert coordinate sequence into (x,y) points.
-        int idx = 0;
-        for (Coordinate c : p) {
-            xpoints[idx] = (int) (x + N * c.x);
-            ypoints[idx] = (int) (y + N * c.y);
-            idx++;
-        }
+//        int idx = 0;
+//        for (Coordinate c : p) {
+//            xpoints[idx] = (int) (x + N * c.x);
+//            ypoints[idx] = (int) (y + N * c.y);
+//            idx++;
+//        }
 
-        return new Rectangle(xpoints[0],
-                ypoints[0],
-                Math.abs(xpoints[0] - xpoints[1]),
-                Math.abs(ypoints[0] - ypoints[3]));
+
+        return new Rectangle(x, y, x + calculateGridUnitSize(), y + calculateGridUnitSize());
     }
 
     /**

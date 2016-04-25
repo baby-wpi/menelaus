@@ -82,6 +82,7 @@ public class PieceController extends MouseAdapter {
 
         Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
         PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
+        pp.getPiece().setPosition(new Point(me.getX(), me.getY()));
         level.setActive(pp);
         boardView.repaint();
     }
@@ -91,12 +92,12 @@ public class PieceController extends MouseAdapter {
             return null;
         }
         java.awt.Point offset = getOffsetFromAnchor(selected);
-        Rectangle rect = boardView.computeRect((int) pt.getX() - offset.x, (int) pt.getY() - offset.y, selected);
+        Rectangle rect = boardView.computeRect(pt.getX() - offset.x, pt.getY() - offset.y, selected);
 
         int centerx = (int) (pt.getX() + boardView.N * selected.getCenter().x - offset.x);
         int centery = (int) (pt.getY() + boardView.N * selected.getCenter().y - offset.y);
 
-        return rotateRect(rect, selected, rotation, centerx, centery);
+        return rect;//rotateRect(rect, selected, rotation, centerx, centery);
     }
 
     // could be in the model. Subtract from coordinates when translating.
@@ -118,8 +119,8 @@ public class PieceController extends MouseAdapter {
         PathIterator pi = rectangle.getPathIterator(AffineTransform.getRotateInstance(Math.toRadians(angle * 3), centerx, centery));
 
         float coords[] = new float[6];
-        int xpoints[] = new int[8];
-        int ypoints[] = new int[8];
+        int xpoints[] = new int[6];
+        int ypoints[] = new int[6];
 
         int idx = 0;
         while (!pi.isDone()) {

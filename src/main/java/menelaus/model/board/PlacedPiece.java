@@ -9,9 +9,9 @@ public class PlacedPiece {
     Piece piece;
     Rectangle rect;
 
-    public PlacedPiece (Piece tp, Rectangle p) {
+    public PlacedPiece (Piece tp, Rectangle rect) {
         this.piece = tp;
-        this.rect = p;
+        this.rect = rect;
     }
 
     public boolean contains (Point p) {
@@ -27,7 +27,7 @@ public class PlacedPiece {
     }
 
     /** Used when rotating piece. */
-    public void setRect(Rectangle poly) {
-        rect = poly;
+    public void setRect(Rectangle r) {
+        rect = r;
     }
 }
