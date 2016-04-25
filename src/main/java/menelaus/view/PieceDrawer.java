@@ -33,7 +33,7 @@ public class PieceDrawer {
                     tileSize,
                     tileSize);
             //draw border
-            graphics.setColor(Color.BLACK);
+            graphics.setColor(Color.GRAY);
             graphics.drawRect(piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
                     piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
                     tileSize,
@@ -59,12 +59,6 @@ public class PieceDrawer {
                     (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
                     tileSize,
                     tileSize);
-            //draw border
-//            graphics.setColor(Color.BLACK);
-//            graphics.drawRect(piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
-//                    piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
-//                    tileSize,
-//                    tileSize);
         }
     }
 }
