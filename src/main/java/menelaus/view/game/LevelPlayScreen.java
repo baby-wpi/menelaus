@@ -3,6 +3,8 @@ package menelaus.view.game;
 import menelaus.controllers.ButtonLevelsController;
 import menelaus.controllers.PieceController;
 import menelaus.controllers.PieceSelectionController;
+import menelaus.controllers.RestartController;
+import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.events.GameEndListener;
@@ -42,6 +44,10 @@ public class LevelPlayScreen extends KabasujiPanel {
 		}
 
 		JOptionPane.showMessageDialog(null, "Game eneded. Reason: " + reason.toString());
+		
+		
+		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason);
+		controller.actionPerformed(null);
 	}
 
 	private void initGameManager(Level level) {
@@ -82,6 +88,8 @@ public class LevelPlayScreen extends KabasujiPanel {
 
         /* BUTTONS */
 		JButton btnRestart = new JButton("RESTART");
+		btnRestart.addActionListener(new RestartController(level));
+		
 		JButton btnExitButton = new JButton("EXIT");
 
 		btnExitButton.addActionListener(new ActionListener() {
