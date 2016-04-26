@@ -26,6 +26,7 @@ import java.io.IOException;
 /**
  * @author fegan
  * @author vouldjeff
+ * @author Obatola Seward-Evans
  */
 public class LevelPlayScreen extends KabasujiPanel {
 
@@ -92,13 +93,15 @@ public class LevelPlayScreen extends KabasujiPanel {
 		JButton btnRestart = new JButton("RESTART");
 		btnRestart.addActionListener(new RestartController(level));
 		
-		/** Restart Button. */
+		/** Exit Button. */
 		JButton btnExitButton = new JButton("EXIT");
 		btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userEndsGame();
 
 //				ButtonLevelsController controller = new ButtonLevelsController();
+				
+				// TODO: find way to add reason.
 				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null);
 				controller.actionPerformed(e);
 			}
