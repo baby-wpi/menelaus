@@ -66,4 +66,16 @@ public class Point implements Serializable {
 	public String toString() {
 		return "X = " + x + ", Y = " + y;
 	}
+	
+	public boolean adjacentTo(Point other) {
+		//The other one is adjacent if one of the coordinates is 1 block away, and the other is zero. That is...
+		//Both are within 1 block.
+		//Exactly 1 is 0 blocks away.
+		return (
+				(Math.abs(other.x-this.x) <= 1 && Math.abs(other.y-this.y) <= 1)
+				&&
+				(Math.abs(other.x-this.x) == 0 ^ Math.abs(other.y-this.y) == 0)
+				);
+	}
+	
 }
