@@ -3,6 +3,8 @@ package menelaus.view.game;
 import menelaus.controllers.ButtonLevelsController;
 import menelaus.controllers.PieceController;
 import menelaus.controllers.PieceSelectionController;
+import menelaus.controllers.RestartController;
+import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.events.GameEndListener;
@@ -24,6 +26,7 @@ import java.io.IOException;
 /**
  * @author fegan
  * @author vouldjeff
+ * @author Obatola Seward-Evans
  */
 public class LevelPlayScreen extends KabasujiPanel {
 
@@ -42,6 +45,10 @@ public class LevelPlayScreen extends KabasujiPanel {
 		}
 
 		JOptionPane.showMessageDialog(null, "Game eneded. Reason: " + reason.toString());
+		
+		
+		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason);
+		controller.actionPerformed(null);
 	}
 
 	private void initGameManager(Level level) {
@@ -81,14 +88,21 @@ public class LevelPlayScreen extends KabasujiPanel {
 		labelCountDown = new JLabel("Time passed: 0");
 
         /* BUTTONS */
+		
+		/** Restart Button. */
 		JButton btnRestart = new JButton("RESTART");
+		btnRestart.addActionListener(new RestartController(level));
+		
+		/** Exit Button. */
 		JButton btnExitButton = new JButton("EXIT");
-
 		btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userEndsGame();
 
-				ButtonLevelsController controller = new ButtonLevelsController();
+//				ButtonLevelsController controller = new ButtonLevelsController();
+				
+				// TODO: find way to add reason.
+				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null);
 				controller.actionPerformed(e);
 			}
 		});

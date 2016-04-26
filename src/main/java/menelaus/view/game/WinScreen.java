@@ -5,6 +5,8 @@ import menelaus.controllers.ButtonLevelsController;
 import menelaus.controllers.RestartController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
+import menelaus.model.LevelStars;
+import menelaus.model.events.GameEndReason;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -14,17 +16,15 @@ import java.awt.*;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class WinScreen extends KabasujiPanel  {
-	/** the level that brought player to winscreen. */
-	Level currentLevel;
+	LevelStars stars;
+	GameEndReason reason;
 	
 	/** the string in which the lblScore presents. */
 	String scoreLabel;
 	
 	/** the string in which the lblCongratulations presents. */
 	String congratsLabel;
-	
-	/** Game manager to get level stars. */
-	GameManager gameManager;
+
 	
 	/** the count of stars for the current level. */
 	int starCount;
@@ -37,14 +37,19 @@ public class WinScreen extends KabasujiPanel  {
 	 * @param gameManager 
 	 * @author Obatola Seward-Evans
 	 */
-	public WinScreen(Level currentLevel, GameManager gameManager) {
-		this.currentLevel = currentLevel;
-		this.gameManager = gameManager;
+	public WinScreen(LevelStars starsParams, GameEndReason reason) {
+		this.stars = starsParams;
+		this.reason = reason;
 		contentPane = this;
 		
-		starCount = this.gameManager.getLevelStars().getStarsCount();
+		Level restartLevel = null;
+		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
+			if (level.getUuid() == stars.getLevelId()) {
+				restartLevel = level;
+			}
+		}
 		
-		if ( starCount > 0 ) {
+		if ( stars.getStarsCount() > 0 ) {
 			congratsLabel = "Congratulations!!!\n";
 		} else {
 			congratsLabel = "You Lose!\n";
@@ -62,7 +67,9 @@ public class WinScreen extends KabasujiPanel  {
 		
 		/** Restart Button. */
 		JButton btnRestart = new JButton("Play Again");
-		btnRestart.addActionListener(new RestartController(currentLevel));
+		if (restartLevel != null) {
+			btnRestart.addActionListener(new RestartController(restartLevel));
+		}
 		
 		/** Exit Button. */
 		JButton btnExit = new JButton("Exit");
