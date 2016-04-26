@@ -87,16 +87,19 @@ public class LevelPlayScreen extends KabasujiPanel {
 		labelCountDown = new JLabel("Time passed: 0");
 
         /* BUTTONS */
+		
+		/** Restart Button. */
 		JButton btnRestart = new JButton("RESTART");
 		btnRestart.addActionListener(new RestartController(level));
 		
+		/** Restart Button. */
 		JButton btnExitButton = new JButton("EXIT");
-
 		btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userEndsGame();
 
-				ButtonLevelsController controller = new ButtonLevelsController();
+//				ButtonLevelsController controller = new ButtonLevelsController();
+				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null);
 				controller.actionPerformed(e);
 			}
 		});
