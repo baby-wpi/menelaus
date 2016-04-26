@@ -91,16 +91,14 @@ public class BoardView extends JPanel {
         super.paintComponent(g);
 
 
-
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
             PieceDrawer.drawPieceToGrid(g, p, calculateGridUnitSize());
         }
 
-        // draw active polygon.
+        // draw active piece.
         PlacedPiece active = level.getActive();
         if (active != null) {
-            System.out.println("Drawing Active Piece to " + active.getPiece().getPosition().toString());
             PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
         }
 

@@ -143,7 +143,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 		scrollPane.setViewportView(bullpenView);
 		this.setLayout(gl_contentPane);
 
-		PieceController pc = new PieceController(this, level);
+		PieceController pc = new PieceController(this, gameManager);
 		boardView.addMouseListener(pc);
 		boardView.addMouseMotionListener(pc);
 		boardView.addMouseWheelListener(pc);
