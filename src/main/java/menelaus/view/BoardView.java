@@ -4,12 +4,14 @@ import menelaus.model.Level;
 import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
+import menelaus.model.board.HintPiece;
 import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
 import menelaus.model.board.Tile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Iterator;
 
 /**
  * Here is where the pieces are to be played (in 700x700 size).
@@ -102,10 +104,21 @@ public class BoardView extends JPanel {
             PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
         }
 
-        // Draw grid on board.
         drawGrid(g);
         drawUnavailableTiles(g);
+        drawHints(g);
         drawReleaseColorSets(g);
+    }
+    
+    /**
+     * Draw hint piece on board.
+     * @author Obatola Seward-Evans
+     * @param g
+     */
+    private void drawHints(Graphics g) {
+    	for (HintPiece hintPiece : board.getHints()) {
+			PieceDrawer.drawPiece(g, hintPiece, calculateGridUnitSize());
+		}
     }
 
     private void initDemensions() {
@@ -155,6 +168,7 @@ public class BoardView extends JPanel {
      * Draws all unavailable tiles on the board.
      *
      * @param g
+     * @author Obatola Seward-Evans
      */
     public void drawUnavailableTiles(Graphics g) {
 
@@ -201,7 +215,7 @@ public class BoardView extends JPanel {
     }
 
     /**
-     * Helper method to return polygon for tangram piece anchored at (x,y).
+     * Helper method to return polygon for KabaSuji piece anchored at (x,y).
      * <p/>
      * Appropriate that this method be in View since it is responsible for
      * mapping abstract pieces into pixel locations.
