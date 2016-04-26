@@ -151,9 +151,8 @@ public class Piece implements Serializable, Iterable<Coordinate>{
         return rect;
     }
 
-    @Override
     public Iterator<Coordinate> iterator() {
-        ArrayList<Coordinate> points = new ArrayList<>(4);
+        ArrayList<Coordinate> points = new ArrayList<Coordinate>(4);
         points.add(new Coordinate(0, 0));
         points.add(new Coordinate(1, 0));
         points.add(new Coordinate(1, 1));
