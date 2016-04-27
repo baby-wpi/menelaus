@@ -17,7 +17,7 @@ public class PieceDrawer {
     int mode = NORMAL;
     static final String TILE_COLOR = "#3399ff";
     static final String HINT_COLOR = "#ff8133";
-    static final String SELECT_COLOR = "#408ecf";
+    static final String SELECT_COLOR = "#aade10";
 
     /**
      * Draws the piece.

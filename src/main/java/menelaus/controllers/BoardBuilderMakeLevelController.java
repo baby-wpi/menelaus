@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
+import menelaus.model.move.DeselectSquareBuilderMove;
+import menelaus.model.move.SelectSquareMove;
 import menelaus.view.BoardView;
 
 public class BoardBuilderMakeLevelController implements MouseListener{
@@ -24,10 +26,27 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	}
 
 	public void handleMouseClick(Point pointOnBoard) {
-		if(manager.getLevel().getBoard().isChoppedOut(pointOnBoard))
-			manager.getLevel().getBoard().unchopTile(pointOnBoard);
-		else
-			manager.getLevel().getBoard().chopTileOut(pointOnBoard);
+		//System.out.println("Click.. x: " + pointOnBoard.getX() + " y: " + pointOnBoard.getY());
+		if(manager.getSelectedPoints().contains(pointOnBoard)) {
+			DeselectSquareBuilderMove mv = new DeselectSquareBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
+			if(manager.makeMove(mv)) {
+				System.out.println("Move made successfully");
+			}
+			else {
+				System.out.println("Move failed!");
+			}
+		}
+			
+		else {
+			SelectSquareMove mv = new SelectSquareMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
+			if(manager.makeMove(mv)) {
+				System.out.println("Move successful.");
+			}
+			else {
+				System.out.println("Move failed!");
+			}
+			
+		}
 		refreshBoard();
 	}
 	
