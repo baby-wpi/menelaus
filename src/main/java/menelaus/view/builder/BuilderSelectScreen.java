@@ -4,6 +4,7 @@ import menelaus.controllers.BoardControllerBuilderMakeBoard;
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.ButtonBuilderStartController;
 import menelaus.controllers.LevelTypeButtonBuilderMakeBoardController;
+import menelaus.controllers.NameTextBuilderMakeBoardController;
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
@@ -42,7 +43,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 		btnPuzzle.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.PUZZLE));
 		btnLightning.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.LIGHTNING));
 		btnRelease.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.RELEASE));
-		
+		txtInsertName.addActionListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
 	}
 	
 	public BuilderManager getManager() {

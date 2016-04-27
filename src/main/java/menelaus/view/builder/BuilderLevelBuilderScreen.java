@@ -11,6 +11,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import menelaus.controllers.BoardBuilderMakeLevelController;
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.MakePieceButtonBuilderMakeLevelController;
+import menelaus.controllers.NameTextBuilderMakeBoardController;
 import menelaus.controllers.SaveLevelButtonBuilderMakeLevelController;
 import menelaus.controllers.TextNumRestrictionsBuilderMakeLevelController;
 import menelaus.model.BuilderManager;
@@ -40,12 +41,29 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	//JPanel panelBullpenView;
 	JButton btnMakePiece;
 	JButton btnComplete;
+	JLabel lblMaxMoves;
 	
 	void initializeControllers() {
 		this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
 		this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager,this.panelBoardView,this.panelBullpenView));
 		this.txtMaxMoves.addActionListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager,this.txtMaxMoves));
 		this.btnComplete.addActionListener(new SaveLevelButtonBuilderMakeLevelController(manager));
+		txtInsertName.addActionListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
+	}
+	
+	void refreshComponentsByGame() {
+		switch (this.manager.getType()) {
+		case LIGHTNING:
+			this.lblMaxMoves.setText("Max Time:");
+			this.txtMaxMoves.setText(this.manager.getLevel().getTimeLimit() + "");
+			break;
+		default:
+			this.lblMaxMoves.setText("Max Moves:");
+			this.txtMaxMoves.setText(this.manager.getLevel().getMoveLimit() + "");
+			break;
+		}
+		this.txtInsertName.setText(this.manager.getName());
+		this.repaint();
 	}
 	
 	/**
@@ -75,7 +93,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.setText("Insert Name");
 		txtInsertName.setColumns(10);
 		
-		JLabel lblMaxMoves = new JLabel("Max Moves:");
+		lblMaxMoves = new JLabel("Max Moves:");
 		panelBoardView = new BoardView(manager.getLevel().getBoard(),manager.getLevel(),true);
 		panelBoardView.setSelection(this.manager.getSelectedPoints());
 		//panelBoardView = new JPanel();
@@ -153,5 +171,6 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		);
 		setLayout(groupLayout);
 		initializeControllers();
+		refreshComponentsByGame();
 	}
 }

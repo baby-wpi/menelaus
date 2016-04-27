@@ -41,6 +41,8 @@ public class MakePieceBuilderMove extends BuilderMove {
 		
 		if (allSelected.size() != 6) return false;
 		
+		//Should re-integrate this.
+		/*
 		for(int i = 0; i < allSelected.size(); i++) {
 			boolean thisIValid = false;
 			for(int j = 0; j < allSelected.size(); j++) {
@@ -51,11 +53,11 @@ public class MakePieceBuilderMove extends BuilderMove {
 				}
 			}
 			if(!thisIValid) return false;
-		}
+		}*/
 		
 		Piece temp = new Piece(allSelected.get(0), new Coordinate(0.5f, 0.5f));
 		for(int i = 1; i < allSelected.size(); i++) {
-			temp.addTile(new Tile(allSelected.get(0).subtract(allSelected.get(i))));
+			temp.addTile(new Tile(allSelected.get(i).subtract(allSelected.get(0))));
 		}
 		if (!level.getBoard().isPlacementValid(temp)) return false;
 		return true;
