@@ -10,6 +10,11 @@ import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
 
+/**
+ * 
+ * @author sanjay
+ *
+ */
 public class MakePieceBuilderMove extends BuilderMove {
 
 	Piece pieceToPlace = null;

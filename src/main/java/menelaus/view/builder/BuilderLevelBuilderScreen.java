@@ -11,12 +11,18 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import menelaus.controllers.BoardBuilderMakeLevelController;
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.MakePieceButtonBuilderMakeLevelController;
+import menelaus.controllers.SaveLevelButtonBuilderMakeLevelController;
 import menelaus.controllers.TextNumRestrictionsBuilderMakeLevelController;
 import menelaus.model.BuilderManager;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
 
+/**
+ * 
+ * @author sanjay
+ *
+ */
 public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	/**
 	 * Keep eclipse happy with Cereal (Serial).
@@ -33,11 +39,13 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	JPanel panelAllBullpenView;
 	//JPanel panelBullpenView;
 	JButton btnMakePiece;
+	JButton btnComplete;
 	
 	void initializeControllers() {
 		this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
 		this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager,this.panelBoardView,this.panelBullpenView));
 		this.txtMaxMoves.addActionListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager,this.txtMaxMoves));
+		this.btnComplete.addActionListener(new SaveLevelButtonBuilderMakeLevelController(manager));
 	}
 	
 	/**
@@ -51,7 +59,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		
 		JButton btnReset = new JButton("Reset");
 		
-		JButton btnComplete = new JButton("Complete");
+		btnComplete = new JButton("Complete");
 		
 		JButton btnUndo = new JButton("Undo");
 		

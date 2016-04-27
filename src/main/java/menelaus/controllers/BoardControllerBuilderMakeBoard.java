@@ -6,7 +6,11 @@ import java.awt.event.MouseListener;
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
 import menelaus.view.BoardView;
-
+/**
+ * 
+ * @author sanjay
+ *
+ */
 public class BoardControllerBuilderMakeBoard implements MouseListener{
 
 	BuilderManager manager;
