@@ -1,5 +1,7 @@
 package menelaus.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -8,6 +10,7 @@ import org.w3c.dom.html.HTMLIsIndexElement;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.move.BuilderMove;
+import menelaus.util.LevelsPackagePersistenceUtil;
 
 /** Manages a level builder.
  * 
@@ -26,6 +29,9 @@ public class BuilderManager {
 	
 	public BuilderManager() {
 		this.currentProject = new Level(DEFAULT_LEVEL, DEFAULT_HEIGHT, DEFAULT_WIDTH);
+		this.selectedPoints = new ArrayList<Point>();
+		this.moves = new Stack<BuilderMove>();
+		this.redoMoves = new Stack<BuilderMove>();
 	}
 	
 	public String getName() {
@@ -133,5 +139,21 @@ public class BuilderManager {
 	
 	public ArrayList<Point> getSelectedPoints() {
 		return this.selectedPoints;
+	}
+	
+	public boolean saveLevel() {
+		///this.currentProject.
+		LevelsPackage pack = new LevelsPackage();
+		pack.addLevel(this.currentProject);
+		String outputFileName = this.getName() + ".lvlpkg";
+		File outputFile = new File(outputFileName);
+		try {
+			LevelsPackagePersistenceUtil.toFile(pack, outputFile);
+			return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

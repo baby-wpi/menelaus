@@ -37,6 +37,10 @@ public class Point implements Serializable {
 		return new Point(this.x + otherPoint.getX(), this.y + otherPoint.getY());
 	}
 
+	public Point subtract(Point otherPoint) {
+		return new Point(this.x - otherPoint.getX(), this.y - otherPoint.getY());
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

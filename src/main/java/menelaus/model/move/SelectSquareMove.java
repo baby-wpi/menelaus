@@ -14,6 +14,7 @@ public class SelectSquareMove extends BuilderMove {
 	
 	public SelectSquareMove(BuilderManager manager, int xToSelect, int yToSelect) {
 		super(manager);
+		this.manager = manager;
 		this.selectedPoint = new Point(xToSelect, yToSelect);
 	}
 	
@@ -32,12 +33,21 @@ public class SelectSquareMove extends BuilderMove {
 
 	@Override
 	public boolean valid(Level level) {
-		ArrayList<Point> allSelected = this.manager.getSelectedPoints(); 
+		//Is not valid if you've already selected 6 tiles, or if there's a piece on top of selection.
+		
+		ArrayList<Point> allSelected = this.manager.getSelectedPoints();
 		if (allSelected.size() >= 6) return false; //You can't select more than 6 pieces
 		
 		Hashtable<Point, BoardTileInfo> info = level.getBoard().getTileInfo();
-		if(info.containsKey(selectedPoint)) return false;
+		if(info.containsKey(selectedPoint)) {
+			if (!(info.get(selectedPoint).getPiecePlaced() == null))
+				return false;
+		}
 		
+		if(allSelected.contains(this.selectedPoint)) return false;
+		
+		return true;
+		/*
 		if (allSelected.size() == 0) return true;
 		
 		boolean isValid = false;
@@ -48,7 +58,7 @@ public class SelectSquareMove extends BuilderMove {
 				break;
 			}
 		}
-		return isValid;
+		return isValid;*/
 	}
 	
 	 
