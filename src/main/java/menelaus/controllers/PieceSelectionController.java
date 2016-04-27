@@ -1,7 +1,9 @@
 package menelaus.controllers;
 
+import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.board.Piece;
+import menelaus.model.move.ToBullpenMove;
 import menelaus.view.BullpenView;
 
 import javax.swing.*;
@@ -14,16 +16,19 @@ import java.awt.event.MouseEvent;
 public class PieceSelectionController extends MouseAdapter {
 
     BullpenView bullpenView;
+    GameManager gameManager;
     Level level;
 
-    public PieceSelectionController(BullpenView bullpenView, Level level) {
+    public PieceSelectionController(BullpenView bullpenView, GameManager gameManager) {
         this.bullpenView = bullpenView;
-        this.level = level;
+        this.gameManager = gameManager;
+        this.level = gameManager.getLevel();
     }
 
     /**
      * Determine which piece was selected in the PiecesView.
      */
+    @Override
     public void mousePressed(MouseEvent me) {
         //get the piece that was clicked
         Piece selected = bullpenView.findPiece(me.getX(), me.getY());
@@ -42,5 +47,17 @@ public class PieceSelectionController extends MouseAdapter {
             bullpenView.repaint();
             level.setSelected(selected);
         }
+    }
+
+    /**
+     * Determine which piece is being dragged back to the bullpen.
+     * @param e the mouse event.
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (level.getActive() != null){
+            gameManager.performNewMove(new ToBullpenMove(level.getActive().getPiece()));
+        }
+        System.out.println("released on bullpen");
     }
 }

@@ -30,7 +30,7 @@ public class AroundBoardMove extends Move {
 	 */
 	@Override
 	public boolean doMove(Level level) {
-		if (!valid(level) || piece.getPosition().equals(newLocation)) {
+		if (!valid(level)) {
 			return false;
 		}
 		
@@ -55,6 +55,9 @@ public class AroundBoardMove extends Move {
 
 	@Override
 	public boolean valid(Level level) {
-        return piece != null && level.getType() == LevelType.PUZZLE && level.getBoard().isPlacementValid(piece);
+        return piece != null
+                && level.getType() == LevelType.PUZZLE
+                && level.getBoard().isPlacementValid(piece)
+                && !piece.getPosition().equals(newLocation);
     }
 }
