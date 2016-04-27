@@ -4,6 +4,9 @@ import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
 
 import java.awt.*;
+import java.util.ArrayList;
+
+import org.omg.PortableServer.ServantActivator;
 
 /**
  * Created by @author frankegan on 4/19/16.
@@ -14,6 +17,7 @@ public class PieceDrawer {
     int mode = NORMAL;
     static final String TILE_COLOR = "#3399ff";
     static final String HINT_COLOR = "#ff8133";
+    static final String SELECT_COLOR = "#408ecf";
 
     /**
      * Draws the piece.
@@ -79,6 +83,18 @@ public class PieceDrawer {
             graphics.fillRect(
                     (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
                     (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
+                    tileSize,
+                    tileSize);
+        }
+    }
+    
+    public static void drawSelection(Graphics graphics, ArrayList<menelaus.model.basic.Point> selectedPoints, int tileSize) {
+    	for (menelaus.model.basic.Point p : selectedPoints) {
+            //draw tiles
+            graphics.setColor(Color.decode(SELECT_COLOR));
+            graphics.fillRect(
+                    (p.getX() * tileSize),
+                    (p.getY() * tileSize),
                     tileSize,
                     tileSize);
         }
