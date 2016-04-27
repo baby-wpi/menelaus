@@ -6,12 +6,16 @@ import menelaus.controllers.ButtonHomeExtraController;
 import menelaus.controllers.ButtonLevelsController;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
+import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 
@@ -34,7 +38,15 @@ public class HomeScreen extends KabasujiPanel {
 		JButton btnExit = new JButton("Exit");
 
 		btnContinue.addActionListener(new ButtonContinueController());
-		btnLevels.addActionListener(new ButtonLevelsController()); // Levels.
+		try {
+			btnLevels.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // Levels.
 		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
 		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
 
