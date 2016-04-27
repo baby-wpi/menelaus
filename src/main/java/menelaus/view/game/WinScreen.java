@@ -7,12 +7,16 @@ import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.events.GameEndReason;
+import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class WinScreen extends KabasujiPanel  {
@@ -73,7 +77,15 @@ public class WinScreen extends KabasujiPanel  {
 		
 		/** Exit Button. */
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ButtonLevelsController());
+		try {
+			btnExit.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		/** Score label. */
 		JLabel lblScore = new JLabel( scoreLabel );
