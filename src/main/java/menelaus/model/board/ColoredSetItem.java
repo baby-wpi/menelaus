@@ -17,6 +17,19 @@ public class ColoredSetItem implements Serializable {
 		return color;
 	}
 	
+	/** return the Java Color of the java,awt package */
+	public java.awt.Color getJavaColor(){
+		if (color == Color.BLUE){
+			return java.awt.Color.blue;
+		} else if (color == Color.GREEN){
+			return java.awt.Color.green;
+		} else if (color == Color.RED) {
+			return java.awt.Color.red;
+		} else {
+			return java.awt.Color.black;
+		}
+	}
+	
 	public void setColor(Color color) {
 		this.color = color;
 	}
