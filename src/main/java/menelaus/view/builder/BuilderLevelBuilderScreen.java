@@ -2,6 +2,8 @@ package menelaus.view.builder;
 
 import menelaus.controllers.BoardBuilderMakeLevelController;
 import menelaus.controllers.ButtonBuilderMainMenuController;
+import menelaus.controllers.MakePieceBuilderMakeLevelController;
+import menelaus.controllers.MakePieceButtonBuilderMakeLevelController;
 import menelaus.model.BuilderManager;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
@@ -22,9 +24,11 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	//JPanel panelBoardView;
 	JPanel panelAllBullpenView;
 	//JPanel panelBullpenView;
+	JButton btnMakePiece;
 	
 	void initializeControllers() {
 		this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
+		this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager,this.panelBoardView,this.panelBullpenView));
 	}
 	
 	/**
@@ -42,7 +46,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		
 		JButton btnUndo = new JButton("Undo");
 		
-		JButton btnMakePiece = new JButton("Make Piece");
+		btnMakePiece = new JButton("Make Piece");
 		
 		JButton btnMakeHint = new JButton("Make Hint");
 		
