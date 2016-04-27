@@ -173,15 +173,17 @@ public class BoardView extends JPanel {
     	boardTileInfoMap = board.getTileInfo();
 
     	// iterate through hashmap of point, boardTileInfo
-    	for (Point point : boardTileInfoMap.keySet()) {
-    		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
-    		String number = tileInfo.getNumber() + "";
+    	if (boardTileInfoMap.keySet() != null) {
+        	for (Point point : boardTileInfoMap.keySet()) {
+        		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
+        		String number = tileInfo.getNumber() + "";
 
-    		int x = point.getX() + gridSquareHeight/2;
-    		int y = point.getY() + gridSquareWidth/2;
+        		int x = point.getX() + gridSquareHeight/2;
+        		int y = point.getY() + gridSquareWidth/2;
 
-    		g.setColor(tileInfo.getJavaColor());
-    		g.drawString(number, x, y);
+        		g.setColor(tileInfo.getJavaColor());
+        		g.drawString(number, x, y);
+    		}
 		}
     }
 
