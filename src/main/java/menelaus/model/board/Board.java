@@ -89,7 +89,50 @@ public class Board implements Serializable {
             info.setTileChopped(true);
         }
     }
+    
+    public boolean isChoppedOut(Point point) {
+    	BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+            return false;
+        } else return (info.isTileChopped);
+    }
+    
+    public void unchopTile(Point point) {
+    	BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+        	return;
+        } else if (info.isTileChopped) {
+        	info.setTileChopped(false);
+        };
+    }
 
+    public void selectTile(Point point) {
+        BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+            info = new BoardTileInfo(false);
+            tileInfo.put(point, info);
+        } else {
+            info.setTileChopped(true);
+        }
+    }
+    
+    public boolean isSelected(Point point) {
+    	BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+            return false;
+        } else return (info.isTileChopped);
+    }
+    
+    public void unselectTile(Point point) {
+    	BoardTileInfo info = tileInfo.get(point);
+        if (info == null) {
+        	return;
+        } else if (info.isTileChopped) {
+        	info.setTileChopped(false);
+        };
+    }
+    
+    
     public void placePiece(Piece piece) throws InvalidPiecePlacementException {
         if (!isPlacementValid(piece)) {
             throw new InvalidPiecePlacementException();
@@ -210,4 +253,11 @@ public class Board implements Serializable {
     	//newLocation;
     	
     }
+
+	public void resetBoard() {
+		for(BoardTileInfo btInfo : this.tileInfo.values()){
+			btInfo.piecePlaced = null;
+		}
+		
+	}
 }

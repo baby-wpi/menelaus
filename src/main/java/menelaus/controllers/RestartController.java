@@ -2,8 +2,14 @@ package menelaus.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import menelaus.model.Bullpen;
 import menelaus.model.Level;
+import menelaus.model.LevelsPackage;
+import menelaus.model.board.Piece;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.LevelPlayScreen;
 
@@ -23,8 +29,18 @@ public class RestartController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		GameWindowFrame frame = GameWindowFrame.getInstance();
-		frame.swapPanel(new LevelPlayScreen(previousLevel));
+		GameWindowFrame frame = GameWindowFrame.getInstance();		
+//    	Level restartLevel = new Level(previousLevel.getType(), previousLevel.getBoard().getHeight(), previousLevel.getBoard().getWidth());
+//    	Bullpen bp = new Bullpen();
+//    	bp.setPieces(previousLevel.getBullpen().getPieces());
+//    	for(Piece p : previousLevel.getBoard().getPieces()){
+//    		bp.addPiece(p);
+//    	}
+//    	restartLevel.setBullpen(bp);
+		
+		
+		GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(previousLevel.resetLevel()));
+        
 	}
 
 }
