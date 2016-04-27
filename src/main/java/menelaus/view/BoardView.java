@@ -1,6 +1,7 @@
 package menelaus.view;
 
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.*;
 
@@ -115,7 +116,9 @@ public class BoardView extends JPanel {
 
         drawGrid(g);
         drawUnavailableTiles(g);
-        drawReleaseColorSets(g);
+        if (level.getType() == LevelType.RELEASE) {
+        	drawReleaseColorSets(g);
+		}
     }
 
     /**
@@ -167,20 +170,19 @@ public class BoardView extends JPanel {
      */
     public void drawReleaseColorSets(Graphics g) {
         // get tile info.
-//    	boardTileInfoMap = board.getTileInfo();
-//
-//    	// iterate through hashmap of point, boardTileInfo
-//    	for (Point point : boardTileInfoMap.keySet()) {
-//    		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
-//    		String number = tileInfo.getNumber() + "";
-//
-//    		int x = point.getX() + gridSquareHeight/2;
-//    		int y = point.getY() + gridSquareWidth/2;
-//
-//    		g.setColor(tileInfo.getJavaColor());
-//    		g.drawString(number, x, y);
-//		}
-        // TODO: draw a colored j label on that spot
+    	boardTileInfoMap = board.getTileInfo();
+
+    	// iterate through hashmap of point, boardTileInfo
+    	for (Point point : boardTileInfoMap.keySet()) {
+    		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
+    		String number = tileInfo.getNumber() + "";
+
+    		int x = point.getX() + gridSquareHeight/2;
+    		int y = point.getY() + gridSquareWidth/2;
+
+    		g.setColor(tileInfo.getJavaColor());
+    		g.drawString(number, x, y);
+		}
     }
 
     /**
