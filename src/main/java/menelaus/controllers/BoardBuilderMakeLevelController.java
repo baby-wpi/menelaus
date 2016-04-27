@@ -7,12 +7,11 @@ import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
 import menelaus.view.BoardView;
 
-public class BoardControllerBuilderMakeBoard implements MouseListener{
-
+public class BoardBuilderMakeLevelController implements MouseListener{
 	BuilderManager manager;
 	BoardView view;
 	
-	public BoardControllerBuilderMakeBoard(BuilderManager manager, BoardView view) {
+	public BoardBuilderMakeLevelController(BuilderManager manager, BoardView view) {
 		this.manager = manager;
 		this.view = view;
 	}
@@ -59,4 +58,5 @@ public class BoardControllerBuilderMakeBoard implements MouseListener{
 	void refreshBoard() {
 		view.repaint();
 	}
+
 }

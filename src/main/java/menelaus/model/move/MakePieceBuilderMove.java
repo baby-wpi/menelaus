@@ -1,6 +1,5 @@
 package menelaus.model.move;
 
-import java.awt.print.Printable;
 import java.util.ArrayList;
 
 import menelaus.model.BuilderManager;
@@ -73,6 +72,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 		else if (!redoValid(level)) return false;
 		try {
 			level.getBoard().placePiece(pieceToPlace);
+			level.getBullpen().addPiece(pieceToPlace);
 		} catch (InvalidPiecePlacementException e) {
 			System.err.println("MakePieceBuilderMove:: Making a piece failed");
 			e.printStackTrace();
@@ -85,6 +85,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 	@Override
 	public boolean undo(Level level) {
 		level.getBoard().removePiece(pieceToPlace);
+		level.getBullpen().removePiece(pieceToPlace);
 		return true;
 	}
 

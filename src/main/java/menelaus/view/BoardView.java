@@ -6,6 +6,7 @@ import menelaus.model.board.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -60,7 +61,17 @@ public class BoardView extends JPanel {
      * Base size of board.
      */
     public final int N = 700;
+    
+    /**
+     * Whether or not board tiles can be selected.
+     */
+    boolean hasSelection; 
 
+    /**
+     * Only applicable in builder, which tiles are selected.
+     */
+    ArrayList<Point> selection = new ArrayList<>();
+    
     /**
      * Off-screen image for drawing (and Graphics object).
      */
@@ -80,6 +91,14 @@ public class BoardView extends JPanel {
     public BoardView(Board board, Level level) {
         this.board = board;
         this.level = level;
+        this.hasSelection = false;
+    }
+    
+    
+    public BoardView(Board board, Level level, boolean hasSelection) {
+    	this.board = board;
+        this.level = level;
+        this.hasSelection = hasSelection;
     }
 
     /**
@@ -111,6 +130,12 @@ public class BoardView extends JPanel {
         PlacedPiece active = level.getActive();
         if (active != null) {
             PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
+        }
+        
+        if(this.hasSelection) {
+        	if(this.selection != null) {
+        		PieceDrawer.drawSelection(g, selection, calculateGridUnitSize());
+        	}
         }
 
         drawGrid(g);
@@ -196,7 +221,7 @@ public class BoardView extends JPanel {
                 g.setColor(Color.LIGHT_GRAY);
 
                 // TODO: make sure rectangle point is correct.
-                g.fillRect(point.getX(), point.getY(), gridSquareHeight, gridSquareWidth);
+                g.fillRect(point.getX() * calculateGridUnitSize(), point.getY() * calculateGridUnitSize(), gridSquareHeight, gridSquareWidth);
             }
         }
     }
@@ -242,6 +267,12 @@ public class BoardView extends JPanel {
         return null;
     }
 
+    public Point pointUnder(int x, int y) {
+    	int gridX = x / calculateGridUnitSize();
+    	int gridY = y / calculateGridUnitSize();
+    	return new Point(gridX, gridY);
+    }
+    
     /**
      * Helper method to return polygon for KabaSuji piece anchored at (x,y).
      * <p/>
@@ -264,6 +295,14 @@ public class BoardView extends JPanel {
         return new Rectangle(x, y, x + calculateGridUnitSize(), y + calculateGridUnitSize());
     }
 
+    public void setSelection(ArrayList<Point> newSel) {
+    	this.selection = newSel;
+    }
+    
+    public ArrayList<Point> getSelection() {
+    	return this.selection;
+    }
+    
     /**
      * Draw background and then all pieces on top of it.
      */
