@@ -31,6 +31,10 @@ public class BoardTileInfo implements Serializable {
 	public Piece getPiecePlaced() {
 		return piecePlaced;
 	}
+
+	public boolean isPiecePlaced(){
+        return piecePlaced != null;
+    }
 	
 	public void setPiecePlaced(Piece piecePlaced) {
 		this.piecePlaced = piecePlaced;

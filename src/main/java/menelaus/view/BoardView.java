@@ -1,7 +1,6 @@
 package menelaus.view;
 
 import menelaus.model.Level;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.*;
 
@@ -15,23 +14,35 @@ import java.util.Hashtable;
  * @author Obatola Seward-Evans
  */
 public class BoardView extends JPanel {
-    
-	/** height of a grid square. */    
+
+    /**
+     * height of a grid square.
+     */
     int gridSquareHeight = 0;
-    
-    /** width of a grid square. */    
+
+    /**
+     * width of a grid square.
+     */
     int gridSquareWidth = 0;
 
-    /** size of the board. */
+    /**
+     * size of the board.
+     */
     int drawingSize = 0;
-    
-     /** width/height of grid by grid squares. */
+
+    /**
+     * width/height of grid by grid squares.
+     */
     int subdivisions = 0;
-    
-    /** Board tile info map for release level. */
+
+    /**
+     * Board tile info map for release level.
+     */
     Hashtable<Point, BoardTileInfo> boardTileInfoMap;
-    
-    /** Board tile info for each point. */
+
+    /**
+     * Board tile info for each point.
+     */
     BoardTileInfo boardTileInfo;
 
     /**
@@ -106,16 +117,17 @@ public class BoardView extends JPanel {
         drawUnavailableTiles(g);
         drawReleaseColorSets(g);
     }
-    
+
     /**
      * Draw hint piece on board.
-     * @author Obatola Seward-Evans
+     *
      * @param g
+     * @author Obatola Seward-Evans
      */
     private void drawHints(Graphics g) {
-    	for (HintPiece hintPiece : board.getHints()) {
-			PieceDrawer.drawHintToGrid(g, hintPiece, calculateGridUnitSize());
-		}
+        for (HintPiece hintPiece : board.getHints()) {
+            PieceDrawer.drawHintToGrid(g, hintPiece, calculateGridUnitSize());
+        }
     }
 
     private void initDemensions() {
@@ -213,12 +225,21 @@ public class BoardView extends JPanel {
 
     public Piece findPiece(int x, int y) {
         // TODO: 4/22/16 do some mathemagic to solve this
-        Piece p1 = new Piece(new Point(x, y), new Coordinate(0.5f, 0.5f));
-        p1.addTile(new Tile(1, 0));
-        p1.addTile(new Tile(0, 1));
-        p1.addTile(new Tile(1, 1));
+//        Piece p1 = new Piece(new Point(x, y), new Coordinate(0.5f, 0.5f));
+//        p1.addTile(new Tile(1, 0));
+//        p1.addTile(new Tile(0, 1));
+//        p1.addTile(new Tile(1, 1));
+        int gridX = x / calculateGridUnitSize();
+        int gridY = y / calculateGridUnitSize();
 
-        return p1;
+        for (Piece p: board.getPieces()) {
+            if (board.getTileInfo().get(new Point(gridX, gridY)).isPiecePlaced()) {
+                System.out.println("found the piece");
+                return p;
+            }
+        }
+
+        return null;
     }
 
     /**
