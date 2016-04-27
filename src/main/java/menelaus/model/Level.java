@@ -6,6 +6,7 @@ import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -90,6 +91,15 @@ public class Level implements Serializable {
 		this.uuid = UUID.randomUUID();
 		this.bullpen = new Bullpen();
 		this.board = new Board(boardHeight, boardWidth);
+	}
+	public Level resetLevel(){
+		
+		for(Piece p : this.board.getPieces()){
+			this.bullpen.addPiece(p);
+		}
+		this.board.setPieces(new ArrayList<Piece>());
+		this.board.resetBoard();
+		return this;
 	}
 
 	public void setSelected(Piece p) {

@@ -253,4 +253,11 @@ public class Board implements Serializable {
     	//newLocation;
     	
     }
+
+	public void resetBoard() {
+		for(BoardTileInfo btInfo : this.tileInfo.values()){
+			btInfo.piecePlaced = null;
+		}
+		
+	}
 }
