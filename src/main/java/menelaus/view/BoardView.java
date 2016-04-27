@@ -3,15 +3,10 @@ package menelaus.view;
 import menelaus.model.Level;
 import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
-import menelaus.model.board.Board;
-import menelaus.model.board.HintPiece;
-import menelaus.model.board.Piece;
-import menelaus.model.board.PlacedPiece;
-import menelaus.model.board.Tile;
+import menelaus.model.board.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Iterator;
 
 /**
  * Here is where the pieces are to be played (in 700x700 size).
@@ -91,7 +86,7 @@ public class BoardView extends JPanel {
         initDemensions();
 
         super.paintComponent(g);
-
+        drawHints(g);
 
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
@@ -106,7 +101,7 @@ public class BoardView extends JPanel {
 
         drawGrid(g);
         drawUnavailableTiles(g);
-        drawHints(g);
+
         drawReleaseColorSets(g);
     }
     
@@ -117,7 +112,7 @@ public class BoardView extends JPanel {
      */
     private void drawHints(Graphics g) {
     	for (HintPiece hintPiece : board.getHints()) {
-			PieceDrawer.drawPiece(g, hintPiece, calculateGridUnitSize());
+			PieceDrawer.drawHintToGrid(g, hintPiece, calculateGridUnitSize());
 		}
     }
 
