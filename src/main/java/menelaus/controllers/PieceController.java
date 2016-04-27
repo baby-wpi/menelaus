@@ -27,7 +27,7 @@ public class PieceController extends MouseAdapter {
     GameManager gameManager;
     Level level;
 
-    Piece draggingPiece;
+    PlacedPiece draggingPiece;
     Point draggingAnchor;
 
     // while mouse controller is in play, remember rotation (hey, just for fun).
@@ -95,12 +95,11 @@ public class PieceController extends MouseAdapter {
         if (draggingPiece == null) {
             return;
         }
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
 
-        int diffX = me.getPoint().x - draggingAnchor.getX();
-        int diffY = me.getPoint().y - draggingAnchor.getY();
-        draggingAnchor = new Point(me.getX(), me.getY());
-
-        draggingPiece.getRect().translate(diffX, diffY);
+//        gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
+        draggingPiece.getPiece().setPosition(new Point(gridX, gridY));
         boardView.redraw();
         boardView.repaint();
     }
@@ -118,7 +117,8 @@ public class PieceController extends MouseAdapter {
             draggingAnchor = new Point(me.getX(), me.getY());
 
             // perhaps we are pressing inside one of the existing pieces?
-            Piece exist = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
+            Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
+            PlacedPiece exist = new PlacedPiece(found, computeActiveRect(new Point(me.getX(), me.getY()), found));
             if (exist != null) {
                 draggingPiece = exist;
             }
