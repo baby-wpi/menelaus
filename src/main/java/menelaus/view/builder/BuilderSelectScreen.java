@@ -1,7 +1,13 @@
 package menelaus.view.builder;
 
+import menelaus.controllers.BoardControllerBuilderMakeBoard;
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.ButtonBuilderStartController;
+import menelaus.controllers.LevelTypeButtonBuilderMakeBoardController;
+import menelaus.model.BuilderManager;
+import menelaus.model.basic.LevelType;
+import menelaus.model.basic.Point;
+import menelaus.view.BoardView;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -9,24 +15,60 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BuilderSelectScreen extends KabasujiPanel {
-	private JTextField txtInstertName;
+	/**
+	 * Serial id to keep Eclipse happy
+	 */
+	private static final long serialVersionUID = -750732967111292078L;
+	private JTextField txtInsertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
 
+	ButtonGroup levelTypeButtons;
+	JToggleButton btnPuzzle;
+	JToggleButton btnLightning;
+	JToggleButton btnRelease;
+	
+	BuilderManager manager;
+	BoardView boardPanel;
+	
+	void initializeManager() {
+		manager = new BuilderManager();
+		//manager.getLevel().getBoard().chopTileOut(new Point(3, 0));
+	}
+	
+	void initializeControllers() {
+		boardPanel.addMouseListener(new BoardControllerBuilderMakeBoard(manager, boardPanel));
+		btnPuzzle.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.PUZZLE));
+		btnLightning.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.LIGHTNING));
+		btnRelease.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.RELEASE));
+		
+	}
+	
+	public BuilderManager getManager() {
+		return this.manager;
+	}
+	
 	/**
 	 * Create the panel.
 	 */
 	public BuilderSelectScreen() {
+		initializeManager();
 		
-		JButton btnPuzzle = new JButton("Puzzle");
+		levelTypeButtons = new ButtonGroup();
 		
-		JButton btnLightning = new JButton("Lightning");
+		btnPuzzle = new JToggleButton("Puzzle");
 		
-		JButton btnRelease = new JButton("Release");
+		btnLightning = new JToggleButton("Lightning");
 		
-		txtInstertName = new JTextField();
-		txtInstertName.setText("Insert Name");
-		txtInstertName.setColumns(10);
+		btnRelease = new JToggleButton("Release");
+		
+		levelTypeButtons.add(btnPuzzle);
+		levelTypeButtons.add(btnLightning);
+		levelTypeButtons.add(btnRelease);
+		
+		txtInsertName = new JTextField();
+		txtInsertName.setText("Insert Name");
+		txtInsertName.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ButtonBuilderStartController());
@@ -43,7 +85,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 
 		JLabel lblBoardSize = new JLabel("Board Size");
 
-		JPanel panel = new JPanel();
+		boardPanel = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
 		
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ButtonBuilderMainMenuController());
@@ -71,10 +113,10 @@ public class BuilderSelectScreen extends KabasujiPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtHeight, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(txtInstertName, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnStart))
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 613, GroupLayout.PREFERRED_SIZE))
+						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 613, GroupLayout.PREFERRED_SIZE))
 					.addGap(60))
 		);
 		groupLayout.setVerticalGroup(
@@ -84,7 +126,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(22)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtInstertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnStart)
 								.addComponent(btnMainMenu))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -94,7 +136,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 								.addComponent(lblX)
 								.addComponent(lblBoardSize))
 							.addGap(18)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE))
+							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(267)
 							.addComponent(btnPuzzle, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
@@ -104,25 +146,19 @@ public class BuilderSelectScreen extends KabasujiPanel {
 							.addComponent(btnRelease, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(45, Short.MAX_VALUE))
 		);
-		
-		JLabel lblBoardGoesHere = new JLabel("Board Goes Here");
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(255)
-					.addComponent(lblBoardGoesHere)
-					.addContainerGap(255, Short.MAX_VALUE))
+		GroupLayout gl_boardPanel = new GroupLayout(boardPanel);
+		gl_boardPanel.setHorizontalGroup(
+			gl_boardPanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 613, Short.MAX_VALUE)
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(291)
-					.addComponent(lblBoardGoesHere)
-					.addContainerGap(291, Short.MAX_VALUE))
+		gl_boardPanel.setVerticalGroup(
+			gl_boardPanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 598, Short.MAX_VALUE)
 		);
-		panel.setLayout(gl_panel);
+		boardPanel.setLayout(gl_boardPanel);
 		setLayout(groupLayout);
+		
+		initializeControllers();
 
 	}
 }

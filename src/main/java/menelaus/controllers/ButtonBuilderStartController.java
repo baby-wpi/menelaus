@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import menelaus.view.builder.BuilderLevelBuilderScreen;
+import menelaus.view.builder.BuilderSelectScreen;
 import menelaus.view.builder.BuilderWindowFrame;
 
 public class ButtonBuilderStartController implements ActionListener {
@@ -12,6 +13,7 @@ public class ButtonBuilderStartController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen());
+		BuilderSelectScreen sender = (BuilderSelectScreen) BuilderWindowFrame.getInstance().getPanel();
+		BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen(sender.getManager()));
 	}
 }
