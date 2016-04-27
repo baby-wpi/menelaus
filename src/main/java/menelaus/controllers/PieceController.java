@@ -117,8 +117,7 @@ public class PieceController extends MouseAdapter {
         if (pp == null) {
             draggingAnchor = new Point(me.getX(), me.getY());
 
-            // perhaps we are pressing inside one of the existing pieces? Take LAST piece that
-            // intersects, since that will ensure we grab topmost one.
+            // perhaps we are pressing inside one of the existing pieces?
             Piece exist = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
             if (exist != null) {
                 draggingPiece = exist;
