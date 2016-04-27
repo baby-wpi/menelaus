@@ -11,9 +11,10 @@ import menelaus.model.board.BoardTileInfo;
 public class DeselectSquareBuilderMove extends BuilderMove {
 
 	Point selectedPoint;
-	public DeselectSquareBuilderMove(BuilderManager manager) {
+	public DeselectSquareBuilderMove(BuilderManager manager, int xToDeselect, int yToDeselect) {
 		super(manager);
 		this.manager = manager;
+		this.selectedPoint = new Point(xToDeselect, yToDeselect);
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package menelaus.view.builder;
 
+import menelaus.controllers.BoardBuilderMakeLevelController;
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.model.BuilderManager;
 import menelaus.view.BoardView;
@@ -21,6 +22,10 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	//JPanel panelBoardView;
 	JPanel panelAllBullpenView;
 	//JPanel panelBullpenView;
+	
+	void initializeControllers() {
+		this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
+	}
 	
 	/**
 	 * Create the panel.
@@ -50,7 +55,8 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.setColumns(10);
 		
 		JLabel lblMaxMoves = new JLabel("Max Moves:");
-		panelBoardView = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
+		panelBoardView = new BoardView(manager.getLevel().getBoard(),manager.getLevel(),true);
+		panelBoardView.setSelection(this.manager.getSelectedPoints());
 		//panelBoardView = new JPanel();
 		
 		//panelAllBullpenView = new BullpenView(manager.getLevel().getBullpen());
@@ -126,6 +132,6 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 							.addContainerGap())))
 		);
 		setLayout(groupLayout);
-
+		initializeControllers();
 	}
 }
