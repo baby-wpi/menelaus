@@ -2,6 +2,8 @@ package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.ButtonBuilderStartController;
+import menelaus.model.BuilderManager;
+import menelaus.view.BoardView;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -13,10 +15,18 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	private JTextField txtWidth;
 	private JTextField txtHeight;
 
+	BuilderManager manager;
+	
+	void initializeManager() {
+		manager = new BuilderManager();
+		
+	}
+	
 	/**
 	 * Create the panel.
 	 */
 	public BuilderSelectScreen() {
+		initializeManager();
 		
 		JButton btnPuzzle = new JButton("Puzzle");
 		
@@ -43,7 +53,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 
 		JLabel lblBoardSize = new JLabel("Board Size");
 
-		JPanel panel = new JPanel();
+		JPanel boardPanel = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
 		
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ButtonBuilderMainMenuController());
@@ -74,7 +84,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 							.addComponent(txtInstertName, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnStart))
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 613, GroupLayout.PREFERRED_SIZE))
+						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 613, GroupLayout.PREFERRED_SIZE))
 					.addGap(60))
 		);
 		groupLayout.setVerticalGroup(
@@ -94,7 +104,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 								.addComponent(lblX)
 								.addComponent(lblBoardSize))
 							.addGap(18)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE))
+							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(267)
 							.addComponent(btnPuzzle, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
@@ -104,24 +114,16 @@ public class BuilderSelectScreen extends KabasujiPanel {
 							.addComponent(btnRelease, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(45, Short.MAX_VALUE))
 		);
-		
-		JLabel lblBoardGoesHere = new JLabel("Board Goes Here");
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(255)
-					.addComponent(lblBoardGoesHere)
-					.addContainerGap(255, Short.MAX_VALUE))
+		GroupLayout gl_boardPanel = new GroupLayout(boardPanel);
+		gl_boardPanel.setHorizontalGroup(
+			gl_boardPanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 613, Short.MAX_VALUE)
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(291)
-					.addComponent(lblBoardGoesHere)
-					.addContainerGap(291, Short.MAX_VALUE))
+		gl_boardPanel.setVerticalGroup(
+			gl_boardPanel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 598, Short.MAX_VALUE)
 		);
-		panel.setLayout(gl_panel);
+		boardPanel.setLayout(gl_boardPanel);
 		setLayout(groupLayout);
 
 	}
