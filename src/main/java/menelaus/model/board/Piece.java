@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.junit.validator.PublicClassValidator;
-
 /**
  * @author vouldjeff
  */
