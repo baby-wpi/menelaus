@@ -12,8 +12,8 @@ import menelaus.model.basic.Point;
 import menelaus.model.move.BuilderMove;
 import menelaus.util.LevelsPackagePersistenceUtil;
 
-/** Manages a level builder.
- * 
+/** 
+ * Manages a level builder.
  * @author sanjay
  *
  */
@@ -35,7 +35,7 @@ public class BuilderManager {
 	}
 	
 	public String getName() {
-		return this.currentProject.name;
+		return this.currentProject.getName();
 	}
 	
 	public Level getLevel() {
@@ -43,23 +43,24 @@ public class BuilderManager {
 	}
 	
 	public LevelType getType() {
-		return this.currentProject.type;
+		return this.currentProject.getType();
 	}
 	
 	public int getWidth() {
-		return this.currentProject.board.getWidth();
+		return this.currentProject.getBoard().getWidth();
 	}
 	
 	public int getHeight() {
-		return this.currentProject.board.getHeight();
+		return this.currentProject.getBoard().getHeight();
 	}
 	
 	public void setLevelName(String name) {
-		currentProject.name = name;
+		currentProject.setName(name);
 	}
 	
 	public void setLevelType(LevelType type) {
-		currentProject.type = type;
+		// TODO: you can't just set the LevelType midway because the level might behave differently based on its type.
+		// You should probably create a new Level
 	}
 	
 	
@@ -70,8 +71,8 @@ public class BuilderManager {
 	
 	
 	public void setSize(int w, int h) {
-		this.currentProject.board.setWidth(w);
-		this.currentProject.board.setHeight(h);
+		this.currentProject.getBoard().setWidth(w);
+		this.currentProject.getBoard().setHeight(h);
 	}
 	
 	public boolean makeMove(BuilderMove m) {

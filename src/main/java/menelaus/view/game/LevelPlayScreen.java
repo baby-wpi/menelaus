@@ -1,6 +1,5 @@
 package menelaus.view.game;
 
-import menelaus.controllers.ButtonLevelsController;
 import menelaus.controllers.PieceController;
 import menelaus.controllers.PieceSelectionController;
 import menelaus.controllers.RestartController;
@@ -162,7 +161,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 		boardView.addMouseMotionListener(pc);
 		boardView.addMouseWheelListener(pc);
 
-		PieceSelectionController psc = new PieceSelectionController(bullpenView, level);
+		PieceSelectionController psc = new PieceSelectionController(bullpenView, gameManager);
 		bullpenView.addMouseListener(psc);
 
 		gameManager.startGame();

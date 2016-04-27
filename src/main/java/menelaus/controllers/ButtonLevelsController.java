@@ -36,7 +36,7 @@ public class ButtonLevelsController implements ActionListener {
 			pack.addLevel(new Level(LevelType.RELEASE, 6, 6));
 		}
 		
-		// TEST
+		
 		
 		
 		GameWindowFrame.getInstance().swapPanel(new LevelSelectorScreen(pack, savedGames));

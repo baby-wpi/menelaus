@@ -10,11 +10,16 @@ import menelaus.model.board.BoardTileInfo;
 import menelaus.model.board.ColoredSetItem;
 
 /**
- * 
+ * Grades a GameManager in progress and awards LevelStars depending on the Level and its progress.
  * @author vouldjeff
  *
  */
 public class StarsUtil {
+	/**
+	 * Returns the stars for a particular level in progress.
+	 * @param gameManager The Game
+	 * @return Awarded stars 0-3 with the level id
+	 */
 	public static LevelStars getStars(GameManager gameManager) {
 		switch (gameManager.getLevel().getType()) {
 		case LIGHTNING:
@@ -26,6 +31,11 @@ public class StarsUtil {
 		}
 	}
 	
+	/**
+	 * Grades a PuzzleLevel.
+	 * @param gameManager
+	 * @return
+	 */
 	static LevelStars gradePuzzle(GameManager gameManager) {
 		int stars = 0;
 		
@@ -37,6 +47,11 @@ public class StarsUtil {
 		return new LevelStars(stars, gameManager.getLevel().getUuid());
 	}
 	
+	/**
+	 * Grades a Release Level.
+	 * @param gameManager
+	 * @return
+	 */
 	static LevelStars gradeRelease(GameManager gameManager) {
 		int completeSets = 0;
 		for (Color color : Color.values()) {
@@ -52,6 +67,12 @@ public class StarsUtil {
 		return new LevelStars(completeSets, gameManager.getLevel().getUuid());
 	}
 	
+	/**
+	 * Checks if colored set is complete.
+	 * @param color
+	 * @param board
+	 * @return
+	 */
 	static boolean isSetComplete(Color color, Board board) {
 		Hashtable<Integer, Boolean> filledIn = new Hashtable<Integer, Boolean>();
 		
@@ -73,6 +94,11 @@ public class StarsUtil {
 		return true;
 	}
 	
+	/**
+	 * Grades a Lightning level.
+	 * @param gameManager
+	 * @return
+	 */
 	static LevelStars gradeLightning(GameManager gameManager) {
 		int emptyTiles = gameManager.getLevel().getBoard().getNumberOfEmptyTiles();
 		int stars = 0;

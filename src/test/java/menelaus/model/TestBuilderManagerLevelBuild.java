@@ -46,7 +46,11 @@ public class TestBuilderManagerLevelBuild extends TestCase {
 		try {
 			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(madeLevel);
 			manager.currentProject = pack.getLevels().get(0);
-		} catch (ClassNotFoundException | IOException e) {
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+			fail();
+		} catch (IOException e) {
 			
 			e.printStackTrace();
 			fail();

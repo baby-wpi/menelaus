@@ -17,7 +17,7 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		this.manager = manager;
 		this.view = view;
 	}
-	@Override
+	
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//manager.getLevel().getBoard().chopTileOut(new Point(0, 0));
@@ -50,25 +50,23 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		refreshBoard();
 	}
 	
-	@Override
+	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		

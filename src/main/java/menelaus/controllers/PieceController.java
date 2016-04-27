@@ -6,7 +6,9 @@ import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
+import menelaus.model.move.AroundBoardMove;
 import menelaus.model.move.ToBoardMove;
+import menelaus.model.move.ToBullpenMove;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.game.LevelPlayScreen;
@@ -47,64 +49,6 @@ public class PieceController extends MouseAdapter {
     }
 
     /**
-     * Once released, no more dragging.
-     */
-    @Override
-    public void mouseReleased(MouseEvent me) {
-        draggingPiece = null;
-        draggingAnchor = null;
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-        if (draggingPiece != null) {
-
-            // piece is no longer on the board, so remove it!
-            level.getBoard().getPieces().remove(draggingPiece);
-            draggingPiece = null;
-            draggingAnchor = null;
-        }
-
-        // clear the view of partial drawings once mouse exits region
-        level.setActive(null);
-
-        bullpenView.repaint();
-
-        boardView.redraw();     // fix board as well
-        boardView.repaint();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent me) {
-        Piece selected = level.getSelected();
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-        if (selected == null) { return; }
-
-
-        Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
-        PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
-        pp.getPiece().setPosition(new Point(gridX, gridY));
-        level.setActive(pp);
-        boardView.repaint();
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent me) {
-        // if nothing being dragged, leave
-        if (draggingPiece == null) {
-            return;
-        }
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-
-//        gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
-        draggingPiece.getPiece().setPosition(new Point(gridX, gridY));
-        boardView.redraw();
-        boardView.repaint();
-    }
-
-    /**
      * Determine which piece was selected in the PiecesView.
      */
     @Override
@@ -134,6 +78,65 @@ public class PieceController extends MouseAdapter {
 
         boardView.repaint();
         bullpenView.repaint();   // has also changed state since piece no longer selected.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me) {
+        Piece selected = level.getSelected();
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+        if (selected == null) {
+            return;
+        }
+
+
+        Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
+        PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
+        pp.getPiece().setPosition(new Point(gridX, gridY));
+        level.setActive(pp);
+        boardView.repaint();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+        // if nothing being dragged, leave
+        if (draggingPiece == null) {
+            return;
+        }
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+
+
+        gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
+        boardView.redraw();
+        boardView.repaint();
+    }
+
+    /**
+     * Once released, no more dragging.
+     */
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        draggingPiece = null;
+        draggingAnchor = null;
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        if (draggingPiece != null) {
+            //piece is no longer on the board so move it back to bullpen
+            gameManager.performNewMove(new ToBullpenMove(draggingPiece.getPiece()));
+            draggingPiece = null;
+            draggingAnchor = null;
+        }
+
+        // clear the view of partial drawings once mouse exits region
+        level.setActive(null);
+
+        bullpenView.repaint();
+
+        boardView.redraw();     // fix board as well
+        boardView.repaint();
     }
 
     public Rectangle computeActiveRect(Point pt, Piece selected) {

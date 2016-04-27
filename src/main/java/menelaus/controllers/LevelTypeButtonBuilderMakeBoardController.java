@@ -16,7 +16,6 @@ public class LevelTypeButtonBuilderMakeBoardController implements ActionListener
 		this.type = type;
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		handleClick();
 	}
