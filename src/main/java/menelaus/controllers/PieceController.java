@@ -8,6 +8,7 @@ import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
 import menelaus.model.move.AroundBoardMove;
 import menelaus.model.move.ToBoardMove;
+import menelaus.model.move.ToBullpenMove;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.game.LevelPlayScreen;
@@ -30,7 +31,6 @@ public class PieceController extends MouseAdapter {
 
     PlacedPiece draggingPiece;
     Point draggingAnchor;
-    Point dragStart;
 
     // while mouse controller is in play, remember rotation (hey, just for fun).
     int rotation = 0;
@@ -64,7 +64,6 @@ public class PieceController extends MouseAdapter {
             Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
             PlacedPiece exist = new PlacedPiece(found, computeActiveRect(new Point(me.getX(), me.getY()), found));
             if (exist != null) {
-                dragStart = new Point(gridX, gridY);
                 draggingPiece = exist;
             }
             return;
@@ -107,6 +106,7 @@ public class PieceController extends MouseAdapter {
         int gridX = me.getX() / boardView.calculateGridUnitSize();
         int gridY = me.getY() / boardView.calculateGridUnitSize();
 
+
         gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
         boardView.redraw();
         boardView.repaint();
@@ -124,9 +124,8 @@ public class PieceController extends MouseAdapter {
     @Override
     public void mouseExited(MouseEvent me) {
         if (draggingPiece != null) {
-
-            // piece is no longer on the board, so remove it!
-            level.getBoard().getPieces().remove(draggingPiece);
+            //piece is no longer on the board so move it back to bullpen
+            gameManager.performNewMove(new ToBullpenMove(draggingPiece.getPiece()));
             draggingPiece = null;
             draggingAnchor = null;
         }
