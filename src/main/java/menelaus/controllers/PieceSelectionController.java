@@ -56,8 +56,7 @@ public class PieceSelectionController extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent e) {
         if (level.getActive() != null){
-            gameManager.performNewMove(new ToBullpenMove(level.getActive().getPiece()));
+            gameManager.performNewMove(new ToBullpenMove(level.getActive()));
         }
-        System.out.println("released on bullpen");
     }
 }

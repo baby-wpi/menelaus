@@ -128,9 +128,9 @@ public class BoardView extends JPanel {
         }
 
         // draw active piece.
-        PlacedPiece active = level.getActive();
+        Piece active = level.getActive();
         if (active != null) {
-            PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
+            PieceDrawer.drawPieceToGrid(g, active, calculateGridUnitSize());
         }
         
         if(this.hasSelection) {
@@ -253,7 +253,6 @@ public class BoardView extends JPanel {
     }
 
     public Piece findPiece(int x, int y) {
-        // TODO: 4/22/16 do some mathemagic to solve this
         int gridX = x / calculateGridUnitSize();
         int gridY = y / calculateGridUnitSize();
 
@@ -279,33 +278,7 @@ public class BoardView extends JPanel {
      * mapping abstract pieces into pixel locations.
      */
     public Rectangle computeRect(int x, int y, Piece p) {
-        int[] xpoints = new int[4];
-        int[] ypoints = new int[4];
-
-        // convert coordinate sequence into (x,y) points.
-//        int idx = 0;
-//        for (Coordinate c : p) {
-//            xpoints[idx] = (int) (x + N * c.x);
-//            ypoints[idx] = (int) (y + N * c.y);
-//            idx++;
-//        }
-
-
         return new Rectangle(x, y, x + calculateGridUnitSize(), y + calculateGridUnitSize());
     }
 
-    public void setSelection(ArrayList<Point> newSel) {
-    	this.selection = newSel;
-    }
-    
-    public ArrayList<Point> getSelection() {
-    	return this.selection;
-    }
-    
-    /**
-     * Draw background and then all pieces on top of it.
-     */
-    public void redraw() {
-        // Once created, draw each, with buffer.
-    }
 }
