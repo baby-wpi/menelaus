@@ -13,6 +13,7 @@ public class PieceDrawer {
     public static final int NORMAL = 1;
     int mode = NORMAL;
     static final String TILE_COLOR = "#3399ff";
+    static final String HINT_COLOR = "#ff8133";
 
     /**
      * Draws the piece.
@@ -44,7 +45,7 @@ public class PieceDrawer {
     /**
      * Draws the piece.
      * <p/>
-     * Draw a bunch of rectangles and hope to it works.
+     * Draw a bunch of rectangles, here the piece can have a position in terms of teh actual grid units, instead of pixels.
      *
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
@@ -54,6 +55,27 @@ public class PieceDrawer {
         for (Tile t : piece.getTiles()) {
             //draw tiles
             graphics.setColor(Color.decode(TILE_COLOR));
+            graphics.fillRect(
+                    (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
+                    (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
+                    tileSize,
+                    tileSize);
+        }
+    }
+
+    /**
+     * Draws the hint.
+     * <p/>
+     * Draw a bunch of rectangles, here the piece can have a position in terms of teh actual grid units, instead of pixels.
+     *
+     * @param graphics The graphics object we're drawing to.
+     * @param piece    The piece we want drawn
+     */
+    public static void drawHintToGrid(Graphics graphics, Piece piece, int tileSize) {
+
+        for (Tile t : piece.getTiles()) {
+            //draw tiles
+            graphics.setColor(Color.decode(HINT_COLOR));
             graphics.fillRect(
                     (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
                     (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
