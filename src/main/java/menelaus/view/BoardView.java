@@ -4,12 +4,18 @@ import menelaus.model.Level;
 import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
+import menelaus.model.board.BoardTileInfo;
+import menelaus.model.board.ColoredSetItem;
+import menelaus.model.board.HintPiece;
 import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
 import menelaus.model.board.Tile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 /**
  * Here is where the pieces are to be played (in 700x700 size).
@@ -17,22 +23,24 @@ import java.awt.*;
  * @author Obatola Seward-Evans
  */
 public class BoardView extends JPanel {
-    /**
-     * height of a grid square
-     */
+    
+	/** height of a grid square. */    
     int gridSquareHeight = 0;
-    /**
-     * width of a grid square
-     */
+    
+    /** width of a grid square. */    
     int gridSquareWidth = 0;
-    /**
-     * size of the board
-     */
+
+    /** size of the board. */
     int drawingSize = 0;
-    /**
-     * width/height of grid by grid squares
-     */
+    
+     /** width/height of grid by grid squares. */
     int subdivisions = 0;
+    
+    /** Board tile info map for release level. */
+    Hashtable<Point, BoardTileInfo> boardTileInfoMap;
+    
+    /** Board tile info for each point. */
+    BoardTileInfo boardTileInfo;
 
     /**
      * Core board.
@@ -102,10 +110,21 @@ public class BoardView extends JPanel {
             PieceDrawer.drawPieceToGrid(g, active.getPiece(), calculateGridUnitSize());
         }
 
-        // Draw grid on board.
         drawGrid(g);
         drawUnavailableTiles(g);
+        drawHints(g);
         drawReleaseColorSets(g);
+    }
+    
+    /**
+     * Draw hint piece on board.
+     * @author Obatola Seward-Evans
+     * @param g
+     */
+    private void drawHints(Graphics g) {
+    	for (HintPiece hintPiece : board.getHints()) {
+			PieceDrawer.drawPiece(g, hintPiece, calculateGridUnitSize());
+		}
     }
 
     private void initDemensions() {
@@ -144,10 +163,20 @@ public class BoardView extends JPanel {
      * @param g
      */
     public void drawReleaseColorSets(Graphics g) {
-        // TODO: get tile info
+        // get tile info.
+    	boardTileInfoMap = board.getTileInfo();
 
-
-        // TODO: for each tile where there is a number
+    	// iterate through hashmap of point, boardTileInfo
+    	for (Point point : boardTileInfoMap.keySet()) {
+    		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
+    		String number = tileInfo.getNumber() + "";
+    		
+    		int x = point.getX() + gridSquareHeight/2;
+    		int y = point.getY() + gridSquareWidth/2;
+    		
+    		g.setColor(tileInfo.getJavaColor());
+    		g.drawString(number, x, y);
+		}	
         // TODO: draw a colored j label on that spot
     }
 
@@ -155,6 +184,7 @@ public class BoardView extends JPanel {
      * Draws all unavailable tiles on the board.
      *
      * @param g
+     * @author Obatola Seward-Evans
      */
     public void drawUnavailableTiles(Graphics g) {
 
@@ -201,7 +231,7 @@ public class BoardView extends JPanel {
     }
 
     /**
-     * Helper method to return polygon for tangram piece anchored at (x,y).
+     * Helper method to return polygon for KabaSuji piece anchored at (x,y).
      * <p/>
      * Appropriate that this method be in View since it is responsible for
      * mapping abstract pieces into pixel locations.
