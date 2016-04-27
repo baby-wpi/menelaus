@@ -7,7 +7,11 @@ import menelaus.model.BuilderManager;
 import menelaus.model.Level;
 import menelaus.model.basic.Point;
 import menelaus.model.board.BoardTileInfo;
-
+/**
+ * 
+ * @author sanjay
+ *
+ */
 public class SelectSquareMove extends BuilderMove {
 
 	Point selectedPoint;

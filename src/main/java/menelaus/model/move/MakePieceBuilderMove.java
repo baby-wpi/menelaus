@@ -10,9 +10,15 @@ import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
 
+/**
+ * 
+ * @author sanjay
+ *
+ */
 public class MakePieceBuilderMove extends BuilderMove {
 
 	Piece pieceToPlace = null;
+	Piece pieceToPlaceInBullpen = null;
 	ArrayList<Point> allSelected;
 	
 	public MakePieceBuilderMove(BuilderManager manager) {
@@ -65,14 +71,16 @@ public class MakePieceBuilderMove extends BuilderMove {
 		if(pieceToPlace == null) {
 			if(!valid(level)) return false;
 			pieceToPlace = new Piece(allSelected.get(0), new Coordinate(0.5f, 0.5f));
+			pieceToPlaceInBullpen = new Piece(allSelected.get(0), new Coordinate(0.5f, 0.5f));
 			for(int i = 1; i < allSelected.size(); i++) {
 				pieceToPlace.addTile(new Tile(allSelected.get(i).subtract(allSelected.get(0))));
+				pieceToPlaceInBullpen.addTile(new Tile(allSelected.get(i).subtract(allSelected.get(0))));
 			}
 		}
 		else if (!redoValid(level)) return false;
 		try {
 			level.getBoard().placePiece(pieceToPlace);
-			level.getBullpen().addPiece(pieceToPlace);
+			level.getBullpen().addPiece(pieceToPlaceInBullpen);
 			manager.clearSelectedPoints();
 		} catch (InvalidPiecePlacementException e) {
 			System.err.println("MakePieceBuilderMove:: Making a piece failed");
@@ -86,7 +94,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 	@Override
 	public boolean undo(Level level) {
 		level.getBoard().removePiece(pieceToPlace);
-		level.getBullpen().removePiece(pieceToPlace);
+		level.getBullpen().removePiece(pieceToPlaceInBullpen);
 		manager.setSelectedPoints(allSelected);
 		return true;
 	}
