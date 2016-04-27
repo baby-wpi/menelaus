@@ -7,6 +7,7 @@ import menelaus.controllers.RestartController;
 import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.events.GameEndListener;
 import menelaus.model.events.GameEndReason;
 import menelaus.model.events.GameTickListener;
@@ -18,6 +19,7 @@ import menelaus.view.KabasujiPanel;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
