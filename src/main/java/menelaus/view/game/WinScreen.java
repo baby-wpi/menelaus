@@ -45,6 +45,7 @@ public class WinScreen extends KabasujiPanel  {
 		this.stars = starsParams;
 		this.reason = reason;
 		contentPane = this;
+		starCount = stars.getStarsCount();
 		
 		Level restartLevel = null;
 		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
@@ -53,10 +54,12 @@ public class WinScreen extends KabasujiPanel  {
 			}
 		}
 		
-		if ( stars.getStarsCount() > 0 ) {
-			congratsLabel = "Congratulations!!!\n";
-		} else {
+		if ( starCount < 1 ) {
 			congratsLabel = "You Lose!\n";
+		} else if (starCount == 1) {
+			congratsLabel = "Almost there!\n";
+		} else {
+			congratsLabel = "Congratulations!!!\n";
 		}
 		
 		// Create the string in which the lblScore presents.
