@@ -30,7 +30,7 @@ public class AroundBoardMove extends Move {
 	 */
 	@Override
 	public boolean doMove(Level level) {
-		if (!valid(level)) {
+		if (!valid(level) || piece.getPosition().equals(newLocation)) {
 			return false;
 		}
 		
