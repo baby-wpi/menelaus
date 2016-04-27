@@ -40,8 +40,6 @@ public class GameWindowFrame extends JFrame {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
 			savedGamesUtil = new SavedGamesUtil(new File(SAVED_GAMES_NAME));
 			
-			
-			
 			contentPane = new HomeScreen();
 //			Thread.sleep(2000);
 			// TODO: change back
