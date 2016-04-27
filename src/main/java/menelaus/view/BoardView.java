@@ -270,15 +270,9 @@ public class BoardView extends JPanel {
     	int gridY = y / calculateGridUnitSize();
     	return new Point(gridX, gridY);
     }
-    
-    /**
-     * Helper method to return polygon for KabaSuji piece anchored at (x,y).
-     * <p/>
-     * Appropriate that this method be in View since it is responsible for
-     * mapping abstract pieces into pixel locations.
-     */
-    public Rectangle computeRect(int x, int y, Piece p) {
-        return new Rectangle(x, y, x + calculateGridUnitSize(), y + calculateGridUnitSize());
+
+    public void setSelection(ArrayList<Point> newSel) {
+        this.selection = newSel;
     }
 
 }
