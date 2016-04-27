@@ -73,6 +73,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 		try {
 			level.getBoard().placePiece(pieceToPlace);
 			level.getBullpen().addPiece(pieceToPlace);
+			manager.clearSelectedPoints();
 		} catch (InvalidPiecePlacementException e) {
 			System.err.println("MakePieceBuilderMove:: Making a piece failed");
 			e.printStackTrace();
@@ -86,6 +87,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 	public boolean undo(Level level) {
 		level.getBoard().removePiece(pieceToPlace);
 		level.getBullpen().removePiece(pieceToPlace);
+		manager.setSelectedPoints(allSelected);
 		return true;
 	}
 

@@ -142,6 +142,17 @@ public class BuilderManager {
 		return this.selectedPoints;
 	}
 	
+	public void clearSelectedPoints() {
+		this.selectedPoints.clear();
+	}
+	
+	public void setSelectedPoints(ArrayList<Point> backup) {
+		clearSelectedPoints();
+		for(int i = 0; i < backup.size(); i++) {
+			this.selectedPoints.add(new Point(backup.get(i).getX(), backup.get(i).getY()));
+		}
+	}
+	
 	public boolean saveLevel() {
 		///this.currentProject.
 		LevelsPackage pack = new LevelsPackage();
