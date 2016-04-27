@@ -3,19 +3,11 @@ package menelaus.view;
 import menelaus.model.Level;
 import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
-import menelaus.model.board.Board;
-import menelaus.model.board.BoardTileInfo;
-import menelaus.model.board.ColoredSetItem;
-import menelaus.model.board.HintPiece;
-import menelaus.model.board.Piece;
-import menelaus.model.board.PlacedPiece;
-import menelaus.model.board.Tile;
+import menelaus.model.board.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 /**
  * Here is where the pieces are to be played (in 700x700 size).
@@ -97,7 +89,7 @@ public class BoardView extends JPanel {
         initDemensions();
 
         super.paintComponent(g);
-
+        drawHints(g);
 
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
@@ -112,7 +104,6 @@ public class BoardView extends JPanel {
 
         drawGrid(g);
         drawUnavailableTiles(g);
-        drawHints(g);
         drawReleaseColorSets(g);
     }
     
@@ -123,7 +114,7 @@ public class BoardView extends JPanel {
      */
     private void drawHints(Graphics g) {
     	for (HintPiece hintPiece : board.getHints()) {
-			PieceDrawer.drawPiece(g, hintPiece, calculateGridUnitSize());
+			PieceDrawer.drawHintToGrid(g, hintPiece, calculateGridUnitSize());
 		}
     }
 
@@ -164,19 +155,19 @@ public class BoardView extends JPanel {
      */
     public void drawReleaseColorSets(Graphics g) {
         // get tile info.
-    	boardTileInfoMap = board.getTileInfo();
-
-    	// iterate through hashmap of point, boardTileInfo
-    	for (Point point : boardTileInfoMap.keySet()) {
-    		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
-    		String number = tileInfo.getNumber() + "";
-    		
-    		int x = point.getX() + gridSquareHeight/2;
-    		int y = point.getY() + gridSquareWidth/2;
-    		
-    		g.setColor(tileInfo.getJavaColor());
-    		g.drawString(number, x, y);
-		}	
+//    	boardTileInfoMap = board.getTileInfo();
+//
+//    	// iterate through hashmap of point, boardTileInfo
+//    	for (Point point : boardTileInfoMap.keySet()) {
+//    		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
+//    		String number = tileInfo.getNumber() + "";
+//
+//    		int x = point.getX() + gridSquareHeight/2;
+//    		int y = point.getY() + gridSquareWidth/2;
+//
+//    		g.setColor(tileInfo.getJavaColor());
+//    		g.drawString(number, x, y);
+//		}
         // TODO: draw a colored j label on that spot
     }
 
