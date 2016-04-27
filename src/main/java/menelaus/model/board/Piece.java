@@ -12,6 +12,8 @@ import java.util.Iterator;
  * @author vouldjeff
  */
 public class Piece implements Serializable, Iterable<Coordinate>{
+	private static final long serialVersionUID = 1L;
+	
 	private Point position;
 	private ArrayList<Tile> tiles;
 	private boolean selected;
