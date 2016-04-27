@@ -1,6 +1,7 @@
 package menelaus.model.move;
 
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
@@ -38,6 +39,6 @@ public class ToBoardMove extends Move {
 
 	@Override
 	public boolean valid(Level level) {
-		return level.getBoard().isPointWithinBoundary(location) && level.getBullpen().getPieces().contains(piece);
+		return level.getType() != LevelType.LIGHTNING && level.getBoard().isPointWithinBoundary(location) && level.getBullpen().getPieces().contains(piece);
 	}
 }

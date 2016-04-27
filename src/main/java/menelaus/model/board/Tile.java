@@ -10,6 +10,8 @@ import menelaus.model.basic.Point;
  *
  */
 public class Tile implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	Point relativePosition;
 
 	public Point getRelativePosition() {

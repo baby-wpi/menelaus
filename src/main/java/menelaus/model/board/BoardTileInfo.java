@@ -8,10 +8,8 @@ import java.io.Serializable;
  *
  */
 public class BoardTileInfo implements Serializable {
-	/**
-	 * Serial to keep eclipse happy.
-	 */
-	private static final long serialVersionUID = -729717217389236987L;
+	private static final long serialVersionUID = 1L;
+	
 	ColoredSetItem coloredSetItem;
 	boolean isTileChopped;
 	Piece piecePlaced;

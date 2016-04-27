@@ -8,14 +8,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * 
+ * The bullpen holds a collection of pieces that can be played and placed on the board.
  * @author vouldjeff
  *
  */
 public class Bullpen implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    ArrayList<Piece> pieces;
+    private ArrayList<Piece> pieces;
 
     public ArrayList<Piece> getPieces() {
         return pieces;
@@ -40,11 +40,7 @@ public class Bullpen implements Serializable {
 
     public Piece findPiece(int x, int y) {
         Point loc = new Point(x, y);
-        for (Piece p : pieces) {
-            if (loc.equals(p.getPosition()))
-                return p;
-        }
-        return null;
+        return findPiece(loc);
     }
 
     public Piece findPiece(Point point) {

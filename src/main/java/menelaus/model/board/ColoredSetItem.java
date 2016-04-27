@@ -10,8 +10,10 @@ import menelaus.model.basic.Color;
  *
  */
 public class ColoredSetItem implements Serializable {
-	Color color;
-	int number;
+	private static final long serialVersionUID = 1L;
+	
+	private Color color;
+	private int number;
 	
 	public Color getColor() {
 		return color;

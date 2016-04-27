@@ -30,18 +30,18 @@ public class BoardTest {
 
 	@Test
 	public void testPlacePieceProperly() {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
 		piece2.addTile(new Tile(1, 2));
 		
-		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
+		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		try {
@@ -62,8 +62,51 @@ public class BoardTest {
 	}
 	
 	@Test
+	public void testCoverWithPiece() {
+		assertEquals(false, board.isFull());
+		
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(0, 1));
+		piece1.addTile(new Tile(1, 0));
+		piece1.addTile(new Tile(1, 1));
+		
+		Piece piece2 = new Piece(new Point(1, 0));
+		piece2.addTile(new Tile(0, 0));
+		piece2.addTile(new Tile(0, 1));
+		piece2.addTile(new Tile(1, 0));
+		piece2.addTile(new Tile(1, 1));
+		
+		Piece piece3 = new Piece(new Point(0, 1));
+		piece3.addTile(new Tile(0, 0));
+		piece3.addTile(new Tile(0, 1));
+		piece3.addTile(new Tile(1, 0));
+		piece3.addTile(new Tile(1, 1));
+		
+		Piece piece4 = new Piece(new Point(1, 1));
+		piece4.addTile(new Tile(0, 0));
+		piece4.addTile(new Tile(0, 1));
+		piece4.addTile(new Tile(1, 0));
+		piece4.addTile(new Tile(1, 1));
+		
+		try {
+			board.coverWithPiece(piece1);
+			board.coverWithPiece(piece2);
+			board.coverWithPiece(piece3);
+			board.coverWithPiece(piece4);
+		} catch (InvalidPiecePlacementException e) {
+			fail("Should not get an Exception here");
+		}
+		
+		assertEquals(piece1, board.getPieces().get(0));
+		assertEquals(piece2, board.getPieces().get(1));
+		
+		assertEquals(true, board.isFull());
+	}
+	
+	@Test
 	public void testIsFull() {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -76,7 +119,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -95,7 +138,7 @@ public class BoardTest {
 	
 	@Test
 	public void testIsFullWithColoredSetItem() {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -108,7 +151,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -128,7 +171,7 @@ public class BoardTest {
 	
 	@Test
 	public void testIsFullWithCoppedOut() {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -141,7 +184,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -163,7 +206,7 @@ public class BoardTest {
 	public void testGetNumberOfEmptyTiles() {
 		assertEquals(board.getHeight() * board.getWidth(), board.getNumberOfEmptyTiles());
 		
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(0, 2));
@@ -176,7 +219,7 @@ public class BoardTest {
 		
 		assertEquals(false, board.isFull());
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(1, 0));
@@ -195,7 +238,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOutside() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -207,7 +250,7 @@ public class BoardTest {
 	
 	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOnChoppedTile() throws InvalidPiecePlacementException {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -219,7 +262,7 @@ public class BoardTest {
 
 	@Test
 	public void testRemovePiece() {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));

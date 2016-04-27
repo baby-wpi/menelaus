@@ -1,6 +1,5 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 
 /**
@@ -9,9 +8,10 @@ import menelaus.model.basic.Point;
  *
  */
 public class HintPiece extends Piece {
+	private static final long serialVersionUID = 1L;
 
 	public HintPiece(Point position) {
-		super(position, new Coordinate(0.5f, 0.5f));
+		super(position);
 	}
 
 }
