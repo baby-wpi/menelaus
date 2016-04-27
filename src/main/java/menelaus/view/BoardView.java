@@ -71,7 +71,7 @@ public class BoardView extends JPanel {
     /**
      * Only applicable in builder, which tiles are selected.
      */
-    ArrayList<Point> selection = new ArrayList<>();
+    ArrayList<Point> selection = new ArrayList<Point>();
     
     /**
      * Off-screen image for drawing (and Graphics object).

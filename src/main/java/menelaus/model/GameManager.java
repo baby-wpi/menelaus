@@ -59,7 +59,7 @@ public class GameManager {
 				timePassed++;
 				levelStars = StarsUtil.getStars(_this);
 				
-				if (level.timeLimit > 0 && timePassed >= level.timeLimit) {
+				if (level.getTimeLimit() > 0 && timePassed >= level.getTimeLimit()) {
 					stopGame();
 					notifyEndListeners(GameEndReason.NO_TIME);
 				} else {
@@ -117,7 +117,7 @@ public class GameManager {
 			return;
 		}
 		
-		if (level.moveLimit > 0 && movesMade >= level.moveLimit) {
+		if (level.getMoveLimit() > 0 && movesMade >= level.getMoveLimit()) {
 			stopGame();
 			notifyEndListeners(GameEndReason.NO_MOVES);
 		}

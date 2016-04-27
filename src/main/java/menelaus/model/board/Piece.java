@@ -8,15 +8,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.junit.validator.PublicClassValidator;
+
 /**
  * @author vouldjeff
  */
 public class Piece implements Serializable, Iterable<Coordinate>{
-	Point position;
-	ArrayList<Tile> tiles;
-	boolean selected;
-	Coordinate center;
-    Rectangle rect;
+	private Point position;
+	private ArrayList<Tile> tiles;
+	private boolean selected;
+	private Coordinate center;
+    private Rectangle rect;
 	
 	public Point getPosition() {
 		return position;
@@ -86,6 +88,10 @@ public class Piece implements Serializable, Iterable<Coordinate>{
 		this.tiles = new ArrayList<Tile>();
         this.center = center;
 		tiles.add(new Tile(new Point(0,0)));
+	}
+	
+	public Piece(Point position) {
+		this(position, new Coordinate(0.5f, 0.5f));
 	}
 
     public int getHeight() {

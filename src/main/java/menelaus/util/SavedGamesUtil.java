@@ -12,6 +12,11 @@ import menelaus.model.LevelStars;
 import menelaus.model.LevelsPackage;
 import menelaus.model.SavedGames;
 
+/**
+ * Saves and loads all game progress to/from disk.
+ * @author vouldjeff
+ *
+ */
 public class SavedGamesUtil {
     private SavedGames savedGames;
     private File file;

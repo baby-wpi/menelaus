@@ -17,7 +17,6 @@ public class NameTextBuilderMakeBoardController implements ActionListener{
 		this.nameTextView = nameTextView;
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		handleChangedText(nameTextView.getText());
