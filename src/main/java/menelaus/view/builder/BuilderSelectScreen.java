@@ -34,6 +34,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	void initializeManager() {
 		manager = new BuilderManager();
 		//manager.getLevel().getBoard().chopTileOut(new Point(3, 0));
+		manager.selectPoint(new Point(3, 0));
 	}
 	
 	void initializeControllers() {
