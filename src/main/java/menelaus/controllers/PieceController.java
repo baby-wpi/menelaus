@@ -6,6 +6,7 @@ import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
+import menelaus.model.move.AroundBoardMove;
 import menelaus.model.move.ToBoardMove;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
@@ -29,6 +30,7 @@ public class PieceController extends MouseAdapter {
 
     PlacedPiece draggingPiece;
     Point draggingAnchor;
+    Point dragStart;
 
     // while mouse controller is in play, remember rotation (hey, just for fun).
     int rotation = 0;
@@ -44,6 +46,70 @@ public class PieceController extends MouseAdapter {
     public void mouseEntered(MouseEvent me) {
         // clear rotation state back to normal
         rotation = 0;
+    }
+
+    /**
+     * Determine which piece was selected in the PiecesView.
+     */
+    @Override
+    public void mousePressed(MouseEvent me) {
+        PlacedPiece pp = level.getActive();
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+
+        if (pp == null) {
+            draggingAnchor = new Point(me.getX(), me.getY());
+
+            // perhaps we are pressing inside one of the existing pieces?
+            Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
+            PlacedPiece exist = new PlacedPiece(found, computeActiveRect(new Point(me.getX(), me.getY()), found));
+            if (exist != null) {
+                dragStart = new Point(gridX, gridY);
+                draggingPiece = exist;
+            }
+            return;
+        }
+
+        level.setActive(null);    // no longer being dragged around
+        level.setSelected(null);
+
+        gameManager.performNewMove(new ToBoardMove(pp.getPiece(), new Point(gridX, gridY)));
+
+        boardView.redraw();   // has changed state
+
+        boardView.repaint();
+        bullpenView.repaint();   // has also changed state since piece no longer selected.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me) {
+        Piece selected = level.getSelected();
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+        if (selected == null) {
+            return;
+        }
+
+
+        Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
+        PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
+        pp.getPiece().setPosition(new Point(gridX, gridY));
+        level.setActive(pp);
+        boardView.repaint();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+        // if nothing being dragged, leave
+        if (draggingPiece == null) {
+            return;
+        }
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+
+        gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
+        boardView.redraw();
+        boardView.repaint();
     }
 
     /**
@@ -72,68 +138,6 @@ public class PieceController extends MouseAdapter {
 
         boardView.redraw();     // fix board as well
         boardView.repaint();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent me) {
-        Piece selected = level.getSelected();
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-        if (selected == null) { return; }
-
-
-        Rectangle r = computeActiveRect(new Point(me.getX(), me.getY()), level.getSelected());
-        PlacedPiece pp = new PlacedPiece(level.getSelected(), r);
-        pp.getPiece().setPosition(new Point(gridX, gridY));
-        level.setActive(pp);
-        boardView.repaint();
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent me) {
-        // if nothing being dragged, leave
-        if (draggingPiece == null) {
-            return;
-        }
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-
-//        gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
-        draggingPiece.getPiece().setPosition(new Point(gridX, gridY));
-        boardView.redraw();
-        boardView.repaint();
-    }
-
-    /**
-     * Determine which piece was selected in the PiecesView.
-     */
-    @Override
-    public void mousePressed(MouseEvent me) {
-        PlacedPiece pp = level.getActive();
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-
-        if (pp == null) {
-            draggingAnchor = new Point(me.getX(), me.getY());
-
-            // perhaps we are pressing inside one of the existing pieces?
-            Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
-            PlacedPiece exist = new PlacedPiece(found, computeActiveRect(new Point(me.getX(), me.getY()), found));
-            if (exist != null) {
-                draggingPiece = exist;
-            }
-            return;
-        }
-
-        level.setActive(null);    // no longer being dragged around
-        level.setSelected(null);
-
-        gameManager.performNewMove(new ToBoardMove(pp.getPiece(), new Point(gridX, gridY)));
-
-        boardView.redraw();   // has changed state
-
-        boardView.repaint();
-        bullpenView.repaint();   // has also changed state since piece no longer selected.
     }
 
     public Rectangle computeActiveRect(Point pt, Piece selected) {
