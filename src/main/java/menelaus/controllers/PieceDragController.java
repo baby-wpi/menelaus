@@ -106,7 +106,7 @@ public class PieceDragController extends MouseAdapter {
         }
 
         // no longer in the board since we are moving it around...
-        level.getBullpen().removePiece(p);
+//        level.getBullpen().removePiece(p);
         level.setSelected(p);
         originalx = p.getPosition().getX();
         originaly = p.getPosition().getY();

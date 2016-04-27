@@ -1,11 +1,12 @@
 package menelaus.controllers;
 
+import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
-import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.PlacedPiece;
+import menelaus.model.move.ToBoardMove;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.game.LevelPlayScreen;
@@ -23,18 +24,20 @@ import java.util.Iterator;
 public class PieceController extends MouseAdapter {
     BoardView boardView;
     BullpenView bullpenView;
+    GameManager gameManager;
     Level level;
 
-    Piece draggingPiece;
+    PlacedPiece draggingPiece;
     Point draggingAnchor;
 
     // while mouse controller is in play, remember rotation (hey, just for fun).
     int rotation = 0;
 
-    public PieceController(LevelPlayScreen app, Level l) {
+    public PieceController(LevelPlayScreen app, GameManager gameManager) {
         this.boardView = app.getBoardView();
         this.bullpenView = app.getBullpenView();
-        this.level = l;
+        this.gameManager = gameManager;
+        this.level = gameManager.getLevel();
     }
 
     @Override
@@ -84,6 +87,53 @@ public class PieceController extends MouseAdapter {
         pp.getPiece().setPosition(new Point(gridX, gridY));
         level.setActive(pp);
         boardView.repaint();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+        // if nothing being dragged, leave
+        if (draggingPiece == null) {
+            return;
+        }
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+
+//        gameManager.performNewMove(new AroundBoardMove(draggingPiece.getPiece(), new Point(gridX, gridY)));
+        draggingPiece.getPiece().setPosition(new Point(gridX, gridY));
+        boardView.redraw();
+        boardView.repaint();
+    }
+
+    /**
+     * Determine which piece was selected in the PiecesView.
+     */
+    @Override
+    public void mousePressed(MouseEvent me) {
+        PlacedPiece pp = level.getActive();
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+
+        if (pp == null) {
+            draggingAnchor = new Point(me.getX(), me.getY());
+
+            // perhaps we are pressing inside one of the existing pieces?
+            Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
+            PlacedPiece exist = new PlacedPiece(found, computeActiveRect(new Point(me.getX(), me.getY()), found));
+            if (exist != null) {
+                draggingPiece = exist;
+            }
+            return;
+        }
+
+        level.setActive(null);    // no longer being dragged around
+        level.setSelected(null);
+
+        gameManager.performNewMove(new ToBoardMove(pp.getPiece(), new Point(gridX, gridY)));
+
+        boardView.redraw();   // has changed state
+
+        boardView.repaint();
+        bullpenView.repaint();   // has also changed state since piece no longer selected.
     }
 
     public Rectangle computeActiveRect(Point pt, Piece selected) {
@@ -138,51 +188,4 @@ public class PieceController extends MouseAdapter {
                 Math.abs(ypoints[0] - ypoints[3]));
     }
 
-    @Override
-    public void mouseDragged(MouseEvent me) {
-        // if nothing being dragged, leave
-        if (draggingPiece == null) {
-            return;
-        }
-
-        int diffX = me.getPoint().x - draggingAnchor.getX();
-        int diffY = me.getPoint().y - draggingAnchor.getY();
-        draggingAnchor = new Point(me.getX(), me.getY());
-
-        draggingPiece.getRect().translate(diffX, diffY);
-        boardView.redraw();
-        boardView.repaint();
-    }
-
-    /**
-     * Determine which piece was selected in the PiecesView.
-     */
-    public void mousePressed(MouseEvent me) {
-        PlacedPiece pp = level.getActive();
-        if (pp == null) {
-            draggingAnchor = new Point(me.getX(), me.getY());
-
-            // perhaps we are pressing inside one of the existing pieces? Take LAST piece that
-            // intersects, since that will ensure we grab topmost one.
-            Piece exist = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
-            if (exist != null) {
-                draggingPiece = exist;
-            }
-            return;
-        }
-
-        level.setActive(null);    // no longer being dragged around
-        level.setSelected(null);
-
-        try {
-            level.getBoard().placePiece(pp.getPiece());
-        } catch (InvalidPiecePlacementException e) {
-            e.printStackTrace();
-        }
-
-        boardView.redraw();   // has changed state
-
-        boardView.repaint();
-        bullpenView.repaint();   // has also changed state since piece no longer selected.
-    }
 }
