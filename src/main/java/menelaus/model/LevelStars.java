@@ -1,5 +1,6 @@
 package menelaus.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -7,7 +8,9 @@ import java.util.UUID;
  * @author vouldjeff
  *
  */
-public class LevelStars {
+public class LevelStars implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	int starsCount;
 	UUID levelId;
 	

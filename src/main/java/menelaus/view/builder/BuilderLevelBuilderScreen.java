@@ -1,6 +1,9 @@
 package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderMainMenuController;
+import menelaus.model.BuilderManager;
+import menelaus.view.BoardView;
+import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -11,10 +14,19 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	private JTextField txtMaxMoves;
 	private JTextField txtInsertName;
 
+	BuilderManager manager;
+	BoardView panelBoardView;
+	//BullpenView panelAllBullpenView;
+	BullpenView panelBullpenView;
+	//JPanel panelBoardView;
+	JPanel panelAllBullpenView;
+	//JPanel panelBullpenView;
+	
 	/**
 	 * Create the panel.
 	 */
-	public BuilderLevelBuilderScreen() {
+	public BuilderLevelBuilderScreen(BuilderManager manager) {
+		this.manager = manager;
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ButtonBuilderMainMenuController());
@@ -38,52 +50,56 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.setColumns(10);
 		
 		JLabel lblMaxMoves = new JLabel("Max Moves:");
+		panelBoardView = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
+		//panelBoardView = new JPanel();
 		
-		JScrollPane scrollPane = new JScrollPane();
+		//panelAllBullpenView = new BullpenView(manager.getLevel().getBullpen());
+		panelAllBullpenView = new JPanel();
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		panelBullpenView = new BullpenView(manager.getLevel().getBullpen());
+		//panelBullpenView = new JPanel();
 		
-		JLabel lblBoardGoesHere = new JLabel("Board Goes Here");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(279)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnExit)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnReset))
-						.addComponent(txtInsertName))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(28)
-							.addComponent(lblMaxMoves)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtMaxMoves, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblBoardGoesHere)
+							.addGap(279)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnExit)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnReset))
+								.addComponent(txtInsertName))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(28)
+									.addComponent(lblMaxMoves)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtMaxMoves, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(18)
 									.addComponent(btnComplete)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnUndo)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnMakePiece)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnMakeHint)))
-					.addContainerGap(124, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(15)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(575, Short.MAX_VALUE))
+									.addComponent(btnMakePiece)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnMakeHint))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panelAllBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(panelBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(38, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(14)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -97,24 +113,18 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 						.addComponent(btnUndo)
 						.addComponent(btnMakePiece)
 						.addComponent(btnMakeHint))
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(12)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(scrollPane_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-								.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE))
-							.addGap(16))
+							.addComponent(panelBoardView, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(319)
-							.addComponent(lblBoardGoesHere)
+							.addComponent(panelBullpenView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panelAllBullpenView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())))
 		);
-		
-		JLabel lblBullpen = new JLabel("BullPen");
-		scrollPane_1.setColumnHeaderView(lblBullpen);
-		
-		JLabel lblAllPieces = new JLabel("All Pieces");
-		scrollPane.setColumnHeaderView(lblAllPieces);
 		setLayout(groupLayout);
 
 	}

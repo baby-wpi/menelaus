@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import menelaus.model.BuilderManager;
+import menelaus.view.BoardView;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -20,6 +24,10 @@ import javax.swing.SpinnerNumberModel;
 
 public class MainView extends JFrame {
 	private JTextField txtLevelName;
+	
+	BuilderManager manager;
+	
+	BoardView panelBoardView;
 
 	/**
 	 * Launch the application.
@@ -28,7 +36,7 @@ public class MainView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainView frame = new MainView();
+					MainView frame = new MainView(new BuilderManager());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,12 +45,15 @@ public class MainView extends JFrame {
 		});
 	}
 
+	
 	/**
 	 * Create the frame.
 	 */
-	public MainView() {
+	public MainView(BuilderManager manager) {
+		this.manager = manager;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 799, 604);
+		setBounds(100, 100, 1200, 1000);
 		
 		JLabel lblName = new JLabel("Name: ");
 		lblName.setBounds(251, 14, 34, 14);
@@ -51,8 +62,8 @@ public class MainView extends JFrame {
 		txtLevelName.setBounds(295, 11, 131, 20);
 		txtLevelName.setColumns(10);
 		
-		JPanel panelBoardView = new JPanel();
-		panelBoardView.setBounds(363, 105, 410, 449);
+		panelBoardView = new BoardView(manager.getLevel().getBoard(), manager.getLevel());
+		panelBoardView.setBounds(363, 105, 700, 700);
 		
 		JPanel panelAllPiecesView = new JPanel();
 		panelAllPiecesView.setBounds(6, 105, 233, 449);
