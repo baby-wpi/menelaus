@@ -33,6 +33,8 @@ public class LevelSelectComponent extends JPanel {
 	/** count of all stars for this level */
 	int starCount;
 	
+	boolean playable;
+	
 	@Override
 	public Dimension getPreferredSize() {
 //		return new Dimension(80, 100);
@@ -42,9 +44,10 @@ public class LevelSelectComponent extends JPanel {
 	/**
 	 * Create the panel and mouse listener.
 	 */
-	public LevelSelectComponent(Level levelParam, LevelStars stars) {
+	public LevelSelectComponent(Level levelParam, LevelStars stars, boolean playableParam) {
 		this.level = levelParam;
 		this.stars = stars;
+		this.playable = playableParam;
 		
 		// Set star count
 		if ( stars == null ){
@@ -56,12 +59,9 @@ public class LevelSelectComponent extends JPanel {
 		addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Level nextLevel = GameWindowFrame.getInstance().getSavedGamesUtil()
-						.getNextPlayableLevelInPackage(GameWindowFrame.getInstance()
-								.getLevelsPackage());
 				
 				// decides if the level component can be clicked on or not.
-				if (starCount > 0 || level == nextLevel) {
+				if (starCount > 0 || playable) {
 					ButtonLevelSelectController controller = new ButtonLevelSelectController(level);	
 					controller.actionPerformed(null);
 				}
