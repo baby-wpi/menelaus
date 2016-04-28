@@ -30,15 +30,6 @@ public class ButtonLevelsController implements ActionListener {
 			
 		}
 		
-		for (int i = 0; i < 4; i++ ){
-			pack.addLevel(new Level(LevelType.PUZZLE, 6, 6));
-			pack.addLevel(new Level(LevelType.LIGHTNING, 6, 6));
-			pack.addLevel(new Level(LevelType.RELEASE, 6, 6));
-		}
-		
-		
-		
-		
 		GameWindowFrame.getInstance().swapPanel(new LevelSelectorScreen(pack, savedGames));
 	}
 

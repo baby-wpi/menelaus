@@ -5,6 +5,7 @@ import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.LevelsPackage;
 import menelaus.model.SavedGames;
+import menelaus.util.SavedGamesUtil;
 import menelaus.view.KabasujiPanel;
 
 import java.awt.Color;
@@ -22,13 +23,21 @@ public class LevelSelectorScreen extends KabasujiPanel {
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
+		boolean playable = true;
+		
 		// For each level
 		for (Level l : levelsPackage.getLevels()) {
-			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, savedGames.getStarsForLevel(l));
+			LevelStars stars = savedGames.getStarsForLevel(l);
+			
+			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, stars, playable);
 			btnLevelX.setBackground(Color.white);
 			btnLevelX.setBorder(raisedbevel);
 
 			this.add(btnLevelX);
+			
+			if (stars == null) {
+				playable = false;
+			}
 		}
 		
 		this.add(btnMainMenu);
