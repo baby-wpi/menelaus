@@ -188,6 +188,12 @@ public class BuilderManager {
 		}
 	}
 	
+	public void loadLastLevel() {
+		LevelsPackage pack = loadLevel();
+		if(pack.levels.size() > 1) {
+			this.currentProject = pack.levels.get(pack.levels.size()-1);
+		}
+	}
 	
 	public boolean saveLevel() {
 		///this.currentProject.

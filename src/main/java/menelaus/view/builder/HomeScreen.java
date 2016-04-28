@@ -1,6 +1,7 @@
 package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderLevelSelectController;
+import menelaus.controllers.EditButtonBuilderHomeScreenController;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -23,28 +24,37 @@ public class HomeScreen extends KabasujiPanel {
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ButtonBuilderLevelSelectController());
 		
+		JButton btnEditLevel = new JButton("Edit Last Level");
+		btnEditLevel.addActionListener(new EditButtonBuilderHomeScreenController());
 		
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGap(406)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnExit, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-						.addComponent(lblKabasujiBuilder)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnExit, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(406)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblKabasujiBuilder)
+								.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+								.addComponent(btnEditLevel, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE))))
 					.addGap(396))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(268, Short.MAX_VALUE)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(290, Short.MAX_VALUE)
 					.addComponent(lblKabasujiBuilder)
 					.addGap(24)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnEditLevel, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+					.addGap(8)
 					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-					.addGap(258))
+					.addGap(191))
 		);
 		gl_contentPane.linkSize(SwingConstants.VERTICAL, new Component[] {lblKabasujiBuilder, btnNewButton, btnExit});
 		gl_contentPane.linkSize(SwingConstants.HORIZONTAL, new Component[] {lblKabasujiBuilder, btnNewButton, btnExit});
