@@ -127,4 +127,12 @@ public class Level implements Serializable {
     public Piece getActive() {
         return active;
     }
+    
+    /**
+     * Changes the type of level. Should be removed.
+     * @param type
+     */
+    public void setType(LevelType type) {
+    	this.type = type;
+    }
 }

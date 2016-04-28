@@ -62,6 +62,13 @@ public class BuilderManager {
 	public void setLevelType(LevelType type) {
 		// TODO: you can't just set the LevelType midway because the level might behave differently based on its type.
 		// You should probably create a new Level
+		
+		/*String name = getName();
+		int width = getWidth();
+		int height = getHeight();
+		this.currentProject = new Level(type, width, height);
+		setLevelName(name);*/
+		this.currentProject.setType(type);
 	}
 	
 	
