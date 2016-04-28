@@ -5,15 +5,18 @@ import java.awt.event.ActionListener;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.LevelType;
+import menelaus.view.builder.BuilderSelectScreen;
 
 public class LevelTypeButtonBuilderMakeBoardController implements ActionListener{
 
 	BuilderManager manager;
 	LevelType type;
+	BuilderSelectScreen screen;
 	
-	public LevelTypeButtonBuilderMakeBoardController(BuilderManager manager, LevelType type) {
+	public LevelTypeButtonBuilderMakeBoardController(BuilderManager manager, LevelType type, BuilderSelectScreen screen) {
 		this.manager = manager;
 		this.type = type;
+		this.screen = screen;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

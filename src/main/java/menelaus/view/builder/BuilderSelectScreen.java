@@ -3,7 +3,10 @@ package menelaus.view.builder;
 import menelaus.controllers.BoardControllerBuilderMakeBoard;
 import menelaus.controllers.ButtonBuilderMainMenuController;
 import menelaus.controllers.ButtonBuilderStartController;
+import menelaus.controllers.HeightTextBuilderMakeBoardController;
 import menelaus.controllers.LevelTypeButtonBuilderMakeBoardController;
+import menelaus.controllers.NameTextBuilderMakeBoardController;
+import menelaus.controllers.WidthTextBuilderMakeBoardController;
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
@@ -34,19 +37,32 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	void initializeManager() {
 		manager = new BuilderManager();
 		//manager.getLevel().getBoard().chopTileOut(new Point(3, 0));
-		manager.selectPoint(new Point(3, 0));
+		//manager.selectPoint(new Point(3, 0));
 	}
 	
 	void initializeControllers() {
 		boardPanel.addMouseListener(new BoardControllerBuilderMakeBoard(manager, boardPanel));
-		btnPuzzle.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.PUZZLE));
-		btnLightning.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.LIGHTNING));
-		btnRelease.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.RELEASE));
-		
+		btnPuzzle.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.PUZZLE, this));
+		btnLightning.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.LIGHTNING, this));
+		btnRelease.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager,LevelType.RELEASE, this));
+		txtInsertName.addActionListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
+		txtWidth.addActionListener(new WidthTextBuilderMakeBoardController(this.boardPanel, this.manager, this.txtWidth));
+		txtHeight.addActionListener(new HeightTextBuilderMakeBoardController(this.boardPanel, this.manager, this.txtHeight));
+	}
+	
+	void resetViewToLevel() {
+		txtInsertName.setText(this.manager.getName());
+		txtWidth.setText(this.manager.getWidth() + "");
+		txtHeight.setText(this.manager.getHeight() + "");
+		this.repaint();
 	}
 	
 	public BuilderManager getManager() {
 		return this.manager;
+	}
+	
+	public void refreshBoardViewSource() {
+		//boardPanel = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
 	}
 	
 	/**
@@ -158,7 +174,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 		);
 		boardPanel.setLayout(gl_boardPanel);
 		setLayout(groupLayout);
-		
+		resetViewToLevel();
 		initializeControllers();
 
 	}
