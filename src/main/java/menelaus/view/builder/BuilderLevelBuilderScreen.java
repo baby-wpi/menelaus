@@ -76,10 +76,12 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public BuilderLevelBuilderScreen(BuilderManager manager) {
+	public BuilderLevelBuilderScreen(BuilderManager manager) throws Exception {
 		if (manager != null) {
 			this.manager = manager;
+			throw new Exception("cannot pass null manager into BuilderLevelBuilderScreen");
 		}
 		
 		JButton btnExit = new JButton("Exit");
