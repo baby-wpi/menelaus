@@ -73,7 +73,6 @@ public class PieceController extends MouseAdapter {
             return;
         }
 
-
         Piece pp = level.getSelected();
         pp.setPosition(new Point(gridX, gridY));
         level.setActive(pp);
