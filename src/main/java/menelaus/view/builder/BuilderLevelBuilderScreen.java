@@ -51,6 +51,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.addActionListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
 	}
 	
+	
 	void refreshComponentsByGame() {
 		switch (this.manager.getType()) {
 		case LIGHTNING:
