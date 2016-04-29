@@ -93,9 +93,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		JLabel labelLevelName = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
-		labelLevelName.setMaximumSize(new Dimension(248, 16));
-		
+		JLabel lblNewLabel = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
 		labelCountDown = new JLabel("Time passed: 0");
 
         /* BUTTONS */
@@ -126,42 +124,41 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(17)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(labelCountDown)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(btnExitButton)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnRestart))
-								.addComponent(labelLevelName, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-							.addGap(18)
-							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
-							.addGap(7))
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(725, Short.MAX_VALUE))))
+								.addContainerGap()
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+												.addComponent(btnExitButton)
+												.addGap(18)
+												.addComponent(btnRestart))
+										.addGroup(gl_contentPane.createSequentialGroup()
+												.addComponent(lblNewLabel)
+												.addGap(29)
+
+												.addComponent(labelCountDown)))
+								.addGap(16)
+								.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(16, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(34, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-							.addComponent(labelLevelName)
-							.addGap(18)
-							.addComponent(labelCountDown)
-							.addGap(18)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnRestart)
-								.addComponent(btnExitButton))
-							.addGap(18)
-							.addComponent(scrollPane)))
-					.addContainerGap())
+				gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+								.addContainerGap(34, Short.MAX_VALUE)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+												.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+														.addComponent(labelCountDown)
+														.addComponent(lblNewLabel))
+												.addPreferredGap(ComponentPlacement.UNRELATED)
+												.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+														.addComponent(btnRestart)
+														.addComponent(btnExitButton))
+												.addPreferredGap(ComponentPlacement.UNRELATED)
+												.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 623, GroupLayout.PREFERRED_SIZE)))
+								.addContainerGap())
 		);
 
 		scrollPane.setViewportView(bullpenView);

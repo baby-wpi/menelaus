@@ -21,7 +21,6 @@ public class LevelSelectorScreen extends KabasujiPanel {
 		
 		
 		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.setBounds(444, 699, 112, 29);
 		btnMainMenu.addActionListener(new ButtonMainMenuController());
 		
 		boolean playable = true;
@@ -40,7 +39,6 @@ public class LevelSelectorScreen extends KabasujiPanel {
 				playable = false;
 			}
 		}
-//		setLayout(null);
 		
 		this.add(btnMainMenu);
 	}
