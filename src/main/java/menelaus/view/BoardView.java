@@ -94,6 +94,7 @@ public class BoardView extends JPanel {
         this.level = level;
         this.hasSelection = false;
         this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBackground(Color.WHITE);
     }
     
     
