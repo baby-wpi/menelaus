@@ -40,7 +40,7 @@ public class LevelSelectorScreen extends KabasujiPanel {
 				playable = false;
 			}
 		}
-		setLayout(null);
+//		setLayout(null);
 		
 		this.add(btnMainMenu);
 	}
