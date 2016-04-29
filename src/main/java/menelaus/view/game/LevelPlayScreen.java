@@ -6,6 +6,7 @@ import menelaus.controllers.RestartController;
 import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.events.GameEndListener;
 import menelaus.model.events.GameEndReason;
 import menelaus.model.events.GameTickListener;
@@ -32,6 +33,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 	GameManager gameManager;
 	BoardView boardView;
 	BullpenView bullpenView;
+	Level level = new Level(LevelType.PUZZLE, 700, 700);
 
 	JLabel labelCountDown;
 
@@ -75,8 +77,16 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public LevelPlayScreen(Level level) {
+	public LevelPlayScreen(Level inputLevel) throws Exception {
+		
+		if (inputLevel != null) {
+			level = inputLevel;
+		} else {
+			throw new Exception("cannot pass null manager into LevelPlayScreen constructor");
+		}
+		
 		initGameManager(level);
 
 		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
