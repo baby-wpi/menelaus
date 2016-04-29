@@ -2,7 +2,6 @@ package menelaus.view.builder;
 
 import java.awt.Color;
 
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -109,7 +108,6 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		lblMaxMoves = new JLabel("Max Moves:");
 		panelBoardView = new BoardView(this.manager.getLevel().getBoard(), this.manager.getLevel(),true);
 		panelBoardView.setSelection(this.manager.getSelectedPoints());
-		panelBoardView.setBorder(BorderFactory.createLineBorder(Color.black));
 		//panelBoardView = new JPanel();
 		
 		//panelAllBullpenView = new BullpenView(manager.getLevel().getBullpen());
@@ -117,8 +115,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		panelAllBullpenView = new JPanel();
 		
 		panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
-		panelBullpenView.setBorder(BorderFactory.createLineBorder(Color.black));
-		panelAllBullpenView.setBorder(BorderFactory.createLineBorder(Color.black));
+
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
