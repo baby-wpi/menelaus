@@ -36,6 +36,7 @@ public class GameWindowFrame extends JFrame {
 		this.add(contentPane);
 		setVisible(true);
 		setResizable(false);
+		setName("KabaSuji");
 		
 		try {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));

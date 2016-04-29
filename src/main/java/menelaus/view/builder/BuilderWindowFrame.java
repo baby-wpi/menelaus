@@ -38,6 +38,7 @@ public class BuilderWindowFrame extends JFrame {
 		this.add(contentPane);
 		setVisible(true);
 		setResizable(false);
+		setName("KabaSuji Builder");
 		
 		try {
 			Thread.sleep(2000);
