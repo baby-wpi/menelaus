@@ -37,6 +37,7 @@ public class BuilderWindowFrame extends JFrame {
 		contentPane = new SplashScreen();
 		this.add(contentPane);
 		setVisible(true);
+		setResizable(false);
 		
 		try {
 			Thread.sleep(2000);
