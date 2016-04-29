@@ -17,6 +17,16 @@ import java.util.Hashtable;
  */
 public class BoardView extends JPanel {
 
+	/*
+	 * border color for BoardView;
+	 */
+	Color borderColor = Color.black;
+	
+	/*
+	 * background color for boardView.
+	 */
+	Color backgroundColor = Color.white;
+	
     /**
      * height of a grid square.
      */
@@ -83,7 +93,8 @@ public class BoardView extends JPanel {
      * Only here so we can safely open within WindowBuilder.
      */
     public BoardView() {
-
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
 
     /**
@@ -93,7 +104,8 @@ public class BoardView extends JPanel {
         this.board = board;
         this.level = level;
         this.hasSelection = false;
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
     
     
@@ -101,6 +113,8 @@ public class BoardView extends JPanel {
     	this.board = board;
         this.level = level;
         this.hasSelection = hasSelection;
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
 
     /**

@@ -2,6 +2,7 @@ package menelaus.view.builder;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -44,6 +45,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
 	BullpenView panelBullpenView;
 
+	// TODO: change panelAllBullpenView to bullpenView if necessary
 	JPanel panelAllBullpenView;
 
 	JButton btnMakePiece;
@@ -114,6 +116,12 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		//panelBullpenView = new JPanel();
 		panelAllBullpenView = new JPanel();
 		
+		/* TODO: change panelAllBullpenView to bullpenView if necessary
+		 * if this is done remove the later two lines.
+		 */
+		panelAllBullpenView.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelAllBullpenView.setBackground(Color.white);
+		
 		panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
 
 		
@@ -122,14 +130,14 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(panelAllBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(panelBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnExit)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnReset)
@@ -174,11 +182,14 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 								.addComponent(btnReset))))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(panelBullpenView, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-							.addComponent(panelAllBullpenView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE))
-					.addGap(11))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
+							.addGap(11))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panelAllBullpenView, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+								.addComponent(panelBullpenView, GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
+							.addContainerGap())))
 		);
 		setLayout(groupLayout);
 		initializeControllers();

@@ -1,6 +1,7 @@
 package menelaus.view.builder;
 
 import menelaus.controllers.ButtonBuilderLevelSelectController;
+import menelaus.controllers.ButtonHomeExitController;
 import menelaus.controllers.EditButtonBuilderHomeScreenController;
 import menelaus.view.KabasujiPanel;
 
@@ -22,7 +23,7 @@ public class HomeScreen extends KabasujiPanel {
 		btnNewButton.addActionListener(new ButtonBuilderLevelSelectController());
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ButtonBuilderLevelSelectController());
+		btnExit.addActionListener(new ButtonHomeExitController());
 		
 		JButton btnEditLevel = new JButton("Edit Last Level");
 		btnEditLevel.addActionListener(new EditButtonBuilderHomeScreenController());

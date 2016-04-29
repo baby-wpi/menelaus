@@ -39,19 +39,32 @@ public class BullpenView extends JPanel {
      * Unit size of piece
      */
     public static final int UNIT_SIZE = 30;
+    
+	/*
+	 * Border color for BullpenView;
+	 */
+	Color borderColor = Color.black;
+	
+	/*
+	 * Background color for BullpenView.
+	 */
+	Color backgroundColor = Color.white;
 
     /**
      * Given a set of KabaSuji pieces, draw them in this panel.
      */
     public BullpenView(Bullpen bullpen) {
         this.bullpen = bullpen;
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
 
     /**
      * Only here so we can safely open within WindowBuilder.
      */
     public BullpenView() {
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
 
     /**

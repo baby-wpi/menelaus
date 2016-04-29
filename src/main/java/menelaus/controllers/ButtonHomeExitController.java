@@ -15,6 +15,9 @@ public class ButtonHomeExitController implements ActionListener {
 		this.home = home;
 	}
 	
+	public ButtonHomeExitController() {
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		GameWindowFrame.getInstance().close();
 	}

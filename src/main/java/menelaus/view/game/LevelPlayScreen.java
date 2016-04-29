@@ -118,7 +118,6 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 		/** Create Board View */
 		boardView = new BoardView(gameManager.getLevel().getBoard(), level);
-		boardView.setBackground(Color.WHITE);
 
 		/** Create BullpenView */
 		bullpenView = new BullpenView(gameManager.getLevel().getBullpen());
