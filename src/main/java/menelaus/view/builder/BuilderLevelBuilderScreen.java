@@ -32,13 +32,18 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	private JTextField txtMaxMoves;
 	private JTextField txtInsertName;
 
-	BuilderManager manager;
-	BoardView panelBoardView;
 	//BullpenView panelAllBullpenView;
-	BullpenView panelBullpenView;
-	//JPanel panelBoardView;
-	JPanel panelAllBullpenView;
 	//JPanel panelBullpenView;
+	//JPanel panelBoardView;
+	
+	BuilderManager manager = new BuilderManager();
+	BoardView panelBoardView;
+	
+
+	BullpenView panelBullpenView;
+
+	JPanel panelAllBullpenView;
+
 	JButton btnMakePiece;
 	JButton btnComplete;
 	JLabel lblMaxMoves;
@@ -70,7 +75,9 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	 * Create the panel.
 	 */
 	public BuilderLevelBuilderScreen(BuilderManager manager) {
-		this.manager = manager;
+		if (manager != null) {
+			this.manager = manager;
+		}
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ButtonBuilderMainMenuController());
@@ -94,14 +101,14 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.setColumns(10);
 		
 		lblMaxMoves = new JLabel("Max Moves:");
-		panelBoardView = new BoardView(manager.getLevel().getBoard(),manager.getLevel(),true);
+		panelBoardView = new BoardView(this.manager.getLevel().getBoard(), this.manager.getLevel(),true);
 		panelBoardView.setSelection(this.manager.getSelectedPoints());
 		//panelBoardView = new JPanel();
 		
 		//panelAllBullpenView = new BullpenView(manager.getLevel().getBullpen());
 		panelAllBullpenView = new JPanel();
 		
-		panelBullpenView = new BullpenView(manager.getLevel().getBullpen());
+		panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
 		//panelBullpenView = new JPanel();
 		
 		GroupLayout groupLayout = new GroupLayout(this);
