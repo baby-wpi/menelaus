@@ -93,6 +93,7 @@ public class BoardView extends JPanel {
         this.board = board;
         this.level = level;
         this.hasSelection = false;
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
     }
     
     

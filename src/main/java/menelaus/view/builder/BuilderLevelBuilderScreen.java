@@ -1,5 +1,8 @@
 package menelaus.view.builder;
 
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -32,13 +35,18 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	private JTextField txtMaxMoves;
 	private JTextField txtInsertName;
 
-	BuilderManager manager;
-	BoardView panelBoardView;
 	//BullpenView panelAllBullpenView;
-	BullpenView panelBullpenView;
-	//JPanel panelBoardView;
-	JPanel panelAllBullpenView;
 	//JPanel panelBullpenView;
+	//JPanel panelBoardView;
+	
+	BuilderManager manager = new BuilderManager();
+	BoardView panelBoardView;
+	
+
+	BullpenView panelBullpenView;
+
+	JPanel panelAllBullpenView;
+
 	JButton btnMakePiece;
 	JButton btnComplete;
 	JLabel lblMaxMoves;
@@ -68,9 +76,14 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public BuilderLevelBuilderScreen(BuilderManager manager) {
-		this.manager = manager;
+	public BuilderLevelBuilderScreen(BuilderManager manager) throws Exception {
+		if (manager != null) {
+			this.manager = manager;
+		} else {
+			throw new Exception("cannot pass null manager into BuilderLevelBuilderScreen constructor");
+		}
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ButtonBuilderMainMenuController());
@@ -94,80 +107,81 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.setColumns(10);
 		
 		lblMaxMoves = new JLabel("Max Moves:");
-		panelBoardView = new BoardView(manager.getLevel().getBoard(),manager.getLevel(),true);
+		panelBoardView = new BoardView(this.manager.getLevel().getBoard(), this.manager.getLevel(),true);
 		panelBoardView.setSelection(this.manager.getSelectedPoints());
+		panelBoardView.setBorder(BorderFactory.createLineBorder(Color.black));
 		//panelBoardView = new JPanel();
 		
 		//panelAllBullpenView = new BullpenView(manager.getLevel().getBullpen());
+		//panelBullpenView = new JPanel();
 		panelAllBullpenView = new JPanel();
 		
-		panelBullpenView = new BullpenView(manager.getLevel().getBullpen());
-		//panelBullpenView = new JPanel();
+		panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
+		panelBullpenView.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelAllBullpenView.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(279)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnExit)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnReset))
-								.addComponent(txtInsertName))
+							.addComponent(panelAllBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(panelBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnExit)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnReset)
+							.addGap(401)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(28)
+									.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(lblMaxMoves)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(txtMaxMoves, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(18)
 									.addComponent(btnComplete)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnUndo)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnMakePiece)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnMakeHint))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panelAllBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(panelBullpenView, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(38, Short.MAX_VALUE))
+									.addComponent(btnMakeHint)))))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(14)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblMaxMoves)
-						.addComponent(txtMaxMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnExit)
-						.addComponent(btnReset)
-						.addComponent(btnComplete)
-						.addComponent(btnUndo)
-						.addComponent(btnMakePiece)
-						.addComponent(btnMakeHint))
-					.addGap(18)
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelBoardView, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-							.addContainerGap())
+							.addGap(20)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblMaxMoves)
+								.addComponent(txtMaxMoves, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnMakePiece)
+								.addComponent(btnMakeHint)
+								.addComponent(btnComplete)
+								.addComponent(btnUndo)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelBullpenView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelAllBullpenView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnExit)
+								.addComponent(btnReset))))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(panelBullpenView, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+							.addComponent(panelAllBullpenView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE))
+					.addGap(11))
 		);
 		setLayout(groupLayout);
 		initializeControllers();

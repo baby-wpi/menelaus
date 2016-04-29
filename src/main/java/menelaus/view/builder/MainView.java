@@ -25,7 +25,7 @@ import javax.swing.SpinnerNumberModel;
 public class MainView extends JFrame {
 	private JTextField txtLevelName;
 	
-	BuilderManager manager;
+	BuilderManager manager = new BuilderManager();
 	
 	BoardView panelBoardView;
 
@@ -49,8 +49,14 @@ public class MainView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainView(BuilderManager manager) {
-		this.manager = manager;
+	public MainView(BuilderManager inputManager) throws Exception {
+		
+		if (inputManager != null) {
+			this.manager = inputManager;
+		} else {
+			throw new Exception("Cannot feed MainView constructor a null BuildManager");
+		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 1000);

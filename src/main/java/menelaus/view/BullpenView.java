@@ -45,6 +45,7 @@ public class BullpenView extends JPanel {
      */
     public BullpenView(Bullpen bullpen) {
         this.bullpen = bullpen;
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
     /**

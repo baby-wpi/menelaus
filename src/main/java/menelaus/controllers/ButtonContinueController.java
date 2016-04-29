@@ -29,6 +29,11 @@ public class ButtonContinueController implements ActionListener{
     		return;
     	}
     	
-        GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(nextLevel));
+        try {
+			GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(nextLevel));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
