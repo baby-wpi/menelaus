@@ -18,7 +18,12 @@ public class EditButtonBuilderHomeScreenController implements ActionListener{
 		
 		BuilderManager manager = new BuilderManager();
 		manager.loadLastLevel();
-		BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen(manager));
+		try {
+			BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen(manager));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
 }

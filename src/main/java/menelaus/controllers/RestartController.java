@@ -39,7 +39,12 @@ public class RestartController implements ActionListener {
 //    	restartLevel.setBullpen(bp);
 		
 		
-		GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(previousLevel.resetLevel()));
+		try {
+			GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(previousLevel.resetLevel()));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         
 	}
 
