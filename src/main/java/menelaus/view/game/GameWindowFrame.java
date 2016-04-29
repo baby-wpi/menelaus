@@ -35,6 +35,8 @@ public class GameWindowFrame extends JFrame {
         contentPane = new SplashScreen();
 		this.add(contentPane);
 		setVisible(true);
+		setResizable(false);
+		setName("KabaSuji");
 		
 		try {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));

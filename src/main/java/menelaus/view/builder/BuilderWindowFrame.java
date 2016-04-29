@@ -37,6 +37,8 @@ public class BuilderWindowFrame extends JFrame {
 		contentPane = new SplashScreen();
 		this.add(contentPane);
 		setVisible(true);
+		setResizable(false);
+		setName("KabaSuji Builder");
 		
 		try {
 			Thread.sleep(2000);
