@@ -1,6 +1,5 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 
 import java.awt.*;

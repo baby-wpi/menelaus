@@ -3,7 +3,6 @@ package menelaus.util;
 import menelaus.model.Level;
 import menelaus.model.LevelsPackage;
 import menelaus.model.basic.Color;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.ColoredSetItem;

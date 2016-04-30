@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
