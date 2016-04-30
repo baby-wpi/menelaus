@@ -26,26 +26,26 @@ public class BullpenView extends JPanel {
     /**
      * The space around pieces
      */
-    private final int MARGIN = 50;
+    private final int MARGIN = 25;
     /**
      * The space form one piece to another in the X axis.
      */
-    private final int XSTEP = 75;
+    private double XSTEP = 150;
     /**
      * The space form one piece to another in the Y axis.
      */
-    private final int YSTEP = 125;
+    private int YSTEP = 123;
     /**
      * Unit size of piece
      */
-    public static final int UNIT_SIZE = 30;
+    public static final int UNIT_SIZE = 15;
     
-	/*
+	/**
 	 * Border color for BullpenView;
 	 */
 	Color borderColor = Color.black;
 	
-	/*
+	/**
 	 * Background color for BullpenView.
 	 */
 	Color backgroundColor = Color.white;
@@ -77,7 +77,6 @@ public class BullpenView extends JPanel {
         int x = MARGIN, y = MARGIN;
         int i = 0;
         for (Piece p : bullpen.getPieces()) {
-            // TODO: 4/20/16 Calculate placement scheme for bullpen
             p.setPosition(new Point(x, y));
             if(i % 2 == 0) {
                 x += XSTEP;
@@ -98,6 +97,9 @@ public class BullpenView extends JPanel {
         int indexX = clickX / pieceSpotSize;
         //calculate which piece spot was clicked
         int pieceIndex = 2 * indexY + indexX;
+        //check that it's a valid index
+        if (pieceIndex >= bullpen.getPieces().size())
+            return null;
 
         return bullpen.getPieces().get(pieceIndex);
     }
