@@ -41,19 +41,20 @@ public class WinScreen extends KabasujiPanel  {
 	 * @param gameManager 
 	 * @author Obatola Seward-Evans
 	 */
-	public WinScreen(LevelStars starsParams, GameEndReason reason) {
+	public WinScreen(LevelStars starsParams, GameEndReason reason, Level inputLevel) {
 		this.stars = starsParams;
 		this.reason = reason;
 		contentPane = this;
 		starCount = stars.getStarsCount();
 		
-		Level restartLevel = null;
-		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
-			if (level.getUuid() == stars.getLevelId()) {
-				restartLevel = level;
-			}
-		}
-		
+		Level restartLevel = inputLevel;
+//		Level restartLevel = null;
+//		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
+//			if (level.getUuid() == stars.getLevelId()) {
+//				restartLevel = level;
+//			}
+//		}
+//		
 		if ( starCount < 1 ) {
 			congratsLabel = "You Lose!\n";
 		} else if (starCount == 1) {
