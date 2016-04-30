@@ -56,7 +56,7 @@ public class PieceController extends MouseAdapter {
             return;
         }
 
-        level.setActive(null);    // no longer being dragged around
+        level.setActive(null);  // no longer being dragged around
         level.setSelected(null);
 
         gameManager.performNewMove(new ToBoardMove(pp, boardView.pointUnder(me.getX(), me.getY())));
@@ -92,7 +92,6 @@ public class PieceController extends MouseAdapter {
         int offsetX = clicked.getX() - dragOffset.getX();
         int offsetY = clicked.getY() - dragOffset.getY();
         Point adjusted = new Point(anchor.getX() + offsetX, anchor.getY() + offsetY);
-        System.out.println("moved " + anchor + " to " + adjusted);
         gameManager.performNewMove(new AroundBoardMove(draggingPiece, adjusted));
         dragOffset = clicked;
         boardView.repaint();
@@ -105,6 +104,7 @@ public class PieceController extends MouseAdapter {
     public void mouseReleased(MouseEvent me) {
         draggingPiece = null;
         draggingAnchor = null;
+        dragOffset = null;
     }
 
     @Override
@@ -114,6 +114,7 @@ public class PieceController extends MouseAdapter {
             gameManager.performNewMove(new ToBullpenMove(draggingPiece));
             draggingPiece = null;
             draggingAnchor = null;
+            dragOffset = null;
         }
 
         // clear the view of partial drawings once mouse exits region

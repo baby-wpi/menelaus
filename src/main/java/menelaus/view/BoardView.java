@@ -275,13 +275,7 @@ public class BoardView extends JPanel {
      */
     public Piece findPiece(int x, int y) {
 
-        for (Piece p: board.getPieces()) {
-            if (board.getTileInfo().get(pointUnder(x, y)).isPiecePlaced()) {
-                return p;
-            }
-        }
-
-        return null;
+        return board.getTileInfo().get(pointUnder(x, y)).getPiecePlaced();
     }
 
     /**
