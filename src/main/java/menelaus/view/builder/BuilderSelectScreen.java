@@ -17,10 +17,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BuilderSelectScreen extends KabasujiPanel {
-	/**
-	 * Serial id to keep Eclipse happy
-	 */
-	private static final long serialVersionUID = -750732967111292078L;
+
 	private JTextField txtInsertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;

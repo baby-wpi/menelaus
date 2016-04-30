@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.LevelType;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderSelectScreen;
 
 public class LevelTypeButtonBuilderMakeBoardController implements ActionListener{
@@ -20,6 +22,7 @@ public class LevelTypeButtonBuilderMakeBoardController implements ActionListener
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 		handleClick();
 	}
 	

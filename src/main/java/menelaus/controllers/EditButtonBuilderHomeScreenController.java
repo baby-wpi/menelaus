@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import menelaus.model.BuilderManager;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderLevelBuilderScreen;
 import menelaus.view.builder.BuilderWindowFrame;
 
@@ -15,7 +17,7 @@ public class EditButtonBuilderHomeScreenController implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 		BuilderManager manager = new BuilderManager();
 		manager.loadLastLevel();
 		try {
