@@ -27,6 +27,8 @@ public class PieceController extends MouseAdapter {
     private Piece draggingPiece;
     /**The point we are dragging from*/
     private Point draggingAnchor;
+    /**The offset we are using to calculate dragging pieces*/
+    private Point dragOffset;
 
     public PieceController(LevelPlayScreen app, GameManager gameManager) {
         this.boardView = app.getBoardView();
@@ -41,9 +43,7 @@ public class PieceController extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent me) {
         Piece pp = level.getActive();
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-
+        //we're selecting a piece not dragging it
         if (pp == null) {
             draggingAnchor = new Point(me.getX(), me.getY());
 
@@ -51,14 +51,15 @@ public class PieceController extends MouseAdapter {
             Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
             if (found != null) {
                 draggingPiece = found;
+                dragOffset = boardView.pointUnder(me.getX(), me.getY());
             }
             return;
         }
 
-        level.setActive(null);    // no longer being dragged around
+        level.setActive(null);  // no longer being dragged around
         level.setSelected(null);
 
-        gameManager.performNewMove(new ToBoardMove(pp, new Point(gridX, gridY)));
+        gameManager.performNewMove(new ToBoardMove(pp, boardView.pointUnder(me.getX(), me.getY())));
 
         boardView.repaint();
         bullpenView.repaint();   // has also changed state since piece no longer selected.
@@ -85,10 +86,14 @@ public class PieceController extends MouseAdapter {
         if (draggingPiece == null) {
             return;
         }
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
+        Point anchor = draggingPiece.getPosition();
+        Point clicked = boardView.pointUnder(me.getX(), me.getY());
 
-        gameManager.performNewMove(new AroundBoardMove(draggingPiece, new Point(gridX, gridY)));
+        int offsetX = clicked.getX() - dragOffset.getX();
+        int offsetY = clicked.getY() - dragOffset.getY();
+        Point adjusted = new Point(anchor.getX() + offsetX, anchor.getY() + offsetY);
+        gameManager.performNewMove(new AroundBoardMove(draggingPiece, adjusted));
+        dragOffset = clicked;
         boardView.repaint();
     }
 
@@ -99,6 +104,7 @@ public class PieceController extends MouseAdapter {
     public void mouseReleased(MouseEvent me) {
         draggingPiece = null;
         draggingAnchor = null;
+        dragOffset = null;
     }
 
     @Override
@@ -108,6 +114,7 @@ public class PieceController extends MouseAdapter {
             gameManager.performNewMove(new ToBullpenMove(draggingPiece));
             draggingPiece = null;
             draggingAnchor = null;
+            dragOffset = null;
         }
 
         // clear the view of partial drawings once mouse exits region
