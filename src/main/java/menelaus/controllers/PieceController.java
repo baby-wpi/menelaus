@@ -2,11 +2,10 @@ package menelaus.controllers;
 
 import menelaus.model.GameManager;
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
-import menelaus.model.move.AroundBoardMove;
-import menelaus.model.move.ToBoardMove;
-import menelaus.model.move.ToBullpenMove;
+import menelaus.model.move.*;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.game.LevelPlayScreen;
@@ -43,6 +42,9 @@ public class PieceController extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent me) {
         Piece pp = level.getActive();
+        int gridX = me.getX() / boardView.calculateGridUnitSize();
+        int gridY = me.getY() / boardView.calculateGridUnitSize();
+        Point gridPoint = new Point(gridX, gridY);  //saves us the trouble of instantiating for each type of move
         //we're selecting a piece not dragging it
         if (pp == null) {
             draggingAnchor = new Point(me.getX(), me.getY());
@@ -58,8 +60,9 @@ public class PieceController extends MouseAdapter {
 
         level.setActive(null);  // no longer being dragged around
         level.setSelected(null);
-
-        gameManager.performNewMove(new ToBoardMove(pp, boardView.pointUnder(me.getX(), me.getY())));
+        Move pieceMove = (level.getType() == LevelType.LIGHTNING) ?
+                new ToBoardCoverMove(pp, gridPoint) : new ToBoardMove(pp, gridPoint);
+        gameManager.performNewMove(pieceMove);
 
         boardView.repaint();
         bullpenView.repaint();   // has also changed state since piece no longer selected.

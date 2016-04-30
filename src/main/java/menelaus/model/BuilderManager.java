@@ -5,7 +5,9 @@ import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
 import menelaus.model.move.BuilderMove;
 import menelaus.util.LevelsPackagePersistenceUtil;
+import menelaus.view.builder.BuilderLevelBuilderScreen;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -194,19 +196,28 @@ public class BuilderManager {
 	}
 	
 	public boolean saveLevel() {
-		///this.currentProject.
-		//LevelsPackage pack = new LevelsPackage();
 		LevelsPackage pack = loadLevel();
 		cleanUpLevel();
 		pack.addLevel(this.currentProject);
-		//String outputFileName = this.getName() + ".lvlpkg";
-		String outputFileName = "default-levels.boba";
-		File outputFile = new File(outputFileName);
+        String customPath  = "";
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File (System.getProperty("user.home")));
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        try {
+            if (chooser.showOpenDialog(new BuilderLevelBuilderScreen(this)) == JFileChooser.APPROVE_OPTION) {
+                customPath = chooser.getSelectedFile().getPath() + File.separator;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String outputFileName = "package-name.boba";
+		File outputFile = new File(customPath + outputFileName);
 		try {
 			LevelsPackagePersistenceUtil.toFile(pack, outputFile);
 			return true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
