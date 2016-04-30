@@ -57,7 +57,6 @@ public class HomeScreen extends KabasujiPanel {
 		lblMute.addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 				updateMute();
 			}
 		});
@@ -123,5 +122,6 @@ public class HomeScreen extends KabasujiPanel {
 		} else {
 			lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
 		}
+		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 	}
 }
