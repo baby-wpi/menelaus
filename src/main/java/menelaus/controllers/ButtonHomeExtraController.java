@@ -7,7 +7,6 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.game.ExtraScreen;
 import menelaus.view.game.GameWindowFrame;
-import menelaus.view.game.HomeScreen;
 
 public class ButtonHomeExtraController implements ActionListener {
 

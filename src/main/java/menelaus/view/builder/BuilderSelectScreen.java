@@ -9,7 +9,6 @@ import menelaus.controllers.NameTextBuilderMakeBoardController;
 import menelaus.controllers.WidthTextBuilderMakeBoardController;
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.LevelType;
-import menelaus.model.basic.Point;
 import menelaus.view.BoardView;
 import menelaus.view.KabasujiPanel;
 
@@ -36,8 +35,6 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	
 	void initializeManager() {
 		manager = new BuilderManager();
-		//manager.getLevel().getBoard().chopTileOut(new Point(3, 0));
-		//manager.selectPoint(new Point(3, 0));
 	}
 	
 	void initializeControllers() {
@@ -62,7 +59,6 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	}
 	
 	public void refreshBoardViewSource() {
-		//boardPanel = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
 	}
 	
 	/**

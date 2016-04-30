@@ -5,7 +5,6 @@ import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.LevelsPackage;
 import menelaus.model.SavedGames;
-import menelaus.util.SavedGamesUtil;
 import menelaus.view.KabasujiPanel;
 
 import java.awt.Color;
