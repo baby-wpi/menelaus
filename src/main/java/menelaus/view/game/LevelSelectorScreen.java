@@ -19,6 +19,7 @@ public class LevelSelectorScreen extends KabasujiPanel {
 	public LevelSelectorScreen(LevelsPackage levelsPackage, SavedGames savedGames) {
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
 		
+		GameWindowFrame.getInstance().setRecentlyPLayedLevelsPackage(levelsPackage);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.setBounds(444, 699, 112, 29);

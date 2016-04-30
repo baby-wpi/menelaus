@@ -7,6 +7,8 @@ import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.events.GameEndReason;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.WinScreen;
 
