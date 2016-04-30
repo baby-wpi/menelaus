@@ -17,12 +17,12 @@ import java.util.Hashtable;
  */
 public class BoardView extends JPanel {
 
-	/*
+	/**
 	 * border color for BoardView;
 	 */
 	Color borderColor = Color.black;
 	
-	/*
+	/**
 	 * background color for boardView.
 	 */
 	Color backgroundColor = Color.white;
