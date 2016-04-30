@@ -102,6 +102,7 @@ public class BuilderManager {
 	}
 	
 	public boolean undo() {
+		if(moves.isEmpty()) return false;
 		BuilderMove move = moves.pop();
 		if (move.undo(currentProject)) {
 			return true; //Just pass on the return if the undo works.

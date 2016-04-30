@@ -17,6 +17,7 @@ import menelaus.controllers.MakePieceButtonBuilderMakeLevelController;
 import menelaus.controllers.NameTextBuilderMakeBoardController;
 import menelaus.controllers.SaveLevelButtonBuilderMakeLevelController;
 import menelaus.controllers.TextNumRestrictionsBuilderMakeLevelController;
+import menelaus.controllers.UndoBuilderMakeLevelController;
 import menelaus.model.BuilderManager;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
@@ -50,6 +51,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
 	JButton btnMakePiece;
 	JButton btnComplete;
+	JButton btnUndo;
 	JLabel lblMaxMoves;
 	
 	void initializeControllers() {
@@ -57,6 +59,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager,this.panelBoardView,this.panelBullpenView));
 		this.txtMaxMoves.addActionListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager,this.txtMaxMoves));
 		this.btnComplete.addActionListener(new SaveLevelButtonBuilderMakeLevelController(manager));
+		this.btnUndo.addActionListener(new UndoBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
 		txtInsertName.addActionListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
 	}
 	
@@ -93,7 +96,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		
 		btnComplete = new JButton("Complete");
 		
-		JButton btnUndo = new JButton("Undo");
+		btnUndo = new JButton("Undo");
 		
 		btnMakePiece = new JButton("Make Piece");
 		
