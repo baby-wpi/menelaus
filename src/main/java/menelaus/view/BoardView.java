@@ -267,12 +267,16 @@ public class BoardView extends JPanel {
         }
     }
 
+    /**
+     * Finds teh piece clciked on.
+     * @param x the x point clicked on in pixels.
+     * @param y the x point clicked on in pixels.
+     * @return the piece that was clicked on.
+     */
     public Piece findPiece(int x, int y) {
-        int gridX = x / calculateGridUnitSize();
-        int gridY = y / calculateGridUnitSize();
 
         for (Piece p: board.getPieces()) {
-            if (board.getTileInfo().get(new Point(gridX, gridY)).isPiecePlaced()) {
+            if (board.getTileInfo().get(pointUnder(x, y)).isPiecePlaced()) {
                 return p;
             }
         }
@@ -280,6 +284,12 @@ public class BoardView extends JPanel {
         return null;
     }
 
+    /**
+     * Converts pixels to grid units.
+     * @param x pixels to be converted.
+     * @param y pixels to be converted.
+     * @return A point that represents the the gid unit clicked.
+     */
     public Point pointUnder(int x, int y) {
     	int gridX = x / calculateGridUnitSize();
     	int gridY = y / calculateGridUnitSize();
