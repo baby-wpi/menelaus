@@ -2,7 +2,6 @@ package menelaus.model.move;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
-import menelaus.model.board.Piece;
 
 public abstract class BuilderMove {
 	BuilderManager manager;
