@@ -105,6 +105,7 @@ public class BuilderManager {
 		if(moves.isEmpty()) return false;
 		BuilderMove move = moves.pop();
 		if (move.undo(currentProject)) {
+			redoMoves.push(move);
 			return true; //Just pass on the return if the undo works.
 		}
 		else {
