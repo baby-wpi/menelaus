@@ -33,8 +33,10 @@ public class SoundManager {
 	
 	private void getSound(String file_name) {
         URL urlClick = SoundManager.class.getResource(file_name);
-        click = Applet.newAudioClip(urlClick);
-        click.play();
+		if(urlClick != null) {
+			click = Applet.newAudioClip(urlClick);
+			click.play();
+		}
 	}
 
 }
