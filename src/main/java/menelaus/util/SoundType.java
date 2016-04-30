@@ -1,5 +1,5 @@
 package menelaus.util;
 
 public enum SoundType {
-	BUTTONSOUND, EXITSOUND
+	BUTTONSOUND, EXITSOUND, WINSOUND, LOSESOUND
 }

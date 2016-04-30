@@ -1,11 +1,11 @@
 package menelaus.util;
 
-import java.awt.Toolkit;
-
-import menelaus.view.game.GameWindowFrame;
-import sun.security.action.GetBooleanAction;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
 
 public class SoundManager {
+    AudioClip click;
 	
 	private static SoundManager instance = new SoundManager();
 	
@@ -20,9 +20,21 @@ public class SoundManager {
 	public void playSound(SoundType type){
 		switch (type) {
 			case BUTTONSOUND:
-				Toolkit.getDefaultToolkit().beep();
+				getSound("click.wav");
+				break;
+			case WINSOUND:
+				getSound("win.wav");
+				break;
+			case LOSESOUND:
+				getSound("lose.wav");
+				break;
 		}
-		
+	}
+	
+	private void getSound(String file_name) {
+        URL urlClick = SoundManager.class.getResource(file_name);
+        click = Applet.newAudioClip(urlClick);
+        click.play();
 	}
 
 }
