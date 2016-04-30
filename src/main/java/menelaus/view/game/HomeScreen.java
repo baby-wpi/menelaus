@@ -10,14 +10,17 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * 
@@ -26,10 +29,19 @@ import java.io.IOException;
  */
 public class HomeScreen extends KabasujiPanel {
 	JLabel lblMute;
+	BufferedImage backgroundIMG;
+	ClassLoader classLoader;
+	
 	/**
 	 * Create the frame.
 	 */
 	public HomeScreen() {
+		// InputStream input = classLoader.getResourceAsStream("back.jpg");
+		try {
+			backgroundIMG = ImageIO.read(new File("back.jpg"));
+		} catch (IOException e) {
+			System.out.println("fuck the image isn't read");
+		}
 
 		JButton btnContinue = new JButton("Continue");
 
@@ -53,6 +65,7 @@ public class HomeScreen extends KabasujiPanel {
 		JLabel lblKabasuji = new JLabel("KabaSuji");
 		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
+		/** mute button. */
 		lblMute = new JLabel("");
 		lblMute.addMouseListener(new MouseAdapter() {			
 			@Override
@@ -123,5 +136,16 @@ public class HomeScreen extends KabasujiPanel {
 			lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
 		}
 		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		
+		//g.drawRect(100, 100, 100, 100);
+		g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+		g.setColor(Color.GRAY);
+		g.fillRect(0, 0, 20, 20);
 	}
 }
