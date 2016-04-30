@@ -82,12 +82,12 @@ public class PieceTest {
 
 	@Test
 	public void testGetHeight(){
-		assertEquals(piece.getHeight(), 3);
+		assertEquals(piece.getHeight(), 2);
 	}
 
 	@Test
 	public void testGetWidth(){
         System.out.println("width = " + piece.getWidth());
-        assertEquals(piece.getWidth(), 3);
+        assertEquals(piece.getWidth(), 2);
 	}
 }
