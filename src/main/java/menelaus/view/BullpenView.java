@@ -22,23 +22,20 @@ public class BullpenView extends JPanel {
     /**
      * Base width of bullpen.
      */
-    public final int N = 250;
+    public static final int N = 250;
     /**
      * The space around pieces
      */
-    private final int MARGIN = 25;
-    /**
-     * The space form one piece to another in the X axis.
-     */
-    private double XSTEP = 150;
-    /**
-     * The space form one piece to another in the Y axis.
-     */
-    private int YSTEP = 123;
+    private static final int MARGIN = 15;
     /**
      * Unit size of piece
      */
-    public static final int UNIT_SIZE = 15;
+    public static final int UNIT_SIZE = (N - 3 * MARGIN) / 12;
+    /**
+     * The space form one piece to another.
+     */
+    private static final int STEP = MARGIN + 6 * UNIT_SIZE;
+
     
 	/**
 	 * Border color for BullpenView;
@@ -74,18 +71,10 @@ public class BullpenView extends JPanel {
         super.paintComponent(g);
         //draw pieces to board
 
-        int x = MARGIN, y = MARGIN;
         int i = 0;
         for (Piece p : bullpen.getPieces()) {
-            p.setPosition(new Point(x, y));
-            if(i % 2 == 0) {
-                x += XSTEP;
-            }
-            else{
-                x -= XSTEP;
-                y += YSTEP;
-            }
-            PieceDrawer.drawPiece(g, p, UNIT_SIZE);
+            PieceDrawer.drawPiece(g, p, new Point(MARGIN + (i % 2) * STEP, MARGIN + (i / 2) * STEP), UNIT_SIZE);
+            
             i++;
         }
     }

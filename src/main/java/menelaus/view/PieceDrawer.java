@@ -1,15 +1,17 @@
 package menelaus.view;
 
+import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
-
-import org.omg.PortableServer.ServantActivator;
+import java.util.Hashtable;
 
 /**
- * Created by @author frankegan on 4/19/16.
+ * @author fegan
+ * @author vouldjeff
  */
 public class PieceDrawer {
     public static final int SELECTED = 2;
@@ -18,6 +20,8 @@ public class PieceDrawer {
     static final String TILE_COLOR = "#3399ff";
     static final String HINT_COLOR = "#ff8133";
     static final String SELECT_COLOR = "#aade10";
+    
+    static final int BORDER = 4;
 
     /**
      * Draws the piece.
@@ -27,20 +31,25 @@ public class PieceDrawer {
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
      */
-    public static void drawPiece(Graphics graphics, Piece piece, int tileSize) {
-
+    public static void drawPiece(Graphics graphics, Piece piece, Point spot, int tileSize) {
+    	Point massDelta = new Point((6 - piece.getWidth())/2, (6 - piece.getHeight())/2);
+    	Point origin = piece.getOrigin().add(massDelta);
+    	
         for (Tile t : piece.getTiles()) {
+        	Point actualPosition = origin.add(t.getRelativePosition()).multiply(tileSize).add(spot);
+        	
             //draw each tile
             graphics.setColor(Color.decode(TILE_COLOR));
             graphics.fillRect(
-                    piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
-                    piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
+                    actualPosition.getX(),
+                    actualPosition.getY(),
                     tileSize,
                     tileSize);
             //draw border
             graphics.setColor(Color.GRAY);
-            graphics.drawRect(piece.getPosition().getX() + (tileSize * t.getRelativePosition().getX()),
-                    piece.getPosition().getY() + (tileSize * t.getRelativePosition().getY()),
+            graphics.drawRect(
+            		actualPosition.getX(),
+                    actualPosition.getY(),
                     tileSize,
                     tileSize);
         }
@@ -55,16 +64,7 @@ public class PieceDrawer {
      * @param piece    The piece we want drawn
      */
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
-
-        for (Tile t : piece.getTiles()) {
-            //draw tiles
-            graphics.setColor(Color.decode(TILE_COLOR));
-            graphics.fillRect(
-                    (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
-                    (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
-                    tileSize,
-                    tileSize);
-        }
+        _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR));
     }
 
     /**
@@ -76,25 +76,91 @@ public class PieceDrawer {
      * @param piece    The piece we want drawn
      */
     public static void drawHintToGrid(Graphics graphics, Piece piece, int tileSize) {
-
-        for (Tile t : piece.getTiles()) {
+        _draw(graphics, piece, tileSize, Color.decode(HINT_COLOR));
+    }
+    
+    private static void _draw(Graphics graphics, Piece piece, int tileSize, Color c) {
+    	Point origin = piece.getOrigin();
+    	
+    	Hashtable<Integer, Integer> minVertical = new Hashtable<Integer, Integer>();
+    	Hashtable<Integer, Integer> minHorizontal = new Hashtable<Integer, Integer>();
+    	Hashtable<Integer, Integer> maxVertical = new Hashtable<Integer, Integer>();
+    	Hashtable<Integer, Integer> maxHorizontal = new Hashtable<Integer, Integer>();
+    	
+    	for (Tile tile : piece.getTiles()) {
+    		Integer searchMinVertical = minVertical.get(tile.getRelativePosition().getX());
+    		Integer searchMaxVertical = maxVertical.get(tile.getRelativePosition().getX());
+    		Integer searchMinHorizontal = minHorizontal.get(tile.getRelativePosition().getY());
+    		Integer searchMaxHorizontal = maxHorizontal.get(tile.getRelativePosition().getY());
+    		
+    		if (searchMinVertical == null || searchMinVertical.intValue() > tile.getRelativePosition().getY()) {
+    			minVertical.put(tile.getRelativePosition().getX(), tile.getRelativePosition().getY());
+    		}
+    		
+    		if (searchMaxVertical == null || searchMaxVertical.intValue() < tile.getRelativePosition().getY()) {
+    			maxVertical.put(tile.getRelativePosition().getX(), tile.getRelativePosition().getY());
+    		}
+    		
+    		if (searchMinHorizontal == null || searchMinHorizontal.intValue() > tile.getRelativePosition().getX()) {
+    			minHorizontal.put(tile.getRelativePosition().getY(), tile.getRelativePosition().getX());
+    		}
+    		
+    		if (searchMaxHorizontal == null || searchMaxHorizontal.intValue() < tile.getRelativePosition().getX()) {
+    			maxHorizontal.put(tile.getRelativePosition().getY(), tile.getRelativePosition().getX());
+    		}
+    	}
+    	
+    	for (Tile t : piece.getTiles()) {
+    		Point actualPosition = piece.getPosition().add(t.getRelativePosition()).multiply(tileSize);
+        	
             //draw tiles
-            graphics.setColor(Color.decode(HINT_COLOR));
+            graphics.setColor(c);
             graphics.fillRect(
-                    (piece.getPosition().getX() * tileSize) + (tileSize * t.getRelativePosition().getX()),
-                    (piece.getPosition().getY() * tileSize) + (tileSize * t.getRelativePosition().getY()),
-                    tileSize,
+            		actualPosition.getX(),
+            		actualPosition.getY(),
+            		tileSize,
                     tileSize);
+            
+            Integer v = minVertical.get(t.getRelativePosition().getX());
+            if (v != null && t.getRelativePosition().getY() == v.intValue()) {
+            	_drawLine(graphics, actualPosition.subtract(new Point(0, BORDER / 2)), tileSize, true);
+            }
+            
+            v = minHorizontal.get(t.getRelativePosition().getY());
+            if (v != null && t.getRelativePosition().getX() == v.intValue()) {
+            	_drawLine(graphics, actualPosition.subtract(new Point(BORDER / 2, 0)), tileSize, false);
+            }
+            
+            v = maxVertical.get(t.getRelativePosition().getX());
+            if (v != null && t.getRelativePosition().getY() == v.intValue()) {
+            	_drawLine(graphics, actualPosition.add(new Point(0, tileSize - BORDER / 2)), tileSize, true);
+            }
+            
+            v = maxHorizontal.get(t.getRelativePosition().getY());
+            if (v != null && t.getRelativePosition().getX() == v.intValue()) {
+            	_drawLine(graphics, actualPosition.add(new Point(tileSize - BORDER / 2, 0)), tileSize, false);
+            }
         }
     }
     
-    public static void drawSelection(Graphics graphics, ArrayList<menelaus.model.basic.Point> selectedPoints, int tileSize) {
-    	for (menelaus.model.basic.Point p : selectedPoints) {
+    private static void _drawLine(Graphics graphics, Point actualPosition, int tileSize, boolean isY) {
+    	graphics.setColor(Color.GRAY);
+        graphics.fillRect(
+        		actualPosition.getX(),
+                actualPosition.getY(),
+                isY ? tileSize : BORDER,
+                isY ? BORDER : tileSize);
+    }
+    
+    public static void drawSelection(Graphics graphics, ArrayList<Point> selectedPoints, int tileSize) {
+    	for (Point p : selectedPoints) {
+    		Point actualPoint = p.multiply(tileSize);
+    		
             //draw tiles
             graphics.setColor(Color.decode(SELECT_COLOR));
             graphics.fillRect(
-                    (p.getX() * tileSize),
-                    (p.getY() * tileSize),
+                    actualPoint.getX(),
+                    actualPoint.getY(),
                     tileSize,
                     tileSize);
         }

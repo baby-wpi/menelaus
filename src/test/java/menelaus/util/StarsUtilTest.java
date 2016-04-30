@@ -21,12 +21,12 @@ public class StarsUtilTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
@@ -40,7 +40,7 @@ public class StarsUtilTest {
 
 	@Test
 	public void testGradePuzzle() {
-		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
+		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		
@@ -54,12 +54,12 @@ public class StarsUtilTest {
 		
 		assertEquals(2, stars.getStarsCount());
 		
-		level.getBullpen().addPiece(new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f)));
+		level.getBullpen().addPiece(new Piece(new Point(0, 0)));
 		stars = StarsUtil.getStars(gameManager);
 		
 		assertEquals(1, stars.getStarsCount());
 		
-		level.getBullpen().addPiece(new Piece(new Point(2, 2), new Coordinate(0.5f, 0.5f)));
+		level.getBullpen().addPiece(new Piece(new Point(2, 2)));
 		stars = StarsUtil.getStars(gameManager);
 		
 		assertEquals(0, stars.getStarsCount());
@@ -77,7 +77,7 @@ public class StarsUtilTest {
 			emptyLevel.getBoard().placePiece(piece);
 		}
 		
-		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
+		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		emptyLevel.getBoard().placePiece(piece3);
@@ -85,7 +85,7 @@ public class StarsUtilTest {
 		
 		assertEquals(1, stars.getStarsCount());
 		
-		Piece piece4 = new Piece(new Point(3, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece4 = new Piece(new Point(3, 0));
 		piece4.addTile(new Tile(0, 0));
 		piece4.addTile(new Tile(0, 1));
 		piece4.addTile(new Tile(0, 2));
@@ -94,7 +94,7 @@ public class StarsUtilTest {
 		
 		assertEquals(2, stars.getStarsCount());
 		
-		Piece piece5 = new Piece(new Point(0, 3), new Coordinate(0.5f, 0.5f));
+		Piece piece5 = new Piece(new Point(0, 3));
 		piece5.addTile(new Tile(0, 0));
 		piece5.addTile(new Tile(1, 0));
 		piece5.addTile(new Tile(2, 0));
@@ -123,7 +123,7 @@ public class StarsUtilTest {
 		
 		assertEquals(false, StarsUtil.isSetComplete(Color.BLUE, newLevel.getBoard()));
 		
-		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
+		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		newLevel.getBoard().placePiece(piece3);

@@ -16,7 +16,7 @@ public class MovesTest {
 
     @Before
     public void setUp() {
-        piece = new Piece(new Point(1, 1), new Coordinate(0.5f, 0.5f));
+        piece = new Piece(new Point(1, 1));
         lightning = new Level(LevelType.LIGHTNING, 8, 6);
     }
 

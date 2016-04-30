@@ -37,7 +37,7 @@ public class LevelsPackagePersistenceUtilTest {
 	public void setUp() throws Exception {
 		levelsPackage = new LevelsPackage();
 		
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -104,7 +104,7 @@ public class LevelsPackagePersistenceUtilTest {
 		
 		LevelsPackage defaultLevelsPackage = new LevelsPackage();
 		
-		Piece piece1 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
 		piece1.addTile(new Tile(0, 1));
 		piece1.addTile(new Tile(1, 1));
@@ -116,13 +116,13 @@ public class LevelsPackagePersistenceUtilTest {
 		
 		ColoredSetItem coloredSetItem = new ColoredSetItem(Color.BLUE, 1);
 		
-		Piece piece2 = new Piece(new Point(1, 0), new Coordinate(0.5f, 0.5f));
+		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
 		piece2.addTile(new Tile(1, 0));
 		piece2.addTile(new Tile(1, 1));
 		piece2.addTile(new Tile(1, 2));
 		
-		Piece piece3 = new Piece(new Point(0, 2), new Coordinate(0.5f, 0.5f));
+		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		

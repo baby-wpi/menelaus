@@ -18,12 +18,12 @@ public class PieceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		piece = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		piece = new Piece(new Point(0, 0));
 		piece.addTile(new Tile(1, 1));
 		piece.addTile(new Tile(2, 1));
 		piece.addTile(new Tile(1, 2));
 		
-		piece2 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		piece2 = new Piece(new Point(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(0, 2));
 		piece2.addTile(new Tile(0, 3));
