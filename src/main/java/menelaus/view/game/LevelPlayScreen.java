@@ -48,7 +48,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 		JOptionPane.showMessageDialog(null, "Game ended. Reason: " + reason.toString());
 		
 		
-		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason);
+		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
 		controller.actionPerformed(null);
 	}
 
@@ -113,7 +113,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 //				ButtonLevelsController controller = new ButtonLevelsController();
 				
 				// TODO: find way to add reason.
-				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null);
+				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null, level);
 				controller.actionPerformed(e);
 			}
 		});
