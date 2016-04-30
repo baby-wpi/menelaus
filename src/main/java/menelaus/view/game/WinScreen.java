@@ -8,6 +8,8 @@ import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.events.GameEndReason;
 import menelaus.util.LevelsPackagePersistenceUtil;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -41,25 +43,29 @@ public class WinScreen extends KabasujiPanel  {
 	 * @param gameManager 
 	 * @author Obatola Seward-Evans
 	 */
-	public WinScreen(LevelStars starsParams, GameEndReason reason) {
+	public WinScreen(LevelStars starsParams, GameEndReason reason, Level inputLevel) {
 		this.stars = starsParams;
 		this.reason = reason;
 		contentPane = this;
 		starCount = stars.getStarsCount();
 		
-		Level restartLevel = null;
-		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
-			if (level.getUuid() == stars.getLevelId()) {
-				restartLevel = level;
-			}
-		}
-		
+		Level restartLevel = inputLevel;
+//		Level restartLevel = null;
+//		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
+//			if (level.getUuid() == stars.getLevelId()) {
+//				restartLevel = level;
+//			}
+//		}
+//		
 		if ( starCount < 1 ) {
 			congratsLabel = "You Lose!\n";
+			SoundManager.getInstance().playSound(SoundType.LOSESOUND);
 		} else if (starCount == 1) {
 			congratsLabel = "Almost there!\n";
+			SoundManager.getInstance().playSound(SoundType.WINSOUND);
 		} else {
 			congratsLabel = "Congratulations!!!\n";
+			SoundManager.getInstance().playSound(SoundType.WINSOUND);
 		}
 		
 		// Create the string in which the lblScore presents.
@@ -80,15 +86,16 @@ public class WinScreen extends KabasujiPanel  {
 		
 		/** Exit Button. */
 		JButton btnExit = new JButton("Exit");
-		try {
-			btnExit.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		btnExit.addActionListener(new ButtonLevelsController());
+//		try {
+//			btnExit.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		/** Score label. */
 		JLabel lblScore = new JLabel( scoreLabel );

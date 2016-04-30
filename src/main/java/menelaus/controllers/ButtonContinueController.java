@@ -1,6 +1,8 @@
 package menelaus.controllers;
 
 import menelaus.model.Level;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.LevelPlayScreen;
 
@@ -19,9 +21,10 @@ public class ButtonContinueController implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
+    	SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 		GameWindowFrame frame = GameWindowFrame.getInstance();
 		Level nextLevel;
-		nextLevel = frame.getSavedGamesUtil().getNextPlayableLevelInPackage(frame.getLevelsPackage());
+		nextLevel = frame.getSavedGamesUtil().getNextPlayableLevelInPackage(frame.getRecentlyPLayedLevelsPackage());
 		
     	
     	if (nextLevel == null) {
@@ -29,6 +32,11 @@ public class ButtonContinueController implements ActionListener{
     		return;
     	}
     	
-        GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(nextLevel));
+        try {
+			GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(nextLevel));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

@@ -6,6 +6,7 @@ import menelaus.controllers.RestartController;
 import menelaus.controllers.ToWinScreenController;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
+import menelaus.model.basic.LevelType;
 import menelaus.model.events.GameEndListener;
 import menelaus.model.events.GameEndReason;
 import menelaus.model.events.GameTickListener;
@@ -32,6 +33,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 	GameManager gameManager;
 	BoardView boardView;
 	BullpenView bullpenView;
+	Level level = new Level(LevelType.PUZZLE, 700, 700);
 
 	JLabel labelCountDown;
 
@@ -46,7 +48,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 		JOptionPane.showMessageDialog(null, "Game ended. Reason: " + reason.toString());
 		
 		
-		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason);
+		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
 		controller.actionPerformed(null);
 	}
 
@@ -75,15 +77,25 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public LevelPlayScreen(Level level) {
+	public LevelPlayScreen(Level inputLevel) throws Exception {
+		
+		if (inputLevel != null) {
+			level = inputLevel;
+		} else {
+			throw new Exception("cannot pass null manager into LevelPlayScreen constructor");
+		}
+		
 		initGameManager(level);
 
 		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		JLabel lblNewLabel = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
+		JLabel labelLevelName = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
+		labelLevelName.setMaximumSize(new Dimension(248, 16));
+		
 		labelCountDown = new JLabel("Time passed: 0");
 
         /* BUTTONS */
@@ -101,56 +113,55 @@ public class LevelPlayScreen extends KabasujiPanel {
 //				ButtonLevelsController controller = new ButtonLevelsController();
 				
 				// TODO: find way to add reason.
-				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null);
+				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null, level);
 				controller.actionPerformed(e);
 			}
 		});
 
 		/** Create Board View */
 		boardView = new BoardView(gameManager.getLevel().getBoard(), level);
-		boardView.setBackground(Color.WHITE);
-		boardView.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		/** Create BullpenView */
 		bullpenView = new BullpenView(gameManager.getLevel().getBullpen());
 
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(17)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(labelCountDown)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(btnExitButton)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnRestart))
+								.addComponent(labelLevelName, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+							.addGap(18)
+							.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+							.addGap(7))
 						.addGroup(gl_contentPane.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(btnExitButton)
-												.addGap(18)
-												.addComponent(btnRestart))
-										.addGroup(gl_contentPane.createSequentialGroup()
-												.addComponent(lblNewLabel)
-												.addGap(29)
-
-												.addComponent(labelCountDown)))
-								.addGap(16)
-								.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(16, Short.MAX_VALUE))
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(725, Short.MAX_VALUE))))
 		);
 		gl_contentPane.setVerticalGroup(
-				gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-								.addContainerGap(34, Short.MAX_VALUE)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_contentPane.createSequentialGroup()
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-														.addComponent(labelCountDown)
-														.addComponent(lblNewLabel))
-												.addPreferredGap(ComponentPlacement.UNRELATED)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-														.addComponent(btnRestart)
-														.addComponent(btnExitButton))
-												.addPreferredGap(ComponentPlacement.UNRELATED)
-												.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 623, GroupLayout.PREFERRED_SIZE)))
-								.addContainerGap())
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(34, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(boardView, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addComponent(labelLevelName)
+							.addGap(18)
+							.addComponent(labelCountDown)
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnRestart)
+								.addComponent(btnExitButton))
+							.addGap(18)
+							.addComponent(scrollPane)))
+					.addContainerGap())
 		);
 
 		scrollPane.setViewportView(bullpenView);

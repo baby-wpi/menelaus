@@ -1,6 +1,8 @@
 package menelaus.controllers;
 
 import menelaus.model.Level;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.LevelPlayScreen;
 import menelaus.view.game.LevelSelectorScreen;
@@ -27,6 +29,12 @@ public class ButtonLevelSelectController implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
-    	GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(level));
+    	try {
+    		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
+			GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(level));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

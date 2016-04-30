@@ -14,6 +14,11 @@ public class ButtonBuilderStartController implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		BuilderSelectScreen sender = (BuilderSelectScreen) BuilderWindowFrame.getInstance().getPanel();
-		BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen(sender.getManager()));
+		try {
+			BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen(sender.getManager()));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

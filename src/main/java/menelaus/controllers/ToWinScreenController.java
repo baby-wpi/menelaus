@@ -7,6 +7,8 @@ import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
 import menelaus.model.events.GameEndReason;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.WinScreen;
 
@@ -16,6 +18,7 @@ import menelaus.view.game.WinScreen;
  */
 public class ToWinScreenController implements ActionListener{
 
+	Level level;
 	LevelStars stars;
 	GameEndReason reason;
 	
@@ -25,14 +28,16 @@ public class ToWinScreenController implements ActionListener{
 	 * @param previousLevel
 	 * @param gameManager
 	 */
-	public ToWinScreenController(LevelStars stars, GameEndReason reason){
+	public ToWinScreenController(LevelStars stars, GameEndReason reason, Level inputLevel){
 		this.stars = stars;
 		this.reason = reason;
+		level = inputLevel;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		GameWindowFrame frame = GameWindowFrame.getInstance();
-		frame.swapPanel(new WinScreen(stars, reason));
+		
+		frame.swapPanel(new WinScreen(stars, reason, level));
 	}
 
 }

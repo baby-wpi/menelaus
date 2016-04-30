@@ -10,6 +10,8 @@ import menelaus.model.Bullpen;
 import menelaus.model.Level;
 import menelaus.model.LevelsPackage;
 import menelaus.model.board.Piece;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.game.GameWindowFrame;
 import menelaus.view.game.LevelPlayScreen;
 
@@ -29,6 +31,7 @@ public class RestartController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 		GameWindowFrame frame = GameWindowFrame.getInstance();		
 //    	Level restartLevel = new Level(previousLevel.getType(), previousLevel.getBoard().getHeight(), previousLevel.getBoard().getWidth());
 //    	Bullpen bp = new Bullpen();
@@ -39,7 +42,12 @@ public class RestartController implements ActionListener {
 //    	restartLevel.setBullpen(bp);
 		
 		
-		GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(previousLevel.resetLevel()));
+		try {
+			GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(previousLevel));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         
 	}
 
