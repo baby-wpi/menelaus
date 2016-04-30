@@ -45,7 +45,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 			JOptionPane.showMessageDialog(null, "Cannot write your progress to disk.");
 		}
 
-		JOptionPane.showMessageDialog(null, "Game ended. Reason: " + reason.toString());
+//		JOptionPane.showMessageDialog(null, "Game ended. Reason: " + reason.toString());
 		
 		
 		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
