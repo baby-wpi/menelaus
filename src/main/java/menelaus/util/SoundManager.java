@@ -9,7 +9,8 @@ import java.net.URL;
  * @author Obatola Seward-Evans
  */
 public class SoundManager {
-    AudioClip click;
+    private AudioClip click;
+    private boolean isMute = false;
 	
 	private static SoundManager instance = new SoundManager();
 	
@@ -30,6 +31,8 @@ public class SoundManager {
 	 * @param type
 	 */
 	public void playSound(SoundType type){
+		if (isMute) { return; } 
+		
 		switch (type) {
 			case BUTTONSOUND:
 				getSound("click.wav");
@@ -58,6 +61,22 @@ public class SoundManager {
 			click = Applet.newAudioClip(urlClick);
 			click.play();
 		}
+	}
+	
+	/**
+	 * set sound to be mute or not.
+	 * @param isMute
+	 */
+	public void changeMute() {
+		if (isMute) {
+			isMute = false;
+		} else {
+			isMute = true;
+		}
+	}
+	
+	public boolean isMute(){
+		return isMute;
 	}
 
 }
