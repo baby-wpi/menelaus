@@ -1,7 +1,6 @@
 package menelaus.model.board;
 
 import menelaus.model.basic.Color;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,5 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 
 import java.awt.*;
@@ -11,14 +10,12 @@ import java.util.Iterator;
 /**
  * @author vouldjeff
  */
-public class Piece implements Serializable, Iterable<Coordinate>{
+public class Piece implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Point position;
 	private ArrayList<Tile> tiles;
 	private boolean selected;
-	private Coordinate center;
-    private Rectangle rect;
 	
 	public Point getPosition() {
 		return position;
@@ -82,16 +79,11 @@ public class Piece implements Serializable, Iterable<Coordinate>{
 		tiles.add(tile);
 	}
 	
-	public Piece(Point position, Coordinate center) {
+	public Piece(Point position) {
 		super();
 		this.position = position;
 		this.tiles = new ArrayList<Tile>();
-        this.center = center;
 		tiles.add(new Tile(new Point(0,0)));
-	}
-	
-	public Piece(Point position) {
-		this(position, new Coordinate(0.5f, 0.5f));
 	}
 
     public int getHeight() {
@@ -103,7 +95,7 @@ public class Piece implements Serializable, Iterable<Coordinate>{
             else if (y < min)
                 min = y;
         }
-        return Math.abs(max) + Math.abs(min) + 1;//plus one for 0 indexing
+        return max - min;
     }
 
     public int getWidth() {
@@ -115,7 +107,23 @@ public class Piece implements Serializable, Iterable<Coordinate>{
             else if (x < min)
                 min = x;
         }
-        return Math.abs(max) + Math.abs(min) + 1;//plus one for 0 indexing
+        return max - min;
+    }
+    
+    public Point getOrigin() {
+    	int minX = 0, minY = 0;
+    	for (Tile t : tiles) {
+            if (t.getRelativePosition().getX() < minX) {
+            	minX = t.getRelativePosition().getX();
+            }
+            
+            if (t.getRelativePosition().getY() < minY) {
+            	minY = t.getRelativePosition().getY();
+            }
+        }
+    	
+    	
+    	return new Point(minX, minY).multiply(-1);
     }
 
     @Override
@@ -147,23 +155,5 @@ public class Piece implements Serializable, Iterable<Coordinate>{
         } else if (!tiles.equals(other.tiles))
             return false;
         return true;
-    }
-
-	public Coordinate getCenter() {
-		return center;
-	}
-
-    public Rectangle getRect() {
-        return rect;
-    }
-
-    public Iterator<Coordinate> iterator() {
-        ArrayList<Coordinate> points = new ArrayList<Coordinate>(4);
-        points.add(new Coordinate(0, 0));
-        points.add(new Coordinate(1, 0));
-        points.add(new Coordinate(1, 1));
-        points.add(new Coordinate(0, 1));
-
-        return points.iterator();
     }
 }
