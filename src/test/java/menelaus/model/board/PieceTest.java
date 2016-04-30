@@ -1,6 +1,5 @@
 package menelaus.model.board;
 
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,12 +17,12 @@ public class PieceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		piece = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		piece = new Piece(new Point(0, 0));
 		piece.addTile(new Tile(1, 1));
 		piece.addTile(new Tile(2, 1));
 		piece.addTile(new Tile(1, 2));
 		
-		piece2 = new Piece(new Point(0, 0), new Coordinate(0.5f, 0.5f));
+		piece2 = new Piece(new Point(0, 0));
 		piece2.addTile(new Tile(0, 1));
 		piece2.addTile(new Tile(0, 2));
 		piece2.addTile(new Tile(0, 3));
@@ -82,12 +81,12 @@ public class PieceTest {
 
 	@Test
 	public void testGetHeight(){
-		assertEquals(piece.getHeight(), 3);
+		assertEquals(piece.getHeight(), 2);
 	}
 
 	@Test
 	public void testGetWidth(){
         System.out.println("width = " + piece.getWidth());
-        assertEquals(piece.getWidth(), 3);
+        assertEquals(piece.getWidth(), 2);
 	}
 }
