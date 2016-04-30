@@ -1,17 +1,15 @@
 package menelaus.model;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Stack;
-
-import org.w3c.dom.html.HTMLIsIndexElement;
-
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
 import menelaus.model.move.BuilderMove;
 import menelaus.util.LevelsPackagePersistenceUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Stack;
 
 /** 
  * Manages a level builder.
@@ -176,7 +174,7 @@ public class BuilderManager {
 	
 	public LevelsPackage loadLevel() {
 		try {
-			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(new File("customLevels.boba"));
+			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"));
 			return pack;
 		}
 		catch (IOException e) {
@@ -202,7 +200,7 @@ public class BuilderManager {
 		cleanUpLevel();
 		pack.addLevel(this.currentProject);
 		//String outputFileName = this.getName() + ".lvlpkg";
-		String outputFileName = "customLevels.boba";
+		String outputFileName = "default-levels.boba";
 		File outputFile = new File(outputFileName);
 		try {
 			LevelsPackagePersistenceUtil.toFile(pack, outputFile);
