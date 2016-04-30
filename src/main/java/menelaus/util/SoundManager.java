@@ -35,16 +35,16 @@ public class SoundManager {
 		
 		switch (type) {
 			case BUTTONSOUND:
-				getSound("click.wav");
+				getSound("/menelaus_assets/click.wav");
 				break;
 			case WINSOUND:
-				getSound("win2.wav");
+				getSound("/menelaus_assets/win2.wav");
 				break;
 			case LOSESOUND:
-				getSound("lose.wav");
+				getSound("/menelaus_assets/lose.wav");
 				break;
 			case COMPLETESOUND:
-				getSound("complete.wav");
+				getSound("/menelaus_assets/complete.wav");
 				break;
 		default:
 			break;
