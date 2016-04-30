@@ -1,30 +1,16 @@
 package menelaus.view.builder;
 
+import menelaus.model.LevelsPackage;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class BuilderWindowFrame extends JFrame {
 
 	private KabasujiPanel contentPane;
 	private static BuilderWindowFrame instance = new BuilderWindowFrame();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderWindowFrame frame = (BuilderWindowFrame) getInstance();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	private LevelsPackage currentPackage;
 
 	/**
 	 * Create the frame.
@@ -85,5 +71,13 @@ public class BuilderWindowFrame extends JFrame {
 	 */
 	public KabasujiPanel getPanel() {
 		return contentPane;
+	}
+	
+	public LevelsPackage getCurrentPackage() {
+		return this.currentPackage;
+	}
+	
+	public void setCurrentPackage(LevelsPackage newPackage) {
+		this.currentPackage = newPackage;
 	}
 }

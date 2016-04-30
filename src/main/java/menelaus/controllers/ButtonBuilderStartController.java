@@ -16,9 +16,9 @@ public class ButtonBuilderStartController implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
-		BuilderSelectScreen sender = (BuilderSelectScreen) BuilderWindowFrame.getInstance().getPanel();
+		
 		try {
-			BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen(sender.getManager()));
+			BuilderWindowFrame.getInstance().swapPanel(new BuilderLevelBuilderScreen());
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
