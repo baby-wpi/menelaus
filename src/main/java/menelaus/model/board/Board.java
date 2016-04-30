@@ -303,7 +303,7 @@ public class Board implements Serializable {
      * @return Is it within board?
      */
     public boolean isPointWithinBoundary(Point point) {
-        return point.getX() < width && point.getY() < height;
+        return point.getX() < width && point.getY() < height && point.getX() >= 0 && point.getY() >= 0;
     }
     
     /**
