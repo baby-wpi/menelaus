@@ -21,6 +21,10 @@ public class ButtonLoadLevelController implements ActionListener{
 
 		File selectedFile = fc.getSelectedFile();
 		
+		if (selectedFile == null) {
+			return;
+		}
+		
 		try {
 			LevelsPackage levelsPackage = LevelsPackagePersistenceUtil.fromFile(selectedFile);
 			
