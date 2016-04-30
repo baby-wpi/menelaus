@@ -40,6 +40,9 @@ public class SoundManager {
 			case LOSESOUND:
 				getSound("lose.wav");
 				break;
+			case COMPLETESOUND:
+				getSound("complete.wav");
+				break;
 		default:
 			break;
 		}

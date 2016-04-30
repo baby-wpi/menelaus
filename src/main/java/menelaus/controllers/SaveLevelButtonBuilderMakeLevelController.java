@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import menelaus.model.BuilderManager;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderWindowFrame;
 import menelaus.view.builder.HomeScreen;
 
@@ -20,6 +22,7 @@ public class SaveLevelButtonBuilderMakeLevelController implements ActionListener
 	}
 
 	void save() {
+		SoundManager.getInstance().playSound(SoundType.COMPLETESOUND);
 		manager.saveLevel();
 	}
 	
