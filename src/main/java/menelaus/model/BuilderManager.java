@@ -182,7 +182,6 @@ public class BuilderManager {
 		catch (IOException e) {
 			return new LevelsPackage();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new LevelsPackage();
 		}
