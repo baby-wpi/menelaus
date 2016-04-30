@@ -19,6 +19,7 @@ public class ButtonLevelsController implements ActionListener {
 	}
 	
 	public ButtonLevelsController() {
+		this.levelsPackage = GameWindowFrame.getInstance().getRecentlyPLayedLevelsPackage();
 	}
 	
 	public void actionPerformed(ActionEvent e) {

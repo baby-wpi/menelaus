@@ -21,7 +21,7 @@ public class ButtonContinueController implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
 		GameWindowFrame frame = GameWindowFrame.getInstance();
 		Level nextLevel;
-		nextLevel = frame.getSavedGamesUtil().getNextPlayableLevelInPackage(frame.getLevelsPackage());
+		nextLevel = frame.getSavedGamesUtil().getNextPlayableLevelInPackage(frame.getRecentlyPLayedLevelsPackage());
 		
     	
     	if (nextLevel == null) {

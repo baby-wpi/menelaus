@@ -81,15 +81,16 @@ public class WinScreen extends KabasujiPanel  {
 		
 		/** Exit Button. */
 		JButton btnExit = new JButton("Exit");
-		try {
-			btnExit.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		btnExit.addActionListener(new ButtonLevelsController());
+//		try {
+//			btnExit.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		/** Score label. */
 		JLabel lblScore = new JLabel( scoreLabel );
