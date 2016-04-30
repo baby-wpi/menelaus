@@ -248,6 +248,15 @@ public class BoardTest {
 	}
 	
 	@Test(expected=InvalidPiecePlacementException.class)
+	public void testPlacePieceOutsideNegative() throws InvalidPiecePlacementException {
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(-1, 1));
+		
+		board.placePiece(piece1);
+	}
+	
+	@Test(expected=InvalidPiecePlacementException.class)
 	public void testPlacePieceOnChoppedTile() throws InvalidPiecePlacementException {
 		Piece piece1 = new Piece(new Point(0, 0));
 		piece1.addTile(new Tile(0, 0));
