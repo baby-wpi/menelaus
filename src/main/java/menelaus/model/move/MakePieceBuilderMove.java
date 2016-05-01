@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
@@ -55,7 +54,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 			if(!thisIValid) return false;
 		}*/
 		
-		Piece temp = new Piece(allSelected.get(0), new Coordinate(0.5f, 0.5f));
+		Piece temp = new Piece(allSelected.get(0));
 		for(int i = 1; i < allSelected.size(); i++) {
 			temp.addTile(new Tile(allSelected.get(i).subtract(allSelected.get(0))));
 		}
@@ -72,8 +71,8 @@ public class MakePieceBuilderMove extends BuilderMove {
 	public boolean doMove(Level level) {
 		if(pieceToPlace == null) {
 			if(!valid(level)) return false;
-			pieceToPlace = new Piece(allSelected.get(0), new Coordinate(0.5f, 0.5f));
-			pieceToPlaceInBullpen = new Piece(allSelected.get(0), new Coordinate(0.5f, 0.5f));
+			pieceToPlace = new Piece(allSelected.get(0));
+			pieceToPlaceInBullpen = new Piece(allSelected.get(0));
 			for(int i = 1; i < allSelected.size(); i++) {
 				pieceToPlace.addTile(new Tile(allSelected.get(i).subtract(allSelected.get(0))));
 				pieceToPlaceInBullpen.addTile(new Tile(allSelected.get(i).subtract(allSelected.get(0))));

@@ -32,7 +32,8 @@ public class PieceSelectionController extends MouseAdapter {
     public void mousePressed(MouseEvent me) {
         //get the piece that was clicked
         Piece selected = bullpenView.findPiece(me.getX(), me.getY());
-
+        if (selected == null) return;
+        
         //select, rotate, or flip based on mouse event
         if(me.getClickCount() == 1 && SwingUtilities.isLeftMouseButton(me)){
             level.setSelected(selected);

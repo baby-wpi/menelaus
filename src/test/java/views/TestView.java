@@ -54,7 +54,7 @@ public class TestView {
 		builderFrame = BuilderWindowFrame.getInstance();
 		homeScreen = new HomeScreen();
 		stars = new LevelStars(0, UUID.randomUUID());
-		winScreen = new WinScreen(stars, GameEndReason.WON);
+		winScreen = new WinScreen(stars, GameEndReason.WON, frame.getLevelsPackage().getLevels().get(0));
 		splashScreen = new menelaus.view.game.SplashScreen();
 		splashScreen2 = new menelaus.view.builder.SplashScreen();
 		extraScreen = new ExtraScreen();
@@ -62,7 +62,7 @@ public class TestView {
 		level = new menelaus.model.Level(LevelType.PUZZLE, 6, 6);
 		playScreen = new LevelPlayScreen(level);
 		bManager = new BuilderManager();
-		blevelScreen = new BuilderLevelBuilderScreen(bManager);
+		blevelScreen = new BuilderLevelBuilderScreen();
 		bSelectScreen = new BuilderSelectScreen();
 	}
 

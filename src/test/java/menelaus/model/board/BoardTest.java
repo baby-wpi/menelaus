@@ -1,7 +1,6 @@
 package menelaus.model.board;
 
 import menelaus.model.basic.Color;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.Point;
 import org.junit.Before;
 import org.junit.Test;
@@ -244,6 +243,15 @@ public class BoardTest {
 		piece1.addTile(new Tile(1, 1));
 		piece1.addTile(new Tile(0, 2));
 		piece1.addTile(new Tile(0, 3));
+		
+		board.placePiece(piece1);
+	}
+	
+	@Test(expected=InvalidPiecePlacementException.class)
+	public void testPlacePieceOutsideNegative() throws InvalidPiecePlacementException {
+		Piece piece1 = new Piece(new Point(0, 0));
+		piece1.addTile(new Tile(0, 0));
+		piece1.addTile(new Tile(-1, 1));
 		
 		board.placePiece(piece1);
 	}

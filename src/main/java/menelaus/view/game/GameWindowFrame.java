@@ -22,6 +22,7 @@ public class GameWindowFrame extends JFrame {
 	private static GameWindowFrame instance = new GameWindowFrame();
 	
 	private LevelsPackage levelsPackage;
+	private LevelsPackage recentlyPLayedLevelsPackage;
 	private SavedGamesUtil savedGamesUtil;
 
 	/**
@@ -35,10 +36,13 @@ public class GameWindowFrame extends JFrame {
         contentPane = new SplashScreen();
 		this.add(contentPane);
 		setVisible(true);
+		setResizable(false);
+		setName("KabaSuji");
 		
 		try {
 			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
 			savedGamesUtil = new SavedGamesUtil(new File(SAVED_GAMES_NAME));
+			recentlyPLayedLevelsPackage = levelsPackage;
 			
 			contentPane = new HomeScreen();
 //			Thread.sleep(2000);
@@ -60,11 +64,28 @@ public class GameWindowFrame extends JFrame {
 	}
 	
 	/**
-	 * Returns loaded default levels.
-	 * @return LevelsPackage object
+	 * sets loaded recently played levels package.
+	 * @return boolean - true if level was set
 	 */
 	public LevelsPackage getLevelsPackage() {
 		return levelsPackage;
+	}
+	
+	/**
+	 * sets recently played levels package.
+	 * @return boolean - true if level was set
+	 */
+	public boolean setRecentlyPLayedLevelsPackage(LevelsPackage inputLevelsPackage){
+		recentlyPLayedLevelsPackage = inputLevelsPackage;
+		return true;
+	}
+	
+	/**
+	 * gets loaded recently played levels package.
+	 * @return boolean - true if level was set
+	 */
+	public LevelsPackage getRecentlyPLayedLevelsPackage() {
+		return recentlyPLayedLevelsPackage;
 	}
 	
 	/**

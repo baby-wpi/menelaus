@@ -17,6 +17,16 @@ import java.util.Hashtable;
  */
 public class BoardView extends JPanel {
 
+	/**
+	 * border color for BoardView;
+	 */
+	Color borderColor = Color.black;
+	
+	/**
+	 * background color for boardView.
+	 */
+	Color backgroundColor = Color.white;
+	
     /**
      * height of a grid square.
      */
@@ -83,7 +93,8 @@ public class BoardView extends JPanel {
      * Only here so we can safely open within WindowBuilder.
      */
     public BoardView() {
-
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
 
     /**
@@ -93,6 +104,8 @@ public class BoardView extends JPanel {
         this.board = board;
         this.level = level;
         this.hasSelection = false;
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
     
     
@@ -100,6 +113,8 @@ public class BoardView extends JPanel {
     	this.board = board;
         this.level = level;
         this.hasSelection = hasSelection;
+        this.setBorder(BorderFactory.createLineBorder(borderColor));
+        this.setBackground(backgroundColor);
     }
 
     /**
@@ -252,19 +267,23 @@ public class BoardView extends JPanel {
         }
     }
 
+    /**
+     * Finds teh piece clciked on.
+     * @param x the x point clicked on in pixels.
+     * @param y the x point clicked on in pixels.
+     * @return the piece that was clicked on.
+     */
     public Piece findPiece(int x, int y) {
-        int gridX = x / calculateGridUnitSize();
-        int gridY = y / calculateGridUnitSize();
 
-        for (Piece p: board.getPieces()) {
-            if (board.getTileInfo().get(new Point(gridX, gridY)).isPiecePlaced()) {
-                return p;
-            }
-        }
-
-        return null;
+        return board.getTileInfo().get(pointUnder(x, y)).getPiecePlaced();
     }
 
+    /**
+     * Converts pixels to grid units.
+     * @param x pixels to be converted.
+     * @param y pixels to be converted.
+     * @return A point that represents the the gid unit clicked.
+     */
     public Point pointUnder(int x, int y) {
     	int gridX = x / calculateGridUnitSize();
     	int gridY = y / calculateGridUnitSize();

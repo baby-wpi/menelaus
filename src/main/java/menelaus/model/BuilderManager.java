@@ -1,17 +1,17 @@
 package menelaus.model;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Stack;
-
-import org.w3c.dom.html.HTMLIsIndexElement;
-
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
 import menelaus.model.move.BuilderMove;
 import menelaus.util.LevelsPackagePersistenceUtil;
+import menelaus.view.builder.BuilderLevelBuilderScreen;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Stack;
 
 /** 
  * Manages a level builder.
@@ -102,8 +102,10 @@ public class BuilderManager {
 	}
 	
 	public boolean undo() {
+		if(moves.isEmpty()) return false;
 		BuilderMove move = moves.pop();
 		if (move.undo(currentProject)) {
+			redoMoves.push(move);
 			return true; //Just pass on the return if the undo works.
 		}
 		else {
@@ -165,52 +167,11 @@ public class BuilderManager {
 	 * Clean the level up before saving it to make it playable.
 	 * @return Whether the clean up is successful.
 	 */
-	boolean cleanUpLevel() {
+	public void cleanUpLevel() {
 		Board theBoard = this.currentProject.getBoard();
 		while(theBoard.getPieces().size() > 0) {
 			theBoard.removePiece(theBoard.getPieces().get(0)); //Remove all the pieces from the board. 
 			// They're still in the bullpen.
-		}
-		return true;
-	}
-	
-	public LevelsPackage loadLevel() {
-		try {
-			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(new File("customLevels.boba"));
-			return pack;
-		}
-		catch (IOException e) {
-			return new LevelsPackage();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new LevelsPackage();
-		}
-	}
-	
-	public void loadLastLevel() {
-		LevelsPackage pack = loadLevel();
-		if(pack.levels.size() > 1) {
-			this.currentProject = pack.levels.get(pack.levels.size()-1);
-		}
-	}
-	
-	public boolean saveLevel() {
-		///this.currentProject.
-		//LevelsPackage pack = new LevelsPackage();
-		LevelsPackage pack = loadLevel();
-		cleanUpLevel();
-		pack.addLevel(this.currentProject);
-		//String outputFileName = this.getName() + ".lvlpkg";
-		String outputFileName = "customLevels.boba";
-		File outputFile = new File(outputFileName);
-		try {
-			LevelsPackagePersistenceUtil.toFile(pack, outputFile);
-			return true;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
 		}
 	}
 }

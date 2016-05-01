@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class LevelsPackage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	ArrayList<Level> levels;
+	private ArrayList<Level> levels;
 
 	public ArrayList<Level> getLevels() {
 		return levels;

@@ -1,16 +1,14 @@
 package menelaus.controllers;
 
+import menelaus.model.LevelsPackage;
+import menelaus.util.LevelsPackagePersistenceUtil;
+import menelaus.view.game.ExtraScreen;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
-import menelaus.model.LevelsPackage;
-import menelaus.util.LevelsPackagePersistenceUtil;
-import menelaus.view.game.ExtraScreen;
 
 public class ButtonLoadLevelController implements ActionListener{
 
@@ -19,11 +17,13 @@ public class ButtonLoadLevelController implements ActionListener{
 		JFileChooser fc = new JFileChooser();
 		fc.setCurrentDirectory(new File (System.getProperty("user.home")));
 		
-		int result = fc.showOpenDialog(new ExtraScreen());
-		
-		if(result == JFileChooser.APPROVE_OPTION);
-		
+		fc.showOpenDialog(new ExtraScreen());
+
 		File selectedFile = fc.getSelectedFile();
+		
+		if (selectedFile == null) {
+			return;
+		}
 		
 		try {
 			LevelsPackage levelsPackage = LevelsPackagePersistenceUtil.fromFile(selectedFile);

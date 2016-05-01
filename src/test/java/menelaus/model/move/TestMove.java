@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
-import menelaus.model.basic.Coordinate;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
@@ -25,7 +24,7 @@ public class TestMove{
 
     @Before
     public void setUp() {
-        piece = new Piece(new Point(1, 1), new Coordinate(0.5f, 0.5f));
+        piece = new Piece(new Point(1, 1));
         lightning = new Level(LevelType.LIGHTNING, 8, 6);
         lightning.getBullpen().addPiece(piece);
         puzzle = new Level(LevelType.PUZZLE, 8, 6);

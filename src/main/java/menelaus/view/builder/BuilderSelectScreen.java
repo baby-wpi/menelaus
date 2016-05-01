@@ -9,7 +9,6 @@ import menelaus.controllers.NameTextBuilderMakeBoardController;
 import menelaus.controllers.WidthTextBuilderMakeBoardController;
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.LevelType;
-import menelaus.model.basic.Point;
 import menelaus.view.BoardView;
 import menelaus.view.KabasujiPanel;
 
@@ -18,10 +17,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BuilderSelectScreen extends KabasujiPanel {
-	/**
-	 * Serial id to keep Eclipse happy
-	 */
-	private static final long serialVersionUID = -750732967111292078L;
+
 	private JTextField txtInsertName;
 	private JTextField txtWidth;
 	private JTextField txtHeight;
@@ -36,8 +32,6 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	
 	void initializeManager() {
 		manager = new BuilderManager();
-		//manager.getLevel().getBoard().chopTileOut(new Point(3, 0));
-		//manager.selectPoint(new Point(3, 0));
 	}
 	
 	void initializeControllers() {
@@ -62,7 +56,6 @@ public class BuilderSelectScreen extends KabasujiPanel {
 	}
 	
 	public void refreshBoardViewSource() {
-		//boardPanel = new BoardView(manager.getLevel().getBoard(),manager.getLevel());
 	}
 	
 	/**
@@ -87,7 +80,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
 		txtInsertName.setText("Insert Name");
 		txtInsertName.setColumns(10);
 		
-		JButton btnStart = new JButton("Start");
+		JButton btnStart = new JButton("Complete");
 		btnStart.addActionListener(new ButtonBuilderStartController());
 		
 		txtWidth = new JTextField();
@@ -109,59 +102,60 @@ public class BuilderSelectScreen extends KabasujiPanel {
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(48)
+					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnRelease, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnLightning, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnMainMenu)
-								.addComponent(btnPuzzle, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))))
-					.addPreferredGap(ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addGap(70)
+								.addComponent(btnStart)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblBoardSize)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(18)
 							.addComponent(txtWidth, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblX)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtHeight, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnStart))
-						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 613, GroupLayout.PREFERRED_SIZE))
-					.addGap(60))
+							.addGap(12)
+							.addComponent(txtHeight, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnRelease, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+							.addComponent(btnLightning, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+							.addComponent(btnPuzzle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+					.addGap(789))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(25, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(22)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnStart)
-								.addComponent(btnMainMenu))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+							.addGap(15))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnMainMenu)
+							.addGap(18)
+							.addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(txtWidth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtHeight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblX)
-								.addComponent(lblBoardSize))
+								.addComponent(lblBoardSize)
+								.addComponent(lblX))
 							.addGap(18)
-							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(267)
 							.addComponent(btnPuzzle, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(btnLightning, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(btnRelease, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(45, Short.MAX_VALUE))
+							.addComponent(btnRelease, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addGap(69)
+							.addComponent(btnStart)
+							.addGap(140))))
 		);
 		GroupLayout gl_boardPanel = new GroupLayout(boardPanel);
 		gl_boardPanel.setHorizontalGroup(

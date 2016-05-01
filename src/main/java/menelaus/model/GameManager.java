@@ -111,7 +111,7 @@ public class GameManager {
 		
 		levelStars = StarsUtil.getStars(this);
 		
-		if (levelStars.getStarsCount() == 3 || level.getBoard().isFull()) {
+		if (levelStars.getStarsCount() == 3 && level.getBoard().isFull()) {
 			stopGame();
 			notifyEndListeners(GameEndReason.WON);
 			return;
@@ -127,6 +127,7 @@ public class GameManager {
 	 * Call whenever the game starts. Starts timer.
 	 */
 	public void startGame() {
+		this.level = this.level.resetLevel();
 		this.movesMade = 0;
 		this.timePassed = 0;
 		this.moves = new ArrayDeque<Move>();

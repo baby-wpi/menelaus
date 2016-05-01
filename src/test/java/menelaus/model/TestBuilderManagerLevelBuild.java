@@ -1,15 +1,10 @@
 package menelaus.model;
 
+import junit.framework.TestCase;
+import menelaus.util.LevelsPackagePersistenceUtil;
+
 import java.io.File;
 import java.io.IOException;
-
-import org.junit.Ignore;
-
-import junit.framework.TestCase;
-import menelaus.model.basic.LevelType;
-import menelaus.model.move.MakePieceBuilderMove;
-import menelaus.model.move.SelectSquareMove;
-import menelaus.util.LevelsPackagePersistenceUtil;
 
 public class TestBuilderManagerLevelBuild extends TestCase {
 	public void testFull1() {
@@ -44,21 +39,16 @@ public class TestBuilderManagerLevelBuild extends TestCase {
 	}
 	
 	public void testLoad() {
-		/*
+
 		BuilderManager manager = new BuilderManager();
-		File madeLevel = new File("customLevels.boba");
+		File madeLevel = new File("default-levels.boba");
 		try {
 			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(madeLevel);
 			manager.currentProject = pack.getLevels().get(0);
-		} catch (ClassNotFoundException e) {
-			
-			e.printStackTrace();
-			fail();
-		} catch (IOException e) {
-			
+		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 			fail();
 		}
-		System.out.println();*/
+		System.out.println();
 	}
 }
