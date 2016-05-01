@@ -1,4 +1,4 @@
 language: java
-script: gradle check -Djava.awt.headless=true
+script: gradle check -Djava.awt.headless=true --stacktrace --debug
 notifications:
   slack: cs-diaz:fcT9kcwSjsdNXQfize2QOh2j
