@@ -20,7 +20,7 @@ public class SoundManager {
     private boolean isMute = false;
     
     /** HashTable for memoization. */
-    Map<SoundType, AudioClip> clipTable = new HashMap<SoundType, AudioClip>();
+    private Map<SoundType, AudioClip> clipTable = new HashMap<SoundType, AudioClip>();
     String filePath;
 	
 	private static SoundManager instance = new SoundManager();
