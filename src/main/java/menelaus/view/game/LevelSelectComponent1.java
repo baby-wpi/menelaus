@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
 
@@ -94,6 +97,18 @@ public class LevelSelectComponent1 extends JPanel {
 		JLabel lblLevelType = new JLabel(level.getType().toString().toLowerCase());
 		lblLevelType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelType.setMaximumSize(new Dimension(120, 16));
+		
+		addMouseListener(new MouseAdapter() {			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				// decides if the level component can be clicked on or not.
+				if (starCount > 0 || playable) {
+					ButtonLevelSelectController controller = new ButtonLevelSelectController(level);	
+					controller.actionPerformed(null);
+				}
+			}
+		});
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

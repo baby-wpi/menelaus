@@ -3,11 +3,15 @@ package menelaus.view;
 import menelaus.model.Level;
 import menelaus.model.board.Piece;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author frankegan on 4/15/16.
@@ -114,4 +118,18 @@ public class KabasujiPanel extends JPanel {
             this.addMouseMotionListener(mml);
         }
     }
+    
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		BufferedImage backgroundIMG = null;
+		
+		super.paintComponent(g);
+		try {
+			backgroundIMG = ImageIO.read(new File("back.jpg"));
+		} catch (IOException e) {
+			System.out.println("fuck the image isn't read");
+		}
+		
+		g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+	}
 }
