@@ -121,9 +121,10 @@ public class WinScreen extends KabasujiPanel  {
 		lblStar1 = new JLabel(starString);
 		lblStar1.setBounds(415, 268, starDemension, starDemension);
 		lblStar2 = new JLabel(starString);
-		lblStar2.setBounds(535, 268, starDemension, starDemension);
+		lblStar2.setBounds(475, 268, starDemension, starDemension);
 		lblStar3 = new JLabel(starString);
-		lblStar3.setBounds(475, 268, starDemension, starDemension);
+		lblStar3.setBounds(535, 268, starDemension, starDemension);
+
 		
 		setStarIcons();
 		setLayout(null);
