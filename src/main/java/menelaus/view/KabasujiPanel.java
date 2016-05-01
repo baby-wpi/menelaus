@@ -125,10 +125,10 @@ public class KabasujiPanel extends JPanel {
 		
 		super.paintComponent(g);
 		try {
-			backgroundIMG = ImageIO.read(new File("back.jpg"));
+			backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/back.jpg"));
 			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
 		} catch (IOException e) {
-			System.out.println("fuck the image isn't read");
+			System.out.println("The image isn't read");
 		}		
 	}
 }

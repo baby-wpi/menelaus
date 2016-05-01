@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -34,6 +35,19 @@ public class LevelsPackagePersistenceUtil {
 	 */
     public static LevelsPackage fromFile(File inputFile) throws IOException, ClassNotFoundException {
         FileInputStream fileToRead = new FileInputStream(inputFile);
+        return fromFile(fileToRead);
+    }
+    
+	/**
+	 * Load a LevelsPackage from a File.
+	 * @param inputFile File to read from
+	 * @return The LevelsPackage object
+	 */
+    public static LevelsPackage fromFile(InputStream fileToRead) throws IOException, ClassNotFoundException {
+    	if (fileToRead == null) {
+    		throw new IOException();
+    	}
+    	
         ObjectInputStream objectToRead = new ObjectInputStream(fileToRead);
         Object obj = objectToRead.readObject();
         objectToRead.close();

@@ -43,13 +43,7 @@ public class HomeScreen extends KabasujiPanel {
 		JButton btnExit = new JButton("Exit");
 
 		btnContinue.addActionListener(new ButtonContinueController());
-		try {
-			btnLevels.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} // Levels.
+		btnLevels.addActionListener(new ButtonLevelsController(null));
 		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
 		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
 

@@ -66,13 +66,13 @@ public class LevelSelectComponent extends JPanel {
 		int starDemension = 35;
 		
 		try {
-			starIMG = ImageIO.read(new File("star.png"));
-			emptyStarIMG = ImageIO.read(new File("empty_star.png"));
+			starIMG = ImageIO.read(this.getClass().getResource("/assets/star.png"));
+			emptyStarIMG = ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
 			starIcon = new ImageIcon(starIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			starString = null;
 		} catch (IOException e) {
-			System.out.println("fuck the image isn't read");
+			System.out.println("The image isn't read");
 		}
 		
 		// Set star count
@@ -185,10 +185,10 @@ public class LevelSelectComponent extends JPanel {
 		
 		super.paintComponent(g);
 		try {
-			backgroundIMG = ImageIO.read(new File("secondary_back.png"));
+			backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/secondary_back.png"));
 			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
 		} catch (IOException e) {
-			System.out.println("fuck the image isn't read");
+			System.out.println("The image isn't read");
 		}
 	}
 
