@@ -10,6 +10,7 @@ import menelaus.view.KabasujiPanel;
 import java.awt.Color;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 public class LevelSelectorScreen extends KabasujiPanel {
 	/**
@@ -30,8 +31,7 @@ public class LevelSelectorScreen extends KabasujiPanel {
 		for (Level l : levelsPackage.getLevels()) {
 			LevelStars stars = savedGames.getStarsForLevel(l);
 			
-//			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, stars, playable);
-			LevelSelectComponent1 btnLevelX = new LevelSelectComponent1(l, stars, playable);
+			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, stars, playable);
 
 			this.add(btnLevelX);
 			
@@ -39,6 +39,7 @@ public class LevelSelectorScreen extends KabasujiPanel {
 				playable = false;
 			}
 		}
+		
 //		setLayout(null);
 		
 		this.add(btnMainMenu);
