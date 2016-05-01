@@ -10,14 +10,17 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * 
@@ -26,11 +29,11 @@ import java.io.IOException;
  */
 public class HomeScreen extends KabasujiPanel {
 	JLabel lblMute;
+	
 	/**
 	 * Create the frame.
 	 */
 	public HomeScreen() {
-
 		JButton btnContinue = new JButton("Continue");
 
 		JButton btnLevels = new JButton("Levels");
@@ -53,6 +56,7 @@ public class HomeScreen extends KabasujiPanel {
 		JLabel lblKabasuji = new JLabel("KabaSuji");
 		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
+		/** mute button. */
 		lblMute = new JLabel("");
 		lblMute.addMouseListener(new MouseAdapter() {			
 			@Override
