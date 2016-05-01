@@ -77,10 +77,8 @@ public class LevelsPackagePersistenceUtilTest {
 	public void testIfThereAreDefaultLevelsPackage() {
 		LevelsPackage loaded;
 		
-		File createdFile = new File("default-levels.boba");
-		
 		try {
-			loaded = LevelsPackagePersistenceUtil.fromFile(createdFile);
+			loaded = LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"));
 			assertNotNull(loaded);
 		} catch (ClassNotFoundException e) {
 			fail("Default levels package is corrupted.");

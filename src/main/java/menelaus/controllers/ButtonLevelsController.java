@@ -12,13 +12,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonLevelsController implements ActionListener {
-	LevelsPackage levelsPackage;
+	LevelsPackage levelsPackage = null;
 	
 	public ButtonLevelsController(LevelsPackage lp){
 		this.levelsPackage = lp;
 	}
 	
 	public ButtonLevelsController() {
+		if (GameWindowFrame.getInstance() == null) {
+			return;
+		}
+		
 		this.levelsPackage = GameWindowFrame.getInstance().getRecentlyPLayedLevelsPackage();
 	}
 	
