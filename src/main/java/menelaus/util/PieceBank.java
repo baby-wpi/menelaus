@@ -53,12 +53,12 @@ public class PieceBank {
         p4.addTile(new Tile(1, 2));
 
         p5 = new Piece(new Point(0, 0));
+        p5.addTile(new Tile(0, 0));
         p5.addTile(new Tile(0, 1));
         p5.addTile(new Tile(0, 2));
         p5.addTile(new Tile(0, 3));
-        p5.addTile(new Tile(0, 4));
+        p5.addTile(new Tile(1, -1));
         p5.addTile(new Tile(1, 0));
-        p5.addTile(new Tile(1, 1));
 
         p6 = new Piece(new Point(0, 0));
         p6.addTile(new Tile(0, 0));
@@ -117,76 +117,76 @@ public class PieceBank {
         p12.addTile(new Tile(2, 0));
 
         p13 = new Piece(new Point(0, 0));
-        p13.addTile(new Tile(0, 1));
+        p13.addTile(new Tile(0, 0));
+        p13.addTile(new Tile(1, -1));
         p13.addTile(new Tile(1, 0));
         p13.addTile(new Tile(1, 1));
         p13.addTile(new Tile(1, 2));
-        p13.addTile(new Tile(1, 3));
-        p13.addTile(new Tile(2, 0));
+        p13.addTile(new Tile(2, -1));
 
         p14 = new Piece(new Point(0, 0));
-        p14.addTile(new Tile(0, 2));
+        p14.addTile(new Tile(0, 0));
+        p14.addTile(new Tile(1, -2));
+        p14.addTile(new Tile(1, -1));
         p14.addTile(new Tile(1, 0));
         p14.addTile(new Tile(1, 1));
-        p14.addTile(new Tile(1, 2));
-        p14.addTile(new Tile(1, 3));
-        p14.addTile(new Tile(2, 0));
+        p14.addTile(new Tile(2, -2));
 
         p15 = new Piece(new Point(0, 0));
+        p15.addTile(new Tile(-1, 3));
+        p15.addTile(new Tile(0, 0));
+        p15.addTile(new Tile(0, 1));
+        p15.addTile(new Tile(0, 2));
         p15.addTile(new Tile(0, 3));
         p15.addTile(new Tile(1, 0));
-        p15.addTile(new Tile(1, 1));
-        p15.addTile(new Tile(1, 2));
-        p15.addTile(new Tile(1, 3));
-        p15.addTile(new Tile(2, 0));
 
         p16 = new Piece(new Point(0, 0));
+        p16.addTile(new Tile(-1, 2));
+        p16.addTile(new Tile(0, 0));
+        p16.addTile(new Tile(0, 1));
         p16.addTile(new Tile(0, 2));
-        p16.addTile(new Tile(1, 0));
+        p16.addTile(new Tile(0, 3));
         p16.addTile(new Tile(1, 1));
-        p16.addTile(new Tile(1, 2));
-        p16.addTile(new Tile(1, 3));
-        p16.addTile(new Tile(2, 1));
 
         p17 = new Piece(new Point(0, 0));
+        p17.addTile(new Tile(-1, 1));
+        p17.addTile(new Tile(0, 0));
         p17.addTile(new Tile(0, 1));
-        p17.addTile(new Tile(1, 0));
+        p17.addTile(new Tile(0, 2));
+        p17.addTile(new Tile(0, 3));
         p17.addTile(new Tile(1, 1));
-        p17.addTile(new Tile(1, 2));
-        p17.addTile(new Tile(1, 3));
-        p17.addTile(new Tile(2, 1));
 
         p18 = new Piece(new Point(0, 0));
+        p18.addTile(new Tile(-1, 1));
+        p18.addTile(new Tile(-1, 2));
+        p18.addTile(new Tile(-1, 3));
+        p18.addTile(new Tile(0, 0));
         p18.addTile(new Tile(0, 1));
-        p18.addTile(new Tile(0, 2));
-        p18.addTile(new Tile(0, 3));
-        p18.addTile(new Tile(1, 0));
         p18.addTile(new Tile(1, 1));
-        p18.addTile(new Tile(2, 1));
 
         p19 = new Piece(new Point(0, 0));
+        p19.addTile(new Tile(-1, 1));
+        p19.addTile(new Tile(-1, 2));
+        p19.addTile(new Tile(-1, 3));
+        p19.addTile(new Tile(0, 0));
         p19.addTile(new Tile(0, 1));
-        p19.addTile(new Tile(0, 2));
         p19.addTile(new Tile(0, 3));
-        p19.addTile(new Tile(1, 0));
-        p19.addTile(new Tile(1, 1));
-        p19.addTile(new Tile(1, 3));
 
         p20 = new Piece(new Point(0, 0));
+        p20.addTile(new Tile(-1, 2));
+        p20.addTile(new Tile(-1, 3));
+        p20.addTile(new Tile(-1, 4));
+        p20.addTile(new Tile(0, 0));
+        p20.addTile(new Tile(0, 1));
         p20.addTile(new Tile(0, 2));
-        p20.addTile(new Tile(0, 3));
-        p20.addTile(new Tile(0, 4));
-        p20.addTile(new Tile(1, 0));
-        p20.addTile(new Tile(1, 1));
-        p20.addTile(new Tile(1, 2));
 
         p21 = new Piece(new Point(0, 0));
+        p21.addTile(new Tile(-1, 1));
+        p21.addTile(new Tile(-1, 2));
+        p21.addTile(new Tile(-1, 3));
+        p21.addTile(new Tile(0, 0));
         p21.addTile(new Tile(0, 1));
         p21.addTile(new Tile(0, 2));
-        p21.addTile(new Tile(0, 3));
-        p21.addTile(new Tile(1, 0));
-        p21.addTile(new Tile(1, 1));
-        p21.addTile(new Tile(1, 2));
 
         p22 = new Piece(new Point(0, 0));
         p22.addTile(new Tile(0, 0));
@@ -197,12 +197,12 @@ public class PieceBank {
         p22.addTile(new Tile(1, 2));
 
         p23 = new Piece(new Point(0, 0));
-        p23.addTile(new Tile(0, 1));
+        p23.addTile(new Tile(0, 0));
+        p23.addTile(new Tile(1, 0));
         p23.addTile(new Tile(1, 1));
         p23.addTile(new Tile(1, 2));
-        p23.addTile(new Tile(1, 3));
+        p23.addTile(new Tile(2, -1));
         p23.addTile(new Tile(2, 0));
-        p23.addTile(new Tile(2, 1));
 
         p24 = new Piece(new Point(0, 0));
         p24.addTile(new Tile(0, 0));
@@ -213,28 +213,28 @@ public class PieceBank {
         p24.addTile(new Tile(2, 1));
 
         p25 = new Piece(new Point(0, 0));
-        p25.addTile(new Tile(0, 2));
+        p25.addTile(new Tile(0, 0));
+        p25.addTile(new Tile(1, -1));
+        p25.addTile(new Tile(1, 0));
         p25.addTile(new Tile(1, 1));
-        p25.addTile(new Tile(1, 2));
-        p25.addTile(new Tile(1, 3));
-        p25.addTile(new Tile(2, 0));
-        p25.addTile(new Tile(2, 1));
+        p25.addTile(new Tile(2, -2));
+        p25.addTile(new Tile(2, -1));
 
         p26 = new Piece(new Point(0, 0));
+        p26.addTile(new Tile(0, 0));
         p26.addTile(new Tile(0, 1));
         p26.addTile(new Tile(0, 2));
-        p26.addTile(new Tile(0, 3));
-        p26.addTile(new Tile(1, 1));
+        p26.addTile(new Tile(1, 0));
+        p26.addTile(new Tile(2, -1));
         p26.addTile(new Tile(2, 0));
-        p26.addTile(new Tile(2, 1));
 
         p27 = new Piece(new Point(0, 0));
+        p27.addTile(new Tile(0, 0));
         p27.addTile(new Tile(0, 1));
         p27.addTile(new Tile(0, 2));
-        p27.addTile(new Tile(0, 3));
+        p27.addTile(new Tile(1, -1));
         p27.addTile(new Tile(1, 0));
-        p27.addTile(new Tile(1, 1));
-        p27.addTile(new Tile(2, 0));
+        p27.addTile(new Tile(2, -1));
 
         p28 = new Piece(new Point(0, 0));
         p28.addTile(new Tile(0, 0));
@@ -261,12 +261,12 @@ public class PieceBank {
         p30.addTile(new Tile(2, 1));
 
         p31 = new Piece(new Point(0, 0));
+        p31.addTile(new Tile(-1, 2));
+        p31.addTile(new Tile(-1, 3));
+        p31.addTile(new Tile(0, 0));
+        p31.addTile(new Tile(0, 1));
         p31.addTile(new Tile(0, 2));
-        p31.addTile(new Tile(0, 3));
         p31.addTile(new Tile(1, 0));
-        p31.addTile(new Tile(1, 1));
-        p31.addTile(new Tile(1, 2));
-        p31.addTile(new Tile(2, 0));
 
         p32 = new Piece(new Point(0, 0));
         p32.addTile(new Tile(0, 0));
@@ -277,28 +277,28 @@ public class PieceBank {
         p32.addTile(new Tile(2, 2));
 
         p33 = new Piece(new Point(0, 0));
+        p33.addTile(new Tile(0, 0));
         p33.addTile(new Tile(0, 1));
-        p33.addTile(new Tile(0, 2));
+        p33.addTile(new Tile(1, -1));
         p33.addTile(new Tile(1, 0));
         p33.addTile(new Tile(1, 1));
-        p33.addTile(new Tile(1, 2));
-        p33.addTile(new Tile(2, 1));
+        p33.addTile(new Tile(2, 0));
 
         p34 = new Piece(new Point(0, 0));
+        p34.addTile(new Tile(0, 0));
         p34.addTile(new Tile(0, 1));
-        p34.addTile(new Tile(0, 2));
+        p34.addTile(new Tile(1, 0));
         p34.addTile(new Tile(1, 1));
-        p34.addTile(new Tile(1, 2));
+        p34.addTile(new Tile(2, -1));
         p34.addTile(new Tile(2, 0));
-        p34.addTile(new Tile(2, 1));
 
         p35 = new Piece(new Point(0, 0));
-        p35.addTile(new Tile(0, 2));
-        p35.addTile(new Tile(0, 3));
-        p35.addTile(new Tile(1, 1));
-        p35.addTile(new Tile(1, 2));
-        p35.addTile(new Tile(2, 0));
-        p35.addTile(new Tile(2, 1));
+        p35.addTile(new Tile(0, 0));
+        p35.addTile(new Tile(0, 1));
+        p35.addTile(new Tile(1, -1));
+        p35.addTile(new Tile(1, 0));
+        p35.addTile(new Tile(2, -2));
+        p35.addTile(new Tile(2, -1));
 
 
         Piece[] pieces = {
