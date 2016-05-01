@@ -68,7 +68,7 @@ public class WinScreen extends KabasujiPanel  {
 			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			starString = null;
 		} catch (Exception e) {
-			System.out.println("the image isn't read");
+			System.out.println("WinScreen: the image isn't read");
 		}
 		
 		Level restartLevel = inputLevel;
