@@ -90,7 +90,12 @@ public class LevelSelectComponent1 extends JPanel {
 		
 		setStarIcons();
 		
-		JLabel lblLevelName = new JLabel(level.getName());
+		String levelName = level.getName();
+		if (levelName == null || levelName.equals("")) {
+			levelName = "level_name";
+		}
+		
+		JLabel lblLevelName = new JLabel(levelName);
 		lblLevelName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelName.setMaximumSize(new Dimension(120, 16));
 		
