@@ -61,11 +61,11 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	void initializeControllers() {
 		this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
 		this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager,this.panelBoardView,this.panelBullpenView));
-		this.txtMaxMoves.addActionListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager,this.txtMaxMoves));
+		this.txtMaxMoves.getDocument().addDocumentListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager,this.txtMaxMoves));
 		this.btnComplete.addActionListener(new SaveLevelButtonBuilderMakeLevelController(manager));
 		this.btnUndo.addActionListener(new UndoBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
 		this.btnRedo.addActionListener(new RedoBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
-		txtInsertName.addActionListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
+		txtInsertName.getDocument().addDocumentListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
 	}
 	
 
