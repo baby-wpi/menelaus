@@ -30,18 +30,21 @@ import java.io.InputStream;
 public class HomeScreen extends KabasujiPanel {
 	JLabel lblMute;
 	BufferedImage backgroundIMG;
+	BufferedImage starIMG;
 	ClassLoader classLoader;
 	
 	/**
 	 * Create the frame.
 	 */
 	public HomeScreen() {
-		// InputStream input = classLoader.getResourceAsStream("back.jpg");
 		try {
 			backgroundIMG = ImageIO.read(new File("back.jpg"));
+			starIMG = ImageIO.read(new File("star.png"));
 		} catch (IOException e) {
 			System.out.println("fuck the image isn't read");
 		}
+		
+		
 
 		JButton btnContinue = new JButton("Continue");
 
@@ -145,6 +148,7 @@ public class HomeScreen extends KabasujiPanel {
 		
 		//g.drawRect(100, 100, 100, 100);
 		g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+		g.drawImage(starIMG, 0, 0, null);
 		g.setColor(Color.GRAY);
 		g.fillRect(0, 0, 20, 20);
 	}
