@@ -1,28 +1,19 @@
 package menelaus.view.game;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.JPanel;
-
 import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
 
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class LevelSelectComponent extends JPanel {
 	/** the level for this component. */
@@ -66,8 +57,8 @@ public class LevelSelectComponent extends JPanel {
 		int starDemension = 35;
 		
 		try {
-			starIMG = ImageIO.read(this.getClass().getResource("/assets/star.png"));
-			emptyStarIMG = ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
+			starIMG = ImageIO.read(new File("/assets/star.png"));//ImageIO.read(this.getClass().getResource("/assets/star.png"));
+			emptyStarIMG = ImageIO.read(new File("/assets/empty_star.png"));//ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
 			starIcon = new ImageIcon(starIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			starString = null;
@@ -180,14 +171,13 @@ public class LevelSelectComponent extends JPanel {
 	}
 	
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		BufferedImage backgroundIMG = null;
 		
 		super.paintComponent(g);
 		try {
 			backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/secondary_back.png"));
 			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println("The image isn't read");
 		}
 	}
