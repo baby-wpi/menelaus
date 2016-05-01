@@ -45,8 +45,11 @@ public class LevelPlayScreen extends KabasujiPanel {
 			JOptionPane.showMessageDialog(null, "Cannot write your progress to disk.");
 		}
 		
-		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
-		controller.actionPerformed(null);
+		// If restart do not go to winscreen
+		if (reason != GameEndReason.RESTART) {
+			ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
+			controller.actionPerformed(null);
+		}
 	}
 
 	private void initGameManager(Level level) {
@@ -109,7 +112,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 		JButton btnRestart = new JButton("RESTART");
 		btnRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameManager.userEndsGame();
+				gameManager.userRestartsGame();
 				RestartController restartController = new RestartController(level);
 				restartController.actionPerformed(e);
 			}
