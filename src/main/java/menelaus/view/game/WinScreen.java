@@ -67,8 +67,8 @@ public class WinScreen extends KabasujiPanel  {
 		}
 		
 		try {
-			starIMG = ImageIO.read(new File("star.png"));
-			emptyStarIMG = ImageIO.read(new File("empty_star.png"));
+			starIMG = ImageIO.read(this.getClass().getResource("/assets/star.png"));
+			emptyStarIMG = ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
 			starIcon = new ImageIcon(starIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			starString = null;
