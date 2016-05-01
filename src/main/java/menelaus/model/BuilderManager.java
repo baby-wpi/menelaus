@@ -102,8 +102,10 @@ public class BuilderManager {
 	}
 	
 	public boolean undo() {
+		if(moves.isEmpty()) return false;
 		BuilderMove move = moves.pop();
 		if (move.undo(currentProject)) {
+			redoMoves.push(move);
 			return true; //Just pass on the return if the undo works.
 		}
 		else {
@@ -165,61 +167,11 @@ public class BuilderManager {
 	 * Clean the level up before saving it to make it playable.
 	 * @return Whether the clean up is successful.
 	 */
-	boolean cleanUpLevel() {
+	public void cleanUpLevel() {
 		Board theBoard = this.currentProject.getBoard();
 		while(theBoard.getPieces().size() > 0) {
 			theBoard.removePiece(theBoard.getPieces().get(0)); //Remove all the pieces from the board. 
 			// They're still in the bullpen.
-		}
-		return true;
-	}
-	
-	public LevelsPackage loadLevel() {
-		try {
-			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"));
-			return pack;
-		}
-		catch (IOException e) {
-			return new LevelsPackage();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new LevelsPackage();
-		}
-	}
-	
-	public void loadLastLevel() {
-		LevelsPackage pack = loadLevel();
-		if(pack.levels.size() > 1) {
-			this.currentProject = pack.levels.get(pack.levels.size()-1);
-		}
-	}
-	
-	public boolean saveLevel() {
-		LevelsPackage pack = loadLevel();
-		cleanUpLevel();
-		pack.addLevel(this.currentProject);
-        String customPath  = "";
-
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File (System.getProperty("user.home")));
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        try {
-            if (chooser.showOpenDialog(new BuilderLevelBuilderScreen(this)) == JFileChooser.APPROVE_OPTION) {
-                customPath = chooser.getSelectedFile().getPath() + File.separator;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String outputFileName = "package-name.boba";
-		File outputFile = new File(customPath + outputFileName);
-		try {
-			LevelsPackagePersistenceUtil.toFile(pack, outputFile);
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
 		}
 	}
 }

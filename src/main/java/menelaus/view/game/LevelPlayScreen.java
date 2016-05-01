@@ -44,9 +44,6 @@ public class LevelPlayScreen extends KabasujiPanel {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Cannot write your progress to disk.");
 		}
-
-//		JOptionPane.showMessageDialog(null, "Game ended. Reason: " + reason.toString());
-		
 		
 		ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
 		controller.actionPerformed(null);
@@ -62,7 +59,11 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 		gameManager.addGameTickListener(new GameTickListener() {
 			public void tick() {
-				labelCountDown.setText("Time passed: " + gameManager.getTimePassed());
+				if (gameManager.getLevel().getType() == LevelType.LIGHTNING) {
+					labelCountDown.setText("Time left: " + (gameManager.getLevel().getTimeLimit() - gameManager.getTimePassed()));
+				} else {
+					labelCountDown.setText("Moves left: " + (gameManager.getLevel().getMoveLimit() - gameManager.getMovesMade()));
+				}
 			}
 		});
 	}
@@ -96,7 +97,11 @@ public class LevelPlayScreen extends KabasujiPanel {
 		JLabel labelLevelName = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
 		labelLevelName.setMaximumSize(new Dimension(248, 16));
 		
-		labelCountDown = new JLabel("Time passed: 0");
+		if (gameManager.getLevel().getType() == LevelType.LIGHTNING) {
+			labelCountDown = new JLabel("Time left: " + gameManager.getLevel().getTimeLimit());
+		} else {
+			labelCountDown = new JLabel("Moves left: " + gameManager.getLevel().getMoveLimit());
+		}
 
         /* BUTTONS */
 		

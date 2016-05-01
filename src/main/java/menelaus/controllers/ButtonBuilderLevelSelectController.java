@@ -14,6 +14,8 @@ public class ButtonBuilderLevelSelectController implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
+		
+		BuilderWindowFrame.getInstance().setCurrentPackage(null);
 		BuilderWindowFrame.getInstance().swapPanel(new BuilderSelectScreen());
 	}
 
