@@ -3,6 +3,12 @@ package menelaus.util;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 /**
  * Sound Manager handles all game sounds.
@@ -10,7 +16,12 @@ import java.net.URL;
  */
 public class SoundManager {
     private AudioClip click;
+    
     private boolean isMute = false;
+    
+    /** HashTable for memoization. */
+    Map<SoundType, AudioClip> clipTable = new HashMap<SoundType, AudioClip>();
+    String filePath;
 	
 	private static SoundManager instance = new SoundManager();
 	
@@ -26,53 +37,79 @@ public class SoundManager {
 		return instance;
 	}
 	
+	
+	/*
+	 * check in hashtable
+	 * if not 
+	 * 		put in hash table
+	 * if so
+	 * 		play sound with that sound clip
+	 */
+	
 	/**
 	 * play sound from given given sound type.
 	 * @param type
+	 * @author Obatola Seward-Evans
 	 */
 	public void playSound(SoundType type){
 		if (isMute) { return; } 
 		
 		switch (type) {
 			case BUTTONSOUND:
-				getSound("/assets/click.wav");
+				getPlaySound("/assets/click.wav", type);
 				break;
 			case WINSOUND:
-				getSound("/assets/win2.wav");
+				getPlaySound("/assets/win2.wav", type);
 				break;
 			case LOSESOUND:
-				getSound("/assets/lose.wav");
+				getPlaySound("/assets/lose.wav", type);
 				break;
 			case COMPLETESOUND:
-				getSound("/assets/complete.wav");
+				getPlaySound("/assets/complete.wav", type);
 				break;
 			case EXITSOUND:
-				getSound("/assets/close_app.wav");
+				getPlaySound("/assets/close_app.wav", type);
 				break;
 			case PRESSPIECE:
-				getSound("/assets/place_piece.wav");
+				getPlaySound("/assets/place_piece.wav", type);
 				break;
 			case PRESSTILE:
-				getSound("/assets/click_tile.wav");
+				getPlaySound("/assets/click_tile.wav", type);
 				break;
 			case RESTARTSOUND:
-				getSound("/assets/restart.wav");
+				getPlaySound("/assets/restart.wav", type);
 				break;
-		default:
-			break;
+			default:
+				break;
+		}
+	}
+	
+	/**
+	 * check if the audio clip is in hashtable, if so play, if not put clip in.
+	 * @author Obatola Seward-Evans
+	 * @param file_path
+	 * @param soundType
+	 */
+	public void getPlaySound(String filePath, SoundType soundType) {
+		if (clipTable.containsKey(soundType)) {
+			clipTable.get(soundType).play();
+		} else {
+			clipTable.put(soundType, getSoundFile(filePath));
 		}
 	}
 	
 	/**
 	 * get sound from file and play.
 	 * @param file_name
+	 * @return 
 	 */
-	private void getSound(String file_name) {
+	private AudioClip getSoundFile(String file_name) {
         URL urlClick = SoundManager.class.getResource(file_name);
 		if(urlClick != null) {
 			click = Applet.newAudioClip(urlClick);
 			click.play();
-		}
+		}		
+		return click;
 	}
 	
 	/**

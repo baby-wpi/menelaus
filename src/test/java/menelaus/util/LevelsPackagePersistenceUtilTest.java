@@ -123,8 +123,9 @@ public class LevelsPackagePersistenceUtilTest {
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		
-		Level level1 = new Level(LevelType.PUZZLE, 3, 3);
+		Level level1 = new Level(LevelType.RELEASE, 4, 4);
 		level1.getBoard().addHintPiece(hint1);
+		level1.getBoard().addColoredSetItem(coloredSetItem, new Point(3, 3));
 		
 		level1.getBullpen().addPiece(piece1);
 		level1.getBullpen().addPiece(piece2);
