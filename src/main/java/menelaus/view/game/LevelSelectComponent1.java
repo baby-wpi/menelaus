@@ -174,8 +174,19 @@ public class LevelSelectComponent1 extends JPanel {
 			lblStar3.setIcon(emptyStarIcon);
 			break;
 		}
-
+	}
+	
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		BufferedImage backgroundIMG = null;
 		
+		super.paintComponent(g);
+		try {
+			backgroundIMG = ImageIO.read(new File("secondary_back.png"));
+			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+		} catch (IOException e) {
+			System.out.println("fuck the image isn't read");
+		}
 	}
 
 }
