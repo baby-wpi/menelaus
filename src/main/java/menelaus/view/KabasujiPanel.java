@@ -1,7 +1,6 @@
 package menelaus.view;
 
 import menelaus.model.Level;
-import menelaus.model.board.Piece;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -75,26 +74,6 @@ public class KabasujiPanel extends JPanel {
 
         // clear the image.
         offscreenGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-    }
-
-    /**
-     * Repaint to the screen just the given part of the image.
-     */
-    public void paintBackground(Piece p) {
-        // Only updates to the screen the given region
-        if (canvasGraphics != null) {
-            canvasGraphics.drawImage(offscreenImage,
-                    p.getPosition().getX(),
-                    p.getPosition().getY(),
-                    p.getWidth(),
-                    p.getHeight(),
-                    this);
-
-            repaint(p.getPosition().getX(),
-                    p.getPosition().getY(),
-                    p.getWidth(),
-                    p.getHeight());
-        }
     }
 
     /**

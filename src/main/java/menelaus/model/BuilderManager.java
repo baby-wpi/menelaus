@@ -174,4 +174,52 @@ public class BuilderManager {
 			// They're still in the bullpen.
 		}
 	}
+	
+	public LevelsPackage loadLevel() {
+		try {
+			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"));
+			return pack;
+		}
+		catch (IOException e) {
+			return new LevelsPackage();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return new LevelsPackage();
+		}
+	}
+	
+	public void loadLastLevel() {
+		LevelsPackage pack = loadLevel();
+		if(pack.getLevels().size() > 1) {
+			this.currentProject = pack.getLevels().get(pack.getLevels().size()-1);
+		}
+	}
+	
+	public boolean saveLevel() {
+		LevelsPackage pack = loadLevel();
+		cleanUpLevel();
+		pack.addLevel(this.currentProject);
+        String customPath  = "";
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File (System.getProperty("user.home")));
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        try {
+            if (chooser.showOpenDialog(new BuilderLevelBuilderScreen()) == JFileChooser.APPROVE_OPTION) {
+                customPath = chooser.getSelectedFile().getPath() + File.separator;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String outputFileName = "package-name.boba";
+		File outputFile = new File(customPath + outputFileName);
+		try {
+			LevelsPackagePersistenceUtil.toFile(pack, outputFile);
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
