@@ -1,6 +1,7 @@
 package menelaus.view.builder;
 
 import menelaus.model.LevelsPackage;
+import menelaus.util.SoundManager;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -16,6 +17,10 @@ public class BuilderWindowFrame extends JFrame {
 	 * Create the frame.
 	 */
 	private BuilderWindowFrame() {
+		
+		// initialize sound manager.
+		SoundManager.getInstance();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
 		

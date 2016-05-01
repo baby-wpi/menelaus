@@ -3,6 +3,7 @@ package menelaus.view.game;
 import menelaus.model.LevelsPackage;
 import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.util.SavedGamesUtil;
+import menelaus.util.SoundManager;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
@@ -29,6 +30,9 @@ public class GameWindowFrame extends JFrame {
 	 * Create the frame.
 	 */
 	private GameWindowFrame() {
+		// initialize sound manager.
+		SoundManager.getInstance();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 		
