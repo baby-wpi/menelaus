@@ -137,7 +137,6 @@ public class PieceDragController extends MouseAdapter {
             return false;
         }
 
-        panel.paintBackground(selected);
         int oldx = selected.getPosition().getX();
         int oldy = selected.getPosition().getY();
 

@@ -71,6 +71,7 @@ public class BullpenView extends JPanel {
     /**
      * Draw background puzzle and all active pieces.
      */
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
