@@ -78,7 +78,7 @@ public class LevelsPackagePersistenceUtilTest {
 		LevelsPackage loaded;
 		
 		try {
-			loaded = LevelsPackagePersistenceUtil.fromFile(this.getClass().getResourceAsStream("/assets/default-levels.boba"));
+			loaded = LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"));
 			assertNotNull(loaded);
 		} catch (ClassNotFoundException e) {
 			fail("Default levels package is corrupted.");

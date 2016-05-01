@@ -15,7 +15,7 @@ import java.io.File;
  *
  */
 public class GameWindowFrame extends JFrame {
-	private final static String DEFAULT_PACKAGE_NAME = "/assets/default-levels.boba";
+	private final static String DEFAULT_PACKAGE_NAME = "default-levels.boba";
 	private final static String SAVED_GAMES_NAME = "saved-games.boba";
 	
 	private KabasujiPanel contentPane;
@@ -40,7 +40,7 @@ public class GameWindowFrame extends JFrame {
 		setName("KabaSuji");
 		
 		try {
-			levelsPackage = LevelsPackagePersistenceUtil.fromFile(this.getClass().getResourceAsStream(DEFAULT_PACKAGE_NAME));
+			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
 			savedGamesUtil = new SavedGamesUtil(new File(SAVED_GAMES_NAME));
 			recentlyPLayedLevelsPackage = levelsPackage;
 			

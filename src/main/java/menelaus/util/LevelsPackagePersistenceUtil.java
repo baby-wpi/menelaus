@@ -35,19 +35,6 @@ public class LevelsPackagePersistenceUtil {
 	 */
     public static LevelsPackage fromFile(File inputFile) throws IOException, ClassNotFoundException {
         FileInputStream fileToRead = new FileInputStream(inputFile);
-        return fromFile(fileToRead);
-    }
-    
-	/**
-	 * Load a LevelsPackage from a File.
-	 * @param inputFile File to read from
-	 * @return The LevelsPackage object
-	 */
-    public static LevelsPackage fromFile(InputStream fileToRead) throws IOException, ClassNotFoundException {
-    	if (fileToRead == null) {
-    		throw new IOException();
-    	}
-    	
         ObjectInputStream objectToRead = new ObjectInputStream(fileToRead);
         Object obj = objectToRead.readObject();
         objectToRead.close();

@@ -42,7 +42,7 @@ public class TestBuilderManagerLevelBuild extends TestCase {
 
 		BuilderManager manager = new BuilderManager();
 		try {
-			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(this.getClass().getResourceAsStream("/assets/default-levels.boba"));
+			LevelsPackage pack = LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"));
 			manager.currentProject = pack.getLevels().get(0);
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
