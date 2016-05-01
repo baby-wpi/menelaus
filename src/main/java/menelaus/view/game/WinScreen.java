@@ -10,10 +10,16 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class WinScreen extends KabasujiPanel  {
 	LevelStars stars;
@@ -30,6 +36,16 @@ public class WinScreen extends KabasujiPanel  {
 	int starCount;
 	
 	private KabasujiPanel contentPane;
+	
+	BufferedImage starIMG;
+	BufferedImage emptyStarIMG;
+	ImageIcon starIcon;
+	ImageIcon emptyStarIcon;
+	String starString = "str";
+	
+	JLabel lblStar1;
+	JLabel lblStar2;
+	JLabel lblStar3;
 
 	/**
 	 * Create the frame.
@@ -41,24 +57,35 @@ public class WinScreen extends KabasujiPanel  {
 		this.stars = starsParams;
 		this.reason = reason;
 		contentPane = this;
-		starCount = stars.getStarsCount();
+		int starDemension = 50;
+		
+		// Set star count
+		if ( stars == null ){
+			starCount = 0;
+		} else {
+			starCount = this.stars.getStarsCount();	
+		}
+		
+		try {
+			starIMG = ImageIO.read(new File("star.png"));
+			emptyStarIMG = ImageIO.read(new File("empty_star.png"));
+			starIcon = new ImageIcon(starIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
+			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
+			starString = null;
+		} catch (IOException e) {
+			System.out.println("fuck the image isn't read");
+		}
 		
 		Level restartLevel = inputLevel;
-//		Level restartLevel = null;
-//		for (Level level : GameWindowFrame.getInstance().getLevelsPackage().getLevels()) {
-//			if (level.getUuid() == stars.getLevelId()) {
-//				restartLevel = level;
-//			}
-//		}
-//		
+	
 		if ( starCount < 1 ) {
-			congratsLabel = "You Lose!\n";
+			congratsLabel = "You Lose!";
 			SoundManager.getInstance().playSound(SoundType.LOSESOUND);
 		} else if (starCount == 1) {
-			congratsLabel = "Almost there!\n";
+			congratsLabel = "Almost there!";
 			SoundManager.getInstance().playSound(SoundType.WINSOUND);
 		} else {
-			congratsLabel = "Congratulations!!!\n";
+			congratsLabel = "Congratulations!!!";
 			SoundManager.getInstance().playSound(SoundType.WINSOUND);
 		}
 		
@@ -70,71 +97,72 @@ public class WinScreen extends KabasujiPanel  {
 		
 		/** Continue Button. */
 		JButton btnContinue = new JButton("Continue");
+		btnContinue.setBounds(415, 338, 170, 57);
 		btnContinue.addActionListener(new ButtonContinueController());
 		
 		/** Restart Button. */
 		JButton btnRestart = new JButton("Play Again");
+		btnRestart.setBounds(415, 407, 170, 59);
 		if (restartLevel != null) {
 			btnRestart.addActionListener(new RestartController(restartLevel));
 		}
 		
 		/** Exit Button. */
 		JButton btnExit = new JButton("Exit");
+		btnExit.setBounds(415, 478, 170, 58);
 		btnExit.addActionListener(new ButtonLevelsController());
-//		try {
-//			btnExit.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		/** Score label. */
-		JLabel lblScore = new JLabel( scoreLabel );
 		
 		/** Congratulations label. */
 		JLabel lblCongratulations = new JLabel( congratsLabel );
+		lblCongratulations.setBounds(354, 208, 291, 36);
 		lblCongratulations.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCongratulations.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(355, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblCongratulations, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(120)
-							.addComponent(lblScore))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(60)
-							.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(60)
-							.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(60)
-							.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
-					.addGap(344))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(219, Short.MAX_VALUE)
-					.addComponent(lblCongratulations)
-					.addGap(18)
-					.addComponent(lblScore)
-					.addGap(42)
-					.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addGap(209))
-		);
-		contentPane.setLayout(gl_contentPane);
+		lblStar1 = new JLabel(starString);
+		lblStar1.setBounds(415, 268, starDemension, starDemension);
+		lblStar2 = new JLabel(starString);
+		lblStar2.setBounds(535, 268, starDemension, starDemension);
+		lblStar3 = new JLabel(starString);
+		lblStar3.setBounds(475, 268, starDemension, starDemension);
+		
+		setStarIcons();
+		setLayout(null);
+		add(lblCongratulations);
+		add(btnRestart);
+		add(btnExit);
+		add(btnContinue);
+		add(lblStar1);
+		add(lblStar2);
+		add(lblStar3);
 	}
+	
+	private void setStarIcons() {
+		
+		switch (starCount) {
+		case 1:
+			lblStar1.setIcon(starIcon);
+			lblStar2.setIcon(emptyStarIcon);
+			lblStar3.setIcon(emptyStarIcon);
+			break;
+			
+		case 2:
+			lblStar1.setIcon(starIcon);
+			lblStar2.setIcon(starIcon);
+			lblStar3.setIcon(emptyStarIcon);
+			break;
+			
+		case 3:
+			lblStar1.setIcon(starIcon);
+			lblStar2.setIcon(starIcon);
+			lblStar3.setIcon(starIcon);
+			break;
+			
+		default: // case 0
+			lblStar1.setIcon(emptyStarIcon);
+			lblStar2.setIcon(emptyStarIcon);
+			lblStar3.setIcon(emptyStarIcon);
+			break;
+		}
+	}
+	
 }
