@@ -30,9 +30,8 @@ public class LevelSelectorScreen extends KabasujiPanel {
 		for (Level l : levelsPackage.getLevels()) {
 			LevelStars stars = savedGames.getStarsForLevel(l);
 			
-			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, stars, playable);
-			btnLevelX.setBackground(Color.white);
-			btnLevelX.setBorder(raisedbevel);
+//			LevelSelectComponent btnLevelX = new LevelSelectComponent(l, stars, playable);
+			LevelSelectComponent1 btnLevelX = new LevelSelectComponent1(l, stars, playable);
 
 			this.add(btnLevelX);
 			

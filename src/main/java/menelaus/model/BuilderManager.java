@@ -102,8 +102,10 @@ public class BuilderManager {
 	}
 	
 	public boolean undo() {
+		if(moves.isEmpty()) return false;
 		BuilderMove move = moves.pop();
 		if (move.undo(currentProject)) {
+			redoMoves.push(move);
 			return true; //Just pass on the return if the undo works.
 		}
 		else {
@@ -165,7 +167,7 @@ public class BuilderManager {
 	 * Clean the level up before saving it to make it playable.
 	 * @return Whether the clean up is successful.
 	 */
-	boolean cleanUpLevel() {
+	public void cleanUpLevel() {
 		Board theBoard = this.currentProject.getBoard();
 		while(theBoard.getPieces().size() > 0) {
 			theBoard.removePiece(theBoard.getPieces().get(0)); //Remove all the pieces from the board. 

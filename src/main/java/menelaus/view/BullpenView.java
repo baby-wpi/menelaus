@@ -4,8 +4,12 @@ import menelaus.model.Bullpen;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Here is where the pieces will be stored to be placed on the board (in 250-height size).
@@ -70,6 +74,17 @@ public class BullpenView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        // Draw Background Color
+		BufferedImage backgroundIMG = null;
+		try {
+			backgroundIMG = ImageIO.read(new File("secondary_back.png"));
+			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+		} catch (IOException e) {
+			System.out.println("fuck the image isn't read");
+		}
+		
+        
         //draw pieces to board
 
         int i = 0;

@@ -5,8 +5,12 @@ import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -135,6 +139,16 @@ public class BoardView extends JPanel {
         initDemensions();
 
         super.paintComponent(g);
+        
+        // Draw Background Color
+		BufferedImage backgroundIMG = null;
+		try {
+			backgroundIMG = ImageIO.read(new File("secondary_back.png"));
+			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+		} catch (IOException e) {
+			System.out.println("fuck the image isn't read");
+		}
+		
         drawHints(g);
 
         // Draw Pieces:
@@ -159,6 +173,7 @@ public class BoardView extends JPanel {
         if (level.getType() == LevelType.RELEASE) {
         	drawReleaseColorSets(g);
 		}
+
     }
 
     /**
