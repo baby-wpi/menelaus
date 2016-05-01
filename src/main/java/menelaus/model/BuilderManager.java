@@ -173,7 +173,6 @@ public class BuilderManager {
 			theBoard.removePiece(theBoard.getPieces().get(0)); //Remove all the pieces from the board. 
 			// They're still in the bullpen.
 		}
-		return true;
 	}
 	
 	public LevelsPackage loadLevel() {
@@ -191,8 +190,8 @@ public class BuilderManager {
 	
 	public void loadLastLevel() {
 		LevelsPackage pack = loadLevel();
-		if(pack.levels.size() > 1) {
-			this.currentProject = pack.levels.get(pack.levels.size()-1);
+		if(pack.getLevels().size() > 1) {
+			this.currentProject = pack.getLevels().get(pack.getLevels().size()-1);
 		}
 	}
 	
@@ -206,7 +205,7 @@ public class BuilderManager {
         chooser.setCurrentDirectory(new File (System.getProperty("user.home")));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         try {
-            if (chooser.showOpenDialog(new BuilderLevelBuilderScreen(this)) == JFileChooser.APPROVE_OPTION) {
+            if (chooser.showOpenDialog(new BuilderLevelBuilderScreen()) == JFileChooser.APPROVE_OPTION) {
                 customPath = chooser.getSelectedFile().getPath() + File.separator;
             }
         } catch (Exception e) {

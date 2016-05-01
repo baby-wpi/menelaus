@@ -3,27 +3,22 @@ package menelaus.view.game;
 import menelaus.controllers.ButtonContinueController;
 import menelaus.controllers.ButtonHomeExitController;
 import menelaus.controllers.ButtonHomeExtraController;
-import menelaus.controllers.ButtonLevelSelectController;
 import menelaus.controllers.ButtonLevelsController;
 import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
- * 
  * @author vouldjeff
  * @author fegan
  */
@@ -36,22 +31,22 @@ public class HomeScreen extends KabasujiPanel {
 	public HomeScreen() {
 		JButton btnContinue = new JButton("Continue");
 
-		JButton btnLevels = new JButton("Levels");
+        JButton btnLevels = new JButton("Levels");
 
-		JButton btnExtra = new JButton("Extra");
+        JButton btnExtra = new JButton("Extra");
 
-		JButton btnExit = new JButton("Exit");
+        JButton btnExit = new JButton("Exit");
 
-		btnContinue.addActionListener(new ButtonContinueController());
-		try {
-			btnLevels.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} // Levels.
-		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
-		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
+        btnContinue.addActionListener(new ButtonContinueController());
+        try {
+            btnLevels.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } // Levels.
+        btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.
+        btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
 
 		JLabel lblKabasuji = new JLabel("KabaSuji");
 		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
@@ -64,14 +59,26 @@ public class HomeScreen extends KabasujiPanel {
 				updateMute();
 			}
 		});
-		
-		lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
-		
-		if (SoundManager.getInstance().isMute()) {
-			lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaUnmute.png")));
-		} else {
-			lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
-		}
+
+        try {
+            lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
+        } catch (Exception e) {
+            //do nothing
+        }
+
+        if (SoundManager.getInstance().isMute()) {
+            try {
+                lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaUnmute.png")));
+            } catch (Exception e) {
+                //do nothing
+            }
+        } else {
+            try {
+                lblMute.setIcon(new ImageIcon(HomeScreen.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaMute.png")));
+            } catch (Exception e) {
+                //do nothing
+            }
+        }
 		
 		GroupLayout gl_contentPane = new GroupLayout(this);
 		gl_contentPane.setHorizontalGroup(
