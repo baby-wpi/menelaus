@@ -1,9 +1,8 @@
 package menelaus.controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import menelaus.model.BuilderManager;
 /**
@@ -11,7 +10,7 @@ import menelaus.model.BuilderManager;
  * @author sanjay
  *
  */
-public class TextNumRestrictionsBuilderMakeLevelController implements ActionListener{
+public class TextNumRestrictionsBuilderMakeLevelController implements DocumentListener{
 	BuilderManager manager;
 	JTextField view;
 	
@@ -20,15 +19,10 @@ public class TextNumRestrictionsBuilderMakeLevelController implements ActionList
 		this.view = view;
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		handleTextChanged(view.getText());
-	}
-	
-	void handleTextChanged(String newText) {
+	private void handleTextChanged() {
+		String newText = view.getText();
 		
 		int newNumRestrictions;
-		System.out.println();
 		try {
 			newNumRestrictions = Integer.parseInt(newText);
 		} catch (NumberFormatException e) {
@@ -53,5 +47,20 @@ public class TextNumRestrictionsBuilderMakeLevelController implements ActionList
 			System.err.println("Restriction should be above 0");
 		}
 		
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		handleTextChanged();
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		handleTextChanged();
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		handleTextChanged();
 	}
 }

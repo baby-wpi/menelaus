@@ -1,13 +1,12 @@
 package menelaus.controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import menelaus.model.BuilderManager;
 
-public class NameTextBuilderMakeBoardController implements ActionListener{
+public class NameTextBuilderMakeBoardController implements DocumentListener{
 
 	BuilderManager manager;
 	JTextField nameTextView;
@@ -17,14 +16,24 @@ public class NameTextBuilderMakeBoardController implements ActionListener{
 		this.nameTextView = nameTextView;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		handleChangedText(nameTextView.getText());
-	}
-	
-	
-	void handleChangedText(String newText) {
+	private void handleChangedText() {
+		String newText = nameTextView.getText();
 		this.manager.setLevelName(newText);
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		handleChangedText();
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		handleChangedText();
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		handleChangedText();
 	}
 
 }

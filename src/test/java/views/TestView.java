@@ -3,14 +3,10 @@ package views;
 import static org.junit.Assert.*;
 
 import java.awt.GraphicsEnvironment;
-import java.awt.SplashScreen;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-import java.util.logging.Level;
 
-import menelaus.model.BuilderManager;
 import menelaus.model.LevelStars;
 import menelaus.model.basic.LevelType;
 import menelaus.model.events.GameEndReason;
@@ -26,7 +22,6 @@ import menelaus.view.game.LevelPlayScreen;
 import menelaus.view.game.LevelSelectorScreen;
 import menelaus.view.game.WinScreen;
 
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,7 +40,6 @@ public class TestView {
 	BuilderWindowFrame builderFrame;
 	BuilderSelectScreen bSelectScreen;
 	BuilderLevelBuilderScreen blevelScreen;
-	BuilderManager bManager;
 	
 	//Game Simple Views
 	BoardView boardView;
@@ -67,7 +61,6 @@ public class TestView {
 		levelSelectorScreen = new LevelSelectorScreen(frame.getLevelsPackage(), frame.getSavedGamesUtil().getSavedGames());
 		level = new menelaus.model.Level(LevelType.PUZZLE, 6, 6);
 		playScreen = new LevelPlayScreen(level);
-		bManager = new BuilderManager();
 		blevelScreen = new BuilderLevelBuilderScreen();
 		bSelectScreen = new BuilderSelectScreen();
 	}
