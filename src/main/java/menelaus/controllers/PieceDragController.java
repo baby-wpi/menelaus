@@ -5,6 +5,8 @@ import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.move.ToBoardMove;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 import menelaus.view.builder.BuilderWindowFrame;
 import menelaus.view.game.GameWindowFrame;
@@ -70,7 +72,7 @@ public class PieceDragController extends MouseAdapter {
      * This is a GUI controller.
      */
     @Override
-    public void mousePressed(MouseEvent me) {
+    public void mousePressed(MouseEvent me) {		
         buttonType = me.getButton();
         select(me.getX(), me.getY());
     }

@@ -46,6 +46,18 @@ public class SoundManager {
 			case COMPLETESOUND:
 				getSound("/assets/complete.wav");
 				break;
+			case EXITSOUND:
+				getSound("/assets/close_app.wav");
+				break;
+			case PRESSPIECE:
+				getSound("/assets/place_piece.wav");
+				break;
+			case PRESSTILE:
+				getSound("/assets/click_tile.wav");
+				break;
+			case RESTARTSOUND:
+				getSound("/assets/restart.wav");
+				break;
 		default:
 			break;
 		}

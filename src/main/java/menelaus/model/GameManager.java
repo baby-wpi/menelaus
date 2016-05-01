@@ -144,6 +144,14 @@ public class GameManager {
 		notifyEndListeners(GameEndReason.USER);
 	}
 	
+	/**
+	 * Call this method if Player wants to end game earlier. It stops timer.
+	 */
+	public void userRestartsGame() {
+		stopGame();
+		notifyEndListeners(GameEndReason.RESTART);
+	}
+	
 	private void notifyTickListeners() {
 		for (GameTickListener listener : tickListeners) {
 			listener.tick();

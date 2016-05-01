@@ -21,7 +21,7 @@ public class ButtonHomeExitController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
+		SoundManager.getInstance().playSound(SoundType.EXITSOUND);
 		GameWindowFrame.getInstance().close();
 	}
 

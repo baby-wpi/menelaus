@@ -4,6 +4,8 @@ import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.board.Piece;
 import menelaus.model.move.ToBullpenMove;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.BullpenView;
 
 import javax.swing.*;
@@ -30,6 +32,7 @@ public class PieceSelectionController extends MouseAdapter {
      */
     @Override
     public void mousePressed(MouseEvent me) {
+    	SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
         //get the piece that was clicked
         Piece selected = bullpenView.findPiece(me.getX(), me.getY());
         if (selected == null) return;

@@ -25,7 +25,7 @@ public class RestartController implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);		
+		SoundManager.getInstance().playSound(SoundType.RESTARTSOUND);		
 		
 		try {
 			GameWindowFrame.getInstance().swapPanel(new LevelPlayScreen(previousLevel));

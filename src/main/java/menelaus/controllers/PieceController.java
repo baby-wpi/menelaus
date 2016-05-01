@@ -6,6 +6,8 @@ import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
 import menelaus.model.move.*;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.game.LevelPlayScreen;
@@ -41,6 +43,7 @@ public class PieceController extends MouseAdapter {
      */
     @Override
     public void mousePressed(MouseEvent me) {
+    	SoundManager.getInstance().playSound(SoundType.PRESSTILE);
         Piece pp = level.getActive();
         int gridX = me.getX() / boardView.calculateGridUnitSize();
         int gridY = me.getY() / boardView.calculateGridUnitSize();
