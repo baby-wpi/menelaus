@@ -4,7 +4,6 @@ import menelaus.controllers.ButtonContinueController;
 import menelaus.controllers.ButtonHomeExitController;
 import menelaus.controllers.ButtonHomeExtraController;
 import menelaus.controllers.ButtonLevelsController;
-import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
@@ -15,8 +14,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author vouldjeff
@@ -37,16 +34,10 @@ public class HomeScreen extends KabasujiPanel {
 
         JButton btnExit = new JButton("Exit");
 
-        btnContinue.addActionListener(new ButtonContinueController());
-        try {
-            btnLevels.addActionListener(new ButtonLevelsController(LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba"))));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } // Levels.
-        btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.
-        btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
+		btnContinue.addActionListener(new ButtonContinueController());
+		btnLevels.addActionListener(new ButtonLevelsController(null));
+		btnExit.addActionListener(new ButtonHomeExitController(this)); // Exit.      
+		btnExtra.addActionListener(new ButtonHomeExtraController()); // Extra.
 
 		JLabel lblKabasuji = new JLabel("KabaSuji");
 		lblKabasuji.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
