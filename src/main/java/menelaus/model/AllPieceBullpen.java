@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author vouldjeff
  */
 public class AllPieceBullpen extends Bullpen {
-    private final int NUM_PIECES = 8;
+    private final int NUM_PIECES = 35;
 
     @Override
     public ArrayList<Piece> getPieces() {
