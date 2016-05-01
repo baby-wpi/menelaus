@@ -8,8 +8,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Here is where the pieces will be stored to be placed on the board (in 250-height size).
@@ -79,9 +77,11 @@ public class BullpenView extends JPanel {
 		BufferedImage backgroundIMG = null;
 		try {
 			backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/secondary_back.png"));
-			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
-		} catch (IOException e) {
-			System.out.println("fuck the image isn't read");
+            if (backgroundIMG != null) {
+                g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+            }
+        } catch (Exception e) {
+			System.out.println("the image isn't read");
 		}
 		
         

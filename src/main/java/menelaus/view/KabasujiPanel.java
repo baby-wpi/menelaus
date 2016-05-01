@@ -99,15 +99,16 @@ public class KabasujiPanel extends JPanel {
     }
     
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		BufferedImage backgroundIMG = null;
 		
 		super.paintComponent(g);
 		try {
-			backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/back.jpg"));
-			g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
-		} catch (IOException e) {
-			System.out.println("The image isn't read");
+			backgroundIMG = ImageIO.read(new File("back.jpg"));
+            if (backgroundIMG != null) {
+                g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
+            }
+        } catch (IOException e) {
+			System.out.println("the image isn't read");
 		}		
 	}
 }
