@@ -111,7 +111,10 @@ public class LevelsPackagePersistenceUtilTest {
 		hint1.addTile(new Tile(0, 1));
 		hint1.addTile(new Tile(1, 1));
 		
-		ColoredSetItem coloredSetItem = new ColoredSetItem(Color.BLUE, 1);
+		ColoredSetItem coloredSetItem1 = new ColoredSetItem(Color.BLUE, 1);
+		ColoredSetItem coloredSetItem2 = new ColoredSetItem(Color.BLUE, 2);
+		ColoredSetItem coloredSetItem3 = new ColoredSetItem(Color.RED, 3);
+		ColoredSetItem coloredSetItem4 = new ColoredSetItem(Color.RED, 4);
 		
 		Piece piece2 = new Piece(new Point(1, 0));
 		piece2.addTile(new Tile(0, 0));
@@ -123,8 +126,12 @@ public class LevelsPackagePersistenceUtilTest {
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
 		
-		Level level1 = new Level(LevelType.PUZZLE, 3, 3);
+		Level level1 = new Level(LevelType.RELEASE, 12, 12);
 		level1.getBoard().addHintPiece(hint1);
+		level1.getBoard().addColoredSetItem(coloredSetItem1, new Point(0, 0));
+		level1.getBoard().addColoredSetItem(coloredSetItem2, new Point(0, 1));
+		level1.getBoard().addColoredSetItem(coloredSetItem3, new Point(1, 0));
+		level1.getBoard().addColoredSetItem(coloredSetItem4, new Point(1, 1));
 		
 		level1.getBullpen().addPiece(piece1);
 		level1.getBullpen().addPiece(piece2);

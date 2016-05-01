@@ -230,13 +230,19 @@ public class BoardView extends JPanel {
     	// iterate through hashmap of point, boardTileInfo
     	if (boardTileInfoMap.keySet() != null) {
         	for (Point point : boardTileInfoMap.keySet()) {
-        		ColoredSetItem tileInfo = boardTileInfoMap.get(point).getColoredSetItem();
-        		String number = tileInfo.getNumber() + "";
+        		ColoredSetItem colorInfo = boardTileInfoMap.get(point).getColoredSetItem();
+        		
+        		// skip to next loop iteration if null
+        		if (colorInfo == null) { continue; }
+        		
+        		String number = colorInfo.getNumber() + "";
 
-        		int x = point.getX() + gridSquareHeight/2;
-        		int y = point.getY() + gridSquareWidth/2;
-
-        		g.setColor(tileInfo.getJavaColor());
+        		int x = point.getX() * gridSquareWidth + gridSquareWidth / 2 - 5;
+        		int y = point.getY() * gridSquareHeight + gridSquareHeight / 2 + 5;
+        		
+        		int fontSize = gridSquareHeight / 5;
+        		g.setColor(colorInfo.getJavaColor());
+        		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, fontSize)); 
         		g.drawString(number, x, y);
     		}
 		}
