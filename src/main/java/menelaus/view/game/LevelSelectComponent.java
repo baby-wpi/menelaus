@@ -17,10 +17,8 @@ import menelaus.model.Level;
 import menelaus.model.LevelStars;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.border.Border;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
