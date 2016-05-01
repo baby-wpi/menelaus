@@ -1,6 +1,7 @@
 package menelaus.view.builder;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import static javax.swing.ScrollPaneConstants.*;
 
 import menelaus.controllers.BoardBuilderMakeLevelController;
 import menelaus.controllers.ButtonBuilderMainMenuController;
@@ -55,7 +57,6 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	JButton btnUndo;
 	JLabel lblMaxMoves;
 	JButton btnRedo;
-	private JScrollBar scrollBar;
 
 	void initializeControllers() {
 		this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
@@ -183,13 +184,17 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		);
 		
 		panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
+		panelBullpenView.setPreferredSize(new Dimension(240, 2200));
 		scrollPane_1.setViewportView(panelBullpenView);
+		scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane_1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 		
-				panelAllBullpenView = new BullpenView(new AllPieceBullpen());
-				scrollPane.setViewportView(panelAllBullpenView);
-				
-				scrollBar = new JScrollBar();
-				panelAllBullpenView.add(scrollBar);
+		panelAllBullpenView = new BullpenView(new AllPieceBullpen());
+		panelAllBullpenView.setPreferredSize(new Dimension(240, 2200));
+		scrollPane.setViewportView(panelAllBullpenView);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+		
 		setLayout(groupLayout);
 		initializeControllers();
 		refreshComponentsByGame();
