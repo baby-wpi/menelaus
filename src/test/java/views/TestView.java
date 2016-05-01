@@ -2,7 +2,9 @@ package views;
 
 import static org.junit.Assert.*;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.SplashScreen;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -24,6 +26,7 @@ import menelaus.view.game.LevelPlayScreen;
 import menelaus.view.game.LevelSelectorScreen;
 import menelaus.view.game.WinScreen;
 
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,9 +50,12 @@ public class TestView {
 	//Game Simple Views
 	BoardView boardView;
 	
-	
 	@Before
 	public void setUp() throws Exception {
+		if (GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadless()) {
+			return;
+		}
+		
 		frame = GameWindowFrame.getInstance();
 		builderFrame = BuilderWindowFrame.getInstance();
 		homeScreen = new HomeScreen();
@@ -68,6 +74,10 @@ public class TestView {
 
 	@Test
 	public void testFrameLevelPackage() {
+		if (GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadless()) {
+			return;
+		}
+		
 		try {
 			assertEquals(frame.getLevelsPackage().getLevels().iterator().hasNext(), LevelsPackagePersistenceUtil.fromFile(new File("default-levels.boba")).getLevels().iterator().hasNext());
 		} catch (ClassNotFoundException e) {
