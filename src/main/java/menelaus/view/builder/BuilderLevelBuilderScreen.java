@@ -1,26 +1,15 @@
 package menelaus.view.builder;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import menelaus.controllers.BoardBuilderMakeLevelController;
-import menelaus.controllers.ButtonBuilderMainMenuController;
-import menelaus.controllers.MakePieceButtonBuilderMakeLevelController;
-import menelaus.controllers.NameTextBuilderMakeBoardController;
-import menelaus.controllers.SaveLevelButtonBuilderMakeLevelController;
-import menelaus.controllers.TextNumRestrictionsBuilderMakeLevelController;
+import menelaus.controllers.*;
+import menelaus.model.AllPieceBullpen;
 import menelaus.model.BuilderManager;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * 
@@ -34,19 +23,13 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 	private static final long serialVersionUID = -5145620117800309808L;
 	private JTextField txtMaxMoves;
 	private JTextField txtInsertName;
-
-	//BullpenView panelAllBullpenView;
-	//JPanel panelBullpenView;
-	//JPanel panelBoardView;
 	
 	BuilderManager manager = new BuilderManager();
 	BoardView panelBoardView;
-	
-
+	//the view for the corresponding bullpen
 	BullpenView panelBullpenView;
-
-	// TODO: change panelAllBullpenView to bullpenView if necessary
-	JPanel panelAllBullpenView;
+	//the AllPieceBullpen
+	BullpenView panelAllBullpenView;
 
 	JButton btnMakePiece;
 	JButton btnComplete;
@@ -108,23 +91,14 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 		txtInsertName.setColumns(10);
 		
 		lblMaxMoves = new JLabel("Max Moves:");
+
 		panelBoardView = new BoardView(this.manager.getLevel().getBoard(), this.manager.getLevel(),true);
 		panelBoardView.setSelection(this.manager.getSelectedPoints());
-		//panelBoardView = new JPanel();
-		
-		//panelAllBullpenView = new BullpenView(manager.getLevel().getBullpen());
-		//panelBullpenView = new JPanel();
-		panelAllBullpenView = new JPanel();
-		
-		/* TODO: change panelAllBullpenView to bullpenView if necessary
-		 * if this is done remove the later two lines.
-		 */
-		panelAllBullpenView.setBorder(BorderFactory.createLineBorder(Color.black));
-		panelAllBullpenView.setBackground(Color.white);
+
+		panelAllBullpenView = new BullpenView(new AllPieceBullpen());
 		
 		panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
 
-		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
