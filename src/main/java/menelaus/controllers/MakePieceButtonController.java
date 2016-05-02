@@ -1,8 +1,5 @@
 package menelaus.controllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import menelaus.model.BuilderManager;
 import menelaus.model.move.MakePieceBuilderMove;
 import menelaus.util.SoundManager;
@@ -10,19 +7,22 @@ import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 /**
  * 
  * @author sanjay
  *
  */
-public class MakePieceButtonBuilderMakeLevelController implements ActionListener{
+public class MakePieceButtonController implements ActionListener{
 
 	BuilderManager manager;
 	BoardView boardView;
 	BullpenView bullpenView;
 	
-	public MakePieceButtonBuilderMakeLevelController(BuilderManager manager, BoardView view, BullpenView penView) {
+	public MakePieceButtonController(BuilderManager manager, BoardView view, BullpenView penView) {
 		this.manager = manager;
 		this.boardView = view;
 		this.bullpenView = penView;
