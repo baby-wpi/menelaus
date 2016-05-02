@@ -326,6 +326,8 @@ public class BoardView extends JPanel {
      * Automatically chops out pieces for rectangular boards.
      */
     public void autoChopOut() {
+        if(board == null) return;
+
         int height = board.getHeight();
         int width = board.getWidth();
 
