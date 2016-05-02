@@ -4,6 +4,8 @@ import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
 import menelaus.model.move.DeselectSquareBuilderMove;
 import menelaus.model.move.SelectSquareMove;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 
 import java.awt.event.MouseEvent;
@@ -31,9 +33,11 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 			DeselectSquareBuilderMove mv = new DeselectSquareBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 			if(manager.makeMove(mv)) {
 				System.out.println("Move made successfully");
+				SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
 			}
 			else {
 				System.out.println("Move failed!");
+				SoundManager.getInstance().playSound(SoundType.PRESSTILE);
 			}
 		}
 			
@@ -41,9 +45,11 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 			SelectSquareMove mv = new SelectSquareMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 			if(manager.makeMove(mv)) {
 				System.out.println("Move successful.");
+				SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
 			}
 			else {
 				System.out.println("Move failed!");
+				SoundManager.getInstance().playSound(SoundType.PRESSTILE);
 			}
 			
 		}
@@ -52,7 +58,7 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	
 	
 	public void mousePressed(MouseEvent e) {
-
+		
 	}
 
 	
