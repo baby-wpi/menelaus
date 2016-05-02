@@ -33,6 +33,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
     BullpenView panelAllBullpenView;
 
     JButton btnMakePiece;
+    JButton btnMakeHint;
     JButton btnComplete;
     JButton btnUndo;
     JLabel lblMaxMoves;
@@ -40,7 +41,8 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
     void initializeControllers() {
         this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
-        this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
+        this.btnMakePiece.addActionListener(new MakePieceButtonController(this.manager, this.panelBoardView, this.panelBullpenView));
+        this.btnMakeHint.addActionListener(new MakeHintButtonController(this.manager, this.panelBoardView, this.panelBullpenView));
         this.txtMaxMoves.getDocument().addDocumentListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager, this.txtMaxMoves));
         this.btnComplete.addActionListener(new SaveLevelButtonBuilderMakeLevelController(manager));
         this.btnUndo.addActionListener(new UndoBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
@@ -84,7 +86,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
         btnMakePiece = new JButton("Make Piece");
 
-        JButton btnMakeHint = new JButton("Make Hint");
+        btnMakeHint = new JButton("Make Hint");
 
         txtMaxMoves = new JTextField();
         txtMaxMoves.setText("Max Moves");
