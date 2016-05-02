@@ -41,6 +41,6 @@ public class ButtonBuilderStartController implements ActionListener {
      * @return whether the board is valid
      */
     boolean isSizeValid(int x, int y){
-        return (x < 12) && (x >= 0) && (x < 12) && (x >= 0);
+        return (x <= 12) && (x >= 0) && (x <= 12) && (x >= 0);
     }
 }
