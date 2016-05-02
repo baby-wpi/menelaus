@@ -6,6 +6,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import com.sun.org.apache.bcel.internal.generic.LoadClass;
+
 /**
  * Sound Manager handles all game sounds.
  *
