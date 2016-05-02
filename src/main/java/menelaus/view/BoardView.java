@@ -19,16 +19,16 @@ import java.util.Hashtable;
  */
 public class BoardView extends JPanel {
 
-	/**
-	 * border color for BoardView;
-	 */
-	Color borderColor = Color.black;
-	
-	/**
-	 * background color for boardView.
-	 */
-	Color backgroundColor = Color.white;
-	
+    /**
+     * border color for BoardView;
+     */
+    Color borderColor = Color.black;
+
+    /**
+     * background color for boardView.
+     */
+    Color backgroundColor = Color.white;
+
     /**
      * height of a grid square.
      */
@@ -74,17 +74,17 @@ public class BoardView extends JPanel {
      * Base size of board.
      */
     public final int N = 700;
-    
+
     /**
      * Whether or not board tiles can be selected.
      */
-    boolean hasSelection; 
+    boolean hasSelection;
 
     /**
      * Only applicable in builder, which tiles are selected.
      */
     ArrayList<Point> selection = new ArrayList<Point>();
-    
+
     /**
      * Off-screen image for drawing (and Graphics object).
      */
@@ -97,6 +97,7 @@ public class BoardView extends JPanel {
     public BoardView() {
         this.setBorder(BorderFactory.createLineBorder(borderColor));
         this.setBackground(backgroundColor);
+        autoChopOut();
     }
 
     /**
@@ -108,15 +109,17 @@ public class BoardView extends JPanel {
         this.hasSelection = false;
         this.setBorder(BorderFactory.createLineBorder(borderColor));
         this.setBackground(backgroundColor);
+        autoChopOut();
     }
-    
-    
+
+
     public BoardView(Board board, Level level, boolean hasSelection) {
-    	this.board = board;
+        this.board = board;
         this.level = level;
         this.hasSelection = hasSelection;
         this.setBorder(BorderFactory.createLineBorder(borderColor));
         this.setBackground(backgroundColor);
+        autoChopOut();
     }
 
     /**
@@ -137,18 +140,18 @@ public class BoardView extends JPanel {
         initDemensions();
 
         super.paintComponent(g);
-        
+
         // Draw Background Color
-		BufferedImage backgroundIMG = null;
-		try {
-			backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/secondary_back.png"));
+        BufferedImage backgroundIMG = null;
+        try {
+            backgroundIMG = ImageIO.read(this.getClass().getResource("/assets/secondary_back.png"));
             if (backgroundIMG != null) {
                 g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
             }
         } catch (Exception e) {
-			System.out.println("BoardView: the image isn't read");
-		}
-		
+            System.out.println("BoardView: the image isn't read");
+        }
+
         drawHints(g);
 
         // Draw Pieces:
@@ -161,18 +164,18 @@ public class BoardView extends JPanel {
         if (active != null) {
             PieceDrawer.drawPieceToGrid(g, active, calculateGridUnitSize());
         }
-        
-        if(this.hasSelection) {
-        	if(this.selection != null) {
-        		PieceDrawer.drawSelection(g, selection, calculateGridUnitSize());
-        	}
+
+        if (this.hasSelection) {
+            if (this.selection != null) {
+                PieceDrawer.drawSelection(g, selection, calculateGridUnitSize());
+            }
         }
 
         drawGrid(g);
         drawUnavailableTiles(g);
         if (level.getType() == LevelType.RELEASE) {
-        	drawReleaseColorSets(g);
-		}
+            drawReleaseColorSets(g);
+        }
 
     }
 
@@ -225,27 +228,29 @@ public class BoardView extends JPanel {
      */
     public void drawReleaseColorSets(Graphics g) {
         // get tile info.
-    	boardTileInfoMap = board.getTileInfo();
+        boardTileInfoMap = board.getTileInfo();
 
-    	// iterate through hashmap of point, boardTileInfo
-    	if (boardTileInfoMap.keySet() != null) {
-        	for (Point point : boardTileInfoMap.keySet()) {
-        		ColoredSetItem colorInfo = boardTileInfoMap.get(point).getColoredSetItem();
-        		
-        		// skip to next loop iteration if null
-        		if (colorInfo == null) { continue; }
-        		
-        		String number = colorInfo.getNumber() + "";
+        // iterate through hashmap of point, boardTileInfo
+        if (boardTileInfoMap.keySet() != null) {
+            for (Point point : boardTileInfoMap.keySet()) {
+                ColoredSetItem colorInfo = boardTileInfoMap.get(point).getColoredSetItem();
 
-        		int x = point.getX() * gridSquareWidth + gridSquareWidth / 2 - 5;
-        		int y = point.getY() * gridSquareHeight + gridSquareHeight / 2 + 5;
-        		
-        		int fontSize = gridSquareHeight / 5;
-        		g.setColor(colorInfo.getJavaColor());
-        		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, fontSize)); 
-        		g.drawString(number, x, y);
-    		}
-		}
+                // skip to next loop iteration if null
+                if (colorInfo == null) {
+                    continue;
+                }
+
+                String number = colorInfo.getNumber() + "";
+
+                int x = point.getX() * gridSquareWidth + gridSquareWidth / 2 - 5;
+                int y = point.getY() * gridSquareHeight + gridSquareHeight / 2 + 5;
+
+                int fontSize = gridSquareHeight / 5;
+                g.setColor(colorInfo.getJavaColor());
+                g.setFont(new Font(Font.MONOSPACED, Font.BOLD, fontSize));
+                g.drawString(number, x, y);
+            }
+        }
     }
 
     /**
@@ -290,6 +295,7 @@ public class BoardView extends JPanel {
 
     /**
      * Finds teh piece clciked on.
+     *
      * @param x the x point clicked on in pixels.
      * @param y the x point clicked on in pixels.
      * @return the piece that was clicked on.
@@ -301,18 +307,44 @@ public class BoardView extends JPanel {
 
     /**
      * Converts pixels to grid units.
+     *
      * @param x pixels to be converted.
      * @param y pixels to be converted.
      * @return A point that represents the the gid unit clicked.
      */
     public Point pointUnder(int x, int y) {
-    	int gridX = x / calculateGridUnitSize();
-    	int gridY = y / calculateGridUnitSize();
-    	return new Point(gridX, gridY);
+        int gridX = x / calculateGridUnitSize();
+        int gridY = y / calculateGridUnitSize();
+        return new Point(gridX, gridY);
     }
 
     public void setSelection(ArrayList<Point> newSel) {
         this.selection = newSel;
+    }
+
+    /**
+     * Automatically chops out pieces for rectangular boards.
+     */
+    public void autoChopOut() {
+        if(board == null) return;
+
+        int height = board.getHeight();
+        int width = board.getWidth();
+
+        if (height > width) {
+            //auto chop out pieces not available
+            for (int x = width; x < height; x++) {
+                for (int y = 0; y < height; y++) {
+                    level.getBoard().chopTileOut(new Point(x, y));
+                }
+            }
+        } else {
+            for (int x = 0; x < width; x++) {
+                for (int y = height; y < width; y++) {
+                    level.getBoard().chopTileOut(new Point(x, y));
+                }
+            }
+        }
     }
 
 }
