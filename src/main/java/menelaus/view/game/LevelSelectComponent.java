@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 public class LevelSelectComponent extends JPanel {
 	/** the level for this component. */
@@ -58,12 +57,12 @@ public class LevelSelectComponent extends JPanel {
 		
 		try {
 			starIMG = ImageIO.read(new File("/assets/star.png"));//ImageIO.read(this.getClass().getResource("/assets/star.png"));
-			emptyStarIMG = ImageIO.read(new File("/assets/empty_star.png"));//ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
+			emptyStarIMG = ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
 			starIcon = new ImageIcon(starIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			starString = null;
-		} catch (IOException e) {
-			System.out.println("The image isn't read");
+		} catch (Exception e) {
+			System.out.println("LevelSelectComponent: The image isn't read");
 		}
 		
 		// Set star count

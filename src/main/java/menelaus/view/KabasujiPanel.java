@@ -10,7 +10,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author frankegan on 4/15/16.
@@ -107,8 +106,8 @@ public class KabasujiPanel extends JPanel {
             if (backgroundIMG != null) {
                 g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
             }
-        } catch (IOException e) {
-			System.out.println("the image isn't read");
+        } catch (Exception e) {
+			System.out.println("KabaSuji Panel: the image isn't read");
 		}		
 	}
 }
