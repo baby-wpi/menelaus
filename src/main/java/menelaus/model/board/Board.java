@@ -184,7 +184,7 @@ public class Board implements Serializable {
         	return;
         } else if (info.isTileChopped) {
         	info.setTileChopped(false);
-        };
+        }
     }
     
     /**
@@ -197,7 +197,7 @@ public class Board implements Serializable {
     }
     
     /**
-     * Covers board with a Piece for e lightning level.
+     * Covers board with a Piece for a lightning level.
      * @param piece New piece.
      * @throws InvalidPiecePlacementException If placement is over another piece or outside of board.
      */
@@ -288,7 +288,7 @@ public class Board implements Serializable {
             	return false;
             }
             
-            if (!canPlaceOver && info.getPiecePlaced() != null && !info.getPiecePlaced().equals(piece)) {
+            if (!canPlaceOver && (info.getPiecePlaced() != null) && !info.getPiecePlaced().equals(piece)) {
                 return false;
             }
         }
