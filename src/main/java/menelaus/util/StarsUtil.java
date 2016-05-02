@@ -46,7 +46,21 @@ public class StarsUtil {
 		
 		return new LevelStars(stars, gameManager.getLevel().getUuid());
 	}
-	
+	static LevelStars gradePuzzleAlt(GameManager gameManager){
+		int stars = 0;
+		int spacesLeft = gameManager.getLevel().getBoard().getNumberOfEmptyTiles();
+		if(spacesLeft <= 6){
+			stars = 1;
+		}
+		if(spacesLeft <= 3){
+			stars = 2;
+		}
+		if(spacesLeft == 0){
+			stars = 3;
+		}
+		
+		return new LevelStars(stars, gameManager.getLevel().getUuid());
+	}
 	/**
 	 * Grades a Release Level.
 	 * @param gameManager

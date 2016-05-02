@@ -56,8 +56,8 @@ public class LevelSelectComponent extends JPanel {
 		int starDemension = 35;
 		
 		try {
-			starIMG = ImageIO.read(new File("/assets/star.png"));//ImageIO.read(this.getClass().getResource("/assets/star.png"));
-			emptyStarIMG = ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
+			starIMG = ImageIO.read(this.getClass().getResource("/assets/star.png"));//ImageIO.read(this.getClass().getResource("/assets/star.png"));
+			emptyStarIMG = ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));//ImageIO.read(this.getClass().getResource("/assets/empty_star.png"));
 			starIcon = new ImageIcon(starIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			emptyStarIcon = new ImageIcon(emptyStarIMG.getScaledInstance(starDemension, starDemension, Image.SCALE_DEFAULT));
 			starString = null;

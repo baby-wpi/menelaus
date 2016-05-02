@@ -81,7 +81,7 @@ public class BullpenView extends JPanel {
                 g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
             }
         } catch (Exception e) {
-			System.out.println("the image isn't read");
+			System.out.println("BullpenView: the image isn't read");
 		}
 		
         

@@ -146,7 +146,7 @@ public class BoardView extends JPanel {
                 g.drawImage(backgroundIMG.getScaledInstance(1000, 750, Image.SCALE_DEFAULT), 0, 0, null);
             }
         } catch (Exception e) {
-			System.out.println("the image isn't read");
+			System.out.println("BoardView: the image isn't read");
 		}
 		
         drawHints(g);
