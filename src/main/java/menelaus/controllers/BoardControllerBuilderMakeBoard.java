@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 /**
  * 
@@ -38,6 +40,8 @@ public class BoardControllerBuilderMakeBoard implements MouseListener{
 	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
+
 		
 	}
 

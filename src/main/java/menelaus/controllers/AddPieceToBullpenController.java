@@ -2,6 +2,8 @@ package menelaus.controllers;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.BullpenView;
 
 import java.awt.event.MouseAdapter;
@@ -30,6 +32,7 @@ public class AddPieceToBullpenController extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent me) {
         //get the piece that was clicked
+		SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
         level.getBullpen().addPiece(allPieceBullpenView.findPiece(me.getX(), me.getY()));
         bullpenView.repaint();
     }
