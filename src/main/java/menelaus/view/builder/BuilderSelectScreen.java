@@ -75,7 +75,7 @@ public class BuilderSelectScreen extends KabasujiPanel {
         txtInsertName.setColumns(10);
 
         JButton btnStart = new JButton("Complete");
-        btnStart.addActionListener(new ButtonBuilderStartController());
+        btnStart.addActionListener(new ButtonBuilderStartController(getManager()));
 
         txtWidth = new JTextField();
         txtWidth.setText("Width");

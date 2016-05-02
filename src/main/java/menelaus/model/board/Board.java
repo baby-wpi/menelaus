@@ -286,7 +286,6 @@ public class Board implements Serializable {
 
             if (info.isTileChopped()) {
             	return false;
-            	
             }
             
             if (!canPlaceOver && info.getPiecePlaced() != null && !info.getPiecePlaced().equals(piece)) {
