@@ -12,9 +12,6 @@ public class FlipPieceMove extends Move {
 		super(piece);
 	}
 
-	/**
-	 * Perform the Move. Always let the GameManager call this method.
-	 */
 	@Override
 	public boolean doMove(Level level) {
 		if (!valid(level)) {
