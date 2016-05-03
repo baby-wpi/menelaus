@@ -128,7 +128,6 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
         	 releasePanel.setVisible(false);
 		}
 
-        //panelAllBullpenView = new JPanel();
         panelBoardView = new BoardView(this.manager.getLevel().getBoard(), this.manager.getLevel(), true);
         panelBoardView.setSelection(this.manager.getSelectedPoints());
 
