@@ -1,17 +1,16 @@
 package menelaus.controllers;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
-import menelaus.model.board.Board;
 import menelaus.model.move.DeselectSquareBuilderMove;
 import menelaus.model.move.PlaceReleaseNumberBuilderMove;
 import menelaus.model.move.SelectSquareMove;
 import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.BoardView;
-
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 /**
  * Controller that handles making a level for the builder.
  * @author sanjay
@@ -20,15 +19,17 @@ import java.awt.event.MouseListener;
 public class BoardBuilderMakeLevelController implements MouseListener{
 	BuilderManager manager;
 	BoardView view;
+	ReleasePaneBuilderMakeLevelController releaseController;
 	
 	/**
 	 * constructor.
 	 * @param manager
 	 * @param view
 	 */
-	public BoardBuilderMakeLevelController(BuilderManager manager, BoardView view) {
+	public BoardBuilderMakeLevelController(BuilderManager manager, BoardView view, ReleasePaneBuilderMakeLevelController releaseController) {
 		this.manager = manager;
 		this.view = view;
+		this.releaseController = releaseController;
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -44,6 +45,8 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		PlaceReleaseNumberBuilderMove mv = new PlaceReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY(), this.manager.getReleaseItem());
 		if(manager.makeMove(mv)) {
 			System.out.println("Move made successfully");
+			releaseController.handleIncrementNumber();
+			releaseController.refreshView();
 			SoundManager.getInstance().playSound(SoundType.PRESSPIECE); //CHANGE THE SOUND
 		}
 		else {
