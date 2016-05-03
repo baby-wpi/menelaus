@@ -65,15 +65,6 @@ public class KabasujiPanel extends JPanel {
         setBorder(new EmptyBorder(5, 5, 5, 5));
     }
 
-    public void redraw() {
-        // nothing to draw into? Must stop here.
-        if (offscreenImage == null) return;
-        if (offscreenGraphics == null) return;    // detected during testing
-
-        // clear the image.
-        offscreenGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-    }
-
     /**
      * Properly register new listener (and unregister old one if present).
      */

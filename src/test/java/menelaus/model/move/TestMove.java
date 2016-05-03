@@ -1,11 +1,5 @@
 package menelaus.model.move;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-import javafx.scene.effect.Lighting;
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
 import menelaus.model.basic.Color;
@@ -14,9 +8,13 @@ import menelaus.model.basic.Point;
 import menelaus.model.board.BoardTileInfo;
 import menelaus.model.board.ColoredSetItem;
 import menelaus.model.board.Piece;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by frankegan on 4/18/16.
