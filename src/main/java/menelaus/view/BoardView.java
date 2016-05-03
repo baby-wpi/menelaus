@@ -144,7 +144,7 @@ public class BoardView extends JPanel {
      * Draw background puzzle and all active pieces.
      */
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         initDemensions();
 
         super.paintComponent(g);
@@ -164,7 +164,10 @@ public class BoardView extends JPanel {
 
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
-            PieceDrawer.drawPieceToGrid(g, p, calculateGridUnitSize());
+            if (level.getType() == LevelType.PUZZLE)
+                PieceDrawer.drawPieceToGrid(g, p, calculateGridUnitSize());
+            else if (level.getType() == LevelType.LIGHTNING)
+                PieceDrawer.drawCoverPieceToGrid(g, p, calculateGridUnitSize());
         }
 
         // draw active piece.

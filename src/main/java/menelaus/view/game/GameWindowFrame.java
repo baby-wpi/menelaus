@@ -7,6 +7,8 @@ import menelaus.util.SoundManager;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 /**
@@ -16,39 +18,50 @@ import java.io.File;
  *
  */
 public class GameWindowFrame extends JFrame {
-	private final static String DEFAULT_PACKAGE_NAME = "default-levels.boba";
-	private final static String SAVED_GAMES_NAME = "saved-games.boba";
-	
-	private KabasujiPanel contentPane;
-	private static GameWindowFrame instance = new GameWindowFrame();
-	
-	private LevelsPackage levelsPackage;
-	private LevelsPackage recentlyPLayedLevelsPackage;
-	private SavedGamesUtil savedGamesUtil;
+    private final static String DEFAULT_PACKAGE_NAME = "default-levels.boba";
+    private final static String SAVED_GAMES_NAME = "saved-games.boba";
 
-	/**
-	 * Create the frame.
-	 */
-	private GameWindowFrame() {
-		// initialize sound manager.
-		SoundManager.getInstance();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
-		
-		// Run the splash screen for 2 seconds then swap to main menu:
+    private KabasujiPanel contentPane;
+    private static GameWindowFrame instance = new GameWindowFrame();
+
+    private LevelsPackage levelsPackage;
+    private LevelsPackage recentlyPLayedLevelsPackage;
+    private SavedGamesUtil savedGamesUtil;
+
+    /**
+     * Create the frame.
+     */
+    private GameWindowFrame() {
+        // initialize sound manager.
+        SoundManager.getInstance();
+
+        setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
+
+        // Run the splash screen for 2 seconds then swap to main menu:
         contentPane = new SplashScreen();
-		this.add(contentPane);
-		setVisible(true);
-		setResizable(false);
-		setName("KabaSuji");
-		
-		try {
-			levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
-			savedGamesUtil = new SavedGamesUtil(new File(SAVED_GAMES_NAME));
-			recentlyPLayedLevelsPackage = levelsPackage;
-			
-			contentPane = new HomeScreen();
+        this.add(contentPane);
+        setVisible(true);
+        setResizable(false);
+        setName("KabaSuji");
+        //set close confirmation dialog
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                String ObjButtons[] = {"Yes", "No"};
+                int promptResult = JOptionPane.showOptionDialog(null, "Are you sure you want to exit?", "KabaSuji", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+                if (promptResult == JOptionPane.YES_OPTION) {
+                    dispose();
+                } else System.out.println("Not closing");
+            }
+        });
+
+        try {
+            levelsPackage = LevelsPackagePersistenceUtil.fromFile(new File(DEFAULT_PACKAGE_NAME));
+            savedGamesUtil = new SavedGamesUtil(new File(SAVED_GAMES_NAME));
+            recentlyPLayedLevelsPackage = levelsPackage;
+
+            contentPane = new HomeScreen();
 //			Thread.sleep(2000);
 			// TODO: change back
 			Thread.sleep(0);
@@ -107,24 +120,24 @@ public class GameWindowFrame extends JFrame {
 	 */
 	public void swapPanel(KabasujiPanel panel) {
         contentPane = panel;
-		this.getContentPane().removeAll();
-		this.getContentPane().add( panel );
-		//setVisible(true);
-		validate();
-	}
-	
-	/**
-	 * Close game
-	 */
-	public void close(){
-		System.exit(0);
-	}
+        this.getContentPane().removeAll();
+        this.getContentPane().add(panel);
+        //setVisible(true);
+        validate();
+    }
+
+    /**
+     * Close game
+     */
+    public void close() {
+        System.exit(0);
+    }
 
     /**
      * Gets the panel that is being displayed.
      * @return contentPane
      */
-	public KabasujiPanel getPanel() {
-		return contentPane;
-	}
+    public KabasujiPanel getPanel() {
+        return contentPane;
+    }
 }

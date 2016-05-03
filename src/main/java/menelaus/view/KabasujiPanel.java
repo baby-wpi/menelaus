@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * @author frankegan on 4/15/16.
