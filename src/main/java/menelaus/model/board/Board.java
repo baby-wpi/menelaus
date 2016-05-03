@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-import sun.nio.cs.ext.TIS_620;
-
 /**
  * Represents a Board with specific dimensions. Holds pieces, hints and coloredSetItems.
  * @author vouldjeff
@@ -371,12 +369,5 @@ public class Board implements Serializable {
 			btInfo.setPiecePlaced(null);
 		}
 		
-	}
-	/**
-	 * Sets the BoardTileInfo to the appropriate amount
-	 * @param 
-	 */
-	public void setTileInfo(Hashtable<Point, BoardTileInfo> ti){
-		this.tileInfo = ti;
 	}
 }
