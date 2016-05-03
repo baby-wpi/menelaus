@@ -204,7 +204,6 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
         );
 
         panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
-        //panelBullpenView = new JPanel();
         panelBullpenView.setPreferredSize(new Dimension(240, 2200));
         scrollPane_1.setViewportView(panelBullpenView);
         scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
