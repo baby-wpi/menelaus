@@ -2,7 +2,6 @@ package menelaus.model.board;
 
 import menelaus.model.basic.Point;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
