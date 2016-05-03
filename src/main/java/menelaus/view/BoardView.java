@@ -164,7 +164,7 @@ public class BoardView extends JPanel {
 
         // Draw Pieces:
         for (Piece p : board.getPieces()) {
-            if (level.getType() == LevelType.PUZZLE)
+            if (level.getType() == LevelType.PUZZLE || level.getType() == LevelType.RELEASE)
                 PieceDrawer.drawPieceToGrid(g, p, calculateGridUnitSize());
             else if (level.getType() == LevelType.LIGHTNING)
                 PieceDrawer.drawCoverPieceToGrid(g, p, calculateGridUnitSize());
