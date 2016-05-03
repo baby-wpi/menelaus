@@ -14,10 +14,8 @@ import java.util.Hashtable;
  * @author vouldjeff
  */
 public class PieceDrawer {
-    public static final int SELECTED = 2;
-    public static final int NORMAL = 1;
-    int mode = NORMAL;
     static final String TILE_COLOR = "#3399ff";
+    static final String LIGHTNING_COLOR = "#7b1fa2";
     static final String HINT_COLOR = "#ff8133";
     static final String SELECT_COLOR = "#aade10";
 
@@ -65,6 +63,18 @@ public class PieceDrawer {
      */
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR));
+    }
+
+    /**
+     * Draws the piece.
+     * <p/>
+     * Draw a bunch of rectangles, here the piece can have a position in terms of teh actual grid units, instead of pixels.
+     *
+     * @param graphics The graphics object we're drawing to.
+     * @param piece    The piece we want drawn
+     */
+    public static void drawCoverPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
+        _draw(graphics, piece, tileSize, Color.decode(LIGHTNING_COLOR));
     }
 
     /**
