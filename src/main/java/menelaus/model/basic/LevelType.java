@@ -1,7 +1,7 @@
 package menelaus.model.basic;
 
 /**
- * 
+ * The three types of Levels.
  * @author vouldjeff
  *
  */

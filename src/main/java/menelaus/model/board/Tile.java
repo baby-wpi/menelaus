@@ -5,28 +5,48 @@ import java.io.Serializable;
 import menelaus.model.basic.Point;
 
 /**
- * 
+ * Tiles are the building blocks of Pieces.
  * @author vouldjeff
  *
  */
 public class Tile implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	Point relativePosition;
+	/**
+	 * The relative position to the position of the Piece.
+	 */
+	private Point relativePosition;
 
+	/**
+	 * Gets the relative position.
+	 * @return The object.
+	 */
 	public Point getRelativePosition() {
 		return relativePosition;
 	}
 
+	/**
+	 * Sets the relative position
+	 * @param relativePosition The new object.
+	 */
 	public void setRelativePosition(Point relativePosition) {
 		this.relativePosition = relativePosition;
 	}
 
+	/**
+	 * Builds a new Tile.
+	 * @param relativePosition The place to put it.
+	 */
 	public Tile(Point relativePosition) {
 		super();
 		this.relativePosition = relativePosition;
 	}
 	
+	/**
+	 * Builds a new Tile.
+	 * @param x The x relative position.
+	 * @param y The y relative position.
+	 */
 	public Tile(int x, int y) {
 		super();
 		this.relativePosition = new Point(x, y);

@@ -8,7 +8,6 @@ import menelaus.model.board.Piece;
 
 /**
  * Performs a move of a Piece already placed on the Board to a new location.
- * 
  * @author vouldjeff
  */
 public class AroundBoardMove extends Move {
@@ -25,9 +24,6 @@ public class AroundBoardMove extends Move {
 		this.alterMoveCount = true;
 	}
 
-	/**
-	 * Perform the Move. Always let the GameManager call this method.
-	 */
 	@Override
 	public boolean doMove(Level level) {
 		if (!valid(level)) {

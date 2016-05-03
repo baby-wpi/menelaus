@@ -33,38 +33,28 @@ public class StarsUtil {
 	
 	/**
 	 * Grades a PuzzleLevel.
-	 * @param gameManager
-	 * @return
+	 * @param gameManager The manager.
+	 * @return The object with LevelStars.
 	 */
-	static LevelStars gradePuzzle(GameManager gameManager) {
-		int stars = 0;
-		
-		int piecesLeft = gameManager.getLevel().getBullpen().getPieces().size();
-		if (piecesLeft <= 2) {
-			stars = 3 - piecesLeft;
-		}
-		
-		return new LevelStars(stars, gameManager.getLevel().getUuid());
-	}
-	static LevelStars gradePuzzleAlt(GameManager gameManager){
+	static LevelStars gradePuzzle(GameManager gameManager){
 		int stars = 0;
 		int spacesLeft = gameManager.getLevel().getBoard().getNumberOfEmptyTiles();
-		if(spacesLeft <= 6){
-			stars = 1;
-		}
-		if(spacesLeft <= 3){
-			stars = 2;
-		}
-		if(spacesLeft == 0){
+		
+		if (spacesLeft == 0) {
 			stars = 3;
+		} else if (spacesLeft <= 6) {
+			stars = 2;
+		} else if (spacesLeft <= 12) {
+			stars = 1;
 		}
 		
 		return new LevelStars(stars, gameManager.getLevel().getUuid());
 	}
+	
 	/**
 	 * Grades a Release Level.
-	 * @param gameManager
-	 * @return
+	 * @param gameManager The manager.
+	 * @return The object with LevelStars.
 	 */
 	static LevelStars gradeRelease(GameManager gameManager) {
 		int completeSets = 0;
@@ -83,9 +73,9 @@ public class StarsUtil {
 	
 	/**
 	 * Checks if colored set is complete.
-	 * @param color
-	 * @param board
-	 * @return
+	 * @param color For what color.
+	 * @param board For which board.
+	 * @return Is the set complete?
 	 */
 	static boolean isSetComplete(Color color, Board board) {
 		Hashtable<Integer, Boolean> filledIn = new Hashtable<Integer, Boolean>();
@@ -110,8 +100,8 @@ public class StarsUtil {
 	
 	/**
 	 * Grades a Lightning level.
-	 * @param gameManager
-	 * @return
+	 * @param gameManager The manager.
+	 * @return The LevelStars object.
 	 */
 	static LevelStars gradeLightning(GameManager gameManager) {
 		int emptyTiles = gameManager.getLevel().getBoard().getNumberOfEmptyTiles();

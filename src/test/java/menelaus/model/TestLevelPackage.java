@@ -18,7 +18,7 @@ public class TestLevelPackage {
 	Level l1;
 	Level l2;
 	Level l3;
-	ArrayList<Level> levels;
+	LevelsPackage levels;
 	LevelsPackage pack;
 
 	@Before
@@ -26,17 +26,16 @@ public class TestLevelPackage {
 		l1 = new Level(LevelType.PUZZLE, 100, 100);
 		l2 = new Level(LevelType.LIGHTNING, 100, 100);
 		l3 = new Level(LevelType.RELEASE, 100, 100);
-		levels = new ArrayList<Level>();
-		levels.add(l1);
-		levels.add(l2);
-		levels.add(l3);
-		pack = new LevelsPackage();
+		levels = new LevelsPackage();
+		levels.addLevel(l1);
+		levels.addLevel(l2);
+		levels.addLevel(l3);
 	}
 
 	@Test
 	public void testSetLevels() {
-		pack.setLevels(levels);
-		assertEquals(pack.getLevels(), levels);
+		assertEquals(l1, levels.getLevels().get(0));
+		assertEquals(3, levels.getLevels().size());
 	}
 
 }

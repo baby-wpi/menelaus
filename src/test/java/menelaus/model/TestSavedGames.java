@@ -8,6 +8,8 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
+import menelaus.model.basic.LevelType;
+
 /**
  * 
  * @author mtmccarthy
@@ -15,41 +17,34 @@ import org.junit.Test;
  */
 public class TestSavedGames {
 
+	Level level;
 	LevelStars star1;
 	LevelStars star2;
 	LevelStars star3;
 	
-	
-	
 	SavedGames sgs;
-	Hashtable<UUID, LevelStars> stars;
 	
 	
 	@Before
 	public void setUp() throws Exception {
+		level = new Level(LevelType.PUZZLE, 10, 10);
 		star1 = new LevelStars(2, UUID.randomUUID());
 		star2 = new LevelStars(1, UUID.randomUUID());
-		star3 = new LevelStars(3, UUID.randomUUID());
+		star3 = new LevelStars(3, level.getUuid());
 		
-		
-		stars = new Hashtable<UUID, LevelStars>();
-		stars.put(star1.getLevelId(), star1);
-		sgs = new SavedGames(stars);
+		sgs = new SavedGames();
+		sgs.addLevelStars(star1);
 	}
 
 	@Test
 	public void testGettersAndSetters() {
-		stars.put(star2.getLevelId(), star2);
-		sgs.setStars(stars);
-		
-		assertEquals(sgs.getStars(), stars);
+		sgs.addLevelStars(star2);
+		assertEquals(2, sgs.getStars().size());
 	}
 	
 	@Test
 	public void testAddLevelStars(){
 		sgs.addLevelStars(star3);
-		stars.put(star3.getLevelId(), star3);
-		
-		assertEquals(sgs.getStars(), stars);
+		assertEquals(star3, sgs.getStarsForLevel(level));
 	}
 }

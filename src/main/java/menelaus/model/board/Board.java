@@ -15,10 +15,29 @@ import java.util.Iterator;
 public class Board implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The height of the Board.
+     */
     private int height;
+    
+    /**
+     * The width of the board.
+     */
     private int width;
+    
+    /**
+     * For each virtual tile of the board an object with BoardTileInfo. If no object, then regular tile.
+     */
     private Hashtable<Point, BoardTileInfo> tileInfo;
+    
+    /**
+     * A collection with all hints.
+     */
     private ArrayList<HintPiece> hints;
+    
+    /**
+     * A collection with all placed pieces.
+     */
     private ArrayList<Piece> pieces;
 
     /**
@@ -61,10 +80,6 @@ public class Board implements Serializable {
         return tileInfo;
     }
 
-    public void setTileInfo(Hashtable<Point, BoardTileInfo> tileInfo) {
-        this.tileInfo = tileInfo;
-    }
-
     /**
      * Gets all hints.
      * @return All hints.
@@ -102,10 +117,6 @@ public class Board implements Serializable {
      */
     public ArrayList<Piece> getPieces() {
         return pieces;
-    }
-
-    public void setPieces(ArrayList<Piece> pieces) {
-        this.pieces = pieces;
     }
 
     /**
@@ -161,6 +172,10 @@ public class Board implements Serializable {
         };
     }
 
+    /**
+     * Selects a tile from the Board. Used during Board construction.
+     * @param point The point in interest.
+     */
     public void selectTile(Point point) {
         BoardTileInfo info = tileInfo.get(point);
         if (info == null) {
@@ -171,6 +186,11 @@ public class Board implements Serializable {
         }
     }
     
+    /**
+     * Says if a point is selected.
+     * @param point The coordinate.
+     * @return Is it selected?
+     */
     public boolean isSelected(Point point) {
     	BoardTileInfo info = tileInfo.get(point);
         if (info == null) {
@@ -178,6 +198,10 @@ public class Board implements Serializable {
         } else return (info.isTileChopped);
     }
     
+    /**
+     * Unselects a tile from the board.
+     * @param point The coordinate.
+     */
     public void unselectTile(Point point) {
     	BoardTileInfo info = tileInfo.get(point);
         if (info == null) {
@@ -205,6 +229,12 @@ public class Board implements Serializable {
     	_placePiece(piece, true);
     }
     
+    /**
+     * Tried to place a piece on board.
+     * @param piece The piece to be added.
+     * @param canPlaceOver If a lightning level that allows overlap.
+     * @throws InvalidPiecePlacementException If piece if placed outside of board.
+     */
     private void _placePiece(Piece piece, boolean canPlaceOver) throws InvalidPiecePlacementException {
     	if (!isPlacementValid(piece, canPlaceOver)) {
             throw new InvalidPiecePlacementException();
@@ -269,6 +299,13 @@ public class Board implements Serializable {
         }
     }
 
+    /**
+     * Says if a piece can be placed a the particular position.
+     * @param piece The new piece to be placed.
+     * @param canPlaceOver Is it a lightning level that allows overlap?
+     * @return True is can be placed.
+     * @throws InvalidPiecePlacementException Exception if outside of board.
+     */
     private boolean isBoardFreeForPiece(Piece piece, boolean canPlaceOver) throws InvalidPiecePlacementException {
         Iterator<Tile> iterator = piece.getTiles().iterator();
         while (iterator.hasNext()) {
