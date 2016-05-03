@@ -211,9 +211,8 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
         scrollPane_1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         panelAllBullpenView = new BullpenView(new AllPieceBullpen());
-        //panelAllBullpenView = new JPanel();
         panelAllBullpenView.setPreferredSize(new Dimension(240, 2200));
-        //panelAllBullpenView.addMouseListener(new AddPieceToBullpenController(panelAllBullpenView, panelBullpenView, manager));
+        panelAllBullpenView.addMouseListener(new AddPieceToBullpenController(panelAllBullpenView, panelBullpenView, manager));
 
         scrollPane.setViewportView(panelAllBullpenView);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
