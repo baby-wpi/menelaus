@@ -13,7 +13,7 @@ import menelaus.view.BoardView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 /**
- * 
+ * Controller that handles making a level for the builder.
  * @author sanjay
  *
  */
@@ -21,6 +21,11 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	BuilderManager manager;
 	BoardView view;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param view
+	 */
 	public BoardBuilderMakeLevelController(BuilderManager manager, BoardView view) {
 		this.manager = manager;
 		this.view = view;
@@ -49,6 +54,10 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		
 	}
 
+	/**
+	 * handle the mouse click on the board.
+	 * @param pointOnBoard
+	 */
 	public void handleMouseClickBoardMode(Point pointOnBoard) {
 		if(manager.getSelectedPoints().contains(pointOnBoard)) {
 			DeselectSquareBuilderMove mv = new DeselectSquareBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
