@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
+ * Controller that handles piece selection.
  * Created by @author frankegan on 4/21/16.
  */
 public class PieceSelectionController extends MouseAdapter {
@@ -21,6 +22,11 @@ public class PieceSelectionController extends MouseAdapter {
     GameManager gameManager;
     Level level;
 
+    /**
+     * constructor.
+     * @param bullpenView
+     * @param gameManager
+     */
     public PieceSelectionController(BullpenView bullpenView, GameManager gameManager) {
         this.bullpenView = bullpenView;
         this.gameManager = gameManager;

@@ -86,9 +86,6 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		refreshBoard();
 	}
 	
-	
-	
-	
 	public void mousePressed(MouseEvent e) {
 		
 	}

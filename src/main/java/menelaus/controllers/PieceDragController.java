@@ -45,6 +45,8 @@ public class PieceDragController extends MouseAdapter {
 
     /**
      * Constructor holds onto key manager objects.
+     * @param level
+     * @param frame
      */
     public PieceDragController(Level level, BuilderWindowFrame frame) {
         this.level = level;
@@ -53,6 +55,8 @@ public class PieceDragController extends MouseAdapter {
 
     /**
      * Constructor holds onto key manager objects.
+     * @param level
+     * @param frame
      */
     public PieceDragController(Level level, GameWindowFrame frame) {
         this.level = level;
@@ -120,7 +124,6 @@ public class PieceDragController extends MouseAdapter {
         deltaX = anchor.getX() - originalx;
         deltaY = anchor.getY() - originaly;
 
-        panel.redraw();
         panel.repaint();
         return true;
     }
@@ -189,7 +192,6 @@ public class PieceDragController extends MouseAdapter {
         // no longer selected
         level.setSelected(null);
 
-        panel.redraw();
         panel.repaint();
         return true;
     }

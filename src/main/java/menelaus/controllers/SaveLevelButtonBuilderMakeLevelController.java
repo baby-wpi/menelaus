@@ -15,8 +15,18 @@ import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderWindowFrame;
 import menelaus.view.builder.HomeScreen;
 
+/**
+ * Controller that handles saving a level in the builder.
+ * @author Sanjay.
+ *
+ */
 public class SaveLevelButtonBuilderMakeLevelController implements ActionListener{
 	BuilderManager manager;
+	
+	/**
+	 * constructor.
+	 * @param manager
+	 */
 	public SaveLevelButtonBuilderMakeLevelController(BuilderManager manager) {
 		this.manager = manager;
 	}

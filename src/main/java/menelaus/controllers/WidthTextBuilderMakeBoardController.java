@@ -7,10 +7,22 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 
+ * @author Sanjay.
+ *
+ */
 public class WidthTextBuilderMakeBoardController implements ActionListener{
 	BoardView boardView;
 	BuilderManager manager;
 	JTextField widthField;
+	
+	/**
+	 * constructor.
+	 * @param boardView
+	 * @param manager
+	 * @param widthField
+	 */
 	public WidthTextBuilderMakeBoardController(BoardView boardView, BuilderManager manager, JTextField widthField) {
 		this.boardView = boardView;
 		this.manager = manager;

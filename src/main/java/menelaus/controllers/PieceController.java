@@ -31,6 +31,11 @@ public class PieceController extends MouseAdapter {
     /**The offset we are using to calculate dragging pieces*/
     private Point dragOffset;
 
+    /**
+     * constructor.
+     * @param app
+     * @param gameManager
+     */
     public PieceController(LevelPlayScreen app, GameManager gameManager) {
         this.boardView = app.getBoardView();
         this.bullpenView = app.getBullpenView();
