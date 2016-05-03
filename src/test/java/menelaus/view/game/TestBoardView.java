@@ -1,4 +1,4 @@
-package views;
+package menelaus.view.game;
 
 import static org.junit.Assert.*;
 
