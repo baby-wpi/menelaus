@@ -8,13 +8,16 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Main application window for the builder
+ *
+ */
 public class BuilderWindowFrame extends JFrame {
 
 	private KabasujiPanel contentPane;
 	private static BuilderWindowFrame instance = new BuilderWindowFrame();
 	
 	private LevelsPackage currentPackage;
-
 	/**
 	 * Create the frame.
 	 */
@@ -67,7 +70,7 @@ public class BuilderWindowFrame extends JFrame {
 	 * Swaps panel in BuilderWindow
 	 *  to the given panel
 	 * @param panel  the panel you want to switch to.
-	 * @return void
+	 * 
 	 */
 	public void swapPanel(KabasujiPanel panel) {
         contentPane = panel;
@@ -92,10 +95,18 @@ public class BuilderWindowFrame extends JFrame {
 		return contentPane;
 	}
 	
+	/**
+	 * Gets the current LevelsPackage loaded in the builder
+	 * @return current LevelsPackage
+	 */
 	public LevelsPackage getCurrentPackage() {
 		return this.currentPackage;
 	}
 	
+	/**
+	 * Sets the current LevelsPackage loaded in the builder to the given LevelsPackage
+	 * @param newPackage
+	 */
 	public void setCurrentPackage(LevelsPackage newPackage) {
 		this.currentPackage = newPackage;
 	}

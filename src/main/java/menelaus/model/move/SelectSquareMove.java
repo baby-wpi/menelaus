@@ -15,7 +15,12 @@ import menelaus.model.board.BoardTileInfo;
 public class SelectSquareMove extends BuilderMove {
 
 	Point selectedPoint;
-	
+	/**
+	 * Constructor
+	 * @param manager
+	 * @param xToSelect
+	 * @param yToSelect
+	 */
 	public SelectSquareMove(BuilderManager manager, int xToSelect, int yToSelect) {
 		super(manager);
 		this.manager = manager;

@@ -31,7 +31,8 @@ public class ColoredSetItem implements Serializable {
 		return color;
 	}
 	
-	/** return the Java Color of the java,awt package */
+	/** return the Java Color of the java,awt package 
+	 * @return The associated Java color to this ColoredSetItem's color*/
 	public java.awt.Color getJavaColor(){
 		if (color == Color.BLUE){
 			return java.awt.Color.blue;

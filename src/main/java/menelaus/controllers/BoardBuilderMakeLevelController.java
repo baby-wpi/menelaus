@@ -28,13 +28,17 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	 * constructor.
 	 * @param manager
 	 * @param view
+	 * @param releaseController
 	 */
 	public BoardBuilderMakeLevelController(BuilderManager manager, BoardView view, ReleasePaneBuilderMakeLevelController releaseController) {
 		this.manager = manager;
 		this.view = view;
 		this.releaseController = releaseController;
 	}
-	
+	/**
+	 * Method which contains the logic for when the mouse is clicked while making a level
+	 * @param e
+	 */
 	public void mouseClicked(MouseEvent e) {
 		if(manager.getIsReleaseMode()) {
 			if(SwingUtilities.isLeftMouseButton(e))
@@ -46,7 +50,10 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 			handleMouseClickBoardMode(view.pointUnder(e.getX(), e.getY()));	
 		}
 	}
-
+	/**
+	 * Helper function which contains the logic for a right click on the button
+	 * @param pointOnBoard
+	 */
 	private void handleRightClickReleaseMode(Point pointOnBoard) {
 		DeleteReleaseNumberBuilderMove mv = new DeleteReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 		if(manager.makeMove(mv)) {
@@ -62,7 +69,10 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		refreshBoard();
 		
 	}
-	
+	/**
+	 *  Helper function which contains the logic for a left click on the button
+	 * @param pointOnBoard
+	 */
 	private void handleMouseClickReleaseMode(Point pointOnBoard) {
 		PlaceReleaseNumberBuilderMove mv = new PlaceReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY(), this.manager.getReleaseItem());
 		if(manager.makeMove(mv)) {
@@ -110,24 +120,34 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		}
 		refreshBoard();
 	}
-	
+	/**
+	 * Unimplemented method required for extension
+	 */
 	public void mousePressed(MouseEvent e) {
 		
 	}
 
-	
+	/**
+	 * Unimplemented method required for extension
+	 */
 	public void mouseReleased(MouseEvent e) {
 		
 	}
-
+	/**
+	 * Unimplemented method required for extension
+	 */
 	public void mouseEntered(MouseEvent e) {
 		
 	}
-
+	/**
+	 * Unimplemented method required for extension
+	 */
 	public void mouseExited(MouseEvent e) {
 		
 	}
-
+	/**
+	 * Repaints the board view
+	 */
 	void refreshBoard() {
 		view.repaint();
 	}

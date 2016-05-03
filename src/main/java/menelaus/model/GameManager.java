@@ -62,6 +62,7 @@ public class GameManager {
 	
 	/**
 	 * The Level which is played.
+	 * @return The current level being played
 	 */
 	public Level getLevel() {
 		return level;

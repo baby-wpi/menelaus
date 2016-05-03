@@ -38,7 +38,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 	JButton btnExitButton;
 
 	JLabel labelCountDown;
-
+	
 	private void gameEnded(GameEndReason reason) {
 		SavedGamesUtil savedGamesUtil = GameWindowFrame.getInstance().getSavedGamesUtil();
 		try {
@@ -75,7 +75,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 	/**
 	 * get bullpen view.
-	 * @return
+	 * @return The current BullpenView
 	 */
 	public BullpenView getBullpenView(){
 		return bullpenView;
@@ -83,7 +83,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 	/**
 	 * get bullpen view.
-	 * @return boardView
+	 * @return the current boardView
 	 */
 	public BoardView getBoardView(){
 		return boardView;
@@ -91,6 +91,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 
 	/**
 	 * Create the panel.
+	 * @param inputLevel 
 	 * @throws Exception 
 	 */
 	public LevelPlayScreen(Level inputLevel) throws Exception {

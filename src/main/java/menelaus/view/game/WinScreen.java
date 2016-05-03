@@ -15,6 +15,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Contains information necessary to display a win screen once a game has ended 
+ * Displays where game was completed successfully or ended for any other reason
+ *
+ */
 public class WinScreen extends KabasujiPanel  {
 	LevelStars stars;
 	GameEndReason reason;

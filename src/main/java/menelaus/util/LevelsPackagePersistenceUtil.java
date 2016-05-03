@@ -19,6 +19,7 @@ public class LevelsPackagePersistenceUtil {
      * Save a LevelsPackage to a File.
      * @param levelsPackage The object to be serialized
      * @param outputFile Destination
+     * @throws IOException 
      */
 	public static void toFile(LevelsPackage levelsPackage, File outputFile) throws IOException {
         FileOutputStream fileToWrite = new FileOutputStream(outputFile);
@@ -32,6 +33,8 @@ public class LevelsPackagePersistenceUtil {
 	 * Load a LevelsPackage from a File.
 	 * @param inputFile File to read from
 	 * @return The LevelsPackage object
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
     public static LevelsPackage fromFile(File inputFile) throws IOException, ClassNotFoundException {
         FileInputStream fileToRead = new FileInputStream(inputFile);

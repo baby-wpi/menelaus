@@ -11,12 +11,19 @@ import menelaus.model.board.Tile;
 public class MakeHintBuilderMove extends MakePieceBuilderMove {
 
     HintPiece hintToPlace = null;
-
+/**
+ * Constructor
+ * @param manager
+ */
     public MakeHintBuilderMove(BuilderManager manager) {
         super(manager);
     }
 
     @Override
+    /**
+	 * Attempts to complete this move within the given level
+	 * @return true if move is successfully completed, false otherwise
+	 */
     public boolean doMove(Level level) {
         if (hintToPlace == null) {
             if (!valid(level)) return false;

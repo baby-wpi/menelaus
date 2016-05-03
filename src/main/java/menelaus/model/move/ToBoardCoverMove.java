@@ -12,7 +12,11 @@ import menelaus.model.board.Piece;
  */
 public class ToBoardCoverMove extends Move {
 	Point location;
-	
+	/**
+	 * Constructor
+	 * @param piece
+	 * @param location
+	 */
 	public ToBoardCoverMove(Piece piece, Point location) {
 		super(piece);
 		this.location = location;

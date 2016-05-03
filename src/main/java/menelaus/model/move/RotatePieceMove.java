@@ -8,6 +8,10 @@ import menelaus.model.board.Piece;
  * @author vouldjeff
  */
 public class RotatePieceMove extends Move {
+	/**
+	 * Constructor
+	 * @param piece
+	 */
 	public RotatePieceMove(Piece piece) {
 		super(piece);
 	}

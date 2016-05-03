@@ -8,7 +8,10 @@ import menelaus.model.board.Piece;
  * @author vouldjeff
  */
 public class ToBullpenMove extends Move {
-
+	/**
+	 * Constructor
+	 * @param piece
+	 */
     public ToBullpenMove(Piece piece) {
         super(piece);
     }

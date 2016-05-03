@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 
 import menelaus.model.board.ColoredSetItem;
 
+/**
+ * Contains the information necessary to display a released tile
+ *
+ */
 public class BuilderReleasePane extends JPanel {
 
 	/**
@@ -21,6 +25,9 @@ public class BuilderReleasePane extends JPanel {
 	
 	/**
 	 * Create the panel.
+	 * @param item 
+	 * @param width 
+	 * @param height 
 	 */
 	public BuilderReleasePane(ColoredSetItem item, int width, int height) {
 		this.item = item;
@@ -39,6 +46,10 @@ public class BuilderReleasePane extends JPanel {
 		g.drawChars((this.item.getNumber() + "").toCharArray(),0,1,(this.width/2 - 5),(this.height/2 + 5));
 	}
 	
+	/**
+	 * Sets the item stored in the release pane to the given ColoredSetItem
+	 * @param s
+	 */
 	public void setItem(ColoredSetItem s) {
 		this.item = s;
 	}

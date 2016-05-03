@@ -14,6 +14,10 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * Contains the information necessary to display a level in the level selector screen
+ *
+ */
 public class LevelSelectComponent extends JPanel {
 	/** the level for this component. */
 	private Level level;
@@ -44,6 +48,9 @@ public class LevelSelectComponent extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param levelParam 
+	 * @param stars 
+	 * @param playableParam 
 	 */
 	public LevelSelectComponent(Level levelParam, LevelStars stars, boolean playableParam) {
 		setBounds(0, 0, 138, 180);

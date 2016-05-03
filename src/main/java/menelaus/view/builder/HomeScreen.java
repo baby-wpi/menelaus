@@ -10,6 +10,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
 
+/**
+ * Contains information necessary to display the homescreen of the builder
+ *
+ */
 public class HomeScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.

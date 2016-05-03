@@ -10,6 +10,10 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/**
+ * Contains the information necessary to display the builder select screen
+ *
+ */
 public class BuilderSelectScreen extends KabasujiPanel {
 
     private JTextField txtInsertName;
@@ -45,6 +49,10 @@ public class BuilderSelectScreen extends KabasujiPanel {
         this.repaint();
     }
 
+    /**
+     * Gets the current builder manager for this view
+     * @return Builder Manager
+     */
     public BuilderManager getManager() {
         return this.manager;
     }

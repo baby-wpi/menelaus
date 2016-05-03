@@ -124,10 +124,17 @@ public class Point implements Serializable {
     }
 
     @Override
+    /**
+     * Converts a point to a string representation
+     */
     public String toString() {
         return "X = " + x + ", Y = " + y;
     }
-
+    /**
+     * Determines whether this points is adjacent to the given point on the baord
+     * @param other
+     * @return true if they are adjacent, false otherwise
+     */
     public boolean adjacentTo(Point other) {
         //The other one is adjacent if one of the coordinates is 1 block away, and the other is zero. That is...
         //Both are within 1 block.

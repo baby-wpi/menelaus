@@ -68,7 +68,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
         	releasePanel.addMouseListener(releaseController);
         }
     }
-
+    
     void refreshComponentsByGame() {
         switch (this.manager.getType()) {
             case LIGHTNING:
@@ -86,6 +86,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
     /**
      * Create the panel.
+     * @param manager 
      *
      * @throws Exception
      */
