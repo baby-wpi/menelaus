@@ -76,25 +76,4 @@ public class Bullpen implements Serializable {
         }
         return null;
     }
-
-    /**
-     * Randomly fills the Bullpen with pieces.
-     */
-    public void randomFill() {
-        int max = 6; //can change depending on how many pieces are meant to be put in the board
-        Random random = new Random();
-        for (int i = 0; i < max; i++) {
-            int index = Math.abs(random.nextInt()) % 35;
-            this.addPiece(PieceBank.getPiece(index + 1));
-        }
-    }
-
-    /**
-     * Adds a random piece to the bullpen.
-     */
-    public void addRandomPiece() {
-        Random random = new Random();
-        int index = (Math.abs(random.nextInt()) % 35) + 1;
-        this.addPiece(PieceBank.getPiece(index));
-    }
 }

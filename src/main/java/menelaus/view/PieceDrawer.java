@@ -65,7 +65,7 @@ public class PieceDrawer {
      * @param tileSize the given tile size in relation to the board.
      */
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
-        _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR));
+        _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR), false);
     }
 
     /**
@@ -77,7 +77,7 @@ public class PieceDrawer {
      * @param piece    The piece we want drawn
      */
     public static void drawCoverPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
-        _draw(graphics, piece, tileSize, Color.decode(LIGHTNING_COLOR));
+        _draw(graphics, piece, tileSize, Color.decode(LIGHTNING_COLOR), true);
     }
 
     /**
@@ -90,10 +90,10 @@ public class PieceDrawer {
      * @param tileSize the given tile size in relation to the board.
      */
     public static void drawHintToGrid(Graphics graphics, Piece piece, int tileSize) {
-        _draw(graphics, piece, tileSize, Color.decode(HINT_COLOR));
+        _draw(graphics, piece, tileSize, Color.decode(HINT_COLOR), true);
     }
 
-    private static void _draw(Graphics graphics, Piece piece, int tileSize, Color c) {
+    private static void _draw(Graphics graphics, Piece piece, int tileSize, Color c, boolean skipBorders) {
         Point origin = piece.getOrigin();
 
         Hashtable<Integer, Integer> minVertical = new Hashtable<Integer, Integer>();
@@ -101,27 +101,29 @@ public class PieceDrawer {
         Hashtable<Integer, Integer> maxVertical = new Hashtable<Integer, Integer>();
         Hashtable<Integer, Integer> maxHorizontal = new Hashtable<Integer, Integer>();
 
-        for (Tile tile : piece.getTiles()) {
-            Integer searchMinVertical = minVertical.get(tile.getRelativePosition().getX());
-            Integer searchMaxVertical = maxVertical.get(tile.getRelativePosition().getX());
-            Integer searchMinHorizontal = minHorizontal.get(tile.getRelativePosition().getY());
-            Integer searchMaxHorizontal = maxHorizontal.get(tile.getRelativePosition().getY());
-
-            if (searchMinVertical == null || searchMinVertical.intValue() > tile.getRelativePosition().getY()) {
-                minVertical.put(tile.getRelativePosition().getX(), tile.getRelativePosition().getY());
-            }
-
-            if (searchMaxVertical == null || searchMaxVertical.intValue() < tile.getRelativePosition().getY()) {
-                maxVertical.put(tile.getRelativePosition().getX(), tile.getRelativePosition().getY());
-            }
-
-            if (searchMinHorizontal == null || searchMinHorizontal.intValue() > tile.getRelativePosition().getX()) {
-                minHorizontal.put(tile.getRelativePosition().getY(), tile.getRelativePosition().getX());
-            }
-
-            if (searchMaxHorizontal == null || searchMaxHorizontal.intValue() < tile.getRelativePosition().getX()) {
-                maxHorizontal.put(tile.getRelativePosition().getY(), tile.getRelativePosition().getX());
-            }
+        if (!skipBorders) {
+	        for (Tile tile : piece.getTiles()) {
+	            Integer searchMinVertical = minVertical.get(tile.getRelativePosition().getX());
+	            Integer searchMaxVertical = maxVertical.get(tile.getRelativePosition().getX());
+	            Integer searchMinHorizontal = minHorizontal.get(tile.getRelativePosition().getY());
+	            Integer searchMaxHorizontal = maxHorizontal.get(tile.getRelativePosition().getY());
+	
+	            if (searchMinVertical == null || searchMinVertical.intValue() > tile.getRelativePosition().getY()) {
+	                minVertical.put(tile.getRelativePosition().getX(), tile.getRelativePosition().getY());
+	            }
+	
+	            if (searchMaxVertical == null || searchMaxVertical.intValue() < tile.getRelativePosition().getY()) {
+	                maxVertical.put(tile.getRelativePosition().getX(), tile.getRelativePosition().getY());
+	            }
+	
+	            if (searchMinHorizontal == null || searchMinHorizontal.intValue() > tile.getRelativePosition().getX()) {
+	                minHorizontal.put(tile.getRelativePosition().getY(), tile.getRelativePosition().getX());
+	            }
+	
+	            if (searchMaxHorizontal == null || searchMaxHorizontal.intValue() < tile.getRelativePosition().getX()) {
+	                maxHorizontal.put(tile.getRelativePosition().getY(), tile.getRelativePosition().getX());
+	            }
+	        }
         }
 
         for (Tile t : piece.getTiles()) {
@@ -135,6 +137,10 @@ public class PieceDrawer {
                     tileSize,
                     tileSize);
 
+            if (skipBorders) {
+            	continue;
+            }
+            
             Integer v = minVertical.get(t.getRelativePosition().getX());
             if (v != null && t.getRelativePosition().getY() == v.intValue()) {
                 _drawLine(graphics, actualPosition.subtract(new Point(0, BORDER / 2)), tileSize, true);

@@ -126,6 +126,19 @@ public class Piece implements Serializable {
 		this.tiles = new ArrayList<Tile>();
 		tiles.add(new Tile(new Point(0,0)));
 	}
+	
+	/**
+	 * Duplicates the Piece.
+	 * @param oldPiece Object to be copied.
+	 */
+	public Piece(Piece oldPiece) {
+		super();
+		this.position = new Point(oldPiece.getPosition().getX(), oldPiece.getPosition().getY());
+		this.tiles = new ArrayList<Tile>();
+		for (Tile tile : oldPiece.getTiles()) {
+			tiles.add(new Tile(tile.getRelativePosition().getX(), tile.getRelativePosition().getY()));
+		}
+	}
 
 	/**
 	 * Calculates the height of the piece.
@@ -187,6 +200,4 @@ public class Piece implements Serializable {
         result = prime * result + ((tiles == null) ? 0 : tiles.hashCode());
         return result;
     }
-
-
 }

@@ -4,17 +4,11 @@ import static org.junit.Assert.*;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.event.MouseEvent;
-import java.util.Hashtable;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.GameManager;
 import menelaus.model.Level;
-import menelaus.model.basic.Color;
-import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
-import menelaus.model.board.Board;
-import menelaus.model.board.BoardTileInfo;
-import menelaus.model.board.ColoredSetItem;
 import menelaus.model.board.Piece;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
