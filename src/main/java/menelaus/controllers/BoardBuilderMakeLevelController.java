@@ -3,8 +3,11 @@ package menelaus.controllers;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.SwingUtilities;
+
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
+import menelaus.model.move.DeleteReleaseNumberBuilderMove;
 import menelaus.model.move.DeselectSquareBuilderMove;
 import menelaus.model.move.PlaceReleaseNumberBuilderMove;
 import menelaus.model.move.SelectSquareMove;
@@ -34,13 +37,32 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	
 	public void mouseClicked(MouseEvent e) {
 		if(manager.getIsReleaseMode()) {
-			handleMouseClickReleaseMode(view.pointUnder(e.getX(), e.getY()));
+			if(SwingUtilities.isLeftMouseButton(e))
+				handleMouseClickReleaseMode(view.pointUnder(e.getX(), e.getY()));
+			else if (SwingUtilities.isRightMouseButton(e))
+				handleRightClickReleaseMode(view.pointUnder(e.getX(), e.getY()));
 		}
 		else {
 			handleMouseClickBoardMode(view.pointUnder(e.getX(), e.getY()));	
 		}
 	}
 
+	private void handleRightClickReleaseMode(Point pointOnBoard) {
+		DeleteReleaseNumberBuilderMove mv = new DeleteReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
+		if(manager.makeMove(mv)) {
+			System.out.println("Move made successfully");
+			//releaseController.handleIncrementNumber();
+			//releaseController.refreshView();
+			SoundManager.getInstance().playSound(SoundType.PRESSPIECE); //CHANGE THE SOUND
+		}
+		else {
+			System.out.println("Move failed!");
+			SoundManager.getInstance().playSound(SoundType.PRESSTILE);
+		}
+		refreshBoard();
+		
+	}
+	
 	private void handleMouseClickReleaseMode(Point pointOnBoard) {
 		PlaceReleaseNumberBuilderMove mv = new PlaceReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY(), this.manager.getReleaseItem());
 		if(manager.makeMove(mv)) {
