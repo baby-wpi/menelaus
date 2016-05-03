@@ -25,11 +25,23 @@ public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(SwingUtilities.isLeftMouseButton(e)) {
-			this.data.incrementNumber();
+			handleIncrementNumber();
 		}
 		else if(SwingUtilities.isRightMouseButton(e)){
-			this.data.changeColor();
+			handleChangeColor();
 		}
+		refreshView();
+	}
+	
+	public void handleIncrementNumber() {
+		this.data.incrementNumber();
+	}
+	
+	public void handleChangeColor() {
+		this.data.changeColor();
+	}
+	
+	public void refreshView() {
 		manager.setReleaseItem(this.data.generateSetItem());
 		this.pane.setItem(this.data.generateSetItem());
 		this.pane.repaint();

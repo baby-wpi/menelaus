@@ -4,6 +4,7 @@ import menelaus.model.GameManager;
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
+import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.move.*;
 import menelaus.util.SoundManager;
@@ -24,12 +25,22 @@ public class PieceController extends MouseAdapter {
     GameManager gameManager;
     Level level;
 
-    /**The piece that is being dragged around after it is placed on the board*/
+    /**
+     * The piece that is being dragged around after it is placed on the board
+     */
     private Piece draggingPiece;
-    /**The point we are dragging from*/
+    /**
+     * The point we are dragging from
+     */
     private Point draggingAnchor;
-    /**The offset we are using to calculate dragging pieces*/
+    /**
+     * The offset we are using to calculate dragging pieces
+     */
     private Point dragOffset;
+    /**
+     * Was teh dragging piece actually moved or just selected
+     */
+    boolean dragMoved = false;
 
     public PieceController(LevelPlayScreen app, GameManager gameManager) {
         this.boardView = app.getBoardView();
@@ -43,7 +54,7 @@ public class PieceController extends MouseAdapter {
      */
     @Override
     public void mousePressed(MouseEvent me) {
-    	SoundManager.getInstance().playSound(SoundType.PRESSTILE);
+        SoundManager.getInstance().playSound(SoundType.PRESSTILE);
         Piece pp = level.getActive();
         int gridX = me.getX() / boardView.calculateGridUnitSize();
         int gridY = me.getY() / boardView.calculateGridUnitSize();
@@ -98,7 +109,21 @@ public class PieceController extends MouseAdapter {
         int offsetX = clicked.getX() - dragOffset.getX();
         int offsetY = clicked.getY() - dragOffset.getY();
         Point adjusted = new Point(anchor.getX() + offsetX, anchor.getY() + offsetY);
-        gameManager.performNewMove(new AroundBoardMove(draggingPiece, adjusted));
+
+        level.getBoard().removePiece(draggingPiece);
+        draggingPiece.setPosition(adjusted);
+        try {
+            if (level.getBoard().isPlacementValid(draggingPiece)) {
+                level.getBoard().placePiece(draggingPiece);
+                if (!dragMoved)
+                    dragMoved = !(anchor.equals(adjusted));
+            } else {
+                draggingPiece.setPosition(anchor);
+            }
+        } catch (InvalidPiecePlacementException e) {
+            e.printStackTrace();
+        }
+
         dragOffset = clicked;
         boardView.repaint();
     }
@@ -108,6 +133,18 @@ public class PieceController extends MouseAdapter {
      */
     @Override
     public void mouseReleased(MouseEvent me) {
+        if (draggingPiece != null) {
+            Point anchor = draggingPiece.getPosition();
+            Point clicked = boardView.pointUnder(me.getX(), me.getY());
+
+            int offsetX = clicked.getX() - dragOffset.getX();
+            int offsetY = clicked.getY() - dragOffset.getY();
+            Point adjusted = new Point(anchor.getX() + offsetX, anchor.getY() + offsetY);
+            if (dragMoved) {
+                gameManager.performNewMove(new AroundBoardMove(draggingPiece, adjusted));
+                dragMoved = false;
+            }
+        }
         draggingPiece = null;
         draggingAnchor = null;
         dragOffset = null;

@@ -53,7 +53,9 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
     void initializeControllers() {
     	
-        this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
+    	ReleasePaneBuilderMakeLevelController releaseController = new ReleasePaneBuilderMakeLevelController(this.manager,this.releasePaneData,this.releasePanel);
+    	
+        this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView, releaseController));
         this.btnMakePiece.addActionListener(new MakePieceButtonController(this.manager, this.panelBoardView, this.panelBullpenView));
         this.btnMakeHint.addActionListener(new MakeHintButtonController(this.manager, this.panelBoardView, this.panelBullpenView));
         this.txtMaxMoves.getDocument().addDocumentListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager, this.txtMaxMoves));
@@ -63,7 +65,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
         txtInsertName.getDocument().addDocumentListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
         if(this.manager.getType() == LevelType.RELEASE) {
         	this.btnEnableReleaseMode.addActionListener(new EnableReleaseModeBuilderMakeLevelController(this.manager, this.btnEnableReleaseMode, this.releasePaneData));
-        	releasePanel.addMouseListener(new ReleasePaneBuilderMakeLevelController(this.manager,this.releasePaneData,this.releasePanel));
+        	releasePanel.addMouseListener(releaseController);
         }
     }
 
