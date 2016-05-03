@@ -7,6 +7,8 @@ import javax.swing.SwingUtilities;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.dataholders.ReleasePaneData;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderReleasePane;
 
 /**
@@ -35,6 +37,7 @@ public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);
 		if(SwingUtilities.isLeftMouseButton(e)) {
 			handleIncrementNumber();
 		}

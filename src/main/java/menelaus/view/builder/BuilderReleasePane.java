@@ -1,7 +1,10 @@
 package menelaus.view.builder;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import menelaus.model.board.ColoredSetItem;
@@ -23,13 +26,17 @@ public class BuilderReleasePane extends JPanel {
 		this.item = item;
 		this.width = width;
 		this.height = height;
+		
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
+		int fontSize = 14;
 		super.paintComponent(g);
 		g.setColor(this.item.getJavaColor());
-		g.drawChars((this.item.getNumber() + "").toCharArray(),0,1,(int)(this.width * 0.2),(int)(this.height * 0.8));
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, fontSize));
+		g.drawChars((this.item.getNumber() + "").toCharArray(),0,1,(this.width/2 - 5),(this.height/2 + 5));
 	}
 	
 	public void setItem(ColoredSetItem s) {
