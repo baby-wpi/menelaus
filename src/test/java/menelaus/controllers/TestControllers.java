@@ -2,6 +2,7 @@ package menelaus.controllers;
 
 import static org.junit.Assert.*;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.event.MouseEvent;
 import java.util.Hashtable;
 
@@ -24,7 +25,6 @@ import org.junit.Test;
 
 public class TestControllers {
 	PieceDragController pdc;
-	BoardBuilderMakeLevelController bbmlc;
 	PieceSelectionController psc;
 	ButtonBuilderStartController bbsc;
 	SaveLevelButtonBuilderMakeLevelController slbb;
@@ -40,6 +40,8 @@ public class TestControllers {
 
 	@Before
 	public void setUp() throws Exception {
+		if (_stopTest()) { return; }
+		
 		gwFrame = GameWindowFrame.getInstance();
 		bManager = new BuilderManager();
 		level = gwFrame.getLevelsPackage().getLevels().get(0);
@@ -49,7 +51,6 @@ public class TestControllers {
 		gameManager = new GameManager(level);
 		
 		pdc = new PieceDragController(level, gwFrame);
-		bbmlc = new BoardBuilderMakeLevelController(bManager, bv, null);
 		psc = new PieceSelectionController(bpView, gameManager);
 		bbsc = new ButtonBuilderStartController(bManager);
 		slbb = new SaveLevelButtonBuilderMakeLevelController(bManager);
@@ -58,6 +59,8 @@ public class TestControllers {
 
 	@Test
 	public void testPieceDragController() {
+		if (_stopTest()) { return; }
+		
 		pdc.level.getBullpen().addPiece(new Piece(new Point(0, 0)));
 		pdc.register();
 		pdc.select(0, 0);
@@ -71,18 +74,11 @@ public class TestControllers {
 		pdc.mouseWheelMoved(null);
 		assertEquals(1, 1);
 	}
-	@Test
-	public void testBoardBuilderMakeLevelController() {
-		//bbmlc.mouseClicked(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
-		bbmlc.mouseEntered(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
-		bbmlc.mouseExited(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
-		bbmlc.mousePressed(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
-		bbmlc.mouseReleased(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
-		
-		assertEquals(1, 1);
-	}
+
 	@Test
 	public void testPieceSelectionController(){
+		if (_stopTest()) { return; }
+		
 		psc.mouseClicked(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
 		psc.mouseDragged(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
 		psc.mouseEntered(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
@@ -94,13 +90,21 @@ public class TestControllers {
 	}
 	@Test
 	public void testButtonBuilderStartController(){
+		if (_stopTest()) { return; }
+		
 		bbsc.actionPerformed(null);
 		assertTrue(bbsc.isSizeValid(0, 0));
 		assertTrue(!bbsc.isSizeValid(-1, 0));
 	}
 	@Test
 	public void testSaveLevelButtonBuilder(){
+		if (_stopTest()) { return; }
+		
 		slbb.actionPerformed(null);
 		assertTrue(true);
+	}
+	
+	private boolean _stopTest() {
+		return GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadless();
 	}
 }

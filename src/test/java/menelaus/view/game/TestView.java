@@ -154,5 +154,4 @@ public class TestView {
 	private boolean _stopTest() {
 		return GraphicsEnvironment.getLocalGraphicsEnvironment().isHeadless();
 	}
-
 }
