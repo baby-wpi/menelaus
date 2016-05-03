@@ -16,12 +16,14 @@ import menelaus.view.builder.BuilderLevelBuilderScreen;
 import menelaus.view.builder.BuilderSelectScreen;
 import menelaus.view.builder.BuilderWindowFrame;
 
+/**
+ * Controller that handles going to the builder select screen.
+ * @author Sanjay
+ *
+ */
 public class EditButtonBuilderHomeScreenController implements ActionListener{
 
-	public EditButtonBuilderHomeScreenController() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);

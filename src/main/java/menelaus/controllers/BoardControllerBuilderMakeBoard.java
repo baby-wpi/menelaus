@@ -8,8 +8,9 @@ import menelaus.model.basic.Point;
 import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.BoardView;
+
 /**
- * 
+ * Controller that handles making a board for the builder.
  * @author sanjay
  *
  */
@@ -18,6 +19,11 @@ public class BoardControllerBuilderMakeBoard implements MouseListener{
 	BuilderManager manager;
 	BoardView view;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param view
+	 */
 	public BoardControllerBuilderMakeBoard(BuilderManager manager, BoardView view) {
 		this.manager = manager;
 		this.view = view;
@@ -30,6 +36,10 @@ public class BoardControllerBuilderMakeBoard implements MouseListener{
 		handleMouseClick(view.pointUnder(e.getX(), e.getY()));
 	}
 
+	/**
+	 * chop and unchoping and choping tile pieces when the mouse is clicked.
+	 * @param pointOnBoard
+	 */
 	public void handleMouseClick(Point pointOnBoard) {
 		if(manager.getLevel().getBoard().isChoppedOut(pointOnBoard))
 			manager.getLevel().getBoard().unchopTile(pointOnBoard);
@@ -41,23 +51,18 @@ public class BoardControllerBuilderMakeBoard implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
-
-		
 	}
 
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	void refreshBoard() {

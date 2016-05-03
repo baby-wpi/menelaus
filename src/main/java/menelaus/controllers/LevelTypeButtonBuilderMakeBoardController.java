@@ -9,12 +9,24 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderSelectScreen;
 
+/**
+ * 
+ * @author Sanjay
+ *
+ */
 public class LevelTypeButtonBuilderMakeBoardController implements ActionListener{
 
 	BuilderManager manager;
 	LevelType type;
 	BuilderSelectScreen screen;
 	
+	/**
+	 * constructor.
+	 * 
+	 * @param manager
+	 * @param type
+	 * @param screen
+	 */
 	public LevelTypeButtonBuilderMakeBoardController(BuilderManager manager, LevelType type, BuilderSelectScreen screen) {
 		this.manager = manager;
 		this.type = type;

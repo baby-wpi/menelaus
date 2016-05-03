@@ -19,7 +19,10 @@ public class RestartController implements ActionListener {
 	/** the level you plan to restart to */
 	Level previousLevel;
 	
-	
+	/**
+	 * constructor.
+	 * @param previousLevel
+	 */
 	public RestartController(Level previousLevel){
 		this.previousLevel = previousLevel;
 	}

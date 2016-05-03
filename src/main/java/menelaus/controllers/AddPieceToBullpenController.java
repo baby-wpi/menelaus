@@ -19,6 +19,12 @@ public class AddPieceToBullpenController extends MouseAdapter {
     BuilderManager buildManager;
     Level level;
 
+    /**
+     * Add pieces to bullpen controller.
+     * @param allPieceBullpenView
+     * @param bullpenView
+     * @param buildManager
+     */
     public AddPieceToBullpenController(BullpenView allPieceBullpenView, BullpenView bullpenView, BuilderManager buildManager) {
         this.allPieceBullpenView = allPieceBullpenView;
         this.bullpenView = bullpenView;

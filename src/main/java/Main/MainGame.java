@@ -3,6 +3,11 @@ import menelaus.view.game.GameWindowFrame;
 
 /** Used to launch the KabaSuji Application. */
 public class MainGame {
+	
+	/**
+	 * create and open the Main Game window frame.
+	 * @param args
+	 */
 	public static void main (String[] args){
 		//Model m = new Model();
 
