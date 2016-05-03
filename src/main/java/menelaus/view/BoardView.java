@@ -102,6 +102,8 @@ public class BoardView extends JPanel {
 
     /**
      * Given a set of KabaSuji pieces, draw them in this panel.
+     * @param board the given board.
+     * @param level the given level.
      */
     public BoardView(Board board, Level level) {
         this.board = board;
@@ -113,6 +115,12 @@ public class BoardView extends JPanel {
     }
 
 
+    /**
+     * Constructor for boardView with hasSelection.
+     * @param board the given board.
+     * @param level the given level.
+     * @param hasSelection the selected pieces when making a new piece/hint in Builder.
+     */
     public BoardView(Board board, Level level, boolean hasSelection) {
         this.board = board;
         this.level = level;
@@ -321,6 +329,10 @@ public class BoardView extends JPanel {
         return new Point(gridX, gridY);
     }
 
+    /**
+     * Set the selection.
+     * @param newSel
+     */
     public void setSelection(ArrayList<Point> newSel) {
         this.selection = newSel;
     }

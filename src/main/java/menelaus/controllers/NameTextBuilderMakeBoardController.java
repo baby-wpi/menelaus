@@ -6,11 +6,21 @@ import javax.swing.event.DocumentListener;
 
 import menelaus.model.BuilderManager;
 
+/**
+ * 
+ * @author Sanjay.
+ *
+ */
 public class NameTextBuilderMakeBoardController implements DocumentListener{
 
 	BuilderManager manager;
 	JTextField nameTextView;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param nameTextView
+	 */
 	public NameTextBuilderMakeBoardController(BuilderManager manager, JTextField nameTextView) {
 		this.manager = manager;
 		this.nameTextView = nameTextView;

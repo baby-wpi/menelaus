@@ -8,39 +8,70 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
+ * A piece that could be placed on the Board or on the Bullpen; knows its dimensions and center of mass.
  * @author vouldjeff
  */
 public class Piece implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The position of the piece origin.
+	 */
 	private Point position;
+	
+	/**
+	 * The tiles which build the piece.
+	 */
 	private ArrayList<Tile> tiles;
+	
+	/**
+	 * Is the piece selected?
+	 */
 	private boolean selected;
 	
+	/**
+	 * Returns the position of the origin of the piece.
+	 * @return The origin point.
+	 */
 	public Point getPosition() {
 		return position;
 	}
 	
+	/**
+	 * Sets the position of the piece.
+	 * @param position The new origin location.
+	 */
 	public void setPosition(Point position) {
 		this.position = position;
 	}
 	
+	/**
+	 * Returns all the tiles that build the piece.
+	 * @return The tiles.
+	 */
 	public ArrayList<Tile> getTiles() {
 		return tiles;
 	}
 	
-	public void setTiles(ArrayList<Tile> tiles) {
-		this.tiles = tiles;
-	}
-	
+	/**
+	 * Is the piece selected?
+	 * @return baby boolean
+	 */
 	public boolean getSelected() {
 		return this.selected;
 	}
 	
+	/**
+	 * Says that this piece is selected/unselected.
+	 * @param selected The new value.
+	 */
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
 	
+	/**
+	 * Rotates the Piece clockwise.
+	 */
 	public void rotate() {
 		Iterator<Tile> iterator = tiles.iterator();
 		
@@ -53,6 +84,9 @@ public class Piece implements Serializable {
 		}
 	}
 	
+	/**
+	 * Flips the piece along the Y axis.
+	 */
 	public void flip() {
 		Iterator<Tile> iterator = tiles.iterator();
 		int maxX = 0;
@@ -75,10 +109,18 @@ public class Piece implements Serializable {
 		}
 	}
 	
+	/**
+	 * Adds a new tile to the Piece.
+	 * @param tile The new tile.
+	 */
 	public void addTile(Tile tile) {
 		tiles.add(tile);
 	}
 	
+	/**
+	 * Creates a new Piece at a particular location and adds one tile.
+	 * @param position The origin.
+	 */
 	public Piece(Point position) {
 		super();
 		this.position = position;
@@ -86,6 +128,10 @@ public class Piece implements Serializable {
 		tiles.add(new Tile(new Point(0,0)));
 	}
 
+	/**
+	 * Calculates the height of the piece.
+	 * @return The height.
+	 */
     public int getHeight() {
         int max = 0, min = 0;
         for (Tile t : tiles) {
@@ -98,6 +144,10 @@ public class Piece implements Serializable {
         return max - min;
     }
 
+    /**
+     * Calculates the width of the piece.
+     * @return The width.
+     */
     public int getWidth() {
         int max = 0, min = 0;
         for (Tile t : tiles) {
@@ -110,6 +160,10 @@ public class Piece implements Serializable {
         return max - min;
     }
     
+    /**
+     * Gets the actual mathematical origin -- top left point.
+     * @return The Point object.
+     */
     public Point getOrigin() {
     	int minX = 0, minY = 0;
     	for (Tile t : tiles) {

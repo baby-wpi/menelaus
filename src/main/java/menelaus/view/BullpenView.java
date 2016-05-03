@@ -25,20 +25,22 @@ public class BullpenView extends JPanel {
      * Base width of bullpen.
      */
     public static final int N = 250;
+    
     /**
      * The space around pieces
      */
     private static final int MARGIN = 15;
+    
     /**
      * Unit size of piece
      */
     public static final int UNIT_SIZE = (N - 3 * MARGIN) / 12;
+    
     /**
      * The space form one piece to another.
      */
     private static final int STEP = MARGIN + 6 * UNIT_SIZE;
 
-    
 	/**
 	 * Border color for BullpenView;
 	 */
@@ -51,6 +53,7 @@ public class BullpenView extends JPanel {
 
     /**
      * Given a set of KabaSuji pieces, draw them in this panel.
+     * @param bullpen the given bullpen
      */
     public BullpenView(Bullpen bullpen) {
         this.bullpen = bullpen;
@@ -95,6 +98,12 @@ public class BullpenView extends JPanel {
         }
     }
 
+    /**
+     * Find the piece at the mouse point x and y.
+     * @param clickX Mouse click point x.
+     * @param clickY Mouse click point y.
+     * @return Piece
+     */
     public Piece findPiece(int clickX, int clickY) {
         //Each piece is in it's own invisible square this is the length of the square.
         int pieceSpotSize = (this.getWidth() / 2);

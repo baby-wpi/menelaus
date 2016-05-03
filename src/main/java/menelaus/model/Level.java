@@ -17,15 +17,49 @@ import java.util.UUID;
 public class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The unique id of the level.
+	 */
 	private UUID uuid;
+	
+	/**
+	 * The name of the level.
+	 */
 	private String name;
+	
+	/**
+	 * The Level type.
+	 */
 	private LevelType type;
+	
+	/**
+	 * The maximum number of moves.
+	 */
 	private int moveLimit;
+	
+	/**
+	 * The maximum time allowed to complete the move.
+	 */
 	private int timeLimit;
+	
+	/**
+	 * The Board with chopped pieces and numbers.
+	 */
 	private Board board;
+	
+	/**
+	 * The bullpen with all possible pieces.
+	 */
 	private Bullpen bullpen;
 	
+	/**
+	 * A selected piece.
+	 */
 	private Piece selected;
+	
+	/**
+	 * An active piece.
+	 */
     private Piece active;
 	
     /**
@@ -37,53 +71,83 @@ public class Level implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Returns the name of the level.
+	 * @return The name.
 	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Sets the name of the level.
+	 * @param name The new name.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Returns the level type.
+	 * @return A LevelType object.
+	 */
 	public LevelType getType() {
 		return type;
 	}
 	
+	/**
+	 * Returns the max number of moves allowed in for the level.
+	 * @return The number.
+	 */
 	public int getMoveLimit() {
 		return moveLimit;
 	}
 	
+	/**
+	 * Sets a maximum number of moves.
+	 * @param moveLimit The new limit.
+	 */
 	public void setMoveLimit(int moveLimit) {
 		this.moveLimit = moveLimit;
 	}
 	
+	/**
+	 * Returns the maximum time to complete the level.
+	 * @return The seconds.
+	 */
 	public int getTimeLimit() {
 		return timeLimit;
 	}
 	
+	/**
+	 * Sets a max time allowed to complete the level.
+	 * @param timeLimit The new limit.
+	 */
 	public void setTimeLimit(int timeLimit) {
 		this.timeLimit = timeLimit;
 	}
 	
+	/**
+	 * Returns the board information.
+	 * @return The Board object.
+	 */
 	public Board getBoard() {
 		return board;
 	}
 	
-	public void setBoard(Board board) {
-		this.board = board;
-	}
-	
+	/**
+	 * Returns the bullpen information.
+	 * @return The Bullpen object.
+	 */
 	public Bullpen getBullpen() {
 		return bullpen;
 	}
 	
-	public void setBullpen(Bullpen bullpen) {
-		this.bullpen = bullpen;
-	}
-	
+	/**
+	 * Creates a new Level with a new Board with given dimensions and LevelType.
+	 * @param type The type of the level.
+	 * @param boardHeight The Board height.
+	 * @param boardWidth The Board width.
+	 */
 	public Level(LevelType type, int boardHeight, int boardWidth) {
 		super();
 		this.moveLimit = 0;
@@ -94,16 +158,22 @@ public class Level implements Serializable {
 		this.board = new Board(boardHeight, boardWidth);
 	}
 	
-	public Level resetLevel(){
-		
+	/**
+	 * Returns all pieces back from board to bullpen.
+	 */
+	public void resetLevel() {
 		for (Piece p : this.board.getPieces()){
-			this.bullpen.addPiece(p);
+			this.getBullpen().addPiece(p);
 		}
-		this.board.setPieces(new ArrayList<Piece>());
-		this.board.resetBoard();
-		return this;
+		
+		this.getBoard().getPieces().clear();
+		this.getBoard().resetBoard();
 	}
 
+	/**
+	 * Sets a selected Piece for drag and other functionality.
+	 * @param p The piece.
+	 */
 	public void setSelected(Piece p) {
 		selected = p;
 	}
@@ -116,6 +186,10 @@ public class Level implements Serializable {
 		return selected;
 	}
 
+	/**
+	 * Sets the active piece.
+	 * @param active The piece.
+	 */
     public void setActive(Piece active) {
         this.active = active;
     }

@@ -20,16 +20,44 @@ import java.util.Deque;
  *
  */
 public class GameManager {
-	Timer timer;
-	Level level;
-	Deque<Move> moves;
-	int movesMade;
-	int timePassed;
-	LevelStars levelStars;
-	
 	private static final int TICK_TIME = 1000;
+	
+	/**
+	 * Use to track time passed during game.
+	 */
+	private Timer timer;
+	
+	/**
+	 * Holds the Level that this GameManager operates on.
+	 */
+	private Level level;
+	
+	/**
+	 * This collection holds all moves of pieces. If undo functionality is needed just revert objects inside.
+	 */
+	private Deque<Move> moves;
+	
+	/**
+	 * A count of the moves made during the game.
+	 */
+	private int movesMade;
+	
+	/**
+	 * Keeps time of seconds passed.
+	 */
+	private int timePassed;
+	
+	/**
+	 * The current state of the game and stars achieved by player.
+	 */
+	private LevelStars levelStars;
+
 	private ArrayList<GameTickListener> tickListeners = new ArrayList<GameTickListener>();
 	private ArrayList<GameEndListener> endListeners = new ArrayList<GameEndListener>();
+	
+	/**
+	 * Tells whether the game is in progress.
+	 */
 	private boolean isRunning;
 	
 	/**
@@ -39,14 +67,26 @@ public class GameManager {
 		return level;
 	}
 	
+	/**
+	 * Returns the moves made during the game.
+	 * @return Number of moves.
+	 */
 	public int getMovesMade() {
 		return movesMade;
 	}
 	
+	/**
+	 * Returns the achieved stars.
+	 * @return The LevelStars object.
+	 */
 	public LevelStars getLevelStars() {
 		return levelStars;
 	}
 
+	/**
+	 * Initializes a new object with timer setup.
+	 * @param levelParam The level which is going to be played.
+	 */
 	public GameManager(Level levelParam) {
 		super();
 		this.level = levelParam;
@@ -69,6 +109,10 @@ public class GameManager {
 		});
 	}
 	
+	/**
+	 * Returns the number of seconds since the start of the game.
+	 * @return Seconds elapsed.
+	 */
 	public int getTimePassed() {
 		return timePassed;
 	}
@@ -127,7 +171,7 @@ public class GameManager {
 	 * Call whenever the game starts. Starts timer.
 	 */
 	public void startGame() {
-		this.level = this.level.resetLevel();
+		this.level.resetLevel();
 		this.movesMade = 0;
 		this.timePassed = 0;
 		this.moves = new ArrayDeque<Move>();

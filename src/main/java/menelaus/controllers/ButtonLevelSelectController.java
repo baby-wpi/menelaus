@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Controller that handles going to the level play screen.
  * Created by frankegan on 4/13/16.
  */
 public class ButtonLevelSelectController implements ActionListener{

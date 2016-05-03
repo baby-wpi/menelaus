@@ -43,6 +43,8 @@ public class PieceDragController extends MouseAdapter {
 
     /**
      * Constructor holds onto key manager objects.
+     * @param level
+     * @param frame
      */
     public PieceDragController(Level level, BuilderWindowFrame frame) {
         this.level = level;
@@ -51,6 +53,8 @@ public class PieceDragController extends MouseAdapter {
 
     /**
      * Constructor holds onto key manager objects.
+     * @param level
+     * @param frame
      */
     public PieceDragController(Level level, GameWindowFrame frame) {
         this.level = level;

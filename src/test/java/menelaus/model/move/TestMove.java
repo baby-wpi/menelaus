@@ -115,11 +115,7 @@ public class TestMove{
     public void testToBullpenMove(){
     	ToBullpenMove toBullpenMove = new ToBullpenMove(piece);
     	lightning.getBoard().getPieces().add(piece);
-    	BoardTileInfo btInfo = new BoardTileInfo(false);
-		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
-		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
-		tileInfo.put(piece.getPosition(), btInfo );
-		puzzle.getBoard().setTileInfo(tileInfo);
+		puzzle.getBoard().addColoredSetItem(new ColoredSetItem(Color.BLUE, 1), piece.getPosition());
     	puzzle.getBoard().getPieces().add(piece);
     	assertTrue(toBullpenMove.valid(lightning));
     	assertTrue(toBullpenMove.valid(puzzle));
