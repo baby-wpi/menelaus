@@ -10,9 +10,9 @@ import javax.swing.*;
 import java.io.File;
 
 /**
- * 
+ * The window frame that holds all the panels.
  * @author vouldjeff
- * @author boba
+ * @author Obatola Seward-Evans
  *
  */
 public class GameWindowFrame extends JFrame {
@@ -77,6 +77,7 @@ public class GameWindowFrame extends JFrame {
 	
 	/**
 	 * sets recently played levels package.
+	 * @param inputLevelsPackage the current levels package.
 	 * @return boolean - true if level was set
 	 */
 	public boolean setRecentlyPLayedLevelsPackage(LevelsPackage inputLevelsPackage){
@@ -94,7 +95,7 @@ public class GameWindowFrame extends JFrame {
 	
 	/**
 	 * Returns the SavedGamesUtil.
-	 * @return
+	 * @return savedGamesUtil
 	 */
 	public SavedGamesUtil getSavedGamesUtil() {
 		return savedGamesUtil;
@@ -121,7 +122,7 @@ public class GameWindowFrame extends JFrame {
 
     /**
      * Gets the panel that is being displayed.
-     * @return
+     * @return contentPane
      */
 	public KabasujiPanel getPanel() {
 		return contentPane;

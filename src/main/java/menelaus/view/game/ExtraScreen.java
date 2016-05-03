@@ -8,6 +8,11 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/**
+ * Extra screen where you can load levels.
+ * @author Obatola Seward-Evans
+ *
+ */
 public class ExtraScreen extends KabasujiPanel {
 
 	/**
