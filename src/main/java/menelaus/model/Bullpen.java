@@ -11,15 +11,13 @@ import java.util.Random;
 
 /**
  * The bullpen holds a collection of pieces that can be played and placed on the board.
- * @author vouldjeff
  *
+ * @author vouldjeff
  */
 public class Bullpen implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private ArrayList<Piece> pieces;
-    
-   private Random random; //for random generation
 
     public ArrayList<Piece> getPieces() {
         return pieces;
@@ -31,7 +29,7 @@ public class Bullpen implements Serializable {
 
     public Bullpen() {
         super();
-        this.pieces = new ArrayList<Piece>();
+        this.pieces = new ArrayList<>();
     }
 
     public void addPiece(Piece piece) {
@@ -54,23 +52,25 @@ public class Bullpen implements Serializable {
         }
         return null;
     }
+
     /**
      * Randomly fills the Bullpen with pieces.
      */
-    public void randomFill(){
-    	int max = 6; //can change depending on how many pieces are meant to be put in the board
-    	Random random  = new Random();
-    	random.setSeed(123456789);
-    	for(int i = 0; i < max; i++){
-    		int index = random.nextInt() % 35;
-    		this.addPiece(PieceBank.getPiece(index + 1));
-    		
-    	}
+    public void randomFill() {
+        int max = 6; //can change depending on how many pieces are meant to be put in the board
+        Random random = new Random();
+        for (int i = 0; i < max; i++) {
+            int index = random.nextInt() % 35;
+            this.addPiece(PieceBank.getPiece(index + 1));
+        }
     }
-    public void addRandomPiece(){
-    	Random random = new Random();
-    	random.setSeed(987654321);
-    	int index = random.nextInt() % 35;
-    	this.addPiece(PieceBank.getPiece(index));
+
+    /**
+     * Adds a random piece to the bullpen.
+     */
+    public void addRandomPiece() {
+        Random random = new Random();
+        int index = (Math.abs(random.nextInt()) % 35) + 1;
+        this.addPiece(PieceBank.getPiece(index));
     }
 }
