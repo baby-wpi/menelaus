@@ -4,36 +4,44 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * 
+ * Holds the number of achieved stars for a particular level UUID.
  * @author vouldjeff
  *
  */
 public class LevelStars implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	int starsCount;
-	UUID levelId;
+	/**
+	 * The number of stars.
+	 */
+	private int starsCount;
 	
+	/**
+	 * The level id.
+	 */
+	private UUID levelId;
+	
+	/**
+	 * Returns the number of stars.
+	 * @return Stars.
+	 */
 	public int getStarsCount() {
 		return starsCount;
 	}
 	
-	public void setStarsCount(int starsCount) {
-		if (starsCount < 0 || starsCount > 3) {
-			throw new IllegalArgumentException();
-		}
-		
-		this.starsCount = starsCount;
-	}
-	
+	/**
+	 * Returns the level unique id.
+	 * @return UUID object.
+	 */
 	public UUID getLevelId() {
 		return levelId;
 	}
-	
-	public void setLevelId(UUID levelId) {
-		this.levelId = levelId;
-	}
 
+	/**
+	 * Constructs a new LevelStars object.
+	 * @param starsCount The stars to be awarded.
+	 * @param levelId The level for which stars are awarded.
+	 */
 	public LevelStars(int starsCount, UUID levelId) {
 		super();
 		this.starsCount = starsCount;

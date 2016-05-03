@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * @author vouldjeff
+ * @author fegan
  */
 public class AllPieceBullpen extends Bullpen {
     private final int NUM_PIECES = 35;

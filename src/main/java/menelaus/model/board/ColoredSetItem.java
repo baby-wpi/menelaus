@@ -6,16 +6,27 @@ import java.util.DuplicateFormatFlagsException;
 import menelaus.model.basic.Color;
 
 /**
- * 
+ * The groups of numbers scattered around of the Board on a Release level.
  * @author vouldjeff
  *
  */
 public class ColoredSetItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The color of the number.
+	 */
 	private Color color;
+	
+	/**
+	 * The actual digit.
+	 */
 	private int number;
 	
+	/**
+	 * Returns the color.
+	 * @return Color object.
+	 */
 	public Color getColor() {
 		return color;
 	}
@@ -33,18 +44,35 @@ public class ColoredSetItem implements Serializable {
 		}
 	}
 	
+	/**
+	 * Sets the color.
+	 * @param color The new value.
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
 	
+	/**
+	 * Returns the number.
+	 * @return The int.
+	 */
 	public int getNumber() {
 		return number;
 	}
 	
+	/**
+	 * Changes the value of the digit.
+	 * @param number The new digit.
+	 */
 	public void setNumber(int number) {
 		this.number = number;
 	}
 
+	/**
+	 * Creates a new ColoredSetItem.
+	 * @param color The Color.
+	 * @param number The digit.
+	 */
 	public ColoredSetItem(Color color, int number) {
 		super();
 		this.color = color;
@@ -76,6 +104,10 @@ public class ColoredSetItem implements Serializable {
 		return true;
 	}
 	
+	/**
+	 * Duplicated the object.
+	 * @return New deep copy.
+	 */
 	public ColoredSetItem duplicate() {
 		return new ColoredSetItem(this.getColor(), this.getNumber());
 	}

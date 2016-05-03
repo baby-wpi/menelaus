@@ -1,7 +1,7 @@
 package menelaus.model.board;
 
 /**
- * 
+ * Thrown whenever a piece is placed outside of the board.
  * @author vouldjeff
  *
  */
