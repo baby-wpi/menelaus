@@ -10,6 +10,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Controller that handles loading a level.
+ * @author Obatola Seward-Evans
+ *
+ */
 public class ButtonLoadLevelController implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {

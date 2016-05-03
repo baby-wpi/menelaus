@@ -22,6 +22,13 @@ public class MakePieceButtonController implements ActionListener{
 	BoardView boardView;
 	BullpenView bullpenView;
 	
+	/**
+	 * constructor.
+	 * 
+	 * @param manager
+	 * @param view
+	 * @param penView
+	 */
 	public MakePieceButtonController(BuilderManager manager, BoardView view, BullpenView penView) {
 		this.manager = manager;
 		this.boardView = view;
@@ -34,7 +41,7 @@ public class MakePieceButtonController implements ActionListener{
 		handleButtonClicked();
 	}
 	
-	public void handleButtonClicked() {
+	void handleButtonClicked() {
 		MakePieceBuilderMove move = new MakePieceBuilderMove(manager);
 		if(move.valid(manager.getLevel())) {
 			manager.makeMove(move);

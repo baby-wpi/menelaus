@@ -7,10 +7,13 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderWindowFrame;
 
+/**
+ * Controller that handles quiting the window for the builder.
+ * @author Obatola Seward-Evans
+ *
+ */
 public class ButtonBuilderExitController implements ActionListener {
 
-	public ButtonBuilderExitController(){}
-	
 	public void actionPerformed(ActionEvent e) {
 		SoundManager.getInstance().playSound(SoundType.EXITSOUND);
 		BuilderWindowFrame.getInstance().close();		

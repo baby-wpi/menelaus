@@ -12,7 +12,7 @@ import menelaus.util.SoundManager;
 import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 /**
- * 
+ * Controller that handles making a level for the builder.
  * @author sanjay
  *
  */
@@ -21,6 +21,11 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	BoardView view;
 	ReleasePaneBuilderMakeLevelController releaseController;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param view
+	 */
 	public BoardBuilderMakeLevelController(BuilderManager manager, BoardView view, ReleasePaneBuilderMakeLevelController releaseController) {
 		this.manager = manager;
 		this.view = view;
@@ -52,6 +57,10 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		
 	}
 
+	/**
+	 * handle the mouse click on the board.
+	 * @param pointOnBoard
+	 */
 	public void handleMouseClickBoardMode(Point pointOnBoard) {
 		if(manager.getSelectedPoints().contains(pointOnBoard)) {
 			DeselectSquareBuilderMove mv = new DeselectSquareBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
@@ -79,9 +88,6 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		}
 		refreshBoard();
 	}
-	
-	
-	
 	
 	public void mousePressed(MouseEvent e) {
 		

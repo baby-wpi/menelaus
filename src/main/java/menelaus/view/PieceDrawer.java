@@ -27,7 +27,9 @@ public class PieceDrawer {
      * Draw a bunch of rectangles and hope to it works.
      *
      * @param graphics The graphics object we're drawing to.
-     * @param piece    The piece we want drawn
+     * @param piece The piece we want drawn.
+     * @param spot point to draw a piece.
+     * @param tileSize the given tile size in relation to the board.
      */
     public static void drawPiece(Graphics graphics, Piece piece, Point spot, int tileSize) {
         Point massDelta = new Point((6 - piece.getWidth()) / 2, (6 - piece.getHeight()) / 2);
@@ -60,6 +62,7 @@ public class PieceDrawer {
      *
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
+     * @param tileSize the given tile size in relation to the board.
      */
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR));
@@ -84,6 +87,7 @@ public class PieceDrawer {
      *
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
+     * @param tileSize the given tile size in relation to the board.
      */
     public static void drawHintToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(HINT_COLOR));
@@ -162,6 +166,12 @@ public class PieceDrawer {
                 isY ? BORDER : tileSize);
     }
 
+    /**
+     * Draw for each selected points.
+     * @param graphics the given graphic.
+     * @param selectedPoints
+     * @param tileSize the given tile size in relation to the board.
+     */
     public static void drawSelection(Graphics graphics, ArrayList<Point> selectedPoints, int tileSize) {
         for (Point p : selectedPoints) {
             Point actualPoint = p.multiply(tileSize);

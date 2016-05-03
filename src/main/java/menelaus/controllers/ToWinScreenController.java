@@ -22,8 +22,9 @@ public class ToWinScreenController implements ActionListener{
 	
 	/**
 	 * Constructor for ToWinScreenController.
-	 * @param previousLevel
-	 * @param gameManager
+	 * @param stars
+	 * @param reason
+	 * @param inputLevel
 	 */
 	public ToWinScreenController(LevelStars stars, GameEndReason reason, Level inputLevel){
 		this.stars = stars;

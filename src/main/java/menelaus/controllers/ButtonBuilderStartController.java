@@ -10,10 +10,19 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller that handles going to the BuilderLevelBuilderScreen.
+ * @author Obatola Seward-Evans
+ *
+ */
 public class ButtonBuilderStartController implements ActionListener {
 
     BuilderManager manager;
 
+    /**
+     * constructor.
+     * @param manager manager of the builder.
+     */
     public ButtonBuilderStartController(BuilderManager manager) {
         this.manager = manager;
     }

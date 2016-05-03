@@ -9,12 +9,23 @@ import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 
+/**
+ * 
+ * @author Sanjay.
+ *
+ */
 public class UndoBuilderMakeLevelController implements ActionListener{
 
 	BuilderManager manager;
 	BoardView boardView;
 	BullpenView bullpenView;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param boardView
+	 * @param bullpenView
+	 */
 	public UndoBuilderMakeLevelController(BuilderManager manager, BoardView boardView, BullpenView bullpenView) {
 		this.manager = manager;
 		this.boardView = boardView;

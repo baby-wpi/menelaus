@@ -42,6 +42,11 @@ public class PieceController extends MouseAdapter {
      */
     boolean dragMoved = false;
 
+    /**
+     * constructor.
+     * @param app
+     * @param gameManager
+     */
     public PieceController(LevelPlayScreen app, GameManager gameManager) {
         this.boardView = app.getBoardView();
         this.bullpenView = app.getBullpenView();

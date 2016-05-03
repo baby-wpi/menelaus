@@ -12,8 +12,10 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 
 /**
+ * The window frame that holds all the panels.
  * @author vouldjeff
- * @author boba
+ * @author Obatola Seward-Evans
+ *
  */
 public class GameWindowFrame extends JFrame {
     private final static String DEFAULT_PACKAGE_NAME = "default-levels.boba";
@@ -61,67 +63,62 @@ public class GameWindowFrame extends JFrame {
 
             contentPane = new HomeScreen();
 //			Thread.sleep(2000);
-            // TODO: change back
-            Thread.sleep(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			// TODO: change back
+			Thread.sleep(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		this.swapPanel(contentPane);
+	}
 
-        this.swapPanel(contentPane);
-    }
+	/**
+	 * Gives access to the gameWindow
+	 * @return instance  the game window
+	 */
+	public static GameWindowFrame getInstance(){
+		return instance;
+	}
+	
+	/**
+	 * sets loaded recently played levels package.
+	 * @return boolean - true if level was set
+	 */
+	public LevelsPackage getLevelsPackage() {
+		return levelsPackage;
+	}
+	
+	/**
+	 * sets recently played levels package.
+	 * @param inputLevelsPackage the current levels package.
+	 * @return boolean - true if level was set
+	 */
+	public boolean setRecentlyPLayedLevelsPackage(LevelsPackage inputLevelsPackage){
+		recentlyPLayedLevelsPackage = inputLevelsPackage;
+		return true;
+	}
+	
+	/**
+	 * gets loaded recently played levels package.
+	 * @return boolean - true if level was set
+	 */
+	public LevelsPackage getRecentlyPLayedLevelsPackage() {
+		return recentlyPLayedLevelsPackage;
+	}
+	
+	/**
+	 * Returns the SavedGamesUtil.
+	 * @return savedGamesUtil
+	 */
+	public SavedGamesUtil getSavedGamesUtil() {
+		return savedGamesUtil;
+	}
 
-    /**
-     * Gives access to the gameWindow
-     *
-     * @return instance  the game window
-     */
-    public static GameWindowFrame getInstance() {
-        return instance;
-    }
-
-    /**
-     * sets loaded recently played levels package.
-     *
-     * @return boolean - true if level was set
-     */
-    public LevelsPackage getLevelsPackage() {
-        return levelsPackage;
-    }
-
-    /**
-     * sets recently played levels package.
-     *
-     * @return boolean - true if level was set
-     */
-    public boolean setRecentlyPLayedLevelsPackage(LevelsPackage inputLevelsPackage) {
-        recentlyPLayedLevelsPackage = inputLevelsPackage;
-        return true;
-    }
-
-    /**
-     * gets loaded recently played levels package.
-     *
-     * @return boolean - true if level was set
-     */
-    public LevelsPackage getRecentlyPLayedLevelsPackage() {
-        return recentlyPLayedLevelsPackage;
-    }
-
-    /**
-     * Returns the SavedGamesUtil.
-     *
-     * @return
-     */
-    public SavedGamesUtil getSavedGamesUtil() {
-        return savedGamesUtil;
-    }
-
-    /**
-     * Swaps panel in GameWindow to the given panel
-     *
-     * @param panel the panel you want to switch to.
-     */
-    public void swapPanel(KabasujiPanel panel) {
+	/**
+	 * Swaps panel in GameWindow to the given panel
+	 * @param panel  the panel you want to switch to.
+	 */
+	public void swapPanel(KabasujiPanel panel) {
         contentPane = panel;
         this.getContentPane().removeAll();
         this.getContentPane().add(panel);
@@ -138,8 +135,7 @@ public class GameWindowFrame extends JFrame {
 
     /**
      * Gets the panel that is being displayed.
-     *
-     * @return
+     * @return contentPane
      */
     public KabasujiPanel getPanel() {
         return contentPane;

@@ -8,13 +8,14 @@ import menelaus.util.SoundType;
 import menelaus.view.game.ExtraScreen;
 import menelaus.view.game.GameWindowFrame;
 
+/**
+ * Controller that handles going to the extra screen.
+ * @author Obatola Seward-Evans
+ *
+ */
 public class ButtonHomeExtraController implements ActionListener {
 
 	// The home screen JFrame that contains the levels button:
-
-
-	public ButtonHomeExtraController() {
-	}
 
 	public void actionPerformed(ActionEvent e) {
 		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);

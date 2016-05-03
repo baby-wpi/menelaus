@@ -6,5 +6,12 @@ package menelaus.model.basic;
  *
  */
 public enum LevelType {
-	PUZZLE, LIGHTNING, RELEASE
+	/** Identify puzzle level */
+	PUZZLE, 
+	
+	/** Identify lightning level */
+	LIGHTNING, 
+	
+	/** Identify release level */
+	RELEASE
 }

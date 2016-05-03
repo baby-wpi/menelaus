@@ -12,13 +12,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
+ * Controller that handles going to the level play screen of the next level.
  * @author fegan
  * @author vouldjeff
  */
 public class ButtonContinueController implements ActionListener{
-
-    public ButtonContinueController() {
-    }
 
     public void actionPerformed(ActionEvent actionEvent) {
     	SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);

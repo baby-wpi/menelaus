@@ -20,36 +20,43 @@ import java.awt.image.BufferedImage;
  */
 public class KabasujiPanel extends JPanel {
     /**
-     * Define the start point for all panels that extend our class
+     * Define the start point for all panels that extend our class.
      */
     public static final int START_X = 100;
+    
     /**
-     * Define the start point for all panels that extend our class
+     * Define the start point for all panels that extend our class.
      */
     public static final int START_Y = 100;
+    
     /**
-     * Define the width for all panels that extend our class
+     * Define the width for all panels that extend our class.
      */
     public static final int WIDTH = 1000;
+    
     /**
-     * Define the height for all panels that extend our class
+     * Define the height for all panels that extend our class.
      */
     public static final int HEIGHT = 750;
+    
     /**
      * Double Buffering technique requires an offscreen image.
      */
     Image offscreenImage;
     Graphics offscreenGraphics;
+    
     /**
-     * Level that is being played
+     * Level that is being played.
      */
     Level level;
+    
     /**
-     * Current mouse listeners
+     * Current mouse listeners.
      */
     MouseListener activeListener;
+    
     /**
-     * Current mouse listeners
+     * Current mouse listeners.
      */
     MouseMotionListener activeMotionListener;
 
@@ -67,6 +74,7 @@ public class KabasujiPanel extends JPanel {
 
     /**
      * Properly register new listener (and unregister old one if present).
+     * @param ml the given mouselistener.
      */
     public void setActiveListener(MouseListener ml) {
         this.removeMouseListener(activeListener);
@@ -78,6 +86,7 @@ public class KabasujiPanel extends JPanel {
 
     /**
      * Properly register new motion listener (and unregister old one if present).
+     * @param mml the given MouseMotionListener.
      */
     public void setActiveMotionListener(MouseMotionListener mml) {
         this.removeMouseMotionListener(activeMotionListener);

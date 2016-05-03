@@ -13,9 +13,9 @@ public class UndoAdapter {
     }
 
     /**
-     * Empty method that will be overridden by subclasses with real functionality
-     *
+     * Empty method that will be overridden by subclasses with real functionality.
      * If a move can't be undone, then false must be returned; otherwise true signals success.
+     * @return boolean false.
      */
     public boolean undoRequested() {
         return false;

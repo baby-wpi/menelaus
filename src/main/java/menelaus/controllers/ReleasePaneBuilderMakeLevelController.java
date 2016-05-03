@@ -9,6 +9,11 @@ import menelaus.model.BuilderManager;
 import menelaus.model.dataholders.ReleasePaneData;
 import menelaus.view.builder.BuilderReleasePane;
 
+/**
+ * 
+ * @author Sanjay.
+ *
+ */
 public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 
 	
@@ -16,6 +21,12 @@ public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 	ReleasePaneData data;
 	BuilderManager manager;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param data
+	 * @param pane
+	 */
 	public ReleasePaneBuilderMakeLevelController(BuilderManager manager, ReleasePaneData data, BuilderReleasePane pane){
 		this.manager = manager;
 		this.data = data;
