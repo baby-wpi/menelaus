@@ -33,7 +33,8 @@ public class LevelPlayScreen extends KabasujiPanel {
 	GameManager gameManager;
 	BoardView boardView;
 	BullpenView bullpenView;
-	Level level = new Level(LevelType.PUZZLE, 700, 700);
+	JButton btnRestart;
+	JButton btnExitButton;
 
 	JLabel labelCountDown;
 
@@ -47,7 +48,7 @@ public class LevelPlayScreen extends KabasujiPanel {
 		
 		// If restart do not go to winscreen
 		if (reason != GameEndReason.RESTART) {
-			ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, level);
+			ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), reason, gameManager.getLevel());
 			controller.actionPerformed(null);
 		}
 	}
@@ -85,19 +86,17 @@ public class LevelPlayScreen extends KabasujiPanel {
 	 */
 	public LevelPlayScreen(Level inputLevel) throws Exception {
 		
-		if (inputLevel != null) {
-			level = inputLevel;
-		} else {
+		if (inputLevel == null) {
 			throw new Exception("cannot pass null manager into LevelPlayScreen constructor");
 		}
 		
-		initGameManager(level);
+		initGameManager(inputLevel);
 
 		setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 
 		JScrollPane scrollPane = new JScrollPane();
 
-		JLabel labelLevelName = new JLabel(level.getType().toString() + " LEVEL: " + level.getName());
+		JLabel labelLevelName = new JLabel(gameManager.getLevel().getType().toString() + " LEVEL: " + gameManager.getLevel().getName());
 		labelLevelName.setMaximumSize(new Dimension(248, 16));
 		
 		if (gameManager.getLevel().getType() == LevelType.LIGHTNING) {
@@ -109,11 +108,11 @@ public class LevelPlayScreen extends KabasujiPanel {
         /* BUTTONS */
 		
 		/** Restart Button. */
-		JButton btnRestart = new JButton("RESTART");
+		btnRestart = new JButton("RESTART");
 		btnRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userRestartsGame();
-				RestartController restartController = new RestartController(level);
+				RestartController restartController = new RestartController(gameManager.getLevel());
 				restartController.actionPerformed(e);
 			}
 		});
@@ -121,19 +120,19 @@ public class LevelPlayScreen extends KabasujiPanel {
 				
 		
 		/** Exit Button. */
-		JButton btnExitButton = new JButton("EXIT");
+		btnExitButton = new JButton("EXIT");
 		btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameManager.userEndsGame();
 				
 				// TODO: find way to add reason.
-				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null, level);
+				ToWinScreenController controller = new ToWinScreenController(gameManager.getLevelStars(), null, gameManager.getLevel());
 				controller.actionPerformed(e);
 			}
 		});
 
 		/** Create Board View */
-		boardView = new BoardView(gameManager.getLevel().getBoard(), level);
+		boardView = new BoardView(gameManager.getLevel().getBoard(), gameManager.getLevel());
 
 		/** Create BullpenView */
 		bullpenView = new BullpenView(gameManager.getLevel().getBullpen());
