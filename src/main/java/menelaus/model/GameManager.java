@@ -155,7 +155,7 @@ public class GameManager {
 		
 		levelStars = StarsUtil.getStars(this);
 		
-		if (levelStars.getStarsCount() == 3 && level.getBoard().isFull()) {
+		if (levelStars.getStarsCount() == 3 || level.getBoard().isFull()) {
 			stopGame();
 			notifyEndListeners(GameEndReason.WON);
 			return;
