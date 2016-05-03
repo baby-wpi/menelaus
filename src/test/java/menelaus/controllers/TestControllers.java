@@ -89,7 +89,7 @@ public class TestControllers {
 		psc.mouseExited(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
 		psc.mouseMoved(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
 		//psc.mousePressed(null);
-		psc.mouseReleased(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
+		//psc.mouseReleased(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
 		psc.mouseWheelMoved(null);
 	}
 	@Test

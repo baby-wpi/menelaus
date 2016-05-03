@@ -41,4 +41,21 @@ public class PointTest {
 		
 		assertEquals(new Point(3, 1), point.add(offset));
 	}
+	
+	@Test
+	public void testSubtract() {
+		Point offset = new Point(2, -2);
+		
+		assertEquals(new Point(-1, 5), point.subtract(offset));
+	}
+	
+	@Test
+	public void testMultiply() {
+		assertEquals(new Point(2, 6), point.multiply(2));
+	}
+	
+	@Test
+	public void testDivide() {
+		assertEquals(new Point(2, 6), new Point(4, 12).divide(2));
+	}
 }
