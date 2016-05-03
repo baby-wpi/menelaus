@@ -33,7 +33,6 @@ public class GameWindowFrame extends JFrame {
         // initialize sound manager.
         SoundManager.getInstance();
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, GameViewConfigurations.panelWidth, GameViewConfigurations.panelHeight);
 
         // Run the splash screen for 2 seconds then swap to main menu:
@@ -43,16 +42,15 @@ public class GameWindowFrame extends JFrame {
         setResizable(false);
         setName("KabaSuji");
         //set close confirmation dialog
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
                 String ObjButtons[] = {"Yes", "No"};
                 int promptResult = JOptionPane.showOptionDialog(null, "Are you sure you want to exit?", "KabaSuji", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
                 if (promptResult == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-                else return;
+                    dispose();
+                } else System.out.println("Not closing");
             }
         });
 
