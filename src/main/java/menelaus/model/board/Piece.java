@@ -188,25 +188,5 @@ public class Piece implements Serializable {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Piece other = (Piece) obj;
-        if (position == null) {
-            if (other.position != null)
-                return false;
-        } else if (!position.equals(other.position))
-            return false;
-        if (tiles == null) {
-            if (other.tiles != null)
-                return false;
-        } else if (!tiles.equals(other.tiles))
-            return false;
-        return true;
-    }
+
 }

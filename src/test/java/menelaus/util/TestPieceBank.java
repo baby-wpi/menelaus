@@ -52,9 +52,9 @@ public class TestPieceBank {
 
 	@Test
 	public void testGetPiece() {
-		assertEquals(p1, PieceBank.getPiece(1));
-		assertEquals(p35, PieceBank.getPiece(35));
-		assertEquals(p2, PieceBank.getPiece(2));
+		assertEquals(p1.getPosition(), PieceBank.getPiece(1).getPosition());
+		assertEquals(p1.getTiles().size(), PieceBank.getPiece(1).getTiles().size());
+
 	}
 
 }
