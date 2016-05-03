@@ -27,6 +27,8 @@ public class TestControllers {
 	BoardBuilderMakeLevelController bbmlc;
 	PieceSelectionController psc;
 	ButtonBuilderStartController bbsc;
+	SaveLevelButtonBuilderMakeLevelController slbb;
+	
 	
 	
 	Level level;
@@ -53,8 +55,11 @@ public class TestControllers {
 		gameManager = new GameManager(level);
 		
 		pdc = new PieceDragController(level, gwFrame);
-		bbmlc = new BoardBuilderMakeLevelController(bManager, bv);
+		bbmlc = new BoardBuilderMakeLevelController(bManager, bv, null);
 		psc = new PieceSelectionController(bpView, gameManager);
+		bbsc = new ButtonBuilderStartController(bManager);
+		slbb = new SaveLevelButtonBuilderMakeLevelController(bManager);
+		
 	}
 
 	@Test
@@ -79,6 +84,7 @@ public class TestControllers {
 		bbmlc.mouseExited(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
 		bbmlc.mousePressed(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
 		bbmlc.mouseReleased(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
+		
 		assertEquals(1, 1);
 	}
 	@Test
@@ -91,5 +97,16 @@ public class TestControllers {
 		//psc.mousePressed(null);
 		psc.mouseReleased(new MouseEvent(bv, 1, 2, 1, 1, 1, 1, 1, 1, false, 1));
 		psc.mouseWheelMoved(null);
+	}
+	@Test
+	public void testButtonBuilderStartController(){
+		bbsc.actionPerformed(null);
+		assertTrue(bbsc.isSizeValid(0, 0));
+		assertTrue(!bbsc.isSizeValid(-1, 0));
+	}
+	@Test
+	public void testSaveLevelButtonBuilder(){
+		slbb.actionPerformed(null);
+		assertTrue(true);
 	}
 }
