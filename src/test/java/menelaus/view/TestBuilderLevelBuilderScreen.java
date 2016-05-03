@@ -1,4 +1,4 @@
-package views;
+package menelaus.view;
 
 import static org.junit.Assert.*;
 import menelaus.model.BuilderManager;

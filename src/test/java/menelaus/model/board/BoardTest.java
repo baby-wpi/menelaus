@@ -306,17 +306,4 @@ public class BoardTest {
 		board.unchopTile(new Point(0,0));
 		assertTrue(!board.isChoppedOut(new Point(0, 0)));
 	}
-	@Test
-	public void testSelection(){
-		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
-		BoardTileInfo btInfo = new BoardTileInfo(false);
-		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
-		tileInfo.put(new menelaus.model.basic.Point(0, 0), btInfo );
-		board.setTileInfo(tileInfo);
-		board.selectTile(new Point(0, 0));
-		assertTrue(board.isSelected(new Point(0, 0)));
-		board.unselectTile(new Point(0, 0));
-		assertTrue(!board.isSelected(new Point(0, 0)));
-	}
-
 }

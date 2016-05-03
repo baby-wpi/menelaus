@@ -33,17 +33,10 @@ public class TestBoardView {
 	public void setUp() throws Exception {
 		if(_stopTest()){return;}
 		board = new Board(6, 8);
-		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
-		BoardTileInfo btInfo = new BoardTileInfo(false);
-		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
-		tileInfo.put(new menelaus.model.basic.Point(0, 0), btInfo );
-		board.setTileInfo(tileInfo);
 		level = new Level(LevelType.PUZZLE, board.getWidth(), board.getHeight());
 		bv = new BoardView(board, level);
 		bi = ImageIO.read(this.getClass().getResource("/assets/secondary_back.png"));
 		g = bi.createGraphics();
-	
-		
 	}
 
 

@@ -35,21 +35,15 @@ public class TestControllers {
 	GameWindowFrame gwFrame;
 	BuilderManager bManager;
 	BoardView bv;
-	Board board;
 	BullpenView bpView;
 	GameManager gameManager;
 
 	@Before
 	public void setUp() throws Exception {
+		gwFrame = GameWindowFrame.getInstance();
 		bManager = new BuilderManager();
-		board = new Board(6, 8);
-		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
-		BoardTileInfo btInfo = new BoardTileInfo(false);
-		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
-		tileInfo.put(new menelaus.model.basic.Point(0, 0), btInfo );
-		level = new Level(LevelType.PUZZLE, 6, 8);
-		board.setTileInfo(tileInfo);
-		bv = new BoardView(board, level);
+		level = gwFrame.getLevelsPackage().getLevels().get(0);
+		bv = new BoardView(level.getBoard(), level);
 		gwFrame = GameWindowFrame.getInstance();
 		bpView = new BullpenView();
 		gameManager = new GameManager(level);

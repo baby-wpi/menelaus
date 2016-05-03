@@ -12,17 +12,17 @@ public class BoardTileInfo implements Serializable {
 	/**
 	 * The colored number for release levels.
 	 */
-	ColoredSetItem coloredSetItem;
+	private ColoredSetItem coloredSetItem;
 	
 	/**
 	 * Is the Tile chopped out.
 	 */
-	boolean isTileChopped;
+	private boolean isTileChopped;
 	
 	/**
 	 * A piece placed there.
 	 */
-	Piece piecePlaced;
+	private Piece piecePlaced;
 	
 	/**
 	 * Returns the Colored Set item.

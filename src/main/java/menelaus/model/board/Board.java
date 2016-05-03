@@ -158,7 +158,7 @@ public class Board implements Serializable {
     	BoardTileInfo info = tileInfo.get(point);
         if (info == null) {
             return false;
-        } else return (info.isTileChopped);
+        } else return (info.isTileChopped());
     }
     
     /**
@@ -169,48 +169,9 @@ public class Board implements Serializable {
     	BoardTileInfo info = tileInfo.get(point);
         if (info == null) {
         	return;
-        } else if (info.isTileChopped) {
+        } else if (info.isTileChopped()) {
         	info.setTileChopped(false);
         };
-    }
-
-    /**
-     * Selects a tile from the Board. Used during Board construction.
-     * @param point The point in interest.
-     */
-    public void selectTile(Point point) {
-        BoardTileInfo info = tileInfo.get(point);
-        if (info == null) {
-            info = new BoardTileInfo(false);
-            tileInfo.put(point, info);
-        } else {
-            info.setTileChopped(true);
-        }
-    }
-    
-    /**
-     * Says if a point is selected.
-     * @param point The coordinate.
-     * @return Is it selected?
-     */
-    public boolean isSelected(Point point) {
-    	BoardTileInfo info = tileInfo.get(point);
-        if (info == null) {
-            return false;
-        } else return (info.isTileChopped);
-    }
-    
-    /**
-     * Unselects a tile from the board.
-     * @param point The coordinate.
-     */
-    public void unselectTile(Point point) {
-    	BoardTileInfo info = tileInfo.get(point);
-        if (info == null) {
-        	return;
-        } else if (info.isTileChopped) {
-        	info.setTileChopped(false);
-        }
     }
     
     /**
@@ -407,7 +368,7 @@ public class Board implements Serializable {
      */
 	public void resetBoard() {
 		for(BoardTileInfo btInfo : this.tileInfo.values()){
-			btInfo.piecePlaced = null;
+			btInfo.setPiecePlaced(null);
 		}
 		
 	}

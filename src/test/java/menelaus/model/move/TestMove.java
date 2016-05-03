@@ -139,12 +139,8 @@ public class TestMove{
     }
     @Test
     public void testPlaceReleaseNumberBuilderMove(){
-    	BoardTileInfo btInfo = new BoardTileInfo(false);
-		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
-		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
     	ColoredSetItem csi = new ColoredSetItem(Color.BLUE, 1);
     	Level level = new Level(LevelType.RELEASE, 6, 8);
-    	level.getBoard().setTileInfo(tileInfo);
     	PlaceReleaseNumberBuilderMove prnbm = new PlaceReleaseNumberBuilderMove(manager, 0, 0, csi);
     	prnbm.valid(level);
     	prnbm.doMove(level);

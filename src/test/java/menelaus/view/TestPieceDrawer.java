@@ -1,4 +1,4 @@
-package views;
+package menelaus.view;
 
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
