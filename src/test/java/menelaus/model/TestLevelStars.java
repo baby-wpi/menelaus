@@ -17,26 +17,18 @@ public class TestLevelStars {
 
 	LevelStars ls1;
 	LevelStars ls2;
+	UUID uuid;
 	
 	@Before
 	public void setUp() {
+		uuid = UUID.randomUUID();
 		ls1 = new LevelStars(2, UUID.randomUUID());
-		ls2 = new LevelStars(1, UUID.randomUUID());
+		ls2 = new LevelStars(1, uuid);
 	}
-	@Test(expected=IllegalArgumentException.class)
-	public void testStarsCount1(){
-		ls1.setStarsCount(-1);
-	}
-	@Test(expected=IllegalArgumentException.class)
-	public void testStarsCount2(){
-		ls1.setStarsCount(5);
-	}
+
 	@Test
 	public void testGetterAndSetters(){
-		ls1.setStarsCount(3);
-		UUID ranUUID = UUID.randomUUID();
-		ls2.setLevelId(ranUUID);
-		assertEquals(ls1.getStarsCount(), 3);
-		assertEquals(ls2.getLevelId(), ranUUID);
+		assertEquals(ls1.getStarsCount(), 2);
+		assertEquals(ls2.getLevelId(), uuid);
 	}
 }

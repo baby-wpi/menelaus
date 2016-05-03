@@ -38,7 +38,7 @@ public class StarsUtilTest {
 	}
 
 	@Test
-	public void testGradePuzzle() {
+	public void testGradePuzzle() throws Exception {
 		Piece piece3 = new Piece(new Point(0, 2));
 		piece3.addTile(new Tile(0, 0));
 		piece3.addTile(new Tile(1, 0));
@@ -46,22 +46,12 @@ public class StarsUtilTest {
 		GameManager gameManager = new GameManager(level);
 		LevelStars stars = StarsUtil.getStars(gameManager);
 		
-		assertEquals(3, stars.getStarsCount());
-		
-		level.getBullpen().addPiece(piece3);
-		stars = StarsUtil.getStars(gameManager);
-		
 		assertEquals(2, stars.getStarsCount());
 		
-		level.getBullpen().addPiece(new Piece(new Point(0, 0)));
+		level.getBoard().placePiece(piece3);
 		stars = StarsUtil.getStars(gameManager);
 		
-		assertEquals(1, stars.getStarsCount());
-		
-		level.getBullpen().addPiece(new Piece(new Point(2, 2)));
-		stars = StarsUtil.getStars(gameManager);
-		
-		assertEquals(0, stars.getStarsCount());
+		assertEquals(3, stars.getStarsCount());
 	}
 
 	@Test

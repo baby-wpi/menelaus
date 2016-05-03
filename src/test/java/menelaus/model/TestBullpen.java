@@ -40,19 +40,13 @@ public class TestBullpen {
 		p3 = new Piece(pt3);
 		pt4 = new Point(10,10);
 		p4 = new Piece(pt4);
-		pieces = new ArrayList<Piece>();
-		pieces.add(p1);
-		pieces.add(p2);
-		pieces.add(p3);
 	}
-	@Test
-	public void testGettersAndSetters(){
-		bp.setPieces(pieces);
-		assertEquals(bp.getPieces(), pieces);
-	}
-	@Test
+	
 	public void testRemoveAndAddPiece(){
-		bp.setPieces(pieces);
+		bp.addPiece(p1);
+		bp.addPiece(p2);
+		bp.addPiece(p3);
+		
 		bp.removePiece(p1);
 		bp.removePiece(p2);
 		bp.removePiece(p3);
@@ -63,7 +57,10 @@ public class TestBullpen {
 	}
 	@Test
 	public void testFindPiece(){
-		bp.setPieces(pieces);
+		bp.addPiece(p1);
+		bp.addPiece(p2);
+		bp.addPiece(p3);
+		
 		assertEquals(p1, bp.findPiece(p1.getPosition()));
 		assertEquals(p2, bp.findPiece(1, 1));
 	}
