@@ -5,6 +5,8 @@ import menelaus.util.SoundManager;
 import menelaus.view.KabasujiPanel;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class BuilderWindowFrame extends JFrame {
 
@@ -20,8 +22,7 @@ public class BuilderWindowFrame extends JFrame {
 		
 		// initialize sound manager.
 		SoundManager.getInstance();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(KabasujiPanel.START_X, KabasujiPanel.START_Y, KabasujiPanel.WIDTH, KabasujiPanel.HEIGHT);
 		
 		// Run the splash screen for 2 seconds then swap to main menu:
@@ -30,6 +31,19 @@ public class BuilderWindowFrame extends JFrame {
 		setVisible(true);
 		setResizable(false);
 		setName("KabaSuji Builder");
+
+		//set close confirmation dialog
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				String ObjButtons[] = {"Yes", "No"};
+				int promptResult = JOptionPane.showOptionDialog(null, "Are you sure you want to exit?", "KabaSuji", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons, ObjButtons[1]);
+				if (promptResult == JOptionPane.YES_OPTION) {
+					dispose();
+				} else System.out.println("Not closing");
+			}
+		});
 		
 		try {
 			Thread.sleep(2000);
