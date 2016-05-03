@@ -17,6 +17,13 @@ public class MakePieceBuilderMakeLevelController implements ActionListener{
 	BoardView boardView;
 	BuilderManager manager;
 	
+	/**
+	 * constructor.
+	 * 
+	 * @param bullpenView
+	 * @param boardView
+	 * @param manager
+	 */
 	public MakePieceBuilderMakeLevelController(BullpenView bullpenView, BoardView boardView, BuilderManager manager) {
 		this.bullpenView = bullpenView;
 		this.boardView = boardView;

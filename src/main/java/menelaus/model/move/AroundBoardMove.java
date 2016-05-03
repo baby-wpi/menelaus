@@ -53,7 +53,6 @@ public class AroundBoardMove extends Move {
 	public boolean valid(Level level) {
         return piece != null
                 && level.getType() == LevelType.PUZZLE
-                && level.getBoard().isPlacementValid(piece)
-                && !piece.getPosition().equals(newLocation);
+                && level.getBoard().isPlacementValid(piece);
     }
 }

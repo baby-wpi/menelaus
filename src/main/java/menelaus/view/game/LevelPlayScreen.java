@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
+ * The level play screen.
  * @author fegan
  * @author vouldjeff
  * @author Obatola Seward-Evans
@@ -72,10 +73,18 @@ public class LevelPlayScreen extends KabasujiPanel {
 		});
 	}
 
+	/**
+	 * get bullpen view.
+	 * @return
+	 */
 	public BullpenView getBullpenView(){
 		return bullpenView;
 	}
 
+	/**
+	 * get bullpen view.
+	 * @return boardView
+	 */
 	public BoardView getBoardView(){
 		return boardView;
 	}

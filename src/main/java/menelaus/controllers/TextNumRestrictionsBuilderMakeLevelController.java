@@ -5,6 +5,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import menelaus.model.BuilderManager;
+
 /**
  * 
  * @author sanjay
@@ -14,6 +15,11 @@ public class TextNumRestrictionsBuilderMakeLevelController implements DocumentLi
 	BuilderManager manager;
 	JTextField view;
 	
+	/**
+	 * consructor.
+	 * @param manager
+	 * @param view
+	 */
 	public TextNumRestrictionsBuilderMakeLevelController(BuilderManager manager, JTextField view) {
 		this.manager = manager;
 		this.view = view;

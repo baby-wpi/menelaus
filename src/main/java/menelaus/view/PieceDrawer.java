@@ -8,15 +8,14 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+
 /**
  * @author fegan
  * @author vouldjeff
  */
 public class PieceDrawer {
-    public static final int SELECTED = 2;
-    public static final int NORMAL = 1;
-    int mode = NORMAL;
     static final String TILE_COLOR = "#3399ff";
+    static final String LIGHTNING_COLOR = "#7b1fa2";
     static final String HINT_COLOR = "#ff8133";
     static final String SELECT_COLOR = "#aade10";
 
@@ -28,7 +27,9 @@ public class PieceDrawer {
      * Draw a bunch of rectangles and hope to it works.
      *
      * @param graphics The graphics object we're drawing to.
-     * @param piece    The piece we want drawn
+     * @param piece The piece we want drawn.
+     * @param spot point to draw a piece.
+     * @param tileSize the given tile size in relation to the board.
      */
     public static void drawPiece(Graphics graphics, Piece piece, Point spot, int tileSize) {
         Point massDelta = new Point((6 - piece.getWidth()) / 2, (6 - piece.getHeight()) / 2);
@@ -61,9 +62,22 @@ public class PieceDrawer {
      *
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
+     * @param tileSize the given tile size in relation to the board.
      */
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR));
+    }
+
+    /**
+     * Draws the piece.
+     * <p/>
+     * Draw a bunch of rectangles, here the piece can have a position in terms of teh actual grid units, instead of pixels.
+     *
+     * @param graphics The graphics object we're drawing to.
+     * @param piece    The piece we want drawn
+     */
+    public static void drawCoverPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
+        _draw(graphics, piece, tileSize, Color.decode(LIGHTNING_COLOR));
     }
 
     /**
@@ -73,6 +87,7 @@ public class PieceDrawer {
      *
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
+     * @param tileSize the given tile size in relation to the board.
      */
     public static void drawHintToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(HINT_COLOR));
@@ -151,6 +166,12 @@ public class PieceDrawer {
                 isY ? BORDER : tileSize);
     }
 
+    /**
+     * Draw for each selected points.
+     * @param graphics the given graphic.
+     * @param selectedPoints
+     * @param tileSize the given tile size in relation to the board.
+     */
     public static void drawSelection(Graphics graphics, ArrayList<Point> selectedPoints, int tileSize) {
         for (Point p : selectedPoints) {
             Point actualPoint = p.multiply(tileSize);

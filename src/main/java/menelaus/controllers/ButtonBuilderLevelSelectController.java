@@ -8,9 +8,12 @@ import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderSelectScreen;
 import menelaus.view.builder.BuilderWindowFrame;
 
+/**
+ * Controller that handles going to the BuilderSelectScreen. 
+ * @author Obatola Seward-Evans
+ *
+ */
 public class ButtonBuilderLevelSelectController implements ActionListener {
-	
-	public ButtonBuilderLevelSelectController(){ }
 
 	public void actionPerformed(ActionEvent e) {
 		SoundManager.getInstance().playSound(SoundType.BUTTONSOUND);

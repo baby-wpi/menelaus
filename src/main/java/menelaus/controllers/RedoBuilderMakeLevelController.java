@@ -9,12 +9,23 @@ import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 
+/**
+ * Controller that handles redo's in the Builder Make Level Screen.
+ * @author Sanjay.
+ *
+ */
 public class RedoBuilderMakeLevelController implements ActionListener {
 
 	BuilderManager manager;
 	BoardView boardView;
 	BullpenView bullpenView;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param boardView
+	 * @param bullpenView
+	 */
 	public RedoBuilderMakeLevelController(BuilderManager manager, BoardView boardView, BullpenView bullpenView) {
 		this.manager = manager;
 		this.boardView = boardView;

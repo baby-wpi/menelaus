@@ -1,12 +1,13 @@
 package Main;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-
 import menelaus.view.game.GameWindowFrame;
 
 /** Used to launch the KabaSuji Application. */
 public class MainGame {
+	
+	/**
+	 * create and open the Main Game window frame.
+	 * @param args
+	 */
 	public static void main (String[] args){
 		//Model m = new Model();
 
@@ -15,11 +16,11 @@ public class MainGame {
 		final GameWindowFrame app = GameWindowFrame.getInstance();
 
 		// state how to deal with leaving
-		app.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				app.dispose();
-			}      
-		});
+//		app.addWindowListener(new WindowAdapter() {
+//			public void windowClosing(WindowEvent e) {
+//				app.dispose();
+//			}
+//		});
 
 		app.setVisible(true);
 	}

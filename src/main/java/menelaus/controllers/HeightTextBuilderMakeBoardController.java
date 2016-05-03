@@ -7,11 +7,22 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 
+ * @author Sanjay.
+ *
+ */
 public class HeightTextBuilderMakeBoardController implements ActionListener {
     BoardView boardView;
     BuilderManager manager;
     JTextField heightField;
 
+    /**
+     * constructor.
+     * @param boardView
+     * @param manager
+     * @param heightField
+     */
     public HeightTextBuilderMakeBoardController(BoardView boardView, BuilderManager manager, JTextField heightField) {
         this.boardView = boardView;
         this.manager = manager;

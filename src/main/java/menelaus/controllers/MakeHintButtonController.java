@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Controller that handles making a hint.
  * Created by @author frankegan on 5/2/16.
  */
 public class MakeHintButtonController implements ActionListener {
@@ -16,6 +17,13 @@ public class MakeHintButtonController implements ActionListener {
     private BoardView boardView;
     private BuilderManager manager;
 
+    /**
+     * constructor. 
+     * 
+     * @param manager
+     * @param view
+     * @param penView
+     */
     public MakeHintButtonController(BuilderManager manager, BoardView view, BullpenView penView) {
         this.manager = manager;
         this.boardView = view;

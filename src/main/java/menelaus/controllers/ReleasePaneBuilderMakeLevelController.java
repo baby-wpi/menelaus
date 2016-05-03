@@ -9,6 +9,11 @@ import menelaus.model.BuilderManager;
 import menelaus.model.dataholders.ReleasePaneData;
 import menelaus.view.builder.BuilderReleasePane;
 
+/**
+ * 
+ * @author Sanjay.
+ *
+ */
 public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 
 	
@@ -16,6 +21,12 @@ public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 	ReleasePaneData data;
 	BuilderManager manager;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param data
+	 * @param pane
+	 */
 	public ReleasePaneBuilderMakeLevelController(BuilderManager manager, ReleasePaneData data, BuilderReleasePane pane){
 		this.manager = manager;
 		this.data = data;
@@ -25,11 +36,23 @@ public class ReleasePaneBuilderMakeLevelController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(SwingUtilities.isLeftMouseButton(e)) {
-			this.data.incrementNumber();
+			handleIncrementNumber();
 		}
 		else if(SwingUtilities.isRightMouseButton(e)){
-			this.data.changeColor();
+			handleChangeColor();
 		}
+		refreshView();
+	}
+	
+	public void handleIncrementNumber() {
+		this.data.incrementNumber();
+	}
+	
+	public void handleChangeColor() {
+		this.data.changeColor();
+	}
+	
+	public void refreshView() {
 		manager.setReleaseItem(this.data.generateSetItem());
 		this.pane.setItem(this.data.generateSetItem());
 		this.pane.repaint();

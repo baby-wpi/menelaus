@@ -10,12 +10,24 @@ import javax.swing.JToggleButton;
 import menelaus.model.BuilderManager;
 import menelaus.model.dataholders.ReleasePaneData;
 
+
+/**
+ * 
+ * @author Sanjay
+ *
+ */
 public class EnableReleaseModeBuilderMakeLevelController implements ActionListener{
 
 	BuilderManager manager;
 	JToggleButton enableButton;
 	ReleasePaneData data;
 	
+	/**
+	 * constructor.
+	 * @param manager
+	 * @param enableButton
+	 * @param data
+	 */
 	public EnableReleaseModeBuilderMakeLevelController(BuilderManager manager, JToggleButton enableButton, ReleasePaneData data) {
 		this.manager = manager;
 		this.enableButton = enableButton;
