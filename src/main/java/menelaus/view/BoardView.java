@@ -136,7 +136,7 @@ public class BoardView extends JPanel {
      * Draw background puzzle and all active pieces.
      */
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         initDemensions();
 
         super.paintComponent(g);

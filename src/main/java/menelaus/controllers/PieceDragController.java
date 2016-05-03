@@ -5,8 +5,6 @@ import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.move.ToBoardMove;
-import menelaus.util.SoundManager;
-import menelaus.util.SoundType;
 import menelaus.view.KabasujiPanel;
 import menelaus.view.builder.BuilderWindowFrame;
 import menelaus.view.game.GameWindowFrame;
@@ -120,7 +118,6 @@ public class PieceDragController extends MouseAdapter {
         deltaX = anchor.getX() - originalx;
         deltaY = anchor.getY() - originaly;
 
-        panel.redraw();
         panel.repaint();
         return true;
     }
@@ -189,7 +186,6 @@ public class PieceDragController extends MouseAdapter {
         // no longer selected
         level.setSelected(null);
 
-        panel.redraw();
         panel.repaint();
         return true;
     }
