@@ -43,11 +43,14 @@ public class TestBuilderManager extends TestCase {
 	
 	@Ignore
 	public void testSetType() {
-//		BuilderManager bManager = new BuilderManager();
-//		bManager.createLevel("Test Level", LevelType.PUZZLE, 8, 8);
-//		assertEquals(bManager.getType(),LevelType.PUZZLE);
-//		bManager.setLevelType(LevelType.LIGHTNING);
-//		assertEquals(bManager.getType(),LevelType.LIGHTNING);
+		BuilderManager bManager = new BuilderManager();
+		bManager.createLevel("Test Level", LevelType.PUZZLE, 8, 8);
+		assertEquals(bManager.getType(),LevelType.PUZZLE);
+		bManager.setLevelType(LevelType.LIGHTNING);
+		assertEquals(bManager.getType(),LevelType.LIGHTNING);
+		
+		bManager.getNumSelectedPoints();
+		bManager.setToBoardMode();
 	}
 	
 	

@@ -97,6 +97,16 @@ public class Point implements Serializable {
     public Point multiply(int diff) {
         return new Point(this.x * diff, this.y * diff);
     }
+    
+    /**
+     * Divides the components of the Point.
+     *
+     * @param diff The delta.
+     * @return The new Point.
+     */
+    public Point divide(int diff) {
+        return new Point(this.x / diff, this.y / diff);
+    }
 
     @Override
     public int hashCode() {

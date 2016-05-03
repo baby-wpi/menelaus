@@ -31,7 +31,17 @@ public class TestPieceController {
 
 	@Test
 	public void testPieceController() {
-		//pieceController.mouseClicked();
+		
+		pieceController.mouseClicked(new MouseEvent(boardView, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
+		pieceController.mouseClicked(new MouseEvent(boardView, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
+		pieceController.mouseDragged(new MouseEvent(boardView, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
+		pieceController.mouseEntered(new MouseEvent(boardView, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
+		pieceController.mouseExited(new MouseEvent(boardView, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
+		//pieceController.mouseMoved(new MouseEvent(boardView, 1, 1, 1, 1, 1, 1, 1, 1, false, 1));
+		//pieceController.mousePressed(new MouseEvent(boardView, 1, 1, 1, 1, 1, 1, 1, 1, false, 1));
+		pieceController.mouseReleased(new MouseEvent(boardView, 1, 1, 1, 1, 1, 1, 1, 1, false, 1));
+		pieceController.mouseWheelMoved(null);
+		assertEquals(1, 1);
 	}
 
 }

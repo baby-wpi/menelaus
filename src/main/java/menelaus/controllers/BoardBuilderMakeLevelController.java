@@ -36,18 +36,19 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
+		Point clickedPoint = new Point(e.getX(), e.getY());
+		
 		if(manager.getIsReleaseMode()) {
 			if(SwingUtilities.isLeftMouseButton(e))
-				handleMouseClickReleaseMode(view.pointUnder(e.getX(), e.getY()));
+				_handleMouseClickReleaseMode(view.pointUnder(clickedPoint));
 			else if (SwingUtilities.isRightMouseButton(e))
-				handleRightClickReleaseMode(view.pointUnder(e.getX(), e.getY()));
-		}
-		else {
-			handleMouseClickBoardMode(view.pointUnder(e.getX(), e.getY()));	
+				_handleRightClickReleaseMode(view.pointUnder(clickedPoint));
+		} else {
+			_handleMouseClickBoardMode(view.pointUnder(clickedPoint));	
 		}
 	}
 
-	private void handleRightClickReleaseMode(Point pointOnBoard) {
+	public void _handleRightClickReleaseMode(Point pointOnBoard) {
 		DeleteReleaseNumberBuilderMove mv = new DeleteReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 		if(manager.makeMove(mv)) {
 			System.out.println("Move made successfully");
@@ -63,7 +64,7 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 		
 	}
 	
-	private void handleMouseClickReleaseMode(Point pointOnBoard) {
+	public void _handleMouseClickReleaseMode(Point pointOnBoard) {
 		PlaceReleaseNumberBuilderMove mv = new PlaceReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY(), this.manager.getReleaseItem());
 		if(manager.makeMove(mv)) {
 			System.out.println("Move made successfully");
@@ -83,7 +84,7 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	 * handle the mouse click on the board.
 	 * @param pointOnBoard
 	 */
-	public void handleMouseClickBoardMode(Point pointOnBoard) {
+	public void _handleMouseClickBoardMode(Point pointOnBoard) {
 		if(manager.getSelectedPoints().contains(pointOnBoard)) {
 			DeselectSquareBuilderMove mv = new DeselectSquareBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 			if(manager.makeMove(mv)) {
@@ -94,9 +95,7 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 				System.out.println("Move failed!");
 				SoundManager.getInstance().playSound(SoundType.PRESSTILE);
 			}
-		}
-			
-		else {
+		} else {
 			SelectSquareMove mv = new SelectSquareMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 			if(manager.makeMove(mv)) {
 				System.out.println("Move successful.");
