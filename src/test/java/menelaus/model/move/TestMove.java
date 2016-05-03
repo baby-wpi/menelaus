@@ -3,11 +3,16 @@ package menelaus.model.move;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
+import javafx.scene.effect.Lighting;
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
+import menelaus.model.basic.Color;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
+import menelaus.model.board.BoardTileInfo;
+import menelaus.model.board.ColoredSetItem;
 import menelaus.model.board.Piece;
 
 import org.junit.Before;
@@ -71,9 +76,10 @@ public class TestMove{
 
     @Test
     public void testToBoardMove() {
-        Move tbm = new RotatePieceMove(piece);
-        assertTrue(tbm.valid(lightning));
-        assertTrue(tbm.doMove(lightning));
+        Move tbm = new ToBoardMove(piece, new Point(1, 1));
+        lightning.getBullpen().addPiece(piece);
+        assertTrue(tbm.valid(puzzle));
+        assertTrue(tbm.doMove(puzzle));
     }
 
     @Test
@@ -111,14 +117,23 @@ public class TestMove{
     public void testToBullpenMove(){
     	ToBullpenMove toBullpenMove = new ToBullpenMove(piece);
     	lightning.getBoard().getPieces().add(piece);
+    	BoardTileInfo btInfo = new BoardTileInfo(false);
+		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
+		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
+		tileInfo.put(piece.getPosition(), btInfo );
+		puzzle.getBoard().setTileInfo(tileInfo);
     	puzzle.getBoard().getPieces().add(piece);
     	assertTrue(toBullpenMove.valid(lightning));
     	assertTrue(toBullpenMove.valid(puzzle));
-    	//assertTrue(toBullpenMove.doMove(lightning)); TODO
-    	//assertTrue(toBullpenMove.doMove(puzzle)); TODO
+    	//assertTrue(toBullpenMove.doMove(lightning)); 
+    	assertTrue(toBullpenMove.doMove(puzzle)); 
     }
     @Test
-    public void testBuilderMove(){
+    public void testMakeHintBuilderMove(){
+    	BuilderMove makeHintBuilderMove = new MakeHintBuilderMove(manager);
+    	assertTrue(makeHintBuilderMove.valid(lightning));
+    	assertTrue(makeHintBuilderMove.valid(puzzle));
+    	assertTrue(makeHintBuilderMove.doMove(lightning));
     	
     }
     
