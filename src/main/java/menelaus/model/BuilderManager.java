@@ -3,6 +3,7 @@ package menelaus.model;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Board;
+import menelaus.model.board.ColoredSetItem;
 import menelaus.model.move.BuilderMove;
 import menelaus.util.LevelsPackagePersistenceUtil;
 import menelaus.view.builder.BuilderLevelBuilderScreen;
@@ -23,6 +24,8 @@ public class BuilderManager {
 	Stack<BuilderMove> moves;
 	Stack<BuilderMove> redoMoves; 
 	ArrayList<Point> selectedPoints;
+	boolean isPlacingRelease;
+	ColoredSetItem releaseItem;
 	
 	public final LevelType DEFAULT_LEVEL = LevelType.PUZZLE;
 	public final int DEFAULT_WIDTH = 6;
@@ -142,6 +145,28 @@ public class BuilderManager {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean getIsReleaseMode() {
+		return this.isPlacingRelease;
+	}
+	
+	public ColoredSetItem getReleaseItem() {
+		return this.releaseItem;
+	}
+	
+	public void setReleaseItem(ColoredSetItem item) {
+		this.releaseItem = item;
+	}
+	
+	public void setToReleaseMode(ColoredSetItem s) {
+		this.releaseItem = s;
+		this.isPlacingRelease = true;
+	}
+	
+	public void setToBoardMode() {
+		this.releaseItem = null;
+		this.isPlacingRelease = false;
 	}
 	
 	public int getNumSelectedPoints() {
