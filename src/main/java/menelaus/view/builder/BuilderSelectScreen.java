@@ -49,9 +49,6 @@ public class BuilderSelectScreen extends KabasujiPanel {
         return this.manager;
     }
 
-    public void refreshBoardViewSource() {
-    }
-
     /**
      * Create the panel.
      */

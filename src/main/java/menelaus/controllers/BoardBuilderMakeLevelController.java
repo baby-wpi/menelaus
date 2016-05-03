@@ -2,8 +2,12 @@ package menelaus.controllers;
 
 import menelaus.model.BuilderManager;
 import menelaus.model.basic.Point;
+import menelaus.model.board.Board;
 import menelaus.model.move.DeselectSquareBuilderMove;
+import menelaus.model.move.PlaceReleaseNumberBuilderMove;
 import menelaus.model.move.SelectSquareMove;
+import menelaus.util.SoundManager;
+import menelaus.util.SoundType;
 import menelaus.view.BoardView;
 
 import java.awt.event.MouseEvent;
@@ -23,17 +27,38 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		handleMouseClick(view.pointUnder(e.getX(), e.getY()));
+		if(manager.getIsReleaseMode()) {
+			handleMouseClickReleaseMode(view.pointUnder(e.getX(), e.getY()));
+		}
+		else {
+			handleMouseClickBoardMode(view.pointUnder(e.getX(), e.getY()));	
+		}
 	}
 
-	public void handleMouseClick(Point pointOnBoard) {
+	private void handleMouseClickReleaseMode(Point pointOnBoard) {
+		PlaceReleaseNumberBuilderMove mv = new PlaceReleaseNumberBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY(), this.manager.getReleaseItem());
+		if(manager.makeMove(mv)) {
+			System.out.println("Move made successfully");
+			SoundManager.getInstance().playSound(SoundType.PRESSPIECE); //CHANGE THE SOUND
+		}
+		else {
+			System.out.println("Move failed!");
+			SoundManager.getInstance().playSound(SoundType.PRESSTILE);
+		}
+		refreshBoard();
+		
+	}
+
+	public void handleMouseClickBoardMode(Point pointOnBoard) {
 		if(manager.getSelectedPoints().contains(pointOnBoard)) {
 			DeselectSquareBuilderMove mv = new DeselectSquareBuilderMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 			if(manager.makeMove(mv)) {
 				System.out.println("Move made successfully");
+				SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
 			}
 			else {
 				System.out.println("Move failed!");
+				SoundManager.getInstance().playSound(SoundType.PRESSTILE);
 			}
 		}
 			
@@ -41,9 +66,11 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 			SelectSquareMove mv = new SelectSquareMove(this.manager, pointOnBoard.getX(), pointOnBoard.getY());
 			if(manager.makeMove(mv)) {
 				System.out.println("Move successful.");
+				SoundManager.getInstance().playSound(SoundType.PRESSPIECE);
 			}
 			else {
 				System.out.println("Move failed!");
+				SoundManager.getInstance().playSound(SoundType.PRESSTILE);
 			}
 			
 		}
@@ -51,8 +78,10 @@ public class BoardBuilderMakeLevelController implements MouseListener{
 	}
 	
 	
+	
+	
 	public void mousePressed(MouseEvent e) {
-
+		
 	}
 
 	

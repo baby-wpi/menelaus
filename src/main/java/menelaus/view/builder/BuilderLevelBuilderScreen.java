@@ -3,6 +3,8 @@ package menelaus.view.builder;
 import menelaus.controllers.*;
 import menelaus.model.AllPieceBullpen;
 import menelaus.model.BuilderManager;
+import menelaus.model.basic.LevelType;
+import menelaus.model.dataholders.ReleasePaneData;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 import menelaus.view.KabasujiPanel;
@@ -26,26 +28,43 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
     private JTextField txtInsertName;
 
     BuilderManager manager = new BuilderManager();
+    
+    
     BoardView panelBoardView;
     //the view for the corresponding bullpen
     BullpenView panelBullpenView;
     //the AllPieceBullpen
     BullpenView panelAllBullpenView;
+    
+    //JPanel panelBoardView;
+    //JPanel panelBullpenView;
+    //JPanel panelAllBullpenView;
 
     JButton btnMakePiece;
+    JButton btnMakeHint;
     JButton btnComplete;
     JButton btnUndo;
     JLabel lblMaxMoves;
     JButton btnRedo;
+    
+    JToggleButton btnEnableReleaseMode;
+    BuilderReleasePane releasePanel;
+    ReleasePaneData releasePaneData;
 
     void initializeControllers() {
+    	
         this.panelBoardView.addMouseListener(new BoardBuilderMakeLevelController(this.manager, this.panelBoardView));
-        this.btnMakePiece.addActionListener(new MakePieceButtonBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
+        this.btnMakePiece.addActionListener(new MakePieceButtonController(this.manager, this.panelBoardView, this.panelBullpenView));
+        this.btnMakeHint.addActionListener(new MakeHintButtonController(this.manager, this.panelBoardView, this.panelBullpenView));
         this.txtMaxMoves.getDocument().addDocumentListener(new TextNumRestrictionsBuilderMakeLevelController(this.manager, this.txtMaxMoves));
         this.btnComplete.addActionListener(new SaveLevelButtonBuilderMakeLevelController(manager));
         this.btnUndo.addActionListener(new UndoBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
         this.btnRedo.addActionListener(new RedoBuilderMakeLevelController(this.manager, this.panelBoardView, this.panelBullpenView));
         txtInsertName.getDocument().addDocumentListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
+        if(this.manager.getType() == LevelType.RELEASE) {
+        	this.btnEnableReleaseMode.addActionListener(new EnableReleaseModeBuilderMakeLevelController(this.manager, this.btnEnableReleaseMode, this.releasePaneData));
+        	releasePanel.addMouseListener(new ReleasePaneBuilderMakeLevelController(this.manager,this.releasePaneData,this.releasePanel));
+        }
     }
 
     void refreshComponentsByGame() {
@@ -84,7 +103,13 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
         btnMakePiece = new JButton("Make Piece");
 
-        JButton btnMakeHint = new JButton("Make Hint");
+        btnMakeHint = new JButton("Make Hint");
+        
+        /*Release Code*/
+        releasePaneData = new ReleasePaneData();
+        btnEnableReleaseMode = new JToggleButton("Place #");
+        releasePanel = new BuilderReleasePane(releasePaneData.generateSetItem(), 30, 30); 
+        releasePanel.setPreferredSize(new Dimension(50, 50));
 
         txtMaxMoves = new JTextField();
         txtMaxMoves.setText("Max Moves");
@@ -96,6 +121,7 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
 
         lblMaxMoves = new JLabel("Max Moves:");
 
+        //panelAllBullpenView = new JPanel();
         panelBoardView = new BoardView(this.manager.getLevel().getBoard(), this.manager.getLevel(), true);
         panelBoardView.setSelection(this.manager.getSelectedPoints());
 
@@ -131,8 +157,13 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
                                                         .addComponent(btnMakePiece)
                                                         .addPreferredGap(ComponentPlacement.RELATED)
                                                         .addComponent(btnMakeHint)
+                                                        .addPreferredGap(ComponentPlacement.RELATED)
+                                                        .addComponent(btnEnableReleaseMode)
+                                                        .addPreferredGap(ComponentPlacement.RELATED)
+                                                        .addComponent(releasePanel)
                                                         .addPreferredGap(ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                                                        .addComponent(btnComplete)))
+                                                        .addComponent(btnComplete)
+                                                        ))
                                         .addComponent(txtInsertName, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
         );
@@ -161,21 +192,26 @@ public class BuilderLevelBuilderScreen extends KabasujiPanel {
                                 .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(btnMakePiece)
                                         .addComponent(btnMakeHint)
-                                        .addComponent(btnComplete))
+                                        .addComponent(btnComplete)
+                                        .addComponent(btnEnableReleaseMode)
+                                        .addComponent(releasePanel)
+                                		)
                                 .addGap(18)
                                 .addComponent(panelBoardView, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
                                 .addGap(77))
         );
 
         panelBullpenView = new BullpenView(this.manager.getLevel().getBullpen());
+        //panelBullpenView = new JPanel();
         panelBullpenView.setPreferredSize(new Dimension(240, 2200));
         scrollPane_1.setViewportView(panelBullpenView);
         scrollPane_1.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane_1.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         panelAllBullpenView = new BullpenView(new AllPieceBullpen());
+        //panelAllBullpenView = new JPanel();
         panelAllBullpenView.setPreferredSize(new Dimension(240, 2200));
-        panelAllBullpenView.addMouseListener(new AddPieceToBullpenController(panelAllBullpenView, panelBullpenView, manager));
+        //panelAllBullpenView.addMouseListener(new AddPieceToBullpenController(panelAllBullpenView, panelBullpenView, manager));
 
         scrollPane.setViewportView(panelAllBullpenView);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);

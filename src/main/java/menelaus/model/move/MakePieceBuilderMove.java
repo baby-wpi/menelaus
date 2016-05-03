@@ -1,13 +1,13 @@
 package menelaus.model.move;
 
-import java.util.ArrayList;
-
 import menelaus.model.BuilderManager;
 import menelaus.model.Level;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
 import menelaus.model.board.Tile;
+
+import java.util.ArrayList;
 
 /**
  * 
@@ -23,7 +23,7 @@ public class MakePieceBuilderMove extends BuilderMove {
 	public MakePieceBuilderMove(BuilderManager manager) {
 		super(manager);
 		this.manager = manager;
-		allSelected = new ArrayList<Point>();
+		allSelected = new ArrayList<>();
 		for(int i = 0; i < manager.getSelectedPoints().size(); i++) {
 			
 			Point p = manager.getSelectedPoints().get(i); //Makes a safe duplicate

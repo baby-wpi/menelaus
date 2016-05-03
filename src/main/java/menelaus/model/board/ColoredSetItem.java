@@ -1,6 +1,7 @@
 package menelaus.model.board;
 
 import java.io.Serializable;
+import java.util.DuplicateFormatFlagsException;
 
 import menelaus.model.basic.Color;
 
@@ -73,5 +74,9 @@ public class ColoredSetItem implements Serializable {
 		if (number != other.number)
 			return false;
 		return true;
+	}
+	
+	public ColoredSetItem duplicate() {
+		return new ColoredSetItem(this.getColor(), this.getNumber());
 	}
 }
