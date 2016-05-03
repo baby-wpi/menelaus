@@ -8,12 +8,10 @@ import java.util.Map;
 
 /**
  * Sound Manager handles all game sounds.
- *
  * @author Obatola Seward-Evans
  */
 public class SoundManager {
     private AudioClip click;
-
     private boolean isMute = false;
 
     /**
@@ -33,13 +31,16 @@ public class SoundManager {
 
     /**
      * get SoundManager instance.
-     *
-     * @return
+     * @return instance.
      */
     public static SoundManager getInstance() {
         return instance;
     }
 
+    /**
+     * play sound of the given sound type.
+     * @param soundType the sound type to play.
+     */
     public void playSound(SoundType soundType) {
         if (isMute || !clipTable.containsKey(soundType)) {
             return;
@@ -65,8 +66,7 @@ public class SoundManager {
 
     /**
      * put sound file in hashTable.
-     *
-     * @param type
+     * @param type Sound type to add to clipMap.
      * @author Obatola Seward-Evans
      */
     private void putSoundInMap(SoundType type) {
@@ -102,9 +102,8 @@ public class SoundManager {
 
     /**
      * get sound from file.
-     *
-     * @param file_name
-     * @return
+     * @param file_name the string of the file name.
+     * @return AudioClip the audio clip that can later be played.
      */
     private AudioClip getSoundFile(String file_name) {
         URL urlClick = SoundManager.class.getResource(file_name);
@@ -116,7 +115,6 @@ public class SoundManager {
 
     /**
      * set sound to be mute or not.
-     *
      * @param isMute
      */
     public void changeMute() {
@@ -127,6 +125,10 @@ public class SoundManager {
         }
     }
 
+    /**
+     * check if mute or not.
+     * @return boolean true if mute, false if not.
+     */
     public boolean isMute() {
         return isMute;
     }
