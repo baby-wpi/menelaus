@@ -162,12 +162,16 @@ public class Level implements Serializable {
 	 * Returns all pieces back from board to bullpen.
 	 */
 	public void resetLevel() {
-		for (Piece p : this.board.getPieces()){
-			this.getBullpen().addPiece(p);
+		if (type != LevelType.LIGHTNING) {
+			for (Piece p : this.board.getPieces()){
+				this.getBullpen().addPiece(p);
+			}
 		}
 		
 		this.getBoard().getPieces().clear();
 		this.getBoard().resetBoard();
+		this.selected = null;
+		this.active = null;
 	}
 
 	/**

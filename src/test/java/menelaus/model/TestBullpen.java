@@ -64,10 +64,4 @@ public class TestBullpen {
 		assertEquals(p1, bp.findPiece(p1.getPosition()));
 		assertEquals(p2, bp.findPiece(1, 1));
 	}
-	@Test
-	public void testRandom(){
-		bp.randomFill();
-		bp.addRandomPiece();
-		assertTrue(true);
-	}
 }
