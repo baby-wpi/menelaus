@@ -95,6 +95,11 @@ public class TestMove{
     	assertTrue(tmpbMove.doMove(puzzle));
     	manager.makeMove(tmpbMove);
     	manager.undo();
+    	manager.redo();
+    	manager.deselectPointByIndex(0);
+    	manager.setReleaseItem(manager.getReleaseItem());
+    	manager.setToReleaseMode(manager.getReleaseItem());
+    	manager.makeMoveAndClear(tmpbMove);
     }
     @Test
     public void testSelectSquareMove(){

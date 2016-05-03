@@ -48,6 +48,9 @@ public class TestBuilderManager extends TestCase {
 		assertEquals(bManager.getType(),LevelType.PUZZLE);
 		bManager.setLevelType(LevelType.LIGHTNING);
 		assertEquals(bManager.getType(),LevelType.LIGHTNING);
+		
+		bManager.getNumSelectedPoints();
+		bManager.setToBoardMode();
 	}
 	
 	

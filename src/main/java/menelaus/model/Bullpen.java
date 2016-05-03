@@ -84,7 +84,7 @@ public class Bullpen implements Serializable {
         int max = 6; //can change depending on how many pieces are meant to be put in the board
         Random random = new Random();
         for (int i = 0; i < max; i++) {
-            int index = random.nextInt() % 35;
+            int index = Math.abs(random.nextInt()) % 35;
             this.addPiece(PieceBank.getPiece(index + 1));
         }
     }

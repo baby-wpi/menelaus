@@ -1,12 +1,14 @@
 package menelaus.model.board;
 
+import java.util.Hashtable;
+
 import menelaus.model.basic.Color;
 import menelaus.model.basic.Point;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * 
@@ -298,6 +300,23 @@ public class BoardTest {
 		board.addColoredSetItem(item, location);
 		
 		assertEquals(board.getTileInfo().get(new Point(0, 0)).getColoredSetItem(), item);
+	}
+	@Test
+	public void testChopped(){
+		board.unchopTile(new Point(0,0));
+		assertTrue(!board.isChoppedOut(new Point(0, 0)));
+	}
+	@Test
+	public void testSelection(){
+		Hashtable<Point, BoardTileInfo>tileInfo = new Hashtable<Point, BoardTileInfo>();
+		BoardTileInfo btInfo = new BoardTileInfo(false);
+		btInfo.setColoredSetItem(new ColoredSetItem(Color.BLUE, 1));
+		tileInfo.put(new menelaus.model.basic.Point(0, 0), btInfo );
+		board.setTileInfo(tileInfo);
+		board.selectTile(new Point(0, 0));
+		assertTrue(board.isSelected(new Point(0, 0)));
+		board.unselectTile(new Point(0, 0));
+		assertTrue(!board.isSelected(new Point(0, 0)));
 	}
 
 }
