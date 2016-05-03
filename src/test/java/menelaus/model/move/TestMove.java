@@ -93,6 +93,8 @@ public class TestMove{
     	assertTrue(tmpbMove.valid(puzzle));
     	assertTrue(tmpbMove.doMove(lightning));
     	assertTrue(tmpbMove.doMove(puzzle));
+    	manager.makeMove(tmpbMove);
+    	manager.undo();
     }
     @Test
     public void testSelectSquareMove(){

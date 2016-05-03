@@ -31,7 +31,14 @@ public class TestPieceController {
 
 	@Test
 	public void testPieceController() {
-		//pieceController.mouseClicked();
+		pieceController.mouseClicked(null);
+		pieceController.mouseDragged(null);
+		pieceController.mouseEntered(null);
+		pieceController.mouseExited(null);
+		//pieceController.mouseMoved(null);
+		//pieceController.mousePressed(null);
+		pieceController.mouseReleased(null);
+		pieceController.mouseWheelMoved(null);
 	}
 
 }
