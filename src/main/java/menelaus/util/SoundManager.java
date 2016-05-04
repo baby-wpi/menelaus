@@ -116,7 +116,6 @@ public class SoundManager {
 
     /**
      * set sound to be mute or not.
-     * @param isMute check if game is mute or not.
      */
     public void changeMute() {
         if (isMute) {
