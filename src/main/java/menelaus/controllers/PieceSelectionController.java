@@ -32,6 +32,17 @@ public class PieceSelectionController extends MouseAdapter {
         this.gameManager = gameManager;
         this.level = gameManager.getLevel();
     }
+    
+    /**
+     * Constructs a new controller.
+     * @param bullpenView Baby param
+     * @param levelParam Baby obvious.
+     */
+    public PieceSelectionController(BullpenView bullpenView, Level levelParam) {
+        this.bullpenView = bullpenView;
+        this.gameManager = null;
+        this.level = levelParam;
+    }
 
     /**
      * Determine which piece was selected in the PiecesView.
@@ -65,7 +76,7 @@ public class PieceSelectionController extends MouseAdapter {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (level.getActive() != null){
+        if (gameManager != null && level.getActive() != null){
             gameManager.performNewMove(new ToBullpenMove(level.getActive()));
         }
     }
