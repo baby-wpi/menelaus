@@ -93,6 +93,13 @@ public class TestMove{
     	assertTrue(tmpbMove.valid(puzzle));
     	assertTrue(tmpbMove.doMove(lightning));
     	assertTrue(tmpbMove.doMove(puzzle));
+    	manager.makeMove(tmpbMove);
+    	manager.undo();
+    	manager.redo();
+    	manager.deselectPointByIndex(0);
+    	manager.setReleaseItem(manager.getReleaseItem());
+    	manager.setToReleaseMode(manager.getReleaseItem());
+    	manager.makeMoveAndClear(tmpbMove);
     }
     @Test
     public void testSelectSquareMove(){
@@ -129,6 +136,15 @@ public class TestMove{
     	assertTrue(makeHintBuilderMove.valid(puzzle));
     	assertTrue(makeHintBuilderMove.doMove(lightning));
     	
+    }
+    @Test
+    public void testPlaceReleaseNumberBuilderMove(){
+    	ColoredSetItem csi = new ColoredSetItem(Color.BLUE, 1);
+    	Level level = new Level(LevelType.RELEASE, 6, 8);
+    	PlaceReleaseNumberBuilderMove prnbm = new PlaceReleaseNumberBuilderMove(manager, 0, 0, csi);
+    	prnbm.valid(level);
+    	prnbm.doMove(level);
+    	prnbm.undo(level);
     }
     
 }

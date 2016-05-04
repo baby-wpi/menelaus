@@ -30,10 +30,8 @@ public class BoardControllerBuilderMakeBoard implements MouseListener{
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		//manager.getLevel().getBoard().chopTileOut(new Point(0, 0));
-		//System.out.println("Clicked! x: " + e.getX() + " y: " + e.getY());
-		handleMouseClick(view.pointUnder(e.getX(), e.getY()));
+		Point clickedPoint = new Point(e.getX(), e.getY());
+		handleMouseClick(view.pointUnder(clickedPoint));
 	}
 
 	/**

@@ -306,27 +306,21 @@ public class BoardView extends JPanel {
 
     /**
      * Finds teh piece clciked on.
-     *
-     * @param x the x point clicked on in pixels.
-     * @param y the x point clicked on in pixels.
+     * @param point To coordinate of the click.
      * @return the piece that was clicked on.
      */
-    public Piece findPiece(int x, int y) {
+    public Piece findPiece(Point point) {
 
-        return board.getTileInfo().get(pointUnder(x, y)).getPiecePlaced();
+        return board.getTileInfo().get(pointUnder(point)).getPiecePlaced();
     }
 
     /**
      * Converts pixels to grid units.
-     *
-     * @param x pixels to be converted.
-     * @param y pixels to be converted.
-     * @return A point that represents the the gid unit clicked.
+     * @param point Coordinate of the search.
+     * @return A point that represents the the grid unit clicked.
      */
-    public Point pointUnder(int x, int y) {
-        int gridX = x / calculateGridUnitSize();
-        int gridY = y / calculateGridUnitSize();
-        return new Point(gridX, gridY);
+    public Point pointUnder(Point point) {
+        return point.divide(calculateGridUnitSize());
     }
 
     /**

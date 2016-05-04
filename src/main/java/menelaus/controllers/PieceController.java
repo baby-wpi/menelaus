@@ -28,7 +28,8 @@ public class PieceController extends MouseAdapter {
     /**
      * The piece that is being dragged around after it is placed on the board
      */
-    private Piece draggingPiece;
+    public Piece draggingPiece;
+    
     /**
      * The point we are dragging from
      */
@@ -36,11 +37,11 @@ public class PieceController extends MouseAdapter {
     /**
      * The offset we are using to calculate dragging pieces
      */
-    private Point dragOffset;
+    public Point dragOffset;
     /**
      * Was teh dragging piece actually moved or just selected
      */
-    boolean dragMoved = false;
+    public boolean dragMoved = false;
 
     /**
      * constructor.
@@ -59,20 +60,54 @@ public class PieceController extends MouseAdapter {
      */
     @Override
     public void mousePressed(MouseEvent me) {
-        SoundManager.getInstance().playSound(SoundType.PRESSTILE);
-        Piece pp = level.getActive();
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
-        Point gridPoint = new Point(gridX, gridY);  //saves us the trouble of instantiating for each type of move
-        //we're selecting a piece not dragging it
+    	SoundManager.getInstance().playSound(SoundType.PRESSTILE);
+    	
+        _handleMousePressed(new Point(me.getX(), me.getY()));
+    }
+    
+    @Override
+    public void mouseMoved(MouseEvent me) {
+    	Point clickedPoint = new Point(me.getX(), me.getY());
+    	
+    	_handleMouseMoved(clickedPoint);
+    }
+    
+    @Override
+    public void mouseDragged(MouseEvent me) {
+    	Point clickedPoint = new Point(me.getX(), me.getY());
+    	
+        _handleMouseDragged(clickedPoint);
+    }
+    
+    /**
+     * Once released, no more dragging.
+     */
+    @Override
+    public void mouseReleased(MouseEvent me) {
+    	Point clickedPoint = new Point(me.getX(), me.getY());
+    	
+        _handleMouseReleased(clickedPoint);
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent me) {
+    	_handleMouseExited();
+    }
+    
+    /**
+     * Isolated method for easy testing that handles mouse press.
+     * @param clickedPoint The coordinate on the board.
+     */
+    public void _handleMousePressed(Point clickedPoint) {
+        Point gridPoint = clickedPoint.divide(boardView.calculateGridUnitSize());
+    	
+    	Piece pp = level.getActive();
         if (pp == null) {
-            draggingAnchor = new Point(me.getX(), me.getY());
-
             // perhaps we are pressing inside one of the existing pieces?
-            Piece found = boardView.findPiece(draggingAnchor.getX(), draggingAnchor.getY());
+            Piece found = boardView.findPiece(clickedPoint);
             if (found != null) {
                 draggingPiece = found;
-                dragOffset = boardView.pointUnder(me.getX(), me.getY());
+                dragOffset = boardView.pointUnder(clickedPoint);
             }
             return;
         }
@@ -86,34 +121,36 @@ public class PieceController extends MouseAdapter {
         boardView.repaint();
         bullpenView.repaint();   // has also changed state since piece no longer selected.
     }
-
-    @Override
-    public void mouseMoved(MouseEvent me) {
-        Piece selected = level.getSelected();
-        int gridX = me.getX() / boardView.calculateGridUnitSize();
-        int gridY = me.getY() / boardView.calculateGridUnitSize();
+    
+    /**
+     * Isolated method for easy testing for mouse moved.
+     * @param clickedPoint Coordinate on the board.
+     */
+    public void _handleMouseMoved(Point clickedPoint) {
+    	Piece selected = level.getSelected();
         if (selected == null) {
             return;
         }
 
         Piece pp = level.getSelected();
-        pp.setPosition(new Point(gridX, gridY));
+        pp.setPosition(clickedPoint.divide(boardView.calculateGridUnitSize()));
         level.setActive(pp);
         boardView.repaint();
     }
-
-    @Override
-    public void mouseDragged(MouseEvent me) {
-        // if nothing being dragged, leave
+    
+    /**
+     * Isolated method for easy testing for mouse dragged.
+     * @param clickedPoint Coordinate on the board.
+     */
+    public void _handleMouseDragged(Point clickedPoint) {
+    	// if nothing being dragged, leave
         if (draggingPiece == null) {
             return;
         }
         Point anchor = draggingPiece.getPosition();
-        Point clicked = boardView.pointUnder(me.getX(), me.getY());
+        Point clicked = boardView.pointUnder(clickedPoint);
 
-        int offsetX = clicked.getX() - dragOffset.getX();
-        int offsetY = clicked.getY() - dragOffset.getY();
-        Point adjusted = new Point(anchor.getX() + offsetX, anchor.getY() + offsetY);
+        Point adjusted = anchor.add(clicked.subtract(dragOffset));
 
         level.getBoard().removePiece(draggingPiece);
         draggingPiece.setPosition(adjusted);
@@ -132,19 +169,18 @@ public class PieceController extends MouseAdapter {
         dragOffset = clicked;
         boardView.repaint();
     }
-
+    
     /**
-     * Once released, no more dragging.
+     * Isolated method for mouse release on the board.
+     * @param clickedPoint Coordinate.
      */
-    @Override
-    public void mouseReleased(MouseEvent me) {
-        if (draggingPiece != null) {
+    public void _handleMouseReleased(Point clickedPoint) {
+    	if (draggingPiece != null) {
             Point anchor = draggingPiece.getPosition();
-            Point clicked = boardView.pointUnder(me.getX(), me.getY());
-
-            int offsetX = clicked.getX() - dragOffset.getX();
-            int offsetY = clicked.getY() - dragOffset.getY();
-            Point adjusted = new Point(anchor.getX() + offsetX, anchor.getY() + offsetY);
+            Point clicked = boardView.pointUnder(clickedPoint);
+            
+            Point adjusted = anchor.add(clicked.subtract(dragOffset));
+            
             if (dragMoved) {
                 gameManager.performNewMove(new AroundBoardMove(draggingPiece, adjusted));
                 dragMoved = false;
@@ -154,9 +190,11 @@ public class PieceController extends MouseAdapter {
         draggingAnchor = null;
         dragOffset = null;
     }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
+    
+    /**
+     * Isolated method for easy testing for mouse exit.
+     */
+    public void _handleMouseExited() {
         if (draggingPiece != null) {
             //piece is no longer on the board so move it back to bullpen
             gameManager.performNewMove(new ToBullpenMove(draggingPiece));
@@ -167,9 +205,7 @@ public class PieceController extends MouseAdapter {
 
         // clear the view of partial drawings once mouse exits region
         level.setActive(null);
-
         bullpenView.repaint();
-
         boardView.repaint();
     }
 }
