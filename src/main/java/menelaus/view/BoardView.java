@@ -306,9 +306,7 @@ public class BoardView extends JPanel {
 
     /**
      * Finds teh piece clciked on.
-     *
-     * @param x the x point clicked on in pixels.
-     * @param y the x point clicked on in pixels.
+     * @param point To coordinate of the click.
      * @return the piece that was clicked on.
      */
     public Piece findPiece(Point point) {
@@ -318,9 +316,7 @@ public class BoardView extends JPanel {
 
     /**
      * Converts pixels to grid units.
-     *
-     * @param x pixels to be converted.
-     * @param y pixels to be converted.
+     * @param point Coordinate of the search.
      * @return A point that represents the the grid unit clicked.
      */
     public Point pointUnder(Point point) {

@@ -94,6 +94,10 @@ public class PieceController extends MouseAdapter {
     	_handleMouseExited();
     }
     
+    /**
+     * Isolated method for easy testing that handles mouse press.
+     * @param clickedPoint The coordinate on the board.
+     */
     public void _handleMousePressed(Point clickedPoint) {
         Point gridPoint = clickedPoint.divide(boardView.calculateGridUnitSize());
     	
@@ -118,6 +122,10 @@ public class PieceController extends MouseAdapter {
         bullpenView.repaint();   // has also changed state since piece no longer selected.
     }
     
+    /**
+     * Isolated method for easy testing for mouse moved.
+     * @param clickedPoint Coordinate on the board.
+     */
     public void _handleMouseMoved(Point clickedPoint) {
     	Piece selected = level.getSelected();
         if (selected == null) {
@@ -130,6 +138,10 @@ public class PieceController extends MouseAdapter {
         boardView.repaint();
     }
     
+    /**
+     * Isolated method for easy testing for mouse dragged.
+     * @param clickedPoint Coordinate on the board.
+     */
     public void _handleMouseDragged(Point clickedPoint) {
     	// if nothing being dragged, leave
         if (draggingPiece == null) {
@@ -158,6 +170,10 @@ public class PieceController extends MouseAdapter {
         boardView.repaint();
     }
     
+    /**
+     * Isolated method for mouse release on the board.
+     * @param clickedPoint Coordinate.
+     */
     public void _handleMouseReleased(Point clickedPoint) {
     	if (draggingPiece != null) {
             Point anchor = draggingPiece.getPosition();
@@ -175,6 +191,9 @@ public class PieceController extends MouseAdapter {
         dragOffset = null;
     }
     
+    /**
+     * Isolated method for easy testing for mouse exit.
+     */
     public void _handleMouseExited() {
         if (draggingPiece != null) {
             //piece is no longer on the board so move it back to bullpen

@@ -23,7 +23,7 @@ public class Bullpen implements Serializable {
 
     /**
      * Returns all pieces.
-     * @return
+     * @return Pieces stored in the bullpen
      */
     public ArrayList<Piece> getPieces() {
         return pieces;

@@ -67,7 +67,6 @@ public class PieceDrawer {
     public static void drawPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(TILE_COLOR), false);
     }
-
     /**
      * Draws the piece.
      * <p/>
@@ -75,6 +74,7 @@ public class PieceDrawer {
      *
      * @param graphics The graphics object we're drawing to.
      * @param piece    The piece we want drawn
+     * @param tileSize 
      */
     public static void drawCoverPieceToGrid(Graphics graphics, Piece piece, int tileSize) {
         _draw(graphics, piece, tileSize, Color.decode(LIGHTNING_COLOR), true);

@@ -185,6 +185,7 @@ public class Level implements Serializable {
 	/**
 	 * Currently selected piece (or null if none). When a shape is
 	 * selected, it is no longer part of the Model.
+	 * @return The current selected piece
 	 */
 	public Piece getSelected() {
 		return selected;
@@ -201,6 +202,7 @@ public class Level implements Serializable {
     /**
      * Currently actively dragged piece (or null if none). When a shape is
      * selected, it is no longer part of the Model.
+     * @return The current active piece
      */
     public Piece getActive() {
         return active;

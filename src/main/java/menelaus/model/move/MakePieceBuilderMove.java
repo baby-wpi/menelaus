@@ -17,7 +17,10 @@ public class MakePieceBuilderMove extends BuilderMove {
     Piece pieceToPlace = null;
     Piece pieceToPlaceInBullpen = null;
     ArrayList<Point> allSelected;
-
+/**
+ * Constructor
+ * @param manager
+ */
     public MakePieceBuilderMove(BuilderManager manager) {
         super(manager);
         this.manager = manager;
@@ -30,6 +33,10 @@ public class MakePieceBuilderMove extends BuilderMove {
     }
 
     @Override
+    /**
+	 * Determines whether this move is valid within the given level
+	 * @return true if move is valid, false otherwise
+	 */
     public boolean valid(Level level) {
         // There are exactly 6 selections
         // All of the selections are adjacent to at least one other selection.
@@ -63,6 +70,10 @@ public class MakePieceBuilderMove extends BuilderMove {
     }
 
     @Override
+    /**
+	 * Attempts to complete this move within the given level
+	 * @return true if move is successfully completed, false otherwise
+	 */
     public boolean doMove(Level level) {
         if (pieceToPlace == null) {
             if (!valid(level)) return false;
@@ -87,6 +98,10 @@ public class MakePieceBuilderMove extends BuilderMove {
     }
 
     @Override
+    /**
+	 * Attempts to complete this move within the given level
+	 * @return true if move is successfully undone, false otherwise
+	 */
     public boolean undo(Level level) {
         level.getBoard().removePiece(pieceToPlace);
         level.getBullpen().removePiece(pieceToPlaceInBullpen);

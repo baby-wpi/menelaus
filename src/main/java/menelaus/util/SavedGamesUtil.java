@@ -87,7 +87,7 @@ public class SavedGamesUtil {
 	/**
 	 * Load SavedGames from a File.
 	 * @param inputFile File to read from
-	 * @return The SavedGames object
+	 * 
 	 */
 	void loadFromFile() throws IOException, ClassNotFoundException {
         FileInputStream fileToRead = new FileInputStream(file);

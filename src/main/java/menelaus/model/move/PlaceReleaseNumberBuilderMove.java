@@ -7,13 +7,23 @@ import menelaus.model.Level;
 import menelaus.model.basic.Point;
 import menelaus.model.board.BoardTileInfo;
 import menelaus.model.board.ColoredSetItem;
-
+/**
+ * Contains the necessary information for placing a number tile in a released level
+ * 
+ *
+ */
 public class PlaceReleaseNumberBuilderMove extends BuilderMove {
 
 	ColoredSetItem newValue;
 	ColoredSetItem oldValue;
 	Point pointToPlaceAt;
-	
+	/**
+	 * Constructor
+	 * @param manager
+	 * @param x
+	 * @param y
+	 * @param number
+	 */
 	public PlaceReleaseNumberBuilderMove(BuilderManager manager, int x, int y, ColoredSetItem number) {
 		super(manager);
 		this.manager = manager;

@@ -12,9 +12,15 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Contains information necessary to display the LevelSelectorScreen in the game
+ *
+ */
 public class LevelSelectorScreen extends KabasujiPanel {
 	/**
 	 * Create the panel.
+	 * @param levelsPackage 
+	 * @param savedGames 
 	 */
 	public LevelSelectorScreen(LevelsPackage levelsPackage, SavedGames savedGames) {
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();

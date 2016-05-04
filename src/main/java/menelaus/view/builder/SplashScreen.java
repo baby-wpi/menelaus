@@ -6,6 +6,10 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.*;
 
+/**
+ * Contains the information necessary to display the splashscreen on load time
+ *
+ */
 public class SplashScreen extends KabasujiPanel {
 
 	/**
