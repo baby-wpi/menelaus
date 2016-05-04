@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 
 /**
- * 
+ * Controller handles making a piece.
  * @author sanjay
  *
  */

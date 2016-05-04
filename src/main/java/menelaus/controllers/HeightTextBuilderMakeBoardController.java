@@ -8,7 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * 
+ * Controller handle the height of the text in the builder make board.
  * @author Sanjay.
  *
  */

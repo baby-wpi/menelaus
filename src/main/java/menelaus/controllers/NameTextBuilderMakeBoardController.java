@@ -7,7 +7,7 @@ import javax.swing.event.DocumentListener;
 import menelaus.model.BuilderManager;
 
 /**
- * 
+ * Controller handles the name of the board in the Builder Make board screen.
  * @author Sanjay.
  *
  */
