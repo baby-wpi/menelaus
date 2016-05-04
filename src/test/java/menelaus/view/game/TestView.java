@@ -7,6 +7,7 @@ import menelaus.controllers.PieceController;
 import menelaus.controllers.ToWinScreenController;
 import menelaus.model.Level;
 import menelaus.model.LevelStars;
+import menelaus.model.LevelsPackage;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.Piece;
@@ -25,6 +26,7 @@ public class TestView {
 	GameWindowFrame frame;
 	BuilderWindowFrame builderFrame;
 	LevelPlayScreen screen;
+	Level level;
 	
 	//Game Simple Views
 	BoardView boardView;
@@ -36,7 +38,12 @@ public class TestView {
 		frame = GameWindowFrame.getInstance();
 		builderFrame = BuilderWindowFrame.getInstance();
 		
-		ButtonLevelSelectController controller = new ButtonLevelSelectController(frame.getLevelsPackage().getLevels().get(0));
+		Level level = new Level(LevelType.PUZZLE, 6, 6);
+		Piece piece = new Piece(new Point(0, 0));
+		piece.addTile(new Tile(1, 0));
+		level.getBullpen().addPiece(piece);
+	
+		ButtonLevelSelectController controller = new ButtonLevelSelectController(level);
 		controller.actionPerformed(null);
 		screen = (LevelPlayScreen) frame.getContentPane().getComponent(0);
 	}

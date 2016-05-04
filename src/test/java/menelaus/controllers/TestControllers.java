@@ -64,7 +64,6 @@ public class TestControllers {
 		pdc.mouseExited(null);
 		pdc.mouseMoved(null);
 		pdc.mousePressed(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
-		pdc.mouseReleased(new MouseEvent(bv, 0, 0, 0, 0, 0, 0, 0, 0, false, 0));
 		pdc.mouseWheelMoved(null);
 		assertEquals(1, 1);
 	}

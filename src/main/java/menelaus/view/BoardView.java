@@ -310,8 +310,12 @@ public class BoardView extends JPanel {
      * @return the piece that was clicked on.
      */
     public Piece findPiece(Point point) {
-
-        return board.getTileInfo().get(pointUnder(point)).getPiecePlaced();
+    	BoardTileInfo info = board.getTileInfo().get(pointUnder(point));
+    	if (info == null) {
+    		return null;
+    	}
+    	
+        return info.getPiecePlaced();
     }
 
     /**
