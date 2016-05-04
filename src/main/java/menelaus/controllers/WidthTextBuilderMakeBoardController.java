@@ -4,15 +4,15 @@ import menelaus.model.BuilderManager;
 import menelaus.view.BoardView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  * 
  * @author Sanjay.
  *
  */
-public class WidthTextBuilderMakeBoardController implements ActionListener{
+public class WidthTextBuilderMakeBoardController implements DocumentListener{
 	BoardView boardView;
 	BuilderManager manager;
 	JTextField widthField;
@@ -28,31 +28,19 @@ public class WidthTextBuilderMakeBoardController implements ActionListener{
 		this.manager = manager;
 		this.widthField = widthField;
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		handleTextChanged(this.widthField.getText());
-	}
+
 	void handleTextChanged(String newText) {
 		int newWidth;
 		try {
 			newWidth = Integer.parseInt(newText);
 			
 		} catch (NumberFormatException e) {
-			this.widthField.setText(this.manager.getWidth() + "");
 			return;
 		}
 		this.manager.setSize(newWidth, this.manager.getHeight());
-//		//auto chop out pieces not available
-//		if(newMajorSide(newWidth)) {
-//			for (int x = 0; x < newWidth; x++) {
-//				for (int y = manager.getHeight(); y < newWidth; y++) {
-//					manager.getLevel().getBoard().chopTileOut(new Point(x, y));
-//				}
-//			}
-//		}
+
 		this.boardView.repaint();
 		this.widthField.repaint();
-		//this.manager.setSize(, h);
 	}
 
 	/**
@@ -62,5 +50,17 @@ public class WidthTextBuilderMakeBoardController implements ActionListener{
 	 */
 	private boolean newMajorSide(int newSideLen) {
 		return newSideLen > manager.getHeight();
+	}
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		handleTextChanged(this.widthField.getText());
+	}
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		handleTextChanged(this.widthField.getText());
+	}
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		handleTextChanged(this.widthField.getText());
 	}
 }
