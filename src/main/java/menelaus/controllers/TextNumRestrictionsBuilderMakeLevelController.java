@@ -7,7 +7,7 @@ import javax.swing.event.DocumentListener;
 import menelaus.model.BuilderManager;
 
 /**
- * 
+ * Controller handles the number restricitons in the builder.
  * @author sanjay
  *
  */

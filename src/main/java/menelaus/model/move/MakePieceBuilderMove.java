@@ -10,6 +10,7 @@ import menelaus.model.board.Tile;
 import java.util.ArrayList;
 
 /**
+ * This is the move which makes a piece in the builder.
  * @author sanjay
  */
 public class MakePieceBuilderMove extends BuilderMove {

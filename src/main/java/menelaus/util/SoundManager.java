@@ -12,6 +12,7 @@ import java.util.Map;
  */
 public class SoundManager {
     private AudioClip click;
+    /** check if game is mute or not. */
     private boolean isMute = false;
 
     /**
@@ -115,7 +116,6 @@ public class SoundManager {
 
     /**
      * set sound to be mute or not.
-     * @param isMute
      */
     public void changeMute() {
         if (isMute) {

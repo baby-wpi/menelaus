@@ -8,7 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * 
+ * Controller handles the width of the text.
  * @author Sanjay.
  *
  */

@@ -11,6 +11,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 /**
+ * The panel which encompasses many other game panels.
  * @author frankegan on 4/15/16.
  * <p>
  * Define a base class for all our panels to extend. Includes constants for defining panel sizes,

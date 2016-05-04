@@ -12,7 +12,7 @@ import menelaus.model.dataholders.ReleasePaneData;
 
 
 /**
- * 
+ * Enables Release Mode for Builder Make Level Screen.
  * @author Sanjay
  *
  */

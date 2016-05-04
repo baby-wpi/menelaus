@@ -12,7 +12,7 @@ import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderReleasePane;
 
 /**
- * 
+ * Handles the Release Pane in the builder.
  * @author Sanjay.
  *
  */

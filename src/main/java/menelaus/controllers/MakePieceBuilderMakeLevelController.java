@@ -7,7 +7,7 @@ import menelaus.model.move.MakePieceBuilderMove;
 import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 /**
- * 
+ * Handles the making of a piece in the builder make screen.
  * @author sanjay
  *
  */
