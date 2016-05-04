@@ -38,8 +38,8 @@ public class BuilderSelectScreen extends KabasujiPanel {
         btnLightning.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager, LevelType.LIGHTNING, this));
         btnRelease.addActionListener(new LevelTypeButtonBuilderMakeBoardController(this.manager, LevelType.RELEASE, this));
         txtInsertName.getDocument().addDocumentListener(new NameTextBuilderMakeBoardController(manager, txtInsertName));
-        txtWidth.addActionListener(new WidthTextBuilderMakeBoardController(this.boardPanel, this.manager, this.txtWidth));
-        txtHeight.addActionListener(new HeightTextBuilderMakeBoardController(this.boardPanel, this.manager, this.txtHeight));
+        txtWidth.getDocument().addDocumentListener(new WidthTextBuilderMakeBoardController(this.boardPanel, this.manager, this.txtWidth));
+        txtHeight.getDocument().addDocumentListener(new HeightTextBuilderMakeBoardController(this.boardPanel, this.manager, this.txtHeight));
     }
 
     void resetViewToLevel() {

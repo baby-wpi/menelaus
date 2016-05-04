@@ -38,6 +38,11 @@ public class SavedGames implements Serializable {
 	 * @param levelStars The object to add.
 	 */
 	public void addLevelStars(LevelStars levelStars) {
+		LevelStars old = stars.get(levelStars.getLevelId());
+		if (old != null && old.getStarsCount() >= levelStars.getStarsCount()) {
+			return;
+		}
+		
 		stars.put(levelStars.getLevelId(), levelStars);
 	}
 	
