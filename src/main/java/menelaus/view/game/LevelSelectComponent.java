@@ -91,6 +91,12 @@ public class LevelSelectComponent extends JPanel {
 		}
 		
 		JLabel lblLevelName = new JLabel(levelName);
+		
+		// Obscure the name of the level if it is unplayable at the moment.
+		if (playableParam == false) {
+			lblLevelName.setText("**********");
+		}
+		
 		lblLevelName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelName.setMaximumSize(new Dimension(120, 16));
 		
