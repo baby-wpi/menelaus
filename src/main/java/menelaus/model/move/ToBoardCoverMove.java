@@ -38,7 +38,7 @@ public class ToBoardCoverMove extends Move {
 		try {
 			level.getBoard().coverWithPiece(piece);
 			level.getBullpen().removePiece(piece);
-			level.getBullpen().addPiece(PieceBank.getPiece(new Random().nextInt(35) + 1));
+			level.getBullpen().addPiece(new Piece(PieceBank.getPiece(new Random().nextInt(35) + 1)));
 			return true;
 		} catch (InvalidPiecePlacementException e) {
 			return false;
