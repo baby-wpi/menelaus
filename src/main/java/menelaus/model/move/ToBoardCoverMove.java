@@ -1,10 +1,13 @@
 package menelaus.model.move;
 
+import java.util.Random;
+
 import menelaus.model.Level;
 import menelaus.model.basic.LevelType;
 import menelaus.model.basic.Point;
 import menelaus.model.board.InvalidPiecePlacementException;
 import menelaus.model.board.Piece;
+import menelaus.util.PieceBank;
 
 /**
  * Covers part of the Board during a Lightning level.
@@ -35,7 +38,7 @@ public class ToBoardCoverMove extends Move {
 		try {
 			level.getBoard().coverWithPiece(piece);
 			level.getBullpen().removePiece(piece);
-			level.getBullpen().addPiece(new Piece(piece));
+			level.getBullpen().addPiece(PieceBank.getPiece(new Random().nextInt(35) + 1));
 			return true;
 		} catch (InvalidPiecePlacementException e) {
 			return false;
