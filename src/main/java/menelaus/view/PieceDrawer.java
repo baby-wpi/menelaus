@@ -10,6 +10,7 @@ import java.util.Hashtable;
 
 
 /**
+ * This handles all of the piece drawing. 
  * @author fegan
  * @author vouldjeff
  */

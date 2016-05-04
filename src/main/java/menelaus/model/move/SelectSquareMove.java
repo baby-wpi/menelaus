@@ -8,7 +8,7 @@ import menelaus.model.Level;
 import menelaus.model.basic.Point;
 import menelaus.model.board.BoardTileInfo;
 /**
- * 
+ * This move is for selecting squares.
  * @author sanjay
  *
  */
