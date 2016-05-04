@@ -6,7 +6,6 @@ import menelaus.util.PieceBank;
 import java.util.ArrayList;
 
 /**
- * This is the all piece bullpen which holds all hexomino pieces.
  * @author vouldjeff
  * @author fegan
  */

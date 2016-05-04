@@ -17,7 +17,6 @@ import java.awt.*;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 
 /**
- * This is the screen where you build a level.
  * @author sanjay
  */
 public class BuilderLevelBuilderScreen extends KabasujiPanel {

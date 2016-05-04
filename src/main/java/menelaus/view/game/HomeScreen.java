@@ -16,7 +16,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * This was the home screen for the builder.
  * @author vouldjeff
  * @author fegan
  */

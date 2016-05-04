@@ -21,6 +21,7 @@ public class ButtonLevelSelectController implements ActionListener{
 
     /**
      * A controller fro opening teh proper level from teh level select screen.
+     * @param selectScreen Th screen that let's you select each level.
      * @param level The level we're opeing up.
      */
     public ButtonLevelSelectController(Level level) {

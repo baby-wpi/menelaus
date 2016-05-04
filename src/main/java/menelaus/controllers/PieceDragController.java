@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Controller handles the Piece Dragging.
  * Created by @frankegan on 4/19/16.
  */
 public class PieceDragController extends MouseAdapter {

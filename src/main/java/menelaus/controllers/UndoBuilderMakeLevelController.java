@@ -10,7 +10,7 @@ import menelaus.view.BoardView;
 import menelaus.view.BullpenView;
 
 /**
- * Controller handles the undoing in the builder.
+ * 
  * @author Sanjay.
  *
  */

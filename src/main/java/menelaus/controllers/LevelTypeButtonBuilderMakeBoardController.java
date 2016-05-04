@@ -10,7 +10,7 @@ import menelaus.util.SoundType;
 import menelaus.view.builder.BuilderSelectScreen;
 
 /**
- * Controller handles the level type button response.
+ * 
  * @author Sanjay
  *
  */
